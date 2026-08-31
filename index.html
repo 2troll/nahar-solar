@@ -1,0 +1,1281 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAHAR — Autoconsumo solar industrial</title>
+<meta name="description" content="Ingeniería e instalación de autoconsumo fotovoltaico para industria y logística. Estudio, obra y mantenimiento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;500;600&family=Chivo+Mono:wght@400;500&family=Cairo:wght@300;400;500;600;700&display=swap">
+<style>
+/* ══════════════════════════════════════════════════════════════════
+   NAHAR — نهار, "la luz del día".
+
+   Autoconsumo fotovoltaico para industria. El cliente es un jefe de
+   planta o un director financiero: no compra ecología, compra una
+   factura más baja y una amortización que le cuadre. De ahí el tono:
+   ingeniería, cifras y ni un adjetivo de más.
+
+   Todo el espaciado usa propiedades lógicas, así que la versión árabe
+   se invierte sola. Las excepciones reales van marcadas.
+   ══════════════════════════════════════════════════════════════════ */
+
+:root{
+  --fondo:#eef0ef; --fondo-2:#e2e6e4; --sup:#f7f8f7;
+  --tinta:#14181b; --tinta-2:#525a5e; --tinta-3:#858c8f;
+  --acento:#0f5f7a;
+  --linea:rgba(20,24,27,.14); --linea-2:rgba(20,24,27,.07);
+  --s1:#1a6fb0; --s2:#c8641a; --s3:#0f8f7a;   /* series validadas */
+  --ok:#0f8f7a; --alerta:#c8641a;
+
+  --disp:"Chivo",system-ui,sans-serif;
+  --cuerpo:"Chivo",system-ui,sans-serif;
+  --mono:"Chivo Mono",ui-monospace,monospace;
+  --marco:min(1280px,100% - 2.75rem);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --fondo:#0e1113; --fondo-2:#171b1e; --sup:#1c2124;
+  --tinta:#e6eaea; --tinta-2:#a0a8ab; --tinta-3:#6d7477;
+  --acento:#5aa8c4;
+  --linea:rgba(230,234,234,.16); --linea-2:rgba(230,234,234,.08);
+  --s1:#3f88c4; --s2:#c47f32; --s3:#20a086;
+  --ok:#20a086; --alerta:#c47f32;
+}}
+:root[data-theme="dark"]{
+  --fondo:#0e1113; --fondo-2:#171b1e; --sup:#1c2124;
+  --tinta:#e6eaea; --tinta-2:#a0a8ab; --tinta-3:#6d7477;
+  --acento:#5aa8c4;
+  --linea:rgba(230,234,234,.16); --linea-2:rgba(230,234,234,.08);
+  --s1:#3f88c4; --s2:#c47f32; --s3:#20a086;
+  --ok:#20a086; --alerta:#c47f32;
+}
+/* Cairo sustituye a Chivo en árabe, también en los datos: no hay
+   monoespaciada árabe que no se lea como un error tipográfico. */
+html[dir="rtl"]{ --disp:"Cairo",sans-serif; --cuerpo:"Cairo",sans-serif; --mono:"Cairo",sans-serif; }
+
+*,*::before,*::after{box-sizing:border-box;}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--cuerpo);
+  font-weight:300;font-size:clamp(15px,1.02vw,16.5px);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;font-variant-numeric:tabular-nums;}
+html[dir="rtl"] body{line-height:2;font-weight:400;}
+h1,h2,h3{font-family:var(--disp);font-weight:500;margin:0;line-height:1.08;letter-spacing:-.02em;text-wrap:balance;}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{line-height:1.5;letter-spacing:0;font-weight:700;}
+p{margin:0 0 .95em;max-width:64ch;} p:last-child{margin-bottom:0;}
+a{color:inherit;} :focus-visible{outline:2px solid var(--acento);outline-offset:3px;}
+.marco{width:var(--marco);margin-inline:auto;}
+.bloque{padding-block:clamp(2.75rem,6vw,5rem);}
+.raya{border-top:1px solid var(--linea);}
+
+.eti{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--acento);margin:0 0 1rem;display:flex;align-items:center;gap:.7rem;}
+/* Espaciar letras en árabe rompe las ligaduras: la palabra se descose. */
+html[dir="rtl"] .eti{letter-spacing:0;text-transform:none;font-size:.9rem;font-weight:600;}
+.eti::after{content:"";flex:1;height:1px;background:var(--linea);max-width:4rem;}
+
+/* ── Cabecera ────────────────────────────────────────────────────── */
+header.n{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--fondo) 92%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--linea);}
+.barra{display:flex;align-items:center;gap:1.2rem;padding-block:.9rem;flex-wrap:wrap;}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--disp);
+  font-weight:600;font-size:1.15rem;letter-spacing:-.02em;}
+html[dir="rtl"] .logo{letter-spacing:0;font-size:1.35rem;}
+.logo svg{width:22px;height:22px;color:var(--acento);flex-shrink:0;}
+nav.n{display:flex;gap:1.15rem;margin-inline-start:auto;font-size:.82rem;overflow-x:auto;scrollbar-width:none;}
+nav.n::-webkit-scrollbar{display:none;}
+nav.n a{text-decoration:none;color:var(--tinta-2);white-space:nowrap;padding-block:.25rem;
+  border-bottom:1px solid transparent;}
+nav.n a:hover{color:var(--tinta);}
+nav.n a[aria-current="page"]{color:var(--tinta);border-bottom-color:var(--acento);}
+.idi{display:flex;gap:.45rem;font-family:var(--mono);font-size:.72rem;flex-shrink:0;}
+html[dir="rtl"] .idi{font-size:.85rem;}
+.idi button{background:none;border:0;cursor:pointer;font:inherit;font-family:inherit;color:var(--tinta-3);padding:.2rem 0;}
+.idi button[aria-pressed="true"]{color:var(--tinta);text-decoration:underline;text-underline-offset:4px;}
+.idi button:hover{color:var(--acento);}
+@media(max-width:980px){.barra{gap:.6rem 1rem}.idi{margin-inline-start:auto}nav.n{order:3;width:100%;margin-inline-start:0}}
+
+[data-ruta]{display:none;} [data-ruta].on{display:block;animation:ap .4s ease both;}
+@keyframes ap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ── Portada ─────────────────────────────────────────────────────── */
+.hero{display:grid;gap:2.5rem;align-items:center;padding-block:clamp(2.5rem,6vw,4.5rem);}
+@media(min-width:940px){.hero{grid-template-columns:1.05fr .95fr;gap:3.5rem;}}
+.hero h1{font-size:clamp(2.2rem,5.4vw,4rem);font-weight:400;max-width:16ch;}
+html[dir="rtl"] .hero h1{max-width:19ch;font-weight:700;}
+.entrada{font-size:clamp(1rem,1.3vw,1.13rem);color:var(--tinta-2);max-width:50ch;margin-top:1.3rem;}
+.lam{width:100%;height:auto;display:block;border:1px solid var(--linea);background:var(--sup);}
+
+.acc{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem;}
+.btn{display:inline-block;text-decoration:none;font-family:var(--mono);font-size:.76rem;
+  letter-spacing:.12em;text-transform:uppercase;padding:.95rem 1.9rem;border:1px solid var(--tinta);
+  background:transparent;color:var(--tinta);cursor:pointer;transition:.2s;}
+html[dir="rtl"] .btn{letter-spacing:0;text-transform:none;font-size:.95rem;}
+.btn.sol{background:var(--tinta);color:var(--fondo);}
+.btn.sol:hover{background:var(--acento);border-color:var(--acento);color:#fff;}
+.btn:hover{border-color:var(--acento);color:var(--acento);}
+.btn.sol:hover{color:#fff;}
+
+/* ── Rejillas y tarjetas ─────────────────────────────────────────── */
+.rej{display:grid;gap:1px;background:var(--linea);border:1px solid var(--linea);}
+.r3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+.r4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));}
+.cel{background:var(--fondo);padding:1.5rem 1.4rem;}
+.cel h3{font-size:1.2rem;margin-bottom:.5rem;}
+.cel p{color:var(--tinta-2);font-size:.94rem;}
+.cel .n{font-family:var(--mono);font-size:.7rem;color:var(--acento);display:block;margin-bottom:.8rem;}
+html[dir="rtl"] .cel .n{font-size:.85rem;}
+.dato .v{font-family:var(--disp);font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:500;letter-spacing:-.03em;line-height:1;}
+html[dir="rtl"] .dato .v{letter-spacing:0;}
+.dato .u{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-3);margin-top:.6rem;}
+html[dir="rtl"] .dato .u{letter-spacing:0;text-transform:none;font-size:.85rem;}
+
+.filas{border-top:1px solid var(--linea);}
+.fila{display:grid;grid-template-columns:3rem 1fr;gap:1.2rem;padding-block:1.4rem;border-bottom:1px solid var(--linea-2);}
+@media(min-width:900px){.fila{grid-template-columns:3rem 14rem 1fr;}}
+.fila .i{font-family:var(--mono);font-size:.72rem;color:var(--acento);padding-top:.3rem;}
+html[dir="rtl"] .fila .i{font-size:.88rem;}
+.fila h3{font-size:1.15rem;} .fila .d{color:var(--tinta-2);}
+
+.lista{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.5rem;max-width:62ch;}
+.lista li{display:grid;grid-template-columns:1.2rem 1fr;gap:.6rem;align-items:baseline;color:var(--tinta-2);font-size:.94rem;}
+.lista li::before{content:"—";color:var(--acento);}
+.lista.no li::before{content:"×";color:var(--tinta-3);}
+
+/* ── Gráficas ────────────────────────────────────────────────────── */
+.mandos{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.4rem;align-items:center;}
+.mandos button{font-family:var(--mono);font-size:.74rem;padding:.5rem .9rem;border:1px solid var(--linea);
+  background:transparent;color:var(--tinta-2);cursor:pointer;}
+html[dir="rtl"] .mandos button{font-size:.88rem;}
+.mandos button[aria-pressed="true"]{background:var(--tinta);color:var(--fondo);border-color:var(--tinta);}
+.mandos button:hover{border-color:var(--acento);color:var(--acento);}
+.mandos button[aria-pressed="true"]:hover{color:var(--fondo);}
+
+.leyenda{display:flex;flex-wrap:wrap;gap:.3rem 1.3rem;margin-bottom:1rem;font-size:.82rem;color:var(--tinta-2);}
+.leyenda span{display:flex;align-items:center;gap:.45rem;}
+.leyenda i{width:.8rem;height:.8rem;border-radius:2px;background:var(--c);flex-shrink:0;}
+
+.grafica{overflow-x:auto;}
+.grafica svg{display:block;min-width:32rem;width:100%;height:auto;}
+.gr-eje{stroke:var(--linea);stroke-width:1;}
+.gr-guia{stroke:var(--linea-2);stroke-width:1;}
+.gr-tex{fill:var(--tinta-3);font-family:var(--mono);font-size:10px;}
+html[dir="rtl"] .gr-tex{font-family:"Cairo",sans-serif;font-size:11px;}
+.gr-val{fill:var(--tinta-2);font-family:var(--mono);font-size:10px;font-weight:500;}
+html[dir="rtl"] .gr-val{font-family:"Cairo",sans-serif;}
+.barra{transition:opacity .15s;}
+.barra:hover{opacity:.78;}
+
+.desliz{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+.desliz label{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-3);margin:0;}
+html[dir="rtl"] .desliz label{letter-spacing:0;text-transform:none;font-size:.88rem;}
+.desliz input[type=range]{flex:1;min-width:12rem;accent-color:var(--acento);}
+.desliz output{font-family:var(--disp);font-size:1.3rem;font-weight:500;min-width:6rem;}
+
+.hallazgo{margin-top:1.6rem;padding:1.1rem 1.3rem;background:var(--fondo-2);
+  border-inline-start:3px solid var(--acento);font-size:.97rem;}
+.hallazgo b{color:var(--acento);}
+.metodo{font-size:.78rem;color:var(--tinta-3);margin-top:1.3rem;max-width:70ch;}
+.tabla{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:.8rem;}
+.tabla th,.tabla td{border-bottom:1px solid var(--linea-2);padding:.45rem .5rem;text-align:start;}
+.tabla th{font-weight:500;color:var(--tinta-2);font-family:var(--mono);font-size:.72rem;
+  letter-spacing:.08em;text-transform:uppercase;}
+html[dir="rtl"] .tabla th{letter-spacing:0;text-transform:none;font-size:.86rem;}
+.tabla td{color:var(--tinta-2);}
+
+/* ── Preguntas ───────────────────────────────────────────────────── */
+.faq{border-top:1px solid var(--linea);}
+.faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
+  list-style:none;display:flex;gap:1rem;align-items:baseline;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";margin-inline-start:auto;color:var(--acento);}
+.faq[open] summary::after{content:"–";}
+.faq p{color:var(--tinta-2);padding-bottom:1.2rem;}
+
+/* ── Formulario ──────────────────────────────────────────────────── */
+form{display:grid;gap:1.3rem;max-width:36rem;}
+.par{display:grid;gap:1.3rem;} @media(min-width:640px){.par{grid-template-columns:1fr 1fr;}}
+label{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--tinta-3);margin-bottom:.4rem;}
+html[dir="rtl"] label{letter-spacing:0;text-transform:none;font-size:.86rem;}
+input,select,textarea{width:100%;font:inherit;font-family:var(--cuerpo);color:var(--tinta);
+  background:transparent;border:0;border-bottom:1px solid var(--linea);padding:.55rem 0;border-radius:0;}
+input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--acento);}
+textarea{resize:vertical;min-height:5rem;}
+select{appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--tinta-3) 50%),
+                   linear-gradient(135deg,var(--tinta-3) 50%,transparent 50%);
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;
+  background-position:right 4px center,right 0 center;}
+/* background-position no tiene versión lógica: se refleja a mano. */
+html[dir="rtl"] select{background-position:left 0 center,left 4px center;}
+select option{background:var(--sup);color:var(--tinta);}
+.aviso{font-size:.78rem;color:var(--tinta-3);}
+.acuse{font-family:var(--mono);font-size:.85rem;color:var(--ok);min-height:1.4em;margin:.6rem 0 0;}
+html[dir="rtl"] .acuse{font-size:.95rem;}
+.acuse.mal{color:var(--alerta);}
+
+footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.8rem;color:var(--tinta-3);}
+.pie{display:flex;flex-wrap:wrap;gap:.7rem 2rem;align-items:center;}
+.pie nav{display:flex;gap:1.2rem;flex-wrap:wrap;}
+.pie a{text-decoration:none;} .pie a:hover{color:var(--acento);}
+.pie .fin{margin-inline-start:auto;}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block;}
+</style>
+</head>
+<body>
+
+<header class="n">
+  <div class="marco barra">
+    <a class="logo" href="#/inicio">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6" fill="currentColor"/><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 1.6v3M12 19.4v3M1.6 12h3M19.4 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M19.4 4.6l-2.1 2.1M6.7 17.3l-2.1 2.1"/></g></svg>
+      <span data-t="marca">NAHAR</span>
+    </a>
+    <nav class="n" data-t-attr="aria-label:ariaMenu" aria-label="Secciones">
+      <a href="#/inicio"        data-t="nInicio">Inicio</a>
+      <a href="#/servicios"     data-t="nServicios">Servicios</a>
+      <a href="#/proceso"       data-t="nProceso">Proceso</a>
+      <a href="#/rendimiento"   data-t="nRendimiento">Rendimiento</a>
+      <a href="#/amortizacion"  data-t="nAmortizacion">Amortización</a>
+      <a href="#/proyectos"     data-t="nProyectos">Proyectos</a>
+      <a href="#/mantenimiento" data-t="nMantenimiento">Mantenimiento</a>
+      <a href="#/nosotros"      data-t="nNosotros">Empresa</a>
+      <a href="#/preguntas"     data-t="nPreguntas">Preguntas</a>
+      <a href="#/contacto"      data-t="nContacto">Contacto</a>
+    </nav>
+    <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- INICIO -->
+<section data-ruta="inicio">
+  <div class="marco hero">
+    <div>
+      <p class="eti" data-t="iEti">Autoconsumo fotovoltaico industrial</p>
+      <h1 data-t="iH1">La cubierta de su nave ya está pagada. Lo que produce, no.</h1>
+      <p class="entrada" data-t="iEntrada">Ingeniería, obra y mantenimiento de plantas de autoconsumo para industria y logística. Estudiamos su curva de consumo real antes de proponer una sola placa.</p>
+      <div class="acc">
+        <a class="btn sol" href="#/contacto" data-t="bEstudio">Pedir estudio</a>
+        <a class="btn" href="#/amortizacion" data-t="bCalcular">Calcular amortización</a>
+      </div>
+    </div>
+    <svg class="lam" id="lamina" viewBox="0 0 520 360" role="img" data-t-attr="aria-label:laminaAlt" aria-label="Esquema de una instalación en cubierta"></svg>
+  </div>
+
+  <div class="marco bloque raya">
+    <p class="eti" data-t="iCifrasEti">En cifras</p>
+    <div class="rej r4">
+      <div class="cel dato"><div class="v" data-t="cf1v">1.623</div><div class="u" data-t="cf1u">kWh por kWp y año, orientación sur</div></div>
+      <div class="cel dato"><div class="v" data-t="cf2v">6–8</div><div class="u" data-t="cf2u">Años de amortización habituales</div></div>
+      <div class="cel dato"><div class="v" data-t="cf3v">25</div><div class="u" data-t="cf3u">Años de garantía de producción del panel</div></div>
+      <div class="cel dato"><div class="v" data-t="cf4v">0</div><div class="u" data-t="cf4u">Obra en horario de producción</div></div>
+    </div>
+    <p class="metodo" data-t="iCifrasNota">Valores de referencia para latitud próxima a 40° N con inclinación óptima. Su cubierta dará otra cosa: por eso hacemos un estudio antes de presupuestar.</p>
+  </div>
+
+  <div class="marco bloque raya">
+    <p class="eti" data-t="nServicios">Servicios</p>
+    <div class="rej r3">
+      <div class="cel"><span class="n">01</span><h3 data-t="s1t">Estudio y diseño</h3><p data-t="s1p">Analizamos su curva horaria real de consumo, medimos la cubierta y calculamos qué potencia le conviene. Ni una placa de más.</p></div>
+      <div class="cel"><span class="n">02</span><h3 data-t="s2t">Ejecución</h3><p data-t="s2p">Obra llave en mano con nuestro propio equipo. Trabajamos en parada programada o fuera de turno: la planta no se detiene.</p></div>
+      <div class="cel"><span class="n">03</span><h3 data-t="s3t">Explotación</h3><p data-t="s3p">Monitorización remota, limpieza programada y garantía de rendimiento con penalización si no se cumple.</p></div>
+    </div>
+    <div class="acc"><a class="btn" href="#/servicios" data-t="bVerDetalle">Ver en detalle</a></div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section data-ruta="servicios">
+  <div class="marco bloque">
+    <p class="eti" data-t="nServicios">Servicios</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:18ch" data-t="svH1">Tres fases, un solo interlocutor.</h1>
+    <p class="entrada" data-t="svEntrada">No subcontratamos la ingeniería ni la obra. Quien firma el estudio es quien responde de la producción cinco años después.</p>
+  </div>
+  <div class="marco">
+    <div class="filas">
+      <div class="fila"><div class="i">01</div><div><h3 data-t="s1t">Estudio y diseño</h3></div><div class="d">
+        <p data-t="sv1p">Partimos de su curva horaria, no de su factura anual. La diferencia importa: dos plantas con el mismo consumo total pueden necesitar potencias muy distintas según a qué hora consuman.</p>
+        <ul class="lista">
+          <li data-t="sv1a">Lectura de la curva horaria del contador (15 minutos)</li>
+          <li data-t="sv1b">Levantamiento de cubierta y estudio de sombras</li>
+          <li data-t="sv1c">Cálculo estructural y comprobación de sobrecarga</li>
+          <li data-t="sv1d">Dimensionado por rentabilidad, no por superficie disponible</li>
+        </ul></div></div>
+      <div class="fila"><div class="i">02</div><div><h3 data-t="s2t">Ejecución</h3></div><div class="d">
+        <p data-t="sv2p">Obra llave en mano con equipo propio y plazo cerrado en contrato. La coordinación de seguridad y salud y la legalización van incluidas.</p>
+        <ul class="lista">
+          <li data-t="sv2a">Estructura, módulos, inversores y protecciones</li>
+          <li data-t="sv2b">Legalización y tramitación completa ante distribuidora</li>
+          <li data-t="sv2c">Trabajo en parada programada o fuera de turno</li>
+          <li data-t="sv2d">Penalización por día de retraso, escrita en contrato</li>
+        </ul>
+        <ul class="lista no">
+          <li data-t="sv2n1">No cobramos ampliaciones que no estuvieran en el proyecto</li>
+        </ul></div></div>
+      <div class="fila"><div class="i">03</div><div><h3 data-t="s3t">Explotación</h3></div><div class="d">
+        <p data-t="sv3p">Una planta sin mantenimiento pierde entre un 3 % y un 7 % de producción al año por suciedad y microfallos que nadie ve desde el suelo.</p>
+        <ul class="lista">
+          <li data-t="sv3a">Monitorización remota con alarma por bajo rendimiento</li>
+          <li data-t="sv3b">Limpieza programada según la época y el entorno</li>
+          <li data-t="sv3c">Termografía anual para detectar células calientes</li>
+          <li data-t="sv3d">Garantía de producción con compensación si no se alcanza</li>
+        </ul></div></div>
+    </div>
+    <div class="acc"><a class="btn sol" href="#/contacto" data-t="bEstudio">Pedir estudio</a></div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section data-ruta="proceso">
+  <div class="marco bloque">
+    <p class="eti" data-t="nProceso">Proceso</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="prH1">De la primera visita a la primera factura más baja.</h1>
+    <p class="entrada" data-t="prEntrada">Seis pasos. Los tres primeros no le cuestan nada y puede pararlos en cualquier momento.</p>
+  </div>
+  <div class="marco">
+    <div class="filas" id="prPasos"></div>
+    <p class="metodo" data-t="prNota">Los plazos son los habituales en instalaciones de entre 100 y 500 kWp. La tramitación con la distribuidora es la parte menos previsible y la única que no depende de nosotros.</p>
+  </div>
+</section>
+
+<!-- RENDIMIENTO -->
+<section data-ruta="rendimiento">
+  <div class="marco bloque">
+    <p class="eti" data-t="nRendimiento">Rendimiento</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="reH1">La orientación decide más de lo que parece.</h1>
+    <p class="entrada" data-t="reEntrada">Sur produce más al año. Este-oeste produce menos, pero reparte mejor a lo largo del día, y en una fábrica que consume de ocho a seis eso puede valer más.</p>
+  </div>
+  <div class="marco">
+    <div class="mandos" id="reMandos" role="group" data-t-attr="aria-label:reAria" aria-label="Orientación"></div>
+    <div class="leyenda" id="reLeyenda"></div>
+    <div class="grafica"><svg id="reGrafica" role="img" data-t-attr="aria-label:reGrafAlt" aria-label="Producción mensual estimada"></svg></div>
+    <p class="hallazgo" id="reHallazgo"></p>
+    <details class="faq" style="margin-top:1.4rem"><summary data-t="verTabla">Ver los datos en tabla</summary><div id="reTabla"></div></details>
+    <p class="metodo" data-t="reNota">Estimación para latitud próxima a 40° N, inclinación óptima y sin sombras. Producción específica anual de referencia: 1.623 kWh/kWp en orientación sur. Su cubierta dará otro número, y por eso el estudio se hace con datos suyos y no con estos.</p>
+  </div>
+</section>
+
+<!-- AMORTIZACIÓN -->
+<section data-ruta="amortizacion">
+  <div class="marco bloque">
+    <p class="eti" data-t="nAmortizacion">Amortización</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="amH1">Cuándo deja de ser un gasto y empieza a ser un ingreso.</h1>
+    <p class="entrada" data-t="amEntrada">Mueva la potencia instalada y verá cómo cambia el año en que la instalación se paga sola. Es una estimación, no una oferta.</p>
+  </div>
+  <div class="marco">
+    <div class="desliz">
+      <label for="amKwp" data-t="amPotencia">Potencia instalada</label>
+      <input type="range" id="amKwp" min="20" max="500" step="10" value="150">
+      <output id="amKwpV"></output>
+    </div>
+    <div class="desliz">
+      <label for="amAuto" data-t="amAuto">Autoconsumo directo</label>
+      <input type="range" id="amAuto" min="40" max="95" step="5" value="75">
+      <output id="amAutoV"></output>
+    </div>
+    <div class="leyenda" id="amLeyenda"></div>
+    <div class="grafica"><svg id="amGrafica" role="img" data-t-attr="aria-label:amGrafAlt" aria-label="Flujo de caja acumulado estimado"></svg></div>
+    <p class="hallazgo" id="amHallazgo"></p>
+    <div class="rej r4" style="margin-top:1.6rem">
+      <div class="cel dato"><div class="v" id="amInv"></div><div class="u" data-t="amInvU">Inversión estimada</div></div>
+      <div class="cel dato"><div class="v" id="amProd"></div><div class="u" data-t="amProdU">Producción anual</div></div>
+      <div class="cel dato"><div class="v" id="amAhorro"></div><div class="u" data-t="amAhorroU">Ahorro el primer año</div></div>
+      <div class="cel dato"><div class="v" id="amPayback"></div><div class="u" data-t="amPaybackU">Amortización</div></div>
+    </div>
+    <p class="metodo" data-t="amNota">Modelo simplificado y orientativo. Supone 1.000 €/kWp instalados, 1.623 kWh/kWp al año, precio de la electricidad evitada de 0,13 €/kWh, excedentes compensados a 0,05 €/kWh, degradación del panel del 0,5 % anual y 12 €/kWp al año de explotación. No incluye subvenciones ni deducciones fiscales, que suelen acortar el plazo. No es una oferta: la cifra real sale del estudio.</p>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section data-ruta="proyectos">
+  <div class="marco bloque">
+    <p class="eti" data-t="nProyectos">Proyectos</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="poH1">Tres tipos de cubierta, tres problemas distintos.</h1>
+    <p class="entrada" data-t="poEntrada">Ejemplos representativos del tipo de encargo que hacemos. Los datos son de proyecto, no de cliente identificable.</p>
+  </div>
+  <div class="marco"><div class="rej r3" id="poRej"></div>
+    <p class="metodo" data-t="poNota">Fichas de ejemplo con cifras de proyecto redondeadas. Sustituibles por casos reales y fotografía de obra cuando el cliente autorice publicarlos.</p>
+  </div>
+</section>
+
+<!-- MANTENIMIENTO -->
+<section data-ruta="mantenimiento">
+  <div class="marco bloque">
+    <p class="eti" data-t="nMantenimiento">Mantenimiento</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="maH1">Lo que se deja de ganar cuando nadie mira los datos.</h1>
+    <p class="entrada" data-t="maEntrada">Una planta parada un mes en verano se lleva por delante buena parte del beneficio del año. Y casi nunca se para del todo: se degrada sin que nadie lo note.</p>
+  </div>
+  <div class="marco">
+    <div class="rej r3" id="maRej"></div>
+    <div style="margin-top:2rem">
+      <p class="eti" data-t="maPlanesEti">Los dos contratos</p>
+      <div class="rej r3" id="maPlanes"></div>
+    </div>
+    <p class="metodo" data-t="maNota">Los porcentajes de pérdida son rangos habituales del sector, no una medición de su planta. Lo que sí es firme es la garantía de producción: si la instalación no alcanza lo comprometido, se compensa.</p>
+  </div>
+</section>
+
+<!-- EMPRESA -->
+<section data-ruta="nosotros">
+  <div class="marco bloque">
+    <p class="eti" data-t="nNosotros">Empresa</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="noH1">Ingenieros que además montan.</h1>
+    <p class="entrada" data-t="noEntrada">Somos una empresa pequeña de ingeniería e instalación. No vendemos placas: vendemos que su factura baje y siga baja.</p>
+  </div>
+  <div class="marco">
+    <div class="rej r3" id="noValores"></div>
+    <div style="margin-top:2rem" class="rej r4" id="noDatos"></div>
+  </div>
+</section>
+
+<!-- PREGUNTAS -->
+<section data-ruta="preguntas">
+  <div class="marco bloque">
+    <p class="eti" data-t="nPreguntas">Preguntas</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="pgH1">Lo que nos preguntan antes de firmar.</h1>
+  </div>
+  <div class="marco" id="pgLista"></div>
+</section>
+
+<!-- CONTACTO -->
+<section data-ruta="contacto">
+  <div class="marco bloque">
+    <p class="eti" data-t="nContacto">Contacto</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:18ch" data-t="coH1">Mándenos una factura y le decimos si le sale a cuenta.</h1>
+    <p class="entrada" data-t="coEntrada">El primer estudio no se cobra. Si no sale rentable, se lo decimos y ahí acaba.</p>
+  </div>
+  <div class="marco">
+    <form id="f" novalidate>
+      <div class="par">
+        <div><label for="emp" data-t="lEmpresa">Empresa</label><input id="emp" autocomplete="organization"></div>
+        <div><label for="nom" data-t="lNombre">Persona de contacto</label><input id="nom" autocomplete="name"></div>
+      </div>
+      <div class="par">
+        <div><label for="cor" data-t="lCorreo">Correo</label><input id="cor" type="email" autocomplete="email" inputmode="email" dir="ltr"></div>
+        <div><label for="tel" data-t="lTelefono">Teléfono</label><input id="tel" type="tel" autocomplete="tel" dir="ltr"></div>
+      </div>
+      <div class="par">
+        <div><label for="tip" data-t="lTipo">Tipo de cubierta</label>
+          <select id="tip">
+            <option value="" data-t="oElegir">Seleccione</option>
+            <option value="nave" data-t="oNave">Nave industrial</option>
+            <option value="logi" data-t="oLogistica">Centro logístico</option>
+            <option value="park" data-t="oParking">Marquesina de aparcamiento</option>
+            <option value="suelo" data-t="oSuelo">Suelo</option>
+            <option value="otro" data-t="oOtro">Otra</option>
+          </select></div>
+        <div><label for="con" data-t="lConsumo">Consumo anual aproximado</label><input id="con" data-t-attr="placeholder:phConsumo" placeholder="450.000 kWh"></div>
+      </div>
+      <div><label for="msg" data-t="lMensaje">Cuéntenos el caso</label><textarea id="msg" rows="3"></textarea></div>
+      <div>
+        <button class="btn sol" type="submit" data-t="bEnviar">Enviar</button>
+        <p class="acuse" id="acuse" role="status" aria-live="polite"></p>
+      </div>
+      <p class="aviso" data-t="coAviso">Sus datos se usan sólo para responder a esta consulta. No se ceden a terceros.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="n">
+  <div class="marco pie">
+    <span data-t="marca">NAHAR</span>
+    <nav>
+      <a href="#/servicios"   data-t="nServicios">Servicios</a>
+      <a href="#/rendimiento" data-t="nRendimiento">Rendimiento</a>
+      <a href="#/proyectos"   data-t="nProyectos">Proyectos</a>
+      <a href="#/contacto"    data-t="nContacto">Contacto</a>
+    </nav>
+    <span class="fin"><span data-t="pieAviso">Maqueta de demostración</span> · <span class="ltr">© 2026</span></span>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   Diccionarios. Un objeto por idioma con las mismas claves, y las
+   estructuras (pasos, proyectos, preguntas) como arrays paralelos.
+   aplicar() traduce el documento entero de una pasada, rutas ocultas
+   incluidas, y vuelve a pintar las gráficas en el idioma nuevo.
+   ══════════════════════════════════════════════════════════════════ */
+var T = {
+
+es:{
+ _dir:"ltr", _lang:"es", _loc:"es-ES",
+ marca:"NAHAR", ariaMenu:"Secciones", ariaIdioma:"Idioma",
+ nInicio:"Inicio", nServicios:"Servicios", nProceso:"Proceso", nRendimiento:"Rendimiento",
+ nAmortizacion:"Amortización", nProyectos:"Proyectos", nMantenimiento:"Mantenimiento",
+ nNosotros:"Empresa", nPreguntas:"Preguntas", nContacto:"Contacto",
+ bEstudio:"Pedir estudio", bCalcular:"Calcular amortización", bVerDetalle:"Ver en detalle",
+ bEnviar:"Enviar", verTabla:"Ver los datos en tabla", pieAviso:"Maqueta de demostración",
+ laminaAlt:"Esquema isométrico de una instalación fotovoltaica en cubierta industrial",
+
+ tInicio:"NAHAR — Autoconsumo solar industrial",
+ iEti:"Autoconsumo fotovoltaico industrial",
+ iH1:"La cubierta de su nave ya está pagada. Lo que produce, no.",
+ iEntrada:"Ingeniería, obra y mantenimiento de plantas de autoconsumo para industria y logística. Estudiamos su curva de consumo real antes de proponer una sola placa.",
+ iCifrasEti:"En cifras",
+ cf1v:"1.623", cf1u:"kWh por kWp y año, orientación sur",
+ cf2v:"5–8",   cf2u:"Años de amortización habituales",
+ cf3v:"25",    cf3u:"Años de garantía de producción del panel",
+ cf4v:"0",     cf4u:"Obra en horario de producción",
+ iCifrasNota:"Valores de referencia para latitud próxima a 40° N con inclinación óptima. Su cubierta dará otra cosa: por eso hacemos un estudio antes de presupuestar.",
+ s1t:"Estudio y diseño", s1p:"Analizamos su curva horaria real de consumo, medimos la cubierta y calculamos qué potencia le conviene. Ni una placa de más.",
+ s2t:"Ejecución",        s2p:"Obra llave en mano con nuestro propio equipo. Trabajamos en parada programada o fuera de turno: la planta no se detiene.",
+ s3t:"Explotación",      s3p:"Monitorización remota, limpieza programada y garantía de rendimiento con penalización si no se cumple.",
+
+ tServicios:"Servicios — NAHAR",
+ svH1:"Tres fases, un solo interlocutor.",
+ svEntrada:"No subcontratamos la ingeniería ni la obra. Quien firma el estudio es quien responde de la producción cinco años después.",
+ sv1p:"Partimos de su curva horaria, no de su factura anual. La diferencia importa: dos plantas con el mismo consumo total pueden necesitar potencias muy distintas según a qué hora consuman.",
+ sv1a:"Lectura de la curva horaria del contador (15 minutos)",
+ sv1b:"Levantamiento de cubierta y estudio de sombras",
+ sv1c:"Cálculo estructural y comprobación de sobrecarga",
+ sv1d:"Dimensionado por rentabilidad, no por superficie disponible",
+ sv2p:"Obra llave en mano con equipo propio y plazo cerrado en contrato. La coordinación de seguridad y salud y la legalización van incluidas.",
+ sv2a:"Estructura, módulos, inversores y protecciones",
+ sv2b:"Legalización y tramitación completa ante distribuidora",
+ sv2c:"Trabajo en parada programada o fuera de turno",
+ sv2d:"Penalización por día de retraso, escrita en contrato",
+ sv2n1:"No cobramos ampliaciones que no estuvieran en el proyecto",
+ sv3p:"Una planta sin mantenimiento pierde entre un 3 % y un 7 % de producción al año por suciedad y microfallos que nadie ve desde el suelo.",
+ sv3a:"Monitorización remota con alarma por bajo rendimiento",
+ sv3b:"Limpieza programada según la época y el entorno",
+ sv3c:"Termografía anual para detectar células calientes",
+ sv3d:"Garantía de producción con compensación si no se alcanza",
+
+ tProceso:"Proceso — NAHAR",
+ prH1:"De la primera visita a la primera factura más baja.",
+ prEntrada:"Seis pasos. Los tres primeros no le cuestan nada y puede pararlos en cualquier momento.",
+ prNota:"Los plazos son los habituales en instalaciones de entre 100 y 500 kWp. La tramitación con la distribuidora es la parte menos previsible y la única que no depende de nosotros.",
+ pasos:[
+  {t:"Visita y toma de datos", p:"Vamos a la planta, medimos la cubierta y pedimos su curva horaria a la comercializadora.", d:"1 día"},
+  {t:"Estudio de viabilidad",  p:"Cálculo de producción, dimensionado y previsión de amortización. Gratuito y sin compromiso.", d:"1–2 semanas"},
+  {t:"Propuesta cerrada",      p:"Precio, plazo y garantía de producción por escrito. Aquí decide usted.", d:"—"},
+  {t:"Proyecto y trámites",    p:"Proyecto de ejecución, cálculo estructural y solicitud de acceso a la distribuidora.", d:"4–8 semanas"},
+  {t:"Obra",                   p:"Montaje en parada programada o fuera de turno, con plazo cerrado en contrato.", d:"2–6 semanas"},
+  {t:"Puesta en marcha",       p:"Legalización, alta de la monitorización y formación a su equipo de mantenimiento.", d:"1 semana"}
+ ],
+
+ tRendimiento:"Rendimiento — NAHAR",
+ reH1:"La orientación decide más de lo que parece.",
+ reEntrada:"Sur produce más al año. Este-oeste produce menos, pero reparte mejor a lo largo del día, y en una fábrica que consume de ocho a seis eso puede valer más.",
+ reAria:"Orientación", reGrafAlt:"Producción mensual estimada por kWp instalado",
+ reNota:"Estimación para latitud próxima a 40° N, inclinación óptima y sin sombras. Producción específica anual de referencia: 1.623 kWh/kWp en orientación sur. Su cubierta dará otro número, y por eso el estudio se hace con datos suyos y no con estos.",
+ orientaciones:["Sur","Este-oeste","Ambas"],
+ meses:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
+ reEjeY:"kWh por kWp",
+ reHalSur:"Con orientación sur, el mejor mes produce {r} veces lo del peor. Esa diferencia entre invierno y verano es la que obliga a dimensionar por rentabilidad y no por consumo medio.",
+ reHalEO:"Este-oeste rinde un {p} % menos al año que sur, pero la curva es más plana y llena mejor las primeras y las últimas horas del turno. Si su planta consume de ocho a seis, suele compensar.",
+ reHalAmbas:"Las dos curvas juntas enseñan el compromiso: sur gana en total anual, este-oeste gana en encaje con el horario de la fábrica. La decisión sale de su curva de consumo, no del catálogo.",
+ thMes:"Mes", thSur:"Sur", thEO:"Este-oeste",
+
+ tAmortizacion:"Amortización — NAHAR",
+ amH1:"Cuándo deja de ser un gasto y empieza a ser un ingreso.",
+ amEntrada:"Mueva la potencia instalada y verá cómo cambia el año en que la instalación se paga sola. Es una estimación, no una oferta.",
+ amPotencia:"Potencia instalada", amAuto:"Autoconsumo directo",
+ amGrafAlt:"Flujo de caja acumulado estimado a veinticinco años",
+ amInvU:"Inversión estimada", amProdU:"Producción anual",
+ amAhorroU:"Ahorro el primer año", amPaybackU:"Amortización",
+ amSerie:"Flujo de caja acumulado", amCero:"Umbral de amortización",
+ amHal:"Con {k} y un {a} % de autoconsumo directo, la instalación se paga sola en el año <b>{y}</b>. A veinticinco años el saldo acumulado sería de unos <b>{n}</b>.",
+ amNota:"Modelo simplificado y orientativo. Supone 1.000 €/kWp instalados, 1.623 kWh/kWp al año, precio de la electricidad evitada de 0,13 €/kWh, excedentes compensados a 0,05 €/kWh, degradación del panel del 0,5 % anual y 12 €/kWp al año de explotación. No incluye subvenciones ni deducciones fiscales, que suelen acortar el plazo. No es una oferta: la cifra real sale del estudio.",
+ anio:"año", anios:"años",
+
+ tProyectos:"Proyectos — NAHAR",
+ poH1:"Tres tipos de cubierta, tres problemas distintos.",
+ poEntrada:"Ejemplos representativos del tipo de encargo que hacemos. Los datos son de proyecto, no de cliente identificable.",
+ poNota:"Fichas de ejemplo con cifras de proyecto redondeadas. Sustituibles por casos reales y fotografía de obra cuando el cliente autorice publicarlos.",
+ proyectos:[
+  {t:"Nave de fabricación", s:"420 kWp · cubierta de chapa", p:"Consumo muy constante en dos turnos. Se dimensionó al 80 % del consumo diurno para no verter apenas a la red.", r:"Amortización prevista: 6,4 años"},
+  {t:"Centro logístico",    s:"780 kWp · cubierta plana", p:"Cámaras de frío con punta al mediodía. Encaje casi perfecto con la curva solar, sin baterías.", r:"Amortización prevista: 5,6 años"},
+  {t:"Marquesina de flota", s:"190 kWp · aparcamiento", p:"Doble función: producir y dar sombra a la flota. Estructura calculada para viento y para carga de vehículo eléctrico.", r:"Amortización prevista: 7,9 años"}
+ ],
+
+ tMantenimiento:"Mantenimiento — NAHAR",
+ maH1:"Lo que se deja de ganar cuando nadie mira los datos.",
+ maEntrada:"Una planta parada un mes en verano se lleva por delante buena parte del beneficio del año. Y casi nunca se para del todo: se degrada sin que nadie lo note.",
+ maPlanesEti:"Los dos contratos",
+ maNota:"Los porcentajes de pérdida son rangos habituales del sector, no una medición de su planta. Lo que sí es firme es la garantía de producción: si la instalación no alcanza lo comprometido, se compensa.",
+ perdidas:[
+  {v:"3–7 %", u:"Pérdida anual por suciedad acumulada sin limpieza programada"},
+  {v:"1–2 %", u:"Pérdida por una sola cadena caída que nadie detecta"},
+  {v:"0,5 %", u:"Degradación natural del panel cada año, inevitable"}
+ ],
+ planes:[
+  {t:"Básico", p:"Monitorización remota con alarma, una limpieza al año y atención telefónica en horario laboral.", c:"9 €/kWp al año"},
+  {t:"Completo", p:"Todo lo anterior más dos limpiezas, termografía anual, revisión de conexiones y sustitución de material fungible.", c:"18 €/kWp al año"},
+  {t:"Garantía de producción", p:"Sobre el contrato completo: si la planta no alcanza la producción comprometida, compensamos la diferencia.", c:"Según proyecto"}
+ ],
+
+ tNosotros:"Empresa — NAHAR",
+ noH1:"Ingenieros que además montan.",
+ noEntrada:"Somos una empresa pequeña de ingeniería e instalación. No vendemos placas: vendemos que su factura baje y siga baja.",
+ valores:[
+  {t:"Equipo propio", p:"La ingeniería y el montaje los hace la misma gente. Nadie se escuda en el subcontratista cuando algo falla."},
+  {t:"Dimensionado honesto", p:"Si la cubierta admite el doble de lo que le conviene, se lo decimos. Vender potencia de más es fácil y se paga después."},
+  {t:"Decimos que no", p:"Hay consumos y hay cubiertas donde esto no sale a cuenta. Preferimos decirlo en la primera visita."}
+ ],
+ datos:[
+  {v:"100 %", u:"Ingeniería y obra con equipo propio"},
+  {v:"3", u:"Idiomas de trabajo"},
+  {v:"25", u:"Años de garantía de producto del panel"},
+  {v:"48 h", u:"Plazo de respuesta ante alarma"}
+ ],
+
+ tPreguntas:"Preguntas — NAHAR",
+ pgH1:"Lo que nos preguntan antes de firmar.",
+ preguntas:[
+  {q:"¿Cuánto cuesta el estudio?", a:"Nada. Necesitamos su curva horaria y una visita a la cubierta. Si sale que no es rentable, se lo decimos y no hay factura."},
+  {q:"¿Hay que parar la producción durante la obra?", a:"No. Trabajamos en parada programada o fuera de turno. Sólo hacen falta unas horas de corte para la conexión, y se acuerdan con antelación."},
+  {q:"¿Y si la cubierta no aguanta el peso?", a:"El cálculo estructural forma parte del estudio. Si no aguanta, se refuerza o se descarta, pero se sabe antes de firmar, no durante la obra."},
+  {q:"¿Qué pasa con lo que produzco y no consumo?", a:"Se vierte a la red y se compensa en factura, aunque a un precio bastante menor que el que usted paga. Por eso dimensionamos para consumir, no para verter."},
+  {q:"¿Cuánto duran los paneles?", a:"La garantía de producto suele ser de doce a quince años y la de producción, veinticinco. A los veinticinco años un panel sigue funcionando, con alrededor del 85 % de su potencia inicial."},
+  {q:"¿Trabajan fuera de España?", a:"Sí, y atendemos en español, inglés y árabe. En el Golfo el cálculo cambia bastante: hay más radiación pero también más polvo, y la limpieza pasa a ser determinante."}
+ ],
+
+ tContacto:"Contacto — NAHAR",
+ coH1:"Mándenos una factura y le decimos si le sale a cuenta.",
+ coEntrada:"El primer estudio no se cobra. Si no sale rentable, se lo decimos y ahí acaba.",
+ lEmpresa:"Empresa", lNombre:"Persona de contacto", lCorreo:"Correo", lTelefono:"Teléfono",
+ lTipo:"Tipo de cubierta", lConsumo:"Consumo anual aproximado", phConsumo:"450.000 kWh",
+ lMensaje:"Cuéntenos el caso",
+ oElegir:"Seleccione", oNave:"Nave industrial", oLogistica:"Centro logístico",
+ oParking:"Marquesina de aparcamiento", oSuelo:"Suelo", oOtro:"Otra",
+ coAviso:"Sus datos se usan sólo para responder a esta consulta. No se ceden a terceros.",
+ okMsg:"Recibido. Le respondemos en menos de 48 horas laborables.",
+ errEmpresa:"Falta el nombre de la empresa.",
+ errCorreo:"El correo está incompleto."
+},
+
+en:{
+ _dir:"ltr", _lang:"en", _loc:"en-GB",
+ marca:"NAHAR", ariaMenu:"Sections", ariaIdioma:"Language",
+ nInicio:"Home", nServicios:"Services", nProceso:"Process", nRendimiento:"Output",
+ nAmortizacion:"Payback", nProyectos:"Projects", nMantenimiento:"Maintenance",
+ nNosotros:"Company", nPreguntas:"Questions", nContacto:"Contact",
+ bEstudio:"Request a study", bCalcular:"Calculate payback", bVerDetalle:"See in detail",
+ bEnviar:"Send", verTabla:"See the data as a table", pieAviso:"Demonstration mock-up",
+ laminaAlt:"Isometric diagram of a rooftop photovoltaic installation",
+
+ tInicio:"NAHAR — Industrial solar self-consumption",
+ iEti:"Industrial photovoltaic self-consumption",
+ iH1:"Your roof is already paid for. What it could produce is not.",
+ iEntrada:"Engineering, installation and maintenance of self-consumption plants for industry and logistics. We study your real load curve before proposing a single panel.",
+ iCifrasEti:"In figures",
+ cf1v:"1,623", cf1u:"kWh per kWp per year, south-facing",
+ cf2v:"5–8",   cf2u:"Typical payback in years",
+ cf3v:"25",    cf3u:"Years of panel output warranty",
+ cf4v:"0",     cf4u:"Works during production hours",
+ iCifrasNota:"Reference values for a latitude near 40° N at optimal tilt. Your roof will give something else: that is why we run a study before quoting.",
+ s1t:"Study and design", s1p:"We analyse your real hourly load curve, survey the roof and calculate the capacity that suits you. Not one panel more.",
+ s2t:"Installation",     s2p:"Turnkey works with our own crew. We work during planned shutdowns or outside shift hours: the plant does not stop.",
+ s3t:"Operation",        s3p:"Remote monitoring, scheduled cleaning and an output guarantee with a penalty if it is not met.",
+
+ tServicios:"Services — NAHAR",
+ svH1:"Three phases, one point of contact.",
+ svEntrada:"We do not subcontract the engineering or the installation. Whoever signs the study is the one answering for the output five years later.",
+ sv1p:"We start from your hourly curve, not your annual bill. The difference matters: two plants with the same total consumption can need very different capacities depending on when they consume.",
+ sv1a:"Reading of the meter's hourly curve (15-minute intervals)",
+ sv1b:"Roof survey and shading study",
+ sv1c:"Structural calculation and overload check",
+ sv1d:"Sized for return, not for available surface",
+ sv2p:"Turnkey works with our own crew and a deadline fixed in the contract. Health-and-safety coordination and legalisation are included.",
+ sv2a:"Structure, modules, inverters and protections",
+ sv2b:"Full legalisation and grid operator paperwork",
+ sv2c:"Work during planned shutdowns or outside shift hours",
+ sv2d:"Penalty per day of delay, written into the contract",
+ sv2n1:"We do not charge for extensions that were not in the project",
+ sv3p:"A plant without maintenance loses between 3 % and 7 % of its output each year to dirt and small faults nobody sees from the ground.",
+ sv3a:"Remote monitoring with a low-output alarm",
+ sv3b:"Cleaning scheduled by season and surroundings",
+ sv3c:"Annual thermography to find hot cells",
+ sv3d:"Output guarantee with compensation if it is not reached",
+
+ tProceso:"Process — NAHAR",
+ prH1:"From the first visit to the first lower bill.",
+ prEntrada:"Six steps. The first three cost you nothing and you can stop at any point.",
+ prNota:"These are the usual timings for installations between 100 and 500 kWp. The grid operator paperwork is the least predictable part and the only one outside our control.",
+ pasos:[
+  {t:"Visit and data capture", p:"We come to the plant, survey the roof and request your hourly curve from the supplier.", d:"1 day"},
+  {t:"Feasibility study",      p:"Output calculation, sizing and payback forecast. Free and without obligation.", d:"1–2 weeks"},
+  {t:"Fixed proposal",         p:"Price, deadline and output guarantee in writing. This is where you decide.", d:"—"},
+  {t:"Design and permits",     p:"Construction design, structural calculation and grid access application.", d:"4–8 weeks"},
+  {t:"Works",                  p:"Installation during a planned shutdown or outside shift hours, to a fixed contractual deadline.", d:"2–6 weeks"},
+  {t:"Commissioning",          p:"Legalisation, monitoring set-up and training for your maintenance team.", d:"1 week"}
+ ],
+
+ tRendimiento:"Output — NAHAR",
+ reH1:"Orientation decides more than people expect.",
+ reEntrada:"South produces more over the year. East-west produces less, but spreads it better across the day, and in a factory running from eight to six that can be worth more.",
+ reAria:"Orientation", reGrafAlt:"Estimated monthly output per installed kWp",
+ reNota:"Estimate for a latitude near 40° N, optimal tilt and no shading. Reference annual specific yield: 1,623 kWh/kWp facing south. Your roof will give a different number, which is why the study uses your data and not these.",
+ orientaciones:["South","East-west","Both"],
+ meses:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+ reEjeY:"kWh per kWp",
+ reHalSur:"Facing south, the best month produces {r} times what the worst one does. That winter-to-summer gap is what forces sizing by return rather than by average consumption.",
+ reHalEO:"East-west yields {p} % less over the year than south, but the curve is flatter and fills the first and last hours of the shift better. If your plant runs from eight to six, it usually pays.",
+ reHalAmbas:"Both curves together show the trade-off: south wins on annual total, east-west wins on fit with the factory's hours. The decision comes from your load curve, not from a catalogue.",
+ thMes:"Month", thSur:"South", thEO:"East-west",
+
+ tAmortizacion:"Payback — NAHAR",
+ amH1:"When it stops being a cost and starts being income.",
+ amEntrada:"Move the installed capacity and watch the year the installation pays for itself change. It is an estimate, not an offer.",
+ amPotencia:"Installed capacity", amAuto:"Direct self-consumption",
+ amGrafAlt:"Estimated cumulative cash flow over twenty-five years",
+ amInvU:"Estimated investment", amProdU:"Annual output",
+ amAhorroU:"First-year saving", amPaybackU:"Payback",
+ amSerie:"Cumulative cash flow", amCero:"Payback threshold",
+ amHal:"At {k} and {a} % direct self-consumption, the installation pays for itself in year <b>{y}</b>. Over twenty-five years the accumulated balance would be around <b>{n}</b>.",
+ amNota:"Simplified, indicative model. It assumes €1,000/kWp installed, 1,623 kWh/kWp per year, avoided electricity at €0.13/kWh, exported surplus compensated at €0.05/kWh, 0.5 % annual panel degradation and €12/kWp per year in operating costs. It excludes grants and tax deductions, which usually shorten the period. It is not an offer: the real figure comes from the study.",
+ anio:"year", anios:"years",
+
+ tProyectos:"Projects — NAHAR",
+ poH1:"Three kinds of roof, three different problems.",
+ poEntrada:"Representative examples of the sort of work we do. The figures are design figures, not identifiable clients.",
+ poNota:"Example sheets with rounded design figures. Replaceable with real cases and site photography once a client authorises publication.",
+ proyectos:[
+  {t:"Manufacturing plant", s:"420 kWp · metal deck roof", p:"Very steady consumption across two shifts. Sized to 80 % of daytime load so almost nothing is exported.", r:"Forecast payback: 6.4 years"},
+  {t:"Logistics centre",    s:"780 kWp · flat roof", p:"Cold rooms peaking at midday. Almost a perfect fit with the solar curve, with no batteries.", r:"Forecast payback: 5.6 years"},
+  {t:"Fleet canopy",        s:"190 kWp · car park", p:"Two jobs at once: generating and shading the fleet. Structure calculated for wind and for EV charging load.", r:"Forecast payback: 7.9 years"}
+ ],
+
+ tMantenimiento:"Maintenance — NAHAR",
+ maH1:"What goes unearned when nobody watches the data.",
+ maEntrada:"A plant down for a month in summer takes a good part of the year's benefit with it. And it rarely stops outright: it degrades without anyone noticing.",
+ maPlanesEti:"The two contracts",
+ maNota:"The loss percentages are usual industry ranges, not a measurement of your plant. What is firm is the output guarantee: if the installation does not reach what was committed, it is compensated.",
+ perdidas:[
+  {v:"3–7 %", u:"Annual loss to accumulated dirt without scheduled cleaning"},
+  {v:"1–2 %", u:"Loss from a single dropped string nobody notices"},
+  {v:"0.5 %", u:"Natural panel degradation each year, unavoidable"}
+ ],
+ planes:[
+  {t:"Basic", p:"Remote monitoring with alarms, one cleaning a year and telephone support during working hours.", c:"€9/kWp per year"},
+  {t:"Full", p:"Everything above plus two cleanings, annual thermography, connection checks and replacement of consumables.", c:"€18/kWp per year"},
+  {t:"Output guarantee", p:"On top of the full contract: if the plant does not reach the committed output, we compensate the difference.", c:"By project"}
+ ],
+
+ tNosotros:"Company — NAHAR",
+ noH1:"Engineers who also do the installing.",
+ noEntrada:"We are a small engineering and installation company. We do not sell panels: we sell your bill going down and staying down.",
+ valores:[
+  {t:"Our own crew", p:"The engineering and the installation are done by the same people. Nobody hides behind a subcontractor when something fails."},
+  {t:"Honest sizing", p:"If the roof takes twice what suits you, we say so. Selling excess capacity is easy and gets paid for later."},
+  {t:"We say no", p:"There are loads and roofs where this does not pay. We would rather say so on the first visit."}
+ ],
+ datos:[
+  {v:"100 %", u:"Engineering and works with our own crew"},
+  {v:"3", u:"Working languages"},
+  {v:"25", u:"Years of panel product warranty"},
+  {v:"48 h", u:"Response time to an alarm"}
+ ],
+
+ tPreguntas:"Questions — NAHAR",
+ pgH1:"What people ask before signing.",
+ preguntas:[
+  {q:"What does the study cost?", a:"Nothing. We need your hourly curve and a visit to the roof. If it turns out not to pay, we tell you and there is no invoice."},
+  {q:"Does production have to stop during the works?", a:"No. We work during planned shutdowns or outside shift hours. Only a few hours of outage are needed for the connection, and they are agreed in advance."},
+  {q:"What if the roof cannot take the weight?", a:"The structural calculation is part of the study. If it cannot, it is reinforced or ruled out — but that is known before signing, not during the works."},
+  {q:"What happens to what I produce and do not use?", a:"It is exported to the grid and credited on the bill, though at a considerably lower price than you pay. That is why we size for consumption, not for export."},
+  {q:"How long do the panels last?", a:"The product warranty is usually twelve to fifteen years and the output warranty twenty-five. At twenty-five years a panel still works, at around 85 % of its initial capacity."},
+  {q:"Do you work outside Spain?", a:"Yes, and we work in Spanish, English and Arabic. In the Gulf the calculation changes considerably: there is more irradiation but also more dust, and cleaning becomes decisive."}
+ ],
+
+ tContacto:"Contact — NAHAR",
+ coH1:"Send us a bill and we will tell you whether it pays.",
+ coEntrada:"The first study is free. If it does not pay, we say so and that is the end of it.",
+ lEmpresa:"Company", lNombre:"Contact person", lCorreo:"Email", lTelefono:"Telephone",
+ lTipo:"Type of roof", lConsumo:"Approximate annual consumption", phConsumo:"450,000 kWh",
+ lMensaje:"Tell us about the case",
+ oElegir:"Select", oNave:"Industrial unit", oLogistica:"Logistics centre",
+ oParking:"Car park canopy", oSuelo:"Ground-mounted", oOtro:"Other",
+ coAviso:"Your details are used only to answer this enquiry. They are not shared with third parties.",
+ okMsg:"Received. We will reply within 48 working hours.",
+ errEmpresa:"The company name is missing.",
+ errCorreo:"The email is incomplete."
+},
+
+ar:{
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ marca:"نهار", ariaMenu:"الأقسام", ariaIdioma:"اللغة",
+ nInicio:"الرئيسية", nServicios:"خدماتنا", nProceso:"سير العمل", nRendimiento:"الإنتاج",
+ nAmortizacion:"استرداد الكلفة", nProyectos:"مشاريع", nMantenimiento:"الصيانة",
+ nNosotros:"الشركة", nPreguntas:"أسئلة", nContacto:"تواصل",
+ bEstudio:"اطلب دراسة", bCalcular:"احسب مدة الاسترداد", bVerDetalle:"التفاصيل",
+ bEnviar:"إرسال", verTabla:"عرض البيانات في جدول", pieAviso:"نموذج عرض توضيحي",
+ laminaAlt:"رسم مجسَّم لمنشأة كهروضوئية على سطح صناعي",
+
+ tInicio:"نهار — الطاقة الشمسية للاستهلاك الذاتي في الصناعة",
+ iEti:"استهلاك ذاتي كهروضوئي للصناعة",
+ iH1:"سطح مصنعك مدفوع الثمن سلفًا. أما ما يمكن أن يُنتجه فلا.",
+ iEntrada:"هندسة وتنفيذ وصيانة لمحطات الاستهلاك الذاتي في الصناعة والخدمات اللوجستية. ندرس منحنى استهلاكك الحقيقي قبل أن نقترح لوحًا واحدًا.",
+ iCifrasEti:"بالأرقام",
+ cf1v:"١٦٢٣", cf1u:"كيلوواط ساعة لكل كيلوواط ذروة سنويًا، باتجاه الجنوب",
+ cf2v:"٥–٨",  cf2u:"سنوات الاسترداد المعتادة",
+ cf3v:"٢٥",   cf3u:"سنة ضمان إنتاج اللوح",
+ cf4v:"٠",    cf4u:"أعمال أثناء ساعات الإنتاج",
+ iCifrasNota:"قيم مرجعية لخط عرض قريب من ٤٠ درجة شمالًا وبميل أمثل. سطحك سيعطي رقمًا آخر، ولهذا نُجري دراسة قبل التسعير.",
+ s1t:"الدراسة والتصميم", s1p:"نحلّل منحنى استهلاكك الساعي الحقيقي، ونمسح السطح، ونحسب القدرة التي تناسبك. دون لوح زائد واحد.",
+ s2t:"التنفيذ",          s2p:"أعمال تسليم مفتاح بفريقنا نحن. نعمل في التوقفات المجدولة أو خارج أوقات المناوبة: المصنع لا يتوقف.",
+ s3t:"التشغيل",          s3p:"مراقبة عن بُعد، وتنظيف مجدول، وضمان أداء مع تعويض إن لم يتحقق.",
+
+ tServicios:"خدماتنا — نهار",
+ svH1:"ثلاث مراحل، وجهة اتصال واحدة.",
+ svEntrada:"لا نُسنِد الهندسة ولا التنفيذ إلى غيرنا. ومن يوقّع الدراسة هو من يُسأل عن الإنتاج بعد خمس سنوات.",
+ sv1p:"نبدأ من منحناك الساعي، لا من فاتورتك السنوية. والفرق مهم: محطتان بالاستهلاك الإجمالي نفسه قد تحتاجان قدرتين مختلفتين تمامًا بحسب ساعات الاستهلاك.",
+ sv1a:"قراءة المنحنى الساعي للعدّاد (كل ربع ساعة)",
+ sv1b:"مسح السطح ودراسة الظلال",
+ sv1c:"حساب إنشائي والتحقق من الحمل الزائد",
+ sv1d:"تحديد القدرة بحسب المردود، لا بحسب المساحة المتاحة",
+ sv2p:"أعمال تسليم مفتاح بفريقنا وبمهلة محددة في العقد. وتنسيق السلامة والصحة والتقنين مشمولان.",
+ sv2a:"الهياكل والوحدات والعاكسات ووسائل الحماية",
+ sv2b:"التقنين وإنهاء المعاملات كاملةً أمام شركة التوزيع",
+ sv2c:"العمل في التوقفات المجدولة أو خارج المناوبة",
+ sv2d:"غرامة عن كل يوم تأخير، مكتوبة في العقد",
+ sv2n1:"لا نتقاضى ثمن إضافات لم تكن في المشروع",
+ sv3p:"المحطة بلا صيانة تفقد بين ٣٪ و٧٪ من إنتاجها سنويًا بسبب الأوساخ والأعطال الصغيرة التي لا تُرى من الأرض.",
+ sv3a:"مراقبة عن بُعد مع إنذار عند انخفاض الأداء",
+ sv3b:"تنظيف مجدول بحسب الموسم والمحيط",
+ sv3c:"تصوير حراري سنوي لكشف الخلايا الساخنة",
+ sv3d:"ضمان إنتاج مع تعويض إن لم يتحقق",
+
+ tProceso:"سير العمل — نهار",
+ prH1:"من الزيارة الأولى إلى أول فاتورة أقل.",
+ prEntrada:"ست خطوات. الثلاث الأولى لا تكلّفك شيئًا، ويمكنك التوقف عند أي منها.",
+ prNota:"المُدد هي المعتادة في منشآت بين ١٠٠ و٥٠٠ كيلوواط ذروة. ومعاملات شركة التوزيع هي الجزء الأقل قابلية للتنبؤ، والوحيد الخارج عن أيدينا.",
+ pasos:[
+  {t:"زيارة وجمع بيانات", p:"نأتي إلى المصنع، ونمسح السطح، ونطلب منحناك الساعي من شركة التزويد.", d:"يوم واحد"},
+  {t:"دراسة الجدوى",      p:"حساب الإنتاج وتحديد القدرة وتوقّع مدة الاسترداد. مجانًا وبلا التزام.", d:"أسبوع إلى أسبوعين"},
+  {t:"عرض محدَّد",        p:"السعر والمهلة وضمان الإنتاج كتابةً. وهنا تقرّر أنت.", d:"—"},
+  {t:"التصميم والتراخيص", p:"مشروع التنفيذ والحساب الإنشائي وطلب الربط من شركة التوزيع.", d:"٤ إلى ٨ أسابيع"},
+  {t:"الأعمال",           p:"التركيب في توقّف مجدول أو خارج المناوبة، بمهلة محددة في العقد.", d:"٢ إلى ٦ أسابيع"},
+  {t:"التشغيل",           p:"التقنين وتفعيل المراقبة وتدريب فريق الصيانة لديك.", d:"أسبوع واحد"}
+ ],
+
+ tRendimiento:"الإنتاج — نهار",
+ reH1:"الاتجاه يحسم أكثر مما يُظنّ.",
+ reEntrada:"الجنوب يُنتج أكثر في السنة. أما الشرق-غرب فيُنتج أقل، لكنه يوزّع الإنتاج على اليوم توزيعًا أفضل، وفي مصنع يعمل من الثامنة إلى السادسة قد يكون ذلك أثمن.",
+ reAria:"الاتجاه", reGrafAlt:"الإنتاج الشهري المقدَّر لكل كيلوواط ذروة",
+ reNota:"تقدير لخط عرض قريب من ٤٠ درجة شمالًا، بميل أمثل ودون ظلال. الإنتاج النوعي السنوي المرجعي: ١٦٢٣ كيلوواط ساعة لكل كيلوواط ذروة باتجاه الجنوب. سطحك سيعطي رقمًا آخر، ولهذا تُجرى الدراسة ببياناتك لا بهذه.",
+ orientaciones:["جنوب","شرق-غرب","الاثنان"],
+ meses:["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"],
+ reEjeY:"كيلوواط ساعة لكل كيلوواط ذروة",
+ reHalSur:"باتجاه الجنوب، ينتج أفضل شهرٍ {r} ضعف ما ينتجه أسوأها. وهذا الفارق بين الشتاء والصيف هو ما يُلزم بتحديد القدرة حسب المردود لا حسب متوسط الاستهلاك.",
+ reHalEO:"الشرق-غرب يعطي أقل من الجنوب بنحو {p}٪ سنويًا، لكن منحناه أكثر استواءً ويملأ الساعات الأولى والأخيرة من المناوبة على نحو أفضل. وإن كان مصنعك يعمل من الثامنة إلى السادسة فغالبًا ما يستحق ذلك.",
+ reHalAmbas:"المنحنيان معًا يُظهران المفاضلة: الجنوب يتفوّق في المجموع السنوي، والشرق-غرب يتفوّق في الانسجام مع دوام المصنع. والقرار يخرج من منحنى استهلاكك، لا من كتالوج.",
+ thMes:"الشهر", thSur:"جنوب", thEO:"شرق-غرب",
+
+ tAmortizacion:"استرداد الكلفة — نهار",
+ amH1:"متى تكفّ عن كونها نفقة وتصير دخلًا.",
+ amEntrada:"حرّك القدرة المركَّبة وسترى كيف تتغيّر السنة التي تسدّد فيها المنشأة كلفتها بنفسها. وهو تقدير، لا عرض سعر.",
+ amPotencia:"القدرة المركَّبة", amAuto:"الاستهلاك الذاتي المباشر",
+ amGrafAlt:"التدفق النقدي التراكمي المقدَّر على خمس وعشرين سنة",
+ amInvU:"الاستثمار المقدَّر", amProdU:"الإنتاج السنوي",
+ amAhorroU:"الوفر في السنة الأولى", amPaybackU:"مدة الاسترداد",
+ amSerie:"التدفق النقدي التراكمي", amCero:"عتبة الاسترداد",
+ amHal:"عند {k} وباستهلاك ذاتي مباشر قدره {a}٪، تسدّد المنشأة كلفتها في السنة <b>{y}</b>. وعلى خمس وعشرين سنة يبلغ الرصيد المتراكم نحو <b>{n}</b>.",
+ amNota:"نموذج مبسَّط وإرشادي. يفترض ١٠٠٠ يورو لكل كيلوواط ذروة مركَّب، و١٦٢٣ كيلوواط ساعة لكل كيلوواط ذروة سنويًا، وسعر كهرباء متجنَّبة ٠٫١٣ يورو للكيلوواط ساعة، وفائضًا يُعوَّض بـ٠٫٠٥ يورو، وتدهورًا للّوح بنسبة ٠٫٥٪ سنويًا، و١٢ يورو لكل كيلوواط ذروة سنويًا للتشغيل. ولا يشمل الدعم ولا الحسومات الضريبية، وهي عادةً تُقصّر المدة. وليس عرض سعر: الرقم الحقيقي يخرج من الدراسة.",
+ anio:"سنة", anios:"سنوات",
+
+ tProyectos:"مشاريع — نهار",
+ poH1:"ثلاثة أنواع من الأسطح، وثلاث مسائل مختلفة.",
+ poEntrada:"أمثلة تمثيلية لنوع الأعمال التي ننفّذها. والأرقام أرقام تصميم، لا لعملاء يمكن التعرّف عليهم.",
+ poNota:"بطاقات أمثلة بأرقام تصميم مُقرَّبة. ويمكن استبدالها بحالات حقيقية وصور من الموقع متى أذن العميل بنشرها.",
+ proyectos:[
+  {t:"مصنع تصنيع", s:"٤٢٠ كيلوواط ذروة · سطح معدني", p:"استهلاك شديد الثبات على مناوبتين. حُدِّدت القدرة عند ٨٠٪ من الحمل النهاري حتى لا يُصدَّر إلى الشبكة إلا القليل.", r:"الاسترداد المتوقع: ٦٫٤ سنة"},
+  {t:"مركز لوجستي", s:"٧٨٠ كيلوواط ذروة · سطح مستوٍ", p:"غرف تبريد بذروة عند الظهيرة. انسجام يكاد يكون تامًّا مع المنحنى الشمسي، دون بطاريات.", r:"الاسترداد المتوقع: ٥٫٦ سنة"},
+  {t:"مظلة أسطول", s:"١٩٠ كيلوواط ذروة · موقف سيارات", p:"وظيفتان في آن: توليد الطاقة وتظليل الأسطول. الهيكل محسوب للرياح ولحمل شحن المركبات الكهربائية.", r:"الاسترداد المتوقع: ٧٫٩ سنة"}
+ ],
+
+ tMantenimiento:"الصيانة — نهار",
+ maH1:"ما يضيع من الأرباح حين لا يراقب أحدٌ البيانات.",
+ maEntrada:"محطة متوقفة شهرًا في الصيف تأخذ معها جزءًا وافرًا من ربح السنة. وهي نادرًا ما تتوقف تمامًا: بل تتدهور دون أن ينتبه أحد.",
+ maPlanesEti:"العقدان",
+ maNota:"نسب الفقد هي نطاقات معتادة في القطاع، وليست قياسًا لمحطتك. أما الثابت فهو ضمان الإنتاج: إن لم تبلغ المنشأة ما التُزم به، عُوِّض الفارق.",
+ perdidas:[
+  {v:"٣–٧٪", u:"فقد سنوي بسبب تراكم الأوساخ دون تنظيف مجدول"},
+  {v:"١–٢٪", u:"فقد من سلسلة واحدة متوقفة لا ينتبه إليها أحد"},
+  {v:"٠٫٥٪", u:"تدهور طبيعي للّوح كل سنة، لا مفرّ منه"}
+ ],
+ planes:[
+  {t:"أساسي", p:"مراقبة عن بُعد مع إنذارات، وتنظيف مرة في السنة، ودعم هاتفي في أوقات الدوام.", c:"٩ يورو لكل كيلوواط ذروة سنويًا"},
+  {t:"شامل", p:"كل ما سبق، إضافةً إلى تنظيفين وتصوير حراري سنوي وفحص للوصلات واستبدال المواد المستهلكة.", c:"١٨ يورو لكل كيلوواط ذروة سنويًا"},
+  {t:"ضمان الإنتاج", p:"فوق العقد الشامل: إن لم تبلغ المحطة الإنتاج المُلتزم به، عوّضنا الفارق.", c:"بحسب المشروع"}
+ ],
+
+ tNosotros:"الشركة — نهار",
+ noH1:"مهندسون ينفّذون بأيديهم أيضًا.",
+ noEntrada:"نحن شركة صغيرة للهندسة والتركيب. لا نبيع ألواحًا: نبيع أن تنخفض فاتورتك وتبقى منخفضة.",
+ valores:[
+  {t:"فريقنا نحن", p:"الهندسة والتركيب ينفّذهما الأشخاص أنفسهم. ولا يختبئ أحد خلف مقاول من الباطن حين يقع خلل."},
+  {t:"تحديد أمين للقدرة", p:"إن كان السطح يتّسع لضعف ما يناسبك، قلنا لك ذلك. بيع القدرة الزائدة سهل، وثمنه يُدفع لاحقًا."},
+  {t:"نقول: لا", p:"ثمة أحمال وأسطح لا يستحق فيها هذا العمل. ونفضّل قول ذلك في الزيارة الأولى."}
+ ],
+ datos:[
+  {v:"١٠٠٪", u:"الهندسة والتنفيذ بفريقنا نحن"},
+  {v:"٣", u:"لغات العمل"},
+  {v:"٢٥", u:"سنة ضمان منتج اللوح"},
+  {v:"٤٨ ساعة", u:"مهلة الاستجابة عند الإنذار"}
+ ],
+
+ tPreguntas:"أسئلة — نهار",
+ pgH1:"ما يسألوننا عنه قبل التوقيع.",
+ preguntas:[
+  {q:"كم تكلّف الدراسة؟", a:"لا شيء. نحتاج منحناك الساعي وزيارة إلى السطح. وإن تبيّن أن الأمر غير مجدٍ، أخبرناك ولا فاتورة."},
+  {q:"هل يجب إيقاف الإنتاج أثناء الأعمال؟", a:"لا. نعمل في التوقفات المجدولة أو خارج المناوبة. ولا يلزم سوى ساعات قليلة من الفصل للربط، ويُتّفق عليها مسبقًا."},
+  {q:"وماذا لو كان السطح لا يحتمل الوزن؟", a:"الحساب الإنشائي جزء من الدراسة. فإن لم يحتمل، جرى تقويته أو استُبعد — لكن ذلك يُعرف قبل التوقيع، لا أثناء الأعمال."},
+  {q:"وما مصير ما أُنتجه ولا أستهلكه؟", a:"يُصدَّر إلى الشبكة ويُحتسب في الفاتورة، وإن بسعر أقل بكثير مما تدفعه أنت. ولهذا نحدّد القدرة للاستهلاك لا للتصدير."},
+  {q:"كم تدوم الألواح؟", a:"ضمان المنتج عادةً من اثنتي عشرة إلى خمس عشرة سنة، وضمان الإنتاج خمس وعشرون. وبعد خمس وعشرين سنة يظلّ اللوح عاملًا، بنحو ٨٥٪ من قدرته الأصلية."},
+  {q:"هل تعملون خارج إسبانيا؟", a:"نعم، ونخدم بالإسبانية والإنجليزية والعربية. وفي الخليج يتغيّر الحساب كثيرًا: إشعاع أعلى، لكن غبار أكثر، ويصير التنظيف عاملًا حاسمًا."}
+ ],
+
+ tContacto:"تواصل — نهار",
+ coH1:"أرسل إلينا فاتورة ونخبرك إن كان الأمر مجديًا.",
+ coEntrada:"الدراسة الأولى بلا مقابل. وإن لم تكن مجدية، قلنا ذلك وانتهى الأمر.",
+ lEmpresa:"الشركة", lNombre:"جهة الاتصال", lCorreo:"البريد الإلكتروني", lTelefono:"الهاتف",
+ lTipo:"نوع السطح", lConsumo:"الاستهلاك السنوي التقريبي", phConsumo:"٤٥٠٬٠٠٠ كيلوواط ساعة",
+ lMensaje:"احكِ لنا عن الحالة",
+ oElegir:"اختر", oNave:"مبنى صناعي", oLogistica:"مركز لوجستي",
+ oParking:"مظلة موقف سيارات", oSuelo:"على الأرض", oOtro:"غير ذلك",
+ coAviso:"لا تُستخدم بياناتك إلا للردّ على هذا الطلب، ولا تُشارَك مع أي جهة أخرى.",
+ okMsg:"وصلنا طلبك. سنردّ خلال أقل من ٤٨ ساعة عمل.",
+ errEmpresa:"اسم الشركة ناقص.",
+ errCorreo:"البريد الإلكتروني غير مكتمل."
+}
+};
+
+/* ══════════════════════════════════════════════════════════════════
+   Modelo físico y económico. Cifras de referencia declaradas arriba en
+   la nota metodológica de cada página: nada sale de la nada.
+   ══════════════════════════════════════════════════════════════════ */
+var SUR = [85,100,140,150,165,175,190,180,150,120,90,78];   /* kWh/kWp/mes */
+var EO  = SUR.map(function(v,i){
+  /* Este-oeste: menos total y curva más plana. El factor sube en
+     invierno y baja en verano, que es justo lo que hace la geometría. */
+  var plano = [0.92,0.90,0.88,0.86,0.84,0.83,0.83,0.84,0.86,0.89,0.91,0.93][i];
+  return Math.round(v * plano);
+});
+var COSTE_KWP = 1000, PRECIO_KWH = 0.13, EXCEDENTE = 0.05,
+    DEGRAD = 0.005, OPEX_KWP = 12, ANIOS = 25;
+
+var RUTAS = ["inicio","servicios","proceso","rendimiento","amortizacion",
+             "proyectos","mantenimiento","nosotros","preguntas","contacto"];
+var TITULOS = {inicio:"tInicio",servicios:"tServicios",proceso:"tProceso",
+  rendimiento:"tRendimiento",amortizacion:"tAmortizacion",proyectos:"tProyectos",
+  mantenimiento:"tMantenimiento",nosotros:"tNosotros",preguntas:"tPreguntas",contacto:"tContacto"};
+
+var idioma = "es", reOri = 0;
+
+function loc(){ return T[idioma]._loc; }
+function num(n, dec){
+  try{ return new Intl.NumberFormat(loc(),{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0}).format(n); }
+  catch(e){ return String(n); }
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+
+/* ── Lámina isométrica de la instalación ─────────────────────────── */
+function lamina(){
+  var el = document.getElementById("lamina");
+  if (!el) return;
+  var cx = 260, cy = 205, e = 26, cos = Math.cos(Math.PI/6), sen = Math.sin(Math.PI/6);
+  function P(x,y,z){ return [cx + (x-y)*e*cos, cy + (x+y)*e*sen - (z||0)*e]; }
+  function poly(pts, fill, op, trazo){
+    return '<polygon points="' + pts.map(function(p){ return p[0].toFixed(1)+","+p[1].toFixed(1); }).join(" ")
+      + '" fill="' + fill + '" fill-opacity="' + (op===undefined?1:op) + '"'
+      + (trazo ? ' stroke="'+trazo+'" stroke-width=".7"' : '') + '/>';
+  }
+  var g = "";
+  /* Cubierta */
+  g += poly([P(-4,-3),P(4,-3),P(4,3),P(-4,3)], "var(--fondo-2)", 1, "var(--linea)");
+  /* Filas de módulos, ligeramente elevadas y en dos aguas */
+  for (var fy = -2.4; fy <= 2.2; fy += 1.15){
+    for (var fx = -3.2; fx <= 2.6; fx += 1.5){
+      var a = P(fx, fy, .55), b = P(fx+1.3, fy, .55),
+          c = P(fx+1.3, fy+.75, .18), d = P(fx, fy+.75, .18);
+      g += poly([a,b,c,d], "var(--s1)", .82, "var(--fondo)");
+      /* patillas */
+      g += '<line x1="'+a[0].toFixed(1)+'" y1="'+a[1].toFixed(1)+'" x2="'+a[0].toFixed(1)+'" y2="'+(a[1]+11).toFixed(1)+'" stroke="var(--tinta-3)" stroke-width=".6"/>';
+    }
+  }
+  /* Sol y rayos: la única nota cálida del dibujo */
+  g += '<circle cx="415" cy="62" r="17" fill="var(--s2)" fill-opacity=".9"/>';
+  for (var i = 0; i < 8; i++){
+    var an = i * Math.PI / 4, r0 = 24, r1 = 33;
+    g += '<line x1="'+(415+Math.cos(an)*r0).toFixed(1)+'" y1="'+(62+Math.sin(an)*r0).toFixed(1)
+       + '" x2="'+(415+Math.cos(an)*r1).toFixed(1)+'" y2="'+(62+Math.sin(an)*r1).toFixed(1)
+       + '" stroke="var(--s2)" stroke-width="2" stroke-linecap="round" opacity=".75"/>';
+  }
+  el.setAttribute("viewBox","0 0 520 360");
+  el.innerHTML = g;
+}
+
+/* ── Gráfica de producción mensual ───────────────────────────────── */
+function pintarRendimiento(){
+  var svg = document.getElementById("reGrafica");
+  if (!svg) return;
+  var t = T[idioma];
+
+  var m = document.getElementById("reMandos");
+  m.innerHTML = "";
+  t.orientaciones.forEach(function(nom,i){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = nom;
+    b.setAttribute("aria-pressed", String(i === reOri));
+    b.dataset.i = i;
+    b.addEventListener("click", function(){ reOri = +this.dataset.i; pintarRendimiento(); });
+    m.appendChild(b);
+  });
+
+  var series = [];
+  if (reOri === 0 || reOri === 2) series.push({n:t.thSur, d:SUR, c:"var(--s1)"});
+  if (reOri === 1 || reOri === 2) series.push({n:t.thEO,  d:EO,  c:"var(--s2)"});
+
+  /* Leyenda siempre presente cuando hay más de una serie. */
+  document.getElementById("reLeyenda").innerHTML = series.length > 1
+    ? series.map(function(s){ return '<span><i style="--c:'+s.c+'"></i>'+s.n+'</span>'; }).join("")
+    : '<span><i style="--c:'+series[0].c+'"></i>'+series[0].n+' — '+t.reEjeY+'</span>';
+
+  var W = 900, H = 340, ml = 52, mr = 16, mt = 16, mb = 40;
+  var iw = W-ml-mr, ih = H-mt-mb, max = 200;
+  var g = "";
+  /* Rejilla recesiva y eje */
+  for (var v = 0; v <= max; v += 50){
+    var y = mt + ih - v/max*ih;
+    g += '<line class="gr-guia" x1="'+ml+'" y1="'+y.toFixed(1)+'" x2="'+(W-mr)+'" y2="'+y.toFixed(1)+'"/>';
+    g += '<text class="gr-tex" x="'+(ml-8)+'" y="'+(y+3.5).toFixed(1)+'" text-anchor="end">'+num(v)+'</text>';
+  }
+  g += '<line class="gr-eje" x1="'+ml+'" y1="'+(mt+ih)+'" x2="'+(W-mr)+'" y2="'+(mt+ih)+'"/>';
+
+  var paso = iw/12, hueco = 6, anchoS = (paso - hueco*2)/series.length;
+  for (var mes = 0; mes < 12; mes++){
+    for (var s = 0; s < series.length; s++){
+      var val = series[s].d[mes];
+      var alto = val/max*ih;
+      var x = ml + paso*mes + hueco + anchoS*s;
+      /* 2 px de separación entre barras contiguas: el hueco es del fondo. */
+      g += '<rect class="barra" x="'+x.toFixed(1)+'" y="'+(mt+ih-alto).toFixed(1)
+         + '" width="'+(anchoS-2).toFixed(1)+'" height="'+alto.toFixed(1)
+         + '" rx="3" fill="'+series[s].c+'"><title>'+esc(t.meses[mes]+" · "+series[s].n+": "+num(val)+" kWh/kWp")+'</title></rect>';
+    }
+    g += '<text class="gr-tex" x="'+(ml+paso*mes+paso/2).toFixed(1)+'" y="'+(mt+ih+16)+'" text-anchor="middle">'+esc(t.meses[mes])+'</text>';
+  }
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  svg.innerHTML = g;
+
+  var totS = SUR.reduce(function(a,b){return a+b;},0), totE = EO.reduce(function(a,b){return a+b;},0);
+  var msg;
+  if (reOri === 0){
+    msg = t.reHalSur.replace("{r}", num(Math.max.apply(null,SUR)/Math.min.apply(null,SUR), 1));
+  } else if (reOri === 1){
+    msg = t.reHalEO.replace("{p}", num(Math.round((1-totE/totS)*100)));
+  } else { msg = t.reHalAmbas; }
+  document.getElementById("reHallazgo").innerHTML = msg;
+
+  document.getElementById("reTabla").innerHTML =
+    '<table class="tabla"><thead><tr><th>'+t.thMes+'</th><th>'+t.thSur+'</th><th>'+t.thEO+'</th></tr></thead><tbody>'
+    + t.meses.map(function(mm,i){ return "<tr><td>"+mm+"</td><td>"+num(SUR[i])+"</td><td>"+num(EO[i])+"</td></tr>"; }).join("")
+    + '</tbody></table>';
+}
+
+/* ── Gráfica de amortización ─────────────────────────────────────── */
+function pintarAmortizacion(){
+  var svg = document.getElementById("amGrafica");
+  if (!svg) return;
+  var t = T[idioma];
+  var kwp = +document.getElementById("amKwp").value;
+  var auto = +document.getElementById("amAuto").value / 100;
+
+  document.getElementById("amKwpV").textContent = num(kwp) + " kWp";
+  document.getElementById("amAutoV").textContent = num(auto*100) + " %";
+
+  var inversion = kwp * COSTE_KWP;
+  var prod0 = kwp * 1623;
+  var flujo = [-inversion], acum = -inversion;
+  for (var a = 1; a <= ANIOS; a++){
+    var prod = prod0 * Math.pow(1-DEGRAD, a-1);
+    var ahorro = prod*auto*PRECIO_KWH + prod*(1-auto)*EXCEDENTE - kwp*OPEX_KWP;
+    acum += ahorro;
+    flujo.push(acum);
+  }
+  var ahorro1 = prod0*auto*PRECIO_KWH + prod0*(1-auto)*EXCEDENTE - kwp*OPEX_KWP;
+
+  var payback = 0;
+  for (var i = 1; i < flujo.length; i++){ if (flujo[i] >= 0){ payback = i; break; } }
+
+  var min = Math.min.apply(null, flujo), max = Math.max.apply(null, flujo);
+  var W = 900, H = 340, ml = 68, mr = 16, mt = 18, mb = 36;
+  var iw = W-ml-mr, ih = H-mt-mb;
+  function X(i){ return ml + i/ANIOS*iw; }
+  function Y(v){ return mt + ih - (v-min)/(max-min)*ih; }
+
+  var g = "", paso = Math.ceil((max-min)/5/50000)*50000 || 50000;
+  for (var v2 = Math.ceil(min/paso)*paso; v2 <= max; v2 += paso){
+    g += '<line class="gr-guia" x1="'+ml+'" y1="'+Y(v2).toFixed(1)+'" x2="'+(W-mr)+'" y2="'+Y(v2).toFixed(1)+'"/>';
+    g += '<text class="gr-tex" x="'+(ml-8)+'" y="'+(Y(v2)+3.5).toFixed(1)+'" text-anchor="end">'+num(Math.round(v2/1000))+'k</text>';
+  }
+  /* El cero es la línea que importa: se dibuja distinta. */
+  g += '<line x1="'+ml+'" y1="'+Y(0).toFixed(1)+'" x2="'+(W-mr)+'" y2="'+Y(0).toFixed(1)
+     + '" stroke="var(--tinta-3)" stroke-width="1.2" stroke-dasharray="4 4"/>';
+  g += '<text class="gr-tex" x="'+(W-mr)+'" y="'+(Y(0)-7).toFixed(1)+'" text-anchor="end">'+esc(t.amCero)+'</text>';
+
+  var area = "M"+X(0)+","+Y(0);
+  for (var j = 0; j <= ANIOS; j++) area += " L"+X(j).toFixed(1)+","+Y(flujo[j]).toFixed(1);
+  area += " L"+X(ANIOS).toFixed(1)+","+Y(0)+" Z";
+  g += '<path d="'+area+'" fill="var(--s3)" fill-opacity=".13"/>';
+
+  var linea = "";
+  for (var k = 0; k <= ANIOS; k++) linea += (k?" L":"M")+X(k).toFixed(1)+","+Y(flujo[k]).toFixed(1);
+  g += '<path d="'+linea+'" fill="none" stroke="var(--s3)" stroke-width="2" stroke-linejoin="round"/>';
+
+  if (payback){
+    g += '<line x1="'+X(payback).toFixed(1)+'" y1="'+mt+'" x2="'+X(payback).toFixed(1)+'" y2="'+(mt+ih)
+       + '" stroke="var(--s2)" stroke-width="1.4"/>';
+    g += '<circle cx="'+X(payback).toFixed(1)+'" cy="'+Y(flujo[payback]).toFixed(1)
+       + '" r="5" fill="var(--s2)" stroke="var(--fondo)" stroke-width="2"/>';
+  }
+  for (var x = 0; x <= ANIOS; x += 5){
+    g += '<text class="gr-tex" x="'+X(x).toFixed(1)+'" y="'+(mt+ih+16)+'" text-anchor="middle">'+num(x)+'</text>';
+  }
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  svg.innerHTML = g;
+
+  document.getElementById("amLeyenda").innerHTML =
+    '<span><i style="--c:var(--s3)"></i>'+t.amSerie+'</span>'
+    + (payback ? '<span><i style="--c:var(--s2)"></i>'+t.amPaybackU+'</span>' : '');
+
+  var eur = function(n){ try{ return new Intl.NumberFormat(loc(),{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(n); }catch(e){ return num(Math.round(n))+" €"; } };
+  document.getElementById("amInv").textContent    = eur(inversion);
+  document.getElementById("amProd").textContent   = num(Math.round(prod0/1000)) + " MWh";
+  document.getElementById("amAhorro").textContent = eur(ahorro1);
+  document.getElementById("amPayback").textContent = payback ? num(payback)+" "+(payback===1?t.anio:t.anios) : "—";
+
+  document.getElementById("amHallazgo").innerHTML = t.amHal
+    .replace("{k}", num(kwp)+" kWp").replace("{a}", num(auto*100))
+    .replace("{y}", num(payback)).replace("{n}", eur(flujo[ANIOS]));
+}
+
+/* ── Listas que se pintan desde los diccionarios ─────────────────── */
+function pintarListas(){
+  var t = T[idioma];
+
+  var ps = document.getElementById("prPasos");
+  if (ps) ps.innerHTML = t.pasos.map(function(p,i){
+    return '<div class="fila"><div class="i">'+num(i+1).padStart(2,"0")+'</div>'
+      + '<div><h3>'+esc(p.t)+'</h3></div><div class="d"><p>'+esc(p.p)+'</p>'
+      + '<p style="color:var(--tinta-3);font-family:var(--mono);font-size:.8rem;margin-top:.5rem">'+esc(p.d)+'</p></div></div>';
+  }).join("");
+
+  var po = document.getElementById("poRej");
+  if (po) po.innerHTML = t.proyectos.map(function(p){
+    return '<div class="cel"><span class="n">'+esc(p.s)+'</span><h3>'+esc(p.t)+'</h3>'
+      + '<p>'+esc(p.p)+'</p><p style="color:var(--acento);margin-top:.8rem;font-size:.9rem">'+esc(p.r)+'</p></div>';
+  }).join("");
+
+  var ma = document.getElementById("maRej");
+  if (ma) ma.innerHTML = t.perdidas.map(function(p){
+    return '<div class="cel dato"><div class="v" style="color:var(--s2)">'+esc(p.v)+'</div><div class="u">'+esc(p.u)+'</div></div>';
+  }).join("");
+
+  var mp = document.getElementById("maPlanes");
+  if (mp) mp.innerHTML = t.planes.map(function(p){
+    return '<div class="cel"><h3>'+esc(p.t)+'</h3><p>'+esc(p.p)+'</p>'
+      + '<p style="color:var(--acento);margin-top:.8rem;font-family:var(--mono);font-size:.85rem">'+esc(p.c)+'</p></div>';
+  }).join("");
+
+  var nv = document.getElementById("noValores");
+  if (nv) nv.innerHTML = t.valores.map(function(v){
+    return '<div class="cel"><h3>'+esc(v.t)+'</h3><p>'+esc(v.p)+'</p></div>';
+  }).join("");
+
+  var nd = document.getElementById("noDatos");
+  if (nd) nd.innerHTML = t.datos.map(function(d){
+    return '<div class="cel dato"><div class="v">'+esc(d.v)+'</div><div class="u">'+esc(d.u)+'</div></div>';
+  }).join("");
+
+  var pg = document.getElementById("pgLista");
+  if (pg) pg.innerHTML = t.preguntas.map(function(p){
+    return '<details class="faq"><summary>'+esc(p.q)+'</summary><p>'+esc(p.a)+'</p></details>';
+  }).join("");
+}
+
+function ruta(){
+  var r = (location.hash||"").replace(/^#\/?/,"");
+  return RUTAS.indexOf(r) >= 0 ? r : "inicio";
+}
+
+function aplicar(codigo){
+  if (!T[codigo]) codigo = "es";
+  idioma = codigo;
+  var t = T[codigo], i;
+  document.documentElement.lang = t._lang;
+  document.documentElement.dir  = t._dir;
+
+  var n = document.querySelectorAll("[data-t]");
+  for (i = 0; i < n.length; i++){
+    var k = n[i].getAttribute("data-t");
+    if (t[k] !== undefined) n[i].textContent = t[k];
+  }
+  var a = document.querySelectorAll("[data-t-attr]");
+  for (i = 0; i < a.length; i++){
+    a[i].getAttribute("data-t-attr").split(",").forEach(function(par){
+      var q = par.split(":");
+      if (t[q[1].trim()] !== undefined) a[i].setAttribute(q[0].trim(), t[q[1].trim()]);
+    });
+  }
+  var b = document.querySelectorAll(".idi button");
+  for (i = 0; i < b.length; i++) b[i].setAttribute("aria-pressed", String(b[i].dataset.lang === codigo));
+
+  document.title = t[TITULOS[ruta()]] || t.tInicio;
+  var ac = document.getElementById("acuse");
+  if (ac){ ac.textContent = ""; ac.classList.remove("mal"); }
+
+  pintarListas(); pintarRendimiento(); pintarAmortizacion(); lamina();
+  try{ localStorage.setItem("nahar_lang", codigo); }catch(e){}
+}
+
+function enrutar(){
+  var r = ruta(), s = document.querySelectorAll("[data-ruta]"), i;
+  for (i = 0; i < s.length; i++) s[i].classList.toggle("on", s[i].getAttribute("data-ruta") === r);
+  var en = document.querySelectorAll("nav.n a");
+  for (i = 0; i < en.length; i++){
+    if (en[i].getAttribute("href") === "#/"+r) en[i].setAttribute("aria-current","page");
+    else en[i].removeAttribute("aria-current");
+  }
+  document.title = T[idioma][TITULOS[r]] || T[idioma].tInicio;
+  window.scrollTo(0,0);
+}
+
+var bs = document.querySelectorAll(".idi button");
+for (var z = 0; z < bs.length; z++) bs[z].addEventListener("click", function(){ aplicar(this.dataset.lang); });
+window.addEventListener("hashchange", enrutar);
+document.getElementById("amKwp").addEventListener("input", pintarAmortizacion);
+document.getElementById("amAuto").addEventListener("input", pintarAmortizacion);
+
+document.getElementById("f").addEventListener("submit", function(e){
+  e.preventDefault();
+  var t = T[idioma], ac = document.getElementById("acuse");
+  var emp = document.getElementById("emp").value.trim();
+  var cor = document.getElementById("cor").value.trim();
+  if (emp.length < 2){ ac.textContent = t.errEmpresa; ac.classList.add("mal"); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cor)){ ac.textContent = t.errCorreo; ac.classList.add("mal"); return; }
+  ac.classList.remove("mal"); ac.textContent = t.okMsg;
+  e.target.reset();
+});
+
+(function(){
+  var g = null;
+  try{ g = localStorage.getItem("nahar_lang"); }catch(e){}
+  if (!g || !T[g]){ var l = (navigator.language||"es").slice(0,2).toLowerCase(); g = T[l] ? l : "es"; }
+  aplicar(g); enrutar();
+})();
+</script>
+</body>
+</html>
