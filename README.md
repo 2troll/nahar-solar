@@ -1,16 +1,30 @@
 # NAHAR — Autoconsumo solar industrial
 
-Sitio corporativo de **diez páginas** en español, inglés y árabe con RTL real,
+Sitio corporativo de **dieciséis páginas** en español, inglés y árabe con RTL real,
 para una ingeniería de autoconsumo fotovoltaico industrial.
 
 **Ver online:** https://2troll.github.io/nahar-solar/
 
 Un solo archivo HTML: sin compilar, sin dependencias, sin claves de API.
 
-## Las diez páginas
+## Las dieciséis páginas
 
 `Inicio` · `Servicios` · `Proceso` · `Rendimiento` · `Amortización` ·
-`Proyectos` · `Mantenimiento` · `Empresa` · `Preguntas` · `Contacto`
+**`Simulador`** · **`Equipos`** · **`La obra`** · **`Glosario`** ·
+**`Antes de la visita`** · **`Ficha`** · `Proyectos` · `Mantenimiento` ·
+`Empresa` · `Preguntas` · `Contacto`
+
+Las seis en negrita son nuevas, y cada una trae un **formato distinto**, no
+más texto:
+
+| Página | Formato | Qué hace |
+|---|---|---|
+| **Simulador** | Formulario con panel de resultados en vivo | Dimensiona la instalación con los datos del visitante y explica **cuál de los dos techos manda**: la cubierta o el consumo |
+| **Equipos** | Tabla ordenable y filtrable | Se ordena pulsando cualquier columna, también con teclado; el filtro compara con el tipo de la primera fila, así que funciona en los tres idiomas |
+| **La obra** | Diagrama de Gantt | Tres tamaños de instalación reescalan las duraciones y desplazan las tareas conservando los solapes; la ruta crítica va marcada |
+| **Glosario** | Búsqueda que filtra al teclear | Catorce términos, con la coincidencia resaltada y aviso cuando no hay ninguna |
+| **Antes de la visita** | Lista con progreso guardado | Ocho comprobaciones que se recuerdan en `localStorage`; el texto de abajo cambia según cuánto lleves |
+| **Ficha** | Documento imprimible A4 | Recoge el resultado del simulador y se imprime con `@media print`, que oculta menú, pie y el resto de rutas |
 
 ## Lo que no es decorativo
 
@@ -61,8 +75,10 @@ publica aunque sea legal.
 ## Comprobado
 
 ```
-139 claves × 3 idiomas       paridad ✔ · 0 sin traducir
-10 rutas × 3 idiomas         0 fugas de idioma
+217 claves × 3 idiomas       paridad ✔ · 0 sin traducir
+16 rutas × 3 idiomas         0 fugas de idioma
+16 enlaces del menú          los 16 navegan
+desborde horizontal          0 px en las 16 rutas
 3 orientaciones              12 / 12 / 24 barras
 calculadora                  6–7 años, coherente con el «5–8» de portada
 formulario en árabe          3 estados

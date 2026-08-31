@@ -201,6 +201,93 @@ figure.foto-fig figcaption{font-size:.78rem;color:var(--tinta-3);margin-top:.6re
 .creditos li{margin-bottom:.35rem;}
 .creditos a{color:var(--tinta-2);}
 
+
+/* ── Simulador: formulario a la izquierda, resultado vivo a la derecha ── */
+.sim{display:grid;gap:2rem;} @media(min-width:900px){.sim{grid-template-columns:1fr 1.15fr;gap:3rem;align-items:start;}}
+.sim-campos{display:grid;gap:1.2rem;}
+.sim-res{background:var(--fondo-2);border:1px solid var(--linea);padding:1.6rem;}
+.sim-big{font-family:var(--disp);font-size:clamp(2.6rem,6vw,4.2rem);font-weight:500;line-height:1;letter-spacing:-.03em;}
+html[dir="rtl"] .sim-big{letter-spacing:0;}
+.sim-big small{font-size:.32em;font-family:var(--mono);letter-spacing:.08em;color:var(--tinta-3);display:block;margin-top:.5rem;}
+html[dir="rtl"] .sim-big small{letter-spacing:0;font-family:var(--cuerpo);}
+.sim-lin{display:flex;justify-content:space-between;gap:1rem;padding-block:.6rem;border-bottom:1px solid var(--linea-2);font-size:.92rem;}
+.sim-lin span:first-child{color:var(--tinta-2);} .sim-lin b{font-weight:500;font-variant-numeric:tabular-nums;}
+.medidor{height:.55rem;background:var(--linea);border-radius:99px;overflow:hidden;margin:.5rem 0 .2rem;}
+.medidor i{display:block;height:100%;background:var(--acento);border-radius:99px;transition:width .3s;}
+
+/* ── Tabla ordenable ─────────────────────────────────────────────── */
+.filtros{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem;}
+.filtros button{font-family:var(--mono);font-size:.72rem;padding:.45rem .9rem;border:1px solid var(--linea);
+  background:transparent;color:var(--tinta-2);cursor:pointer;}
+html[dir="rtl"] .filtros button{font-size:.88rem;}
+.filtros button[aria-pressed="true"]{background:var(--tinta);color:var(--fondo);border-color:var(--tinta);}
+.tabla-orden{width:100%;border-collapse:collapse;font-size:.88rem;}
+.tabla-orden th{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--tinta-2);text-align:start;padding:.6rem .5rem;border-bottom:1.5px solid var(--tinta);
+  cursor:pointer;user-select:none;white-space:nowrap;}
+html[dir="rtl"] .tabla-orden th{letter-spacing:0;text-transform:none;font-size:.84rem;font-family:var(--cuerpo);}
+.tabla-orden th:hover{color:var(--acento);}
+.tabla-orden th .fl{opacity:.35;margin-inline-start:.35rem;}
+.tabla-orden th[aria-sort] .fl{opacity:1;color:var(--acento);}
+.tabla-orden td{padding:.6rem .5rem;border-bottom:1px solid var(--linea-2);color:var(--tinta-2);
+  font-variant-numeric:tabular-nums;}
+.tabla-orden tbody tr:hover td{background:var(--fondo-2);}
+.tabla-orden td:first-child{color:var(--tinta);}
+
+/* ── Gantt ───────────────────────────────────────────────────────── */
+.gantt{display:grid;grid-template-columns:var(--col-g) 1fr;gap:.5rem .9rem;align-items:center;}
+.gantt .gn{font-size:.85rem;color:var(--tinta-2);}
+.gantt .gp{position:relative;height:1.6rem;background:var(--fondo-2);}
+.gantt .gp::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(to right,var(--linea-2) 0 1px,transparent 1px calc(100%/var(--sem)));}
+.gantt .gb{position:absolute;top:.22rem;bottom:.22rem;background:var(--c);border-radius:3px;
+  box-shadow:0 0 0 2px var(--fondo);display:flex;align-items:center;justify-content:center;
+  font-size:.66rem;color:#fff;white-space:nowrap;overflow:hidden;}
+.gantt .gb.crit{outline:2px solid var(--s2);outline-offset:1px;}
+.gantt-eje{display:grid;grid-template-columns:var(--col-g) 1fr;gap:.9rem;margin-top:.4rem;}
+.gantt-eje div{display:grid;font-size:.66rem;color:var(--tinta-3);}
+.gantt-eje span{text-align:center;}
+
+/* ── Glosario con búsqueda ───────────────────────────────────────── */
+.buscador{position:relative;max-width:26rem;margin-bottom:1.6rem;}
+.buscador input{border:1px solid var(--linea);padding:.75rem .9rem;background:var(--sup);}
+.buscador input:focus{border-color:var(--acento);}
+.glos{border-top:1px solid var(--linea);}
+.glos dt{font-family:var(--disp);font-size:1.05rem;font-weight:500;padding-top:1.1rem;}
+.glos dd{margin:0 0 1.1rem;color:var(--tinta-2);font-size:.94rem;border-bottom:1px solid var(--linea-2);padding-bottom:1.1rem;}
+.glos mark{background:color-mix(in srgb,var(--acento) 28%,transparent);color:inherit;padding:0 .1em;}
+.vacio{color:var(--tinta-3);font-size:.92rem;padding:1.5rem 0;}
+
+/* ── Lista de comprobación ───────────────────────────────────────── */
+.check{list-style:none;margin:0;padding:0;border-top:1px solid var(--linea);}
+.check li{border-bottom:1px solid var(--linea-2);}
+.check label{display:grid;grid-template-columns:1.4rem 1fr;gap:.9rem;align-items:start;
+  padding-block:1rem;cursor:pointer;font-size:.95rem;color:var(--tinta);
+  letter-spacing:normal;text-transform:none;margin:0;}
+.check input{width:1.1rem;height:1.1rem;margin-top:.25rem;accent-color:var(--acento);}
+.check .por{display:block;font-size:.85rem;color:var(--tinta-3);margin-top:.2rem;}
+.check li.hecho label{color:var(--tinta-3);text-decoration:line-through;text-decoration-color:var(--linea);}
+.progreso{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;font-family:var(--mono);font-size:.8rem;color:var(--tinta-2);}
+html[dir="rtl"] .progreso{font-family:var(--cuerpo);font-size:.92rem;}
+.progreso .medidor{flex:1;margin:0;}
+
+/* ── Ficha imprimible ────────────────────────────────────────────── */
+.hoja{background:var(--sup);border:1px solid var(--linea);padding:clamp(1.5rem,4vw,3rem);max-width:52rem;}
+.hoja h2{font-size:1.6rem;margin-bottom:.3rem;}
+.hoja .sello{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acento);}
+html[dir="rtl"] .hoja .sello{letter-spacing:0;text-transform:none;font-size:.86rem;font-family:var(--cuerpo);}
+.hoja hr{border:0;border-top:1px solid var(--linea);margin:1.4rem 0;}
+.hoja dl{display:grid;grid-template-columns:1fr auto;gap:.5rem 1rem;margin:0;}
+.hoja dt{color:var(--tinta-2);font-size:.9rem;} .hoja dd{margin:0;font-weight:500;font-variant-numeric:tabular-nums;}
+@media print{
+  header.n,footer.n,.acc,.no-print{display:none!important;}
+  body{background:#fff;color:#000;font-size:11pt;}
+  [data-ruta]{display:none!important;} [data-ruta="ficha"]{display:block!important;}
+  .hoja{border:0;padding:0;max-width:none;background:#fff;}
+  .bloque{padding-block:0;}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#555;}
+}
+
 /* ── Preguntas ───────────────────────────────────────────────────── */
 .faq{border-top:1px solid var(--linea);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
@@ -257,6 +344,12 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
       <a href="#/amortizacion"  data-t="nAmortizacion">Amortización</a>
       <a href="#/proyectos"     data-t="nProyectos">Proyectos</a>
       <a href="#/mantenimiento" data-t="nMantenimiento">Mantenimiento</a>
+      <a href="#/simulador"     data-t="nSimulador">Simulador</a>
+      <a href="#/equipos"       data-t="nEquipos">Equipos</a>
+      <a href="#/obra"          data-t="nObra">La obra</a>
+      <a href="#/glosario"      data-t="nGlosario">Glosario</a>
+      <a href="#/visita"        data-t="nVisita">Antes de la visita</a>
+      <a href="#/ficha"         data-t="nFicha">Ficha</a>
       <a href="#/nosotros"      data-t="nNosotros">Empresa</a>
       <a href="#/preguntas"     data-t="nPreguntas">Preguntas</a>
       <a href="#/contacto"      data-t="nContacto">Contacto</a>
@@ -513,6 +606,112 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
+
+<!-- SIMULADOR -->
+<section data-ruta="simulador">
+  <div class="marco bloque">
+    <p class="eti" data-t="nSimulador">Simulador</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="siH1">Con sus números, no con los nuestros.</h1>
+    <p class="entrada" data-t="siEntrada">Cuatro datos que salen de su factura y de una foto de la cubierta. En diez segundos sabe si esto le interesa o no.</p>
+  </div>
+  <div class="marco sim">
+    <div class="sim-campos">
+      <div><label for="siCons" data-t="siLCons">Consumo anual</label><input id="siCons" type="number" min="10000" max="5000000" step="10000" value="450000"></div>
+      <div><label for="siPrec" data-t="siLPrec">Precio que paga por kWh</label><input id="siPrec" type="number" min="0.05" max="0.40" step="0.01" value="0.13"></div>
+      <div><label for="siSup" data-t="siLSup">Superficie útil de cubierta</label><input id="siSup" type="number" min="100" max="40000" step="100" value="2500"></div>
+      <div><label for="siPerf" data-t="siLPerf">Cuándo consume</label>
+        <select id="siPerf"></select></div>
+      <p class="metodo" data-t="siNota">La superficie útil es la que queda libre de lucernarios, chimeneas y pasillos: suele ser el 60–70 % de la cubierta total. Se calcula con 6 m² por kWp instalado.</p>
+    </div>
+    <div class="sim-res">
+      <div class="sim-big" id="siKwp"></div>
+      <div class="medidor"><i id="siBarra"></i></div>
+      <p style="font-size:.85rem;color:var(--tinta-3);margin:.4rem 0 1.4rem" id="siCob"></p>
+      <div id="siLineas"></div>
+      <p class="hallazgo" id="siHallazgo" style="margin-top:1.4rem"></p>
+      <div class="acc" style="margin-top:1.4rem">
+        <a class="btn sol" href="#/ficha" data-t="siAFicha">Ver la ficha</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPOS -->
+<section data-ruta="equipos">
+  <div class="marco bloque">
+    <p class="eti" data-t="nEquipos">Equipos</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="eqH1">Lo que montamos, y por qué esto y no lo otro.</h1>
+    <p class="entrada" data-t="eqEntrada">Pulse una columna para ordenar. Es la misma tabla que usamos nosotros para decidir, sin la columna del margen.</p>
+  </div>
+  <div class="marco">
+    <div class="filtros" id="eqFiltros" role="group" data-t-attr="aria-label:eqAria" aria-label="Tipo de equipo"></div>
+    <div class="grafica"><table class="tabla-orden" id="eqTabla"></table></div>
+    <p class="metodo" data-t="eqNota">Precios orientativos por unidad y sin instalar, a fecha de la maqueta. La garantía de producto es la del fabricante; la de producción, la que cubre que el módulo siga dando un mínimo a los veinticinco años.</p>
+  </div>
+</section>
+
+<!-- OBRA -->
+<section data-ruta="obra">
+  <div class="marco bloque">
+    <p class="eti" data-t="nObra">La obra</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="obH1">Qué pasa cada semana, y qué depende de qué.</h1>
+    <p class="entrada" data-t="obEntrada">Las tareas marcadas están en la ruta crítica: si una se retrasa un día, la obra entera se retrasa un día. Las demás tienen holgura.</p>
+  </div>
+  <div class="marco">
+    <div class="mandos" id="obMandos" role="group" data-t-attr="aria-label:obAria" aria-label="Tamaño"></div>
+    <div class="leyenda" id="obLeyenda"></div>
+    <div class="grafica"><div id="obGantt" style="min-width:36rem;--col-g:clamp(7rem,16vw,13rem)"></div></div>
+    <p class="hallazgo" id="obHallazgo"></p>
+    <p class="metodo" data-t="obNota">Duraciones típicas, no un compromiso contractual. La tramitación con la distribuidora es la única tarea cuyo plazo no depende de nosotros, y por eso arranca la primera.</p>
+  </div>
+</section>
+
+<!-- GLOSARIO -->
+<section data-ruta="glosario">
+  <div class="marco bloque">
+    <p class="eti" data-t="nGlosario">Glosario</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="glH1">Las palabras que le van a decir en las ofertas.</h1>
+    <p class="entrada" data-t="glEntrada">Escriba y va filtrando. Si alguien le vende algo que no sabe explicar con estas palabras, desconfíe.</p>
+  </div>
+  <div class="marco">
+    <div class="buscador"><input id="glBuscar" type="search" data-t-attr="placeholder:glPh,aria-label:glPh" placeholder="Buscar un término…"></div>
+    <dl class="glos" id="glLista"></dl>
+    <p class="vacio" id="glVacio" hidden data-t="glVacio">Ningún término coincide. Pruebe con otra palabra.</p>
+    <p class="metodo" id="glCuenta"></p>
+  </div>
+</section>
+
+<!-- VISITA -->
+<section data-ruta="visita">
+  <div class="marco bloque">
+    <p class="eti" data-t="nVisita">Antes de la visita</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="viH1">Ocho cosas y le ahorramos una semana.</h1>
+    <p class="entrada" data-t="viEntrada">Se marca lo que ya tenga; queda guardado en este navegador. No se envía a ningún sitio.</p>
+  </div>
+  <div class="marco">
+    <div class="progreso"><span id="viCuenta"></span><span class="medidor"><i id="viBarra"></i></span></div>
+    <ul class="check" id="viLista"></ul>
+    <p class="hallazgo" id="viHallazgo"></p>
+    <div class="acc"><button class="btn" id="viReset" type="button" data-t="viLimpiar">Empezar de nuevo</button></div>
+  </div>
+</section>
+
+<!-- FICHA -->
+<section data-ruta="ficha">
+  <div class="marco bloque">
+    <p class="eti no-print" data-t="nFicha">Ficha</p>
+    <h1 class="no-print" style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="fiH1">Una hoja para llevar a la reunión.</h1>
+    <p class="entrada no-print" data-t="fiEntrada">Recoge lo que ha salido del simulador. Se imprime en un folio y cabe en un archivador.</p>
+    <div class="acc no-print">
+      <button class="btn sol" id="fiImprimir" type="button" data-t="fiImprimir">Imprimir</button>
+      <a class="btn" href="#/simulador" data-t="fiVolver">Cambiar los datos</a>
+    </div>
+  </div>
+  <div class="marco">
+    <div class="hoja" id="fiHoja"></div>
+  </div>
+</section>
+
 </main>
 
 <footer class="n">
@@ -539,6 +738,111 @@ var T = {
 
 es:{
  _dir:"ltr", _lang:"es", _loc:"es-ES",
+ nSimulador:"Simulador", nEquipos:"Equipos", nObra:"La obra", nGlosario:"Glosario",
+ nVisita:"Antes de la visita", nFicha:"Ficha",
+ tSimulador:"Simulador — NAHAR", tEquipos:"Equipos — NAHAR", tObra:"La obra — NAHAR",
+ tGlosario:"Glosario — NAHAR", tVisita:"Antes de la visita — NAHAR", tFicha:"Ficha — NAHAR",
+
+ siH1:"Con sus números, no con los nuestros.",
+ siEntrada:"Cuatro datos que salen de su factura y de una foto de la cubierta. En diez segundos sabe si esto le interesa o no.",
+ siLCons:"Consumo anual (kWh)", siLPrec:"Precio que paga por kWh (€)", siLSup:"Superficie útil de cubierta (m²)",
+ siLPerf:"Cuándo consume",
+ siNota:"La superficie útil es la que queda libre de lucernarios, chimeneas y pasillos: suele ser el 60–70 % de la cubierta total. Se calcula con 6 m² por kWp instalado.",
+ siAFicha:"Ver la ficha",
+ siKwpU:"kWp recomendados",
+ siCobTxt:"Cubriría el {p} % de su consumo anual",
+ siLProd:"Producción anual", siLAhorro:"Ahorro el primer año", siLInv:"Inversión estimada",
+ siLPay:"Amortización", siLSupUso:"Superficie ocupada", siLExc:"Excedente vertido a red",
+ siHalSup:"Aquí manda <b>la cubierta</b>: con {m} m² útiles no caben más de {k}. Si quisiera cubrir todo su consumo necesitaría alrededor de {n}, así que la superficie es el techo del proyecto.",
+ siHalCons:"Aquí manda <b>el consumo</b>: la cubierta admitiría {c}, pero por encima de {k} empezaría a verter demasiado a la red, y el excedente se paga a menos de la mitad. Instalar de más no sale a cuenta.",
+ perfiles:[
+  {n:"Sobre todo de día", auto:0.85},
+  {n:"Continuo, tres turnos", auto:0.70},
+  {n:"Sobre todo de noche", auto:0.40}
+ ],
+
+ eqH1:"Lo que montamos, y por qué esto y no lo otro.",
+ eqEntrada:"Pulse una columna para ordenar. Es la misma tabla que usamos nosotros para decidir, sin la columna del margen.",
+ eqAria:"Tipo de equipo",
+ eqNota:"Precios orientativos por unidad y sin instalar, a fecha de la maqueta. La garantía de producto es la del fabricante; la de producción, la que cubre que el módulo siga dando un mínimo a los veinticinco años.",
+ eqFiltros:["Todo","Módulos","Inversores"],
+ eqCols:["Equipo","Tipo","Potencia","Rendimiento","Garantía","Precio"],
+ equipos:[
+  {n:"Monocristalino TOPCon 580 W", t:"Módulo", p:580, r:22.5, g:30, e:118, u:"W", ru:"%", gu:" años"},
+  {n:"Monocristalino PERC 550 W", t:"Módulo", p:550, r:21.3, g:25, e:96, u:"W", ru:"%", gu:" años"},
+  {n:"Bifacial vidrio-vidrio 620 W", t:"Módulo", p:620, r:22.8, g:30, e:149, u:"W", ru:"%", gu:" años"},
+  {n:"Inversor string 100 kW", t:"Inversor", p:100000, r:98.6, g:10, e:4300, u:"W", ru:"%", gu:" años"},
+  {n:"Inversor string 60 kW", t:"Inversor", p:60000, r:98.4, g:10, e:2850, u:"W", ru:"%", gu:" años"},
+  {n:"Inversor híbrido 50 kW", t:"Inversor", p:50000, r:97.9, g:5, e:3600, u:"W", ru:"%", gu:" años"},
+  {n:"Optimizador por módulo", t:"Inversor", p:700, r:99.5, g:25, e:38, u:"W", ru:"%", gu:" años"}
+ ],
+
+ obH1:"Qué pasa cada semana, y qué depende de qué.",
+ obEntrada:"Las tareas marcadas están en la ruta crítica: si una se retrasa un día, la obra entera se retrasa un día. Las demás tienen holgura.",
+ obAria:"Tamaño de la instalación", obLeyCrit:"Ruta crítica", obLeyNorm:"Con holgura",
+ obNota:"Duraciones típicas, no un compromiso contractual. La tramitación con la distribuidora es la única tarea cuyo plazo no depende de nosotros, y por eso arranca la primera.",
+ obTamanos:["100 kWp","250 kWp","500 kWp"],
+ tareas:[
+  {n:"Acceso a red (distribuidora)", i:0,  d:8, c:true},
+  {n:"Proyecto de ejecución",        i:0,  d:3, c:false},
+  {n:"Cálculo estructural",          i:2,  d:2, c:false},
+  {n:"Acopio de material",           i:4,  d:4, c:false},
+  {n:"Montaje de estructura",        i:8,  d:3, c:true},
+  {n:"Colocación de módulos",        i:10, d:4, c:true},
+  {n:"Inversores y cableado",        i:12, d:3, c:true},
+  {n:"Protecciones y conexión",      i:15, d:2, c:true},
+  {n:"Legalización y puesta en marcha", i:17, d:2, c:true}
+ ],
+ obHal:"Para <b>{t}</b> la obra sale en <b>{s} semanas</b>. Fíjese en que el acceso a red arranca el primer día y dura ocho semanas: es lo que marca cuándo se puede empezar a montar, y no depende de nosotros.",
+
+ glH1:"Las palabras que le van a decir en las ofertas.",
+ glEntrada:"Escriba y va filtrando. Si alguien le vende algo que no sabe explicar con estas palabras, desconfíe.",
+ glPh:"Buscar un término…", glVacio:"Ningún término coincide. Pruebe con otra palabra.",
+ glCuentaTxt:"{n} de {t} términos",
+ glosario:[
+  {t:"kWp", d:"Kilovatio pico. La potencia que da la instalación en condiciones de laboratorio. Es la unidad con la que se mide el tamaño, y con la que se presupuesta."},
+  {t:"kWh", d:"Kilovatio hora. La energía que produce o consume. Un kWp bien orientado da alrededor de 1.600 kWh al año en España."},
+  {t:"Autoconsumo", d:"La parte de lo que produce que usted se bebe en el momento. Es la que de verdad ahorra, porque evita comprar a precio de factura."},
+  {t:"Excedente", d:"Lo que produce y no consume. Se vierte a la red y se compensa, pero a menos de la mitad de lo que usted paga."},
+  {t:"Curva horaria", d:"El registro de cuánto consume en cada tramo de quince minutos. Se la pide a su comercializadora y es el dato que de verdad dimensiona la planta."},
+  {t:"Inversor string", d:"Convierte la corriente continua de los módulos en alterna. Uno por grupo de módulos: barato y sencillo, pero una sombra afecta a todo el grupo."},
+  {t:"Optimizador", d:"Un pequeño aparato por módulo que aísla el efecto de las sombras. Encarece, y sólo compensa si hay sombreado real."},
+  {t:"PR", d:"Performance ratio. Cuánto de lo que teóricamente podría producir produce de verdad, contando pérdidas. Por encima de 0,80 está bien."},
+  {t:"Degradación", d:"El módulo pierde alrededor de un 0,5 % de potencia al año. A los veinticinco años sigue dando cerca del 85 %."},
+  {t:"Sombreado", d:"La sombra de una chimenea a las nueve de la mañana puede costar más que un módulo. Por eso se estudia antes, no después."},
+  {t:"Coeficiente de temperatura", d:"El módulo pierde potencia cuando se calienta. Importa mucho en el Golfo y bastante menos en el norte de Europa."},
+  {t:"Vertido cero", d:"Configuración que impide inyectar nada a la red. Es obligatoria en algunos puntos de conexión y limita la producción."},
+  {t:"Estructura coplanar", d:"Los módulos siguen la inclinación de la cubierta. Menos producción que la inclinada, pero mucho menos peso y menos viento."},
+  {t:"Termografía", d:"Foto con cámara térmica para encontrar células calientes, que son módulos averiados que desde el suelo parecen sanos."}
+ ],
+
+ viH1:"Ocho cosas y le ahorramos una semana.",
+ viEntrada:"Se marca lo que ya tenga; queda guardado en este navegador. No se envía a ningún sitio.",
+ viLimpiar:"Empezar de nuevo",
+ viCuentaTxt:"{n} de {t}",
+ viHal0:"Con ninguno de estos papeles se puede hacer un estudio serio, pero con la factura y una foto de la cubierta ya podemos decirle si merece la pena seguir.",
+ viHalMedio:"Con lo que lleva marcado ya se puede hacer una primera estimación. Lo que más acelera el estudio es la curva horaria: sin ella todo son medias.",
+ viHalTodo:"Con todo esto el estudio sale en una semana en vez de en tres. Puede pedir la visita cuando quiera.",
+ visita:[
+  {t:"Factura eléctrica de los últimos doce meses", p:"Las doce, no una. Lo que importa es cómo cambia a lo largo del año."},
+  {t:"Curva horaria del contador", p:"Se la pide a su comercializadora y suele tardar dos o tres días. Es el dato más valioso de todos."},
+  {t:"Plano de la cubierta o vista de satélite", p:"Vale una captura de un mapa, siempre que se vea la nave entera."},
+  {t:"Año de construcción de la nave", p:"Determina qué normativa de cargas se aplicó y si hay que reforzar."},
+  {t:"Fotos de la cubierta desde dentro", p:"Para ver la estructura portante. Cuatro fotos con el móvil bastan."},
+  {t:"Potencia contratada y tarifa de acceso", p:"Está en la primera página de la factura, arriba a la derecha."},
+  {t:"Ubicación del cuadro general", p:"De ahí sale la distancia de cableado, que es un coste que sorprende."},
+  {t:"Previsión de crecimiento del consumo", p:"Si va a meter maquinaria nueva o coches eléctricos, cambia el dimensionado."}
+ ],
+
+ fiH1:"Una hoja para llevar a la reunión.",
+ fiEntrada:"Recoge lo que ha salido del simulador. Se imprime en un folio y cabe en un archivador.",
+ fiImprimir:"Imprimir", fiVolver:"Cambiar los datos",
+ fiTitulo:"Estimación preliminar de autoconsumo",
+ fiSubtitulo:"Documento orientativo generado a partir de los datos introducidos. No constituye oferta.",
+ fiDatos:"Datos de partida", fiResultado:"Resultado estimado", fiSupuestos:"Supuestos del cálculo",
+ fiPie:"NAHAR · Estimación no vinculante · Los valores definitivos salen del estudio con la curva horaria real.",
+ fiFecha:"Fecha",
+
  altPortada:"Técnico instalando módulos fotovoltaicos en una cubierta industrial",
  altProyectos:"Vista aérea de una planta fotovoltaica entre campos de cultivo",
  altMantenimiento:"Inversor y cuadro de protecciones de una instalación fotovoltaica",
@@ -697,6 +1001,111 @@ es:{
 
 en:{
  _dir:"ltr", _lang:"en", _loc:"en-GB",
+ nSimulador:"Simulator", nEquipos:"Equipment", nObra:"The works", nGlosario:"Glossary",
+ nVisita:"Before the visit", nFicha:"Summary sheet",
+ tSimulador:"Simulator — NAHAR", tEquipos:"Equipment — NAHAR", tObra:"The works — NAHAR",
+ tGlosario:"Glossary — NAHAR", tVisita:"Before the visit — NAHAR", tFicha:"Summary sheet — NAHAR",
+
+ siH1:"With your numbers, not ours.",
+ siEntrada:"Four figures that come off your bill and a photo of the roof. In ten seconds you know whether this is worth your time.",
+ siLCons:"Annual consumption (kWh)", siLPrec:"Price you pay per kWh (€)", siLSup:"Usable roof area (m²)",
+ siLPerf:"When you consume",
+ siNota:"Usable area is what is left once skylights, chimneys and walkways are taken out: usually 60–70 % of the total roof. Calculated at 6 m² per installed kWp.",
+ siAFicha:"See the summary sheet",
+ siKwpU:"kWp recommended",
+ siCobTxt:"It would cover {p} % of your annual consumption",
+ siLProd:"Annual output", siLAhorro:"First-year saving", siLInv:"Estimated investment",
+ siLPay:"Payback", siLSupUso:"Area used", siLExc:"Surplus exported to grid",
+ siHalSup:"Here <b>the roof</b> decides: {m} m² of usable area takes no more than {k}. Covering your whole consumption would need about {n}, so the surface is the ceiling on this project.",
+ siHalCons:"Here <b>consumption</b> decides: the roof would take {c}, but above {k} you would start exporting too much, and surplus is paid at less than half what you pay. Installing more does not pay.",
+ perfiles:[
+  {n:"Mostly daytime", auto:0.85},
+  {n:"Continuous, three shifts", auto:0.70},
+  {n:"Mostly at night", auto:0.40}
+ ],
+
+ eqH1:"What we install, and why this and not that.",
+ eqEntrada:"Click a column to sort. It is the same table we use to decide, without the margin column.",
+ eqAria:"Type of equipment",
+ eqNota:"Indicative unit prices, uninstalled, as at the date of this mock-up. The product warranty is the manufacturer's; the output warranty covers the module still delivering a minimum at twenty-five years.",
+ eqFiltros:["All","Modules","Inverters"],
+ eqCols:["Equipment","Type","Rating","Efficiency","Warranty","Price"],
+ equipos:[
+  {n:"Monocrystalline TOPCon 580 W", t:"Module", p:580, r:22.5, g:30, e:118, u:"W", ru:"%", gu:" yr"},
+  {n:"Monocrystalline PERC 550 W", t:"Module", p:550, r:21.3, g:25, e:96, u:"W", ru:"%", gu:" yr"},
+  {n:"Bifacial glass-glass 620 W", t:"Module", p:620, r:22.8, g:30, e:149, u:"W", ru:"%", gu:" yr"},
+  {n:"String inverter 100 kW", t:"Inverter", p:100000, r:98.6, g:10, e:4300, u:"W", ru:"%", gu:" yr"},
+  {n:"String inverter 60 kW", t:"Inverter", p:60000, r:98.4, g:10, e:2850, u:"W", ru:"%", gu:" yr"},
+  {n:"Hybrid inverter 50 kW", t:"Inverter", p:50000, r:97.9, g:5, e:3600, u:"W", ru:"%", gu:" yr"},
+  {n:"Per-module optimiser", t:"Inverter", p:700, r:99.5, g:25, e:38, u:"W", ru:"%", gu:" yr"}
+ ],
+
+ obH1:"What happens each week, and what depends on what.",
+ obEntrada:"The marked tasks are on the critical path: if one slips a day, the whole job slips a day. The rest have float.",
+ obAria:"Installation size", obLeyCrit:"Critical path", obLeyNorm:"Has float",
+ obNota:"Typical durations, not a contractual commitment. The grid operator paperwork is the only task whose timing is outside our control, which is why it starts first.",
+ obTamanos:["100 kWp","250 kWp","500 kWp"],
+ tareas:[
+  {n:"Grid access application",     i:0,  d:8, c:true},
+  {n:"Construction design",         i:0,  d:3, c:false},
+  {n:"Structural calculation",      i:2,  d:2, c:false},
+  {n:"Material procurement",        i:4,  d:4, c:false},
+  {n:"Mounting structure",          i:8,  d:3, c:true},
+  {n:"Module installation",         i:10, d:4, c:true},
+  {n:"Inverters and cabling",       i:12, d:3, c:true},
+  {n:"Protections and connection",  i:15, d:2, c:true},
+  {n:"Legalisation and commissioning", i:17, d:2, c:true}
+ ],
+ obHal:"For <b>{t}</b> the job runs to <b>{s} weeks</b>. Note that grid access starts on day one and takes eight weeks: it is what decides when installation can begin, and it is not in our hands.",
+
+ glH1:"The words you will hear in the quotes.",
+ glEntrada:"Type and it filters. If someone is selling you something they cannot explain with these words, be careful.",
+ glPh:"Search for a term…", glVacio:"No term matches. Try another word.",
+ glCuentaTxt:"{n} of {t} terms",
+ glosario:[
+  {t:"kWp", d:"Kilowatt peak. The output the installation gives under laboratory conditions. It is the unit that measures size, and the one quotes are based on."},
+  {t:"kWh", d:"Kilowatt hour. The energy produced or consumed. One well-oriented kWp yields around 1,600 kWh a year in Spain."},
+  {t:"Self-consumption", d:"The share of what you produce that you use at that moment. It is what actually saves money, because it avoids buying at bill price."},
+  {t:"Surplus", d:"What you produce and do not use. It is exported and credited, but at less than half what you pay."},
+  {t:"Hourly curve", d:"The record of how much you consume in each fifteen-minute block. You request it from your supplier and it is the figure that really sizes the plant."},
+  {t:"String inverter", d:"Converts the modules' direct current into alternating. One per group of modules: cheap and simple, but a shadow affects the whole group."},
+  {t:"Optimiser", d:"A small device per module that isolates the effect of shade. It adds cost, and only pays where there is real shading."},
+  {t:"PR", d:"Performance ratio. How much of its theoretical output it actually delivers once losses are counted. Above 0.80 is good."},
+  {t:"Degradation", d:"A module loses about 0.5 % of its output each year. At twenty-five years it still delivers close to 85 %."},
+  {t:"Shading", d:"A chimney's shadow at nine in the morning can cost more than a module. That is why it is studied beforehand, not afterwards."},
+  {t:"Temperature coefficient", d:"A module loses output as it heats. It matters a great deal in the Gulf and considerably less in northern Europe."},
+  {t:"Zero export", d:"A setting that prevents any injection into the grid. It is compulsory at some connection points and caps output."},
+  {t:"Coplanar mounting", d:"Modules follow the roof's own pitch. Less output than tilted mounting, but far less weight and far less wind load."},
+  {t:"Thermography", d:"A thermal-camera photograph to find hot cells: failed modules that look perfectly healthy from the ground."}
+ ],
+
+ viH1:"Eight things, and we save you a week.",
+ viEntrada:"Tick whatever you already have; it stays saved in this browser. Nothing is sent anywhere.",
+ viLimpiar:"Start again",
+ viCuentaTxt:"{n} of {t}",
+ viHal0:"None of these papers is strictly needed to start, but with the bill and a photo of the roof we can already tell you whether it is worth going on.",
+ viHalMedio:"With what you have ticked a first estimate is already possible. What speeds the study up most is the hourly curve: without it everything is averages.",
+ viHalTodo:"With all of this the study takes a week instead of three. You can request the visit whenever you like.",
+ visita:[
+  {t:"Electricity bills for the last twelve months", p:"All twelve, not one. What matters is how it changes across the year."},
+  {t:"Hourly curve from the meter", p:"You request it from your supplier and it usually takes two or three days. It is the most valuable figure of all."},
+  {t:"Roof plan or satellite view", p:"A map screenshot will do, as long as the whole building is visible."},
+  {t:"Year the building was built", p:"It determines which load standard applied and whether reinforcement is needed."},
+  {t:"Photographs of the roof from inside", p:"To see the load-bearing structure. Four phone photographs are enough."},
+  {t:"Contracted capacity and access tariff", p:"It is on the first page of the bill, top right."},
+  {t:"Location of the main switchboard", p:"That sets the cabling distance, which is a cost that surprises people."},
+  {t:"Expected growth in consumption", p:"If new machinery or electric vehicles are coming, the sizing changes."}
+ ],
+
+ fiH1:"One sheet to take into the meeting.",
+ fiEntrada:"It gathers what came out of the simulator. It prints on one page and fits in a folder.",
+ fiImprimir:"Print", fiVolver:"Change the figures",
+ fiTitulo:"Preliminary self-consumption estimate",
+ fiSubtitulo:"Indicative document generated from the figures entered. It does not constitute an offer.",
+ fiDatos:"Starting figures", fiResultado:"Estimated result", fiSupuestos:"Calculation assumptions",
+ fiPie:"NAHAR · Non-binding estimate · Final values come from the study with the real hourly curve.",
+ fiFecha:"Date",
+
  altPortada:"Technician installing photovoltaic modules on an industrial roof",
  altProyectos:"Aerial view of a photovoltaic plant among farmland",
  altMantenimiento:"Inverter and protection board of a photovoltaic installation",
@@ -855,6 +1264,111 @@ en:{
 
 ar:{
  _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ nSimulador:"المُحاكي", nEquipos:"المعدّات", nObra:"سير الأعمال", nGlosario:"مسرد المصطلحات",
+ nVisita:"قبل الزيارة", nFicha:"البطاقة",
+ tSimulador:"المُحاكي — نهار", tEquipos:"المعدّات — نهار", tObra:"سير الأعمال — نهار",
+ tGlosario:"مسرد المصطلحات — نهار", tVisita:"قبل الزيارة — نهار", tFicha:"البطاقة — نهار",
+
+ siH1:"بأرقامك أنت، لا بأرقامنا.",
+ siEntrada:"أربعة أرقام تخرج من فاتورتك ومن صورة لسطحك. وفي عشر ثوانٍ تعرف: أيستحق الأمر وقتك أم لا.",
+ siLCons:"الاستهلاك السنوي (كيلوواط ساعة)", siLPrec:"السعر الذي تدفعه للكيلوواط ساعة (يورو)",
+ siLSup:"المساحة الصالحة من السطح (م²)", siLPerf:"متى تستهلك",
+ siNota:"المساحة الصالحة هي ما يتبقّى بعد المناور والمداخن والممرات: وهي عادةً ٦٠–٧٠٪ من مساحة السطح. وتُحسب بستة أمتار مربعة لكل كيلوواط ذروة مركَّب.",
+ siAFicha:"عرض البطاقة",
+ siKwpU:"كيلوواط ذروة موصى بها",
+ siCobTxt:"تغطي {p}٪ من استهلاكك السنوي",
+ siLProd:"الإنتاج السنوي", siLAhorro:"الوفر في السنة الأولى", siLInv:"الاستثمار المقدَّر",
+ siLPay:"مدة الاسترداد", siLSupUso:"المساحة المشغولة", siLExc:"الفائض المصدَّر إلى الشبكة",
+ siHalSup:"هنا يحكم <b>السطح</b>: {m} مترًا مربعًا صالحة لا تتّسع لأكثر من {k}. ولتغطية استهلاكك كله تلزم نحو {n}، فالمساحة هي سقف المشروع.",
+ siHalCons:"هنا يحكم <b>الاستهلاك</b>: السطح يتّسع لـ{c}، لكنك فوق {k} تبدأ بتصدير الكثير إلى الشبكة، والفائض يُدفع بأقل من نصف ما تدفعه أنت. فالزيادة في التركيب لا تُجدي.",
+ perfiles:[
+  {n:"في النهار أساسًا", auto:0.85},
+  {n:"متواصل، ثلاث مناوبات", auto:0.70},
+  {n:"في الليل أساسًا", auto:0.40}
+ ],
+
+ eqH1:"ما نركّبه، ولماذا هذا دون ذاك.",
+ eqEntrada:"اضغط على عمود لترتيب الجدول. وهو الجدول نفسه الذي نقرّر به، بلا عمود هامش الربح.",
+ eqAria:"نوع المعدّة",
+ eqNota:"أسعار إرشادية للوحدة ودون تركيب، بتاريخ هذا النموذج. وضمان المنتج ضمان الصانع؛ أما ضمان الإنتاج فيغطّي بقاء اللوح يعطي حدًّا أدنى بعد خمس وعشرين سنة.",
+ eqFiltros:["الكل","ألواح","عاكسات"],
+ eqCols:["المعدّة","النوع","القدرة","الكفاءة","الضمان","السعر"],
+ equipos:[
+  {n:"أحادي البلورة TOPCon ٥٨٠ واط", t:"لوح", p:580, r:22.5, g:30, e:118, u:" واط", ru:"٪", gu:" سنة"},
+  {n:"أحادي البلورة PERC ٥٥٠ واط", t:"لوح", p:550, r:21.3, g:25, e:96, u:" واط", ru:"٪", gu:" سنة"},
+  {n:"ثنائي الوجه زجاج-زجاج ٦٢٠ واط", t:"لوح", p:620, r:22.8, g:30, e:149, u:" واط", ru:"٪", gu:" سنة"},
+  {n:"عاكس سلسلي ١٠٠ كيلوواط", t:"عاكس", p:100000, r:98.6, g:10, e:4300, u:" واط", ru:"٪", gu:" سنة"},
+  {n:"عاكس سلسلي ٦٠ كيلوواط", t:"عاكس", p:60000, r:98.4, g:10, e:2850, u:" واط", ru:"٪", gu:" سنة"},
+  {n:"عاكس هجين ٥٠ كيلوواط", t:"عاكس", p:50000, r:97.9, g:5, e:3600, u:" واط", ru:"٪", gu:" سنة"},
+  {n:"مُحسِّن لكل لوح", t:"عاكس", p:700, r:99.5, g:25, e:38, u:" واط", ru:"٪", gu:" سنة"}
+ ],
+
+ obH1:"ما يجري كل أسبوع، وما يتوقّف على ماذا.",
+ obEntrada:"المهام المعلَّمة تقع على المسار الحرج: إن تأخّرت واحدة يومًا، تأخّر المشروع كله يومًا. أما البقية فلديها فسحة.",
+ obAria:"حجم المنشأة", obLeyCrit:"المسار الحرج", obLeyNorm:"لديها فسحة",
+ obNota:"مُدد معتادة، لا التزام تعاقدي. ومعاملات شركة التوزيع هي المهمة الوحيدة التي لا يتوقّف زمنها علينا، ولهذا تبدأ أولًا.",
+ obTamanos:["١٠٠ كيلوواط ذروة","٢٥٠ كيلوواط ذروة","٥٠٠ كيلوواط ذروة"],
+ tareas:[
+  {n:"طلب الربط بالشبكة",        i:0,  d:8, c:true},
+  {n:"مشروع التنفيذ",            i:0,  d:3, c:false},
+  {n:"الحساب الإنشائي",          i:2,  d:2, c:false},
+  {n:"توريد المواد",             i:4,  d:4, c:false},
+  {n:"تركيب الهياكل",            i:8,  d:3, c:true},
+  {n:"تركيب الألواح",            i:10, d:4, c:true},
+  {n:"العاكسات والتمديدات",      i:12, d:3, c:true},
+  {n:"الحماية والربط",           i:15, d:2, c:true},
+  {n:"التقنين والتشغيل",         i:17, d:2, c:true}
+ ],
+ obHal:"لـ<b>{t}</b> تستغرق الأعمال <b>{s} أسبوعًا</b>. ولاحظ أن طلب الربط يبدأ في اليوم الأول ويستمر ثمانية أسابيع: وهو ما يحدّد متى يمكن البدء بالتركيب، وليس بأيدينا.",
+
+ glH1:"الكلمات التي ستسمعها في العروض.",
+ glEntrada:"اكتب فتُرشَّح القائمة. وإن باعك أحدٌ شيئًا لا يُحسن شرحه بهذه الكلمات، فتوقّف.",
+ glPh:"ابحث عن مصطلح…", glVacio:"لا يطابق أي مصطلح. جرّب كلمة أخرى.",
+ glCuentaTxt:"{n} من {t} مصطلحًا",
+ glosario:[
+  {t:"كيلوواط ذروة", d:"القدرة التي تعطيها المنشأة في ظروف المختبر. وهي وحدة قياس الحجم، وعليها تُبنى العروض."},
+  {t:"كيلوواط ساعة", d:"الطاقة المُنتَجة أو المستهلَكة. والكيلوواط ذروة الموجَّه جيدًا يعطي نحو ١٦٠٠ كيلوواط ساعة سنويًا في إسبانيا."},
+  {t:"الاستهلاك الذاتي", d:"الحصة التي تستهلكها من إنتاجك في لحظته. وهي التي توفّر فعلًا، لأنها تجنّبك الشراء بسعر الفاتورة."},
+  {t:"الفائض", d:"ما تنتجه ولا تستهلكه. يُصدَّر إلى الشبكة ويُحتسب، لكن بأقل من نصف ما تدفعه أنت."},
+  {t:"المنحنى الساعي", d:"سجلّ استهلاكك في كل ربع ساعة. تطلبه من شركة التزويد، وهو الرقم الذي يحدّد حجم المحطة فعلًا."},
+  {t:"العاكس السلسلي", d:"يحوّل التيار المستمر من الألواح إلى متردّد. واحد لكل مجموعة ألواح: رخيص وبسيط، لكن ظلًّا واحدًا يؤثر في المجموعة كلها."},
+  {t:"المُحسِّن", d:"جهاز صغير لكل لوح يعزل أثر الظل. يرفع الكلفة، ولا يُجدي إلا حيث يوجد تظليل حقيقي."},
+  {t:"نسبة الأداء", d:"كم يُنتج فعليًا مما يمكن نظريًا، بعد حساب الفواقد. وما فوق ٠٫٨٠ جيد."},
+  {t:"التدهور", d:"يفقد اللوح نحو ٠٫٥٪ من قدرته سنويًا. وبعد خمس وعشرين سنة يظلّ قريبًا من ٨٥٪."},
+  {t:"التظليل", d:"ظلّ مدخنة في التاسعة صباحًا قد يكلّف أكثر من لوح. ولهذا يُدرَس قبل، لا بعد."},
+  {t:"معامل الحرارة", d:"يفقد اللوح قدرةً حين يسخن. وهو أمر بالغ الأهمية في الخليج، وأقل أهميةً بكثير في شمال أوروبا."},
+  {t:"التصدير الصفري", d:"إعداد يمنع ضخّ أي طاقة إلى الشبكة. وهو إلزامي في بعض نقاط الربط ويحدّ من الإنتاج."},
+  {t:"التركيب المستوي", d:"تتبع الألواح ميل السطح نفسه. إنتاج أقل من التركيب المائل، لكن بوزن أقل بكثير وحمل رياح أقل."},
+  {t:"التصوير الحراري", d:"صورة بكاميرا حرارية لكشف الخلايا الساخنة: ألواح معطوبة تبدو من الأرض سليمة تمامًا."}
+ ],
+
+ viH1:"ثمانية أشياء، ونوفّر عليك أسبوعًا.",
+ viEntrada:"علّم ما لديك أصلًا؛ ويبقى محفوظًا في هذا المتصفح. ولا يُرسَل إلى أي مكان.",
+ viLimpiar:"ابدأ من جديد",
+ viCuentaTxt:"{n} من {t}",
+ viHal0:"لا يلزم أيٌّ من هذه الأوراق للبدء، لكن بالفاتورة وصورة للسطح نستطيع أن نخبرك إن كان يستحق المضيّ.",
+ viHalMedio:"بما علّمته يمكن إجراء تقدير أولي. وأكثر ما يُسرّع الدراسة هو المنحنى الساعي: فبدونه كل شيء متوسطات.",
+ viHalTodo:"بكل هذا تخرج الدراسة في أسبوع بدل ثلاثة. ويمكنك طلب الزيارة متى شئت.",
+ visita:[
+  {t:"فواتير الكهرباء لآخر اثني عشر شهرًا", p:"الاثنتا عشرة كلها، لا واحدة. فالمهم كيف تتغيّر على مدار السنة."},
+  {t:"المنحنى الساعي للعدّاد", p:"تطلبه من شركة التزويد ويستغرق يومين أو ثلاثة عادةً. وهو أثمن الأرقام جميعًا."},
+  {t:"مخطط السطح أو صورة قمر صناعي", p:"تكفي لقطة من خريطة، ما دام المبنى كله ظاهرًا."},
+  {t:"سنة إنشاء المبنى", p:"تحدّد أي كود أحمال طُبِّق وهل يلزم التقوية."},
+  {t:"صور للسطح من الداخل", p:"لرؤية الهيكل الحامل. وأربع صور بالهاتف تكفي."},
+  {t:"القدرة المتعاقد عليها وتعرفة الوصول", p:"موجودة في الصفحة الأولى من الفاتورة، أعلى اليمين."},
+  {t:"موقع اللوحة الكهربائية الرئيسية", p:"منه تُحسب مسافة التمديدات، وهي كلفة تفاجئ الناس."},
+  {t:"التوقّعات لنمو الاستهلاك", p:"إن كنت ستُدخل آلات جديدة أو مركبات كهربائية، تغيّر ذلك حجم المنشأة."}
+ ],
+
+ fiH1:"ورقة واحدة تأخذها إلى الاجتماع.",
+ fiEntrada:"تجمع ما خرج من المُحاكي. تُطبع في صفحة واحدة وتدخل في ملف.",
+ fiImprimir:"طباعة", fiVolver:"تغيير الأرقام",
+ fiTitulo:"تقدير أولي للاستهلاك الذاتي",
+ fiSubtitulo:"مستند إرشادي مولَّد من الأرقام المُدخلة. ولا يُعدّ عرض سعر.",
+ fiDatos:"الأرقام المُدخلة", fiResultado:"النتيجة المقدَّرة", fiSupuestos:"فرضيات الحساب",
+ fiPie:"نهار · تقدير غير مُلزِم · القيم النهائية تخرج من الدراسة بالمنحنى الساعي الحقيقي.",
+ fiFecha:"التاريخ",
+
  altPortada:"فنّي يركّب وحدات كهروضوئية على سطح صناعي",
  altProyectos:"منظر جوي لمحطة كهروضوئية بين الحقول الزراعية",
  altMantenimiento:"عاكس ولوحة حماية في منشأة كهروضوئية",
@@ -1026,11 +1540,292 @@ var EO  = SUR.map(function(v,i){
 var COSTE_KWP = 1000, PRECIO_KWH = 0.13, EXCEDENTE = 0.05,
     DEGRAD = 0.005, OPEX_KWP = 12, ANIOS = 25;
 
-var RUTAS = ["inicio","servicios","proceso","rendimiento","amortizacion",
+
+/* ══════════════════════════════════════════════════════════════════
+   Las seis piezas nuevas. Todas leen del diccionario del idioma activo
+   y se repintan al cambiarlo, incluidas las cabeceras de la tabla, los
+   meses del Gantt y los resultados del simulador.
+   ══════════════════════════════════════════════════════════════════ */
+var eqFiltro = 0, eqOrden = {c:-1, d:1}, obTam = 1;
+
+function eur(n){
+  try{ return new Intl.NumberFormat(loc(),{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(n); }
+  catch(e){ return num(Math.round(n)) + " €"; }
+}
+
+/* ── Simulador ───────────────────────────────────────────────────── */
+function leerSim(){
+  var t = T[idioma];
+  var cons = Math.max(1000, +document.getElementById("siCons").value || 450000);
+  var prec = Math.min(0.6, Math.max(0.03, +document.getElementById("siPrec").value || 0.13));
+  var sup  = Math.max(50, +document.getElementById("siSup").value || 2500);
+  var pi   = +document.getElementById("siPerf").value || 0;
+  var autoc = t.perfiles[pi].auto;
+
+  /* Dos techos: el que impone la cubierta y el que impone el consumo.
+     Manda el menor de los dos, que es justo lo que se olvida al vender. */
+  var kwpSup  = sup / 6;
+  var kwpCons = cons / (1623 * autoc);
+  var kwp = Math.max(5, Math.round(Math.min(kwpSup, kwpCons)));
+
+  var prod = kwp * 1623;
+  var autocons = Math.min(prod * autoc, cons);
+  var exced = prod - autocons;
+  var ahorro = autocons * prec + exced * EXCEDENTE - kwp * OPEX_KWP;
+  var inversion = kwp * COSTE_KWP;
+  return {cons:cons, prec:prec, sup:sup, pi:pi, autoc:autoc, kwp:kwp, prod:prod,
+          autocons:autocons, exced:exced, ahorro:ahorro, inversion:inversion,
+          payback: ahorro > 0 ? inversion / ahorro : 0,
+          supUso: kwp * 6, cobertura: autocons / cons * 100,
+          kwpSup: Math.round(kwpSup), kwpCons: Math.round(kwpCons),
+          limitaSup: kwpSup < kwpCons};
+}
+
+function pintarSimulador(){
+  var sel = document.getElementById("siPerf");
+  if (!sel) return;
+  var t = T[idioma], guardado = sel.value;
+  sel.innerHTML = t.perfiles.map(function(pf,i){ return '<option value="'+i+'">'+esc(pf.n)+'</option>'; }).join("");
+  sel.value = guardado || "0";
+
+  var r = leerSim();
+  document.getElementById("siKwp").innerHTML = num(r.kwp) + ' <small>' + esc(t.siKwpU) + '</small>';
+  document.getElementById("siBarra").style.width = Math.min(100, r.cobertura).toFixed(1) + "%";
+  document.getElementById("siCob").textContent = t.siCobTxt.replace("{p}", num(Math.round(r.cobertura)));
+
+  var lineas = [
+    [t.siLProd,    num(Math.round(r.prod/1000)) + " MWh"],
+    [t.siLSupUso,  num(Math.round(r.supUso)) + " m²"],
+    [t.siLInv,     eur(r.inversion)],
+    [t.siLAhorro,  eur(r.ahorro)],
+    [t.siLExc,     num(Math.round(r.exced/1000)) + " MWh"],
+    [t.siLPay,     r.payback ? num(r.payback,1) + " " + (r.payback < 2 ? t.anio : t.anios) : "—"]
+  ];
+  document.getElementById("siLineas").innerHTML = lineas.map(function(l){
+    return '<div class="sim-lin"><span>'+esc(l[0])+'</span><b>'+esc(l[1])+'</b></div>'; }).join("");
+
+  document.getElementById("siHallazgo").innerHTML = r.limitaSup
+    ? t.siHalSup.replace("{m}", num(r.sup)).replace("{k}", num(r.kwp)+" kWp").replace("{n}", num(r.kwpCons)+" kWp")
+    : t.siHalCons.replace("{c}", num(r.kwpSup)+" kWp").replace("{k}", num(r.kwp)+" kWp");
+
+  pintarFicha();
+}
+
+/* ── Tabla de equipos, ordenable y filtrable ─────────────────────── */
+function pintarEquipos(){
+  var cont = document.getElementById("eqTabla");
+  if (!cont) return;
+  var t = T[idioma], E = t.equipos;
+
+  var fl = document.getElementById("eqFiltros");
+  fl.innerHTML = "";
+  t.eqFiltros.forEach(function(n,i){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = n;
+    b.setAttribute("aria-pressed", String(i === eqFiltro));
+    b.dataset.i = i;
+    b.addEventListener("click", function(){ eqFiltro = +this.dataset.i; pintarEquipos(); });
+    fl.appendChild(b);
+  });
+
+  /* El filtro compara con el tipo de la primera fila, no con un índice:
+     así sigue funcionando en los tres idiomas. */
+  var tipoModulo = E[0].t;
+  var filas = E.filter(function(e){
+    return eqFiltro === 0 || (eqFiltro === 1 ? e.t === tipoModulo : e.t !== tipoModulo);
+  });
+
+  var campos = ["n","t","p","r","g","e"];
+  if (eqOrden.c >= 0){
+    var k = campos[eqOrden.c];
+    filas = filas.slice().sort(function(a,b){
+      var x = a[k], y = b[k];
+      return (typeof x === "number" ? x - y : String(x).localeCompare(String(y), t._lang)) * eqOrden.d;
+    });
+  }
+
+  var flecha = eqOrden.d > 0 ? "↑" : "↓";
+  cont.innerHTML =
+    "<thead><tr>" + t.eqCols.map(function(c,i){
+      var act = i === eqOrden.c;
+      return '<th tabindex="0" role="button" data-c="'+i+'"'
+           + (act ? ' aria-sort="'+(eqOrden.d>0?"ascending":"descending")+'"' : '')
+           + '>'+esc(c)+'<span class="fl">'+(act?flecha:"↕")+'</span></th>';
+    }).join("") + "</tr></thead><tbody>" +
+    filas.map(function(e){
+      return "<tr><td>"+esc(e.n)+"</td><td>"+esc(e.t)+"</td>"
+        + "<td>"+num(e.p)+esc(e.u)+"</td><td>"+num(e.r,1)+esc(e.ru)+"</td>"
+        + "<td>"+num(e.g)+esc(e.gu)+"</td><td>"+eur(e.e)+"</td></tr>";
+    }).join("") + "</tbody>";
+
+  cont.querySelectorAll("th").forEach(function(th){
+    function ordenar(){
+      var c = +th.dataset.c;
+      if (eqOrden.c === c) eqOrden.d = -eqOrden.d; else { eqOrden.c = c; eqOrden.d = 1; }
+      pintarEquipos();
+    }
+    th.addEventListener("click", ordenar);
+    th.addEventListener("keydown", function(ev){
+      if (ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); ordenar(); }
+    });
+  });
+}
+
+/* ── Gantt de la obra ────────────────────────────────────────────── */
+function pintarObra(){
+  var cont = document.getElementById("obGantt");
+  if (!cont) return;
+  var t = T[idioma], F = [0.75, 1, 1.35][obTam];
+
+  var m = document.getElementById("obMandos");
+  m.innerHTML = "";
+  t.obTamanos.forEach(function(n,i){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = n;
+    b.setAttribute("aria-pressed", String(i === obTam));
+    b.dataset.i = i;
+    b.addEventListener("click", function(){ obTam = +this.dataset.i; pintarObra(); });
+    m.appendChild(b);
+  });
+  document.getElementById("obLeyenda").innerHTML =
+    '<span><i style="--c:var(--s2)"></i>'+esc(t.obLeyCrit)+'</span>'
+  + '<span><i style="--c:var(--s1)"></i>'+esc(t.obLeyNorm)+'</span>';
+
+  /* Sólo escala la obra física (de la quinta tarea en adelante): la
+     tramitación con la distribuidora dura lo que dura, da igual el tamaño. */
+  var tar = t.tareas.map(function(x){ return {n:x.n, i:x.i, d:x.d, c:x.c}; });
+  var desp = 0, prevOrigI = null, prevNuevaI = null;
+  for (var k = 4; k < tar.length; k++){
+    var dNueva = Math.max(1, Math.round(tar[k].d * F));
+    var iNueva = (prevOrigI === null) ? tar[k].i
+               : prevNuevaI + Math.max(1, Math.round((tar[k].i - prevOrigI) * F));
+    prevOrigI = tar[k].i; prevNuevaI = iNueva;
+    tar[k].i = iNueva; tar[k].d = dNueva;
+  }
+  var sem = 0;
+  tar.forEach(function(x){ sem = Math.max(sem, x.i + x.d); });
+  sem = Math.ceil(sem / 2) * 2;
+
+  cont.style.setProperty("--sem", sem);
+  var html = '<div class="gantt" style="--sem:'+sem+'">';
+  tar.forEach(function(x){
+    var izq = x.i / sem * 100, an = x.d / sem * 100;
+    html += '<div class="gn">'+esc(x.n)+'</div><div class="gp" style="--sem:'+sem+'">'
+         +  '<div class="gb'+(x.c?" crit":"")+'" style="--c:var(--s'+(x.c?2:1)+');'
+         +  'inset-inline-start:'+izq.toFixed(2)+'%;width:'+an.toFixed(2)+'%" '
+         +  'title="'+esc(x.n+" · "+num(x.d))+'">'+(an > 7 ? num(x.d) : "")+'</div></div>';
+  });
+  html += '</div><div class="gantt-eje"><div></div><div style="grid-template-columns:repeat('+(sem/2)+',1fr)">';
+  for (var w = 0; w < sem; w += 2) html += '<span>'+num(w)+'</span>';
+  html += '</div></div>';
+  cont.innerHTML = html;
+
+  document.getElementById("obHallazgo").innerHTML =
+    t.obHal.replace("{t}", esc(t.obTamanos[obTam])).replace("{s}", num(sem));
+}
+
+/* ── Glosario con búsqueda en vivo ───────────────────────────────── */
+function pintarGlosario(){
+  var lista = document.getElementById("glLista");
+  if (!lista) return;
+  var t = T[idioma];
+  var q = (document.getElementById("glBuscar").value || "").trim().toLowerCase();
+
+  function resalta(txt){
+    if (!q) return esc(txt);
+    var i = txt.toLowerCase().indexOf(q);
+    if (i < 0) return esc(txt);
+    return esc(txt.slice(0,i)) + "<mark>" + esc(txt.slice(i, i+q.length)) + "</mark>" + esc(txt.slice(i+q.length));
+  }
+  var vis = t.glosario.filter(function(g){
+    return !q || g.t.toLowerCase().indexOf(q) >= 0 || g.d.toLowerCase().indexOf(q) >= 0;
+  });
+  lista.innerHTML = vis.map(function(g){
+    return "<dt>"+resalta(g.t)+"</dt><dd>"+resalta(g.d)+"</dd>"; }).join("");
+  document.getElementById("glVacio").hidden = vis.length > 0;
+  document.getElementById("glCuenta").textContent =
+    t.glCuentaTxt.replace("{n}", num(vis.length)).replace("{t}", num(t.glosario.length));
+}
+
+/* ── Lista de comprobación con progreso guardado ─────────────────── */
+function estadoVisita(n){
+  try{
+    var v = JSON.parse(localStorage.getItem("nahar_visita") || "[]");
+    if (Array.isArray(v) && v.length === n) return v;
+  }catch(e){}
+  return new Array(n).fill(false);
+}
+function pintarVisita(){
+  var lista = document.getElementById("viLista");
+  if (!lista) return;
+  var t = T[idioma], V = t.visita, est = estadoVisita(V.length);
+
+  lista.innerHTML = V.map(function(v,i){
+    return '<li'+(est[i]?' class="hecho"':'')+'><label><input type="checkbox" data-i="'+i+'"'
+      + (est[i]?" checked":"") + '><span>'+esc(v.t)+'<span class="por">'+esc(v.p)+'</span></span></label></li>';
+  }).join("");
+
+  var hechos = est.filter(Boolean).length;
+  document.getElementById("viCuenta").textContent =
+    t.viCuentaTxt.replace("{n}", num(hechos)).replace("{t}", num(V.length));
+  document.getElementById("viBarra").style.width = (hechos / V.length * 100).toFixed(1) + "%";
+  document.getElementById("viHallazgo").innerHTML =
+    hechos === 0 ? t.viHal0 : (hechos === V.length ? t.viHalTodo : t.viHalMedio);
+
+  lista.querySelectorAll("input").forEach(function(inp){
+    inp.addEventListener("change", function(){
+      var e = estadoVisita(V.length);
+      e[+this.dataset.i] = this.checked;
+      try{ localStorage.setItem("nahar_visita", JSON.stringify(e)); }catch(err){}
+      pintarVisita();
+    });
+  });
+}
+
+/* ── Ficha imprimible ────────────────────────────────────────────── */
+function pintarFicha(){
+  var hoja = document.getElementById("fiHoja");
+  if (!hoja) return;
+  var t = T[idioma], r = leerSim();
+  var fecha;
+  try{ fecha = new Intl.DateTimeFormat(loc(),{day:"numeric",month:"long",year:"numeric"}).format(new Date()); }
+  catch(e){ fecha = ""; }
+
+  function dl(pares){
+    return "<dl>" + pares.map(function(x){
+      return "<dt>"+esc(x[0])+"</dt><dd>"+esc(x[1])+"</dd>"; }).join("") + "</dl>";
+  }
+  hoja.innerHTML =
+    '<p class="sello">'+esc(t.marca)+' · '+esc(t.fiFecha)+' '+esc(fecha)+'</p>'
+    + "<h2>"+esc(t.fiTitulo)+"</h2>"
+    + '<p style="color:var(--tinta-2);font-size:.9rem">'+esc(t.fiSubtitulo)+"</p><hr>"
+    + '<p class="eti">'+esc(t.fiDatos)+"</p>"
+    + dl([[t.siLCons, num(r.cons)+" kWh"],[t.siLPrec, num(r.prec,2)+" €"],
+          [t.siLSup, num(r.sup)+" m²"],[t.siLPerf, t.perfiles[r.pi].n]])
+    + "<hr>" + '<p class="eti">'+esc(t.fiResultado)+"</p>"
+    + dl([[t.siKwpU, num(r.kwp)],
+          [t.siLProd, num(Math.round(r.prod/1000))+" MWh"],
+          [t.siLSupUso, num(Math.round(r.supUso))+" m²"],
+          [t.siLInv, eur(r.inversion)],
+          [t.siLAhorro, eur(r.ahorro)],
+          [t.siLPay, r.payback ? num(r.payback,1)+" "+t.anios : "—"]])
+    + "<hr>" + '<p class="eti">'+esc(t.fiSupuestos)+"</p>"
+    + '<p style="font-size:.82rem;color:var(--tinta-2)">'+esc(t.amNota)+"</p>"
+    + '<hr><p style="font-size:.78rem;color:var(--tinta-3)">'+esc(t.fiPie)+"</p>";
+}
+
+function pintarNuevas(){
+  pintarSimulador(); pintarEquipos(); pintarObra(); pintarGlosario(); pintarVisita();
+}
+
+var RUTAS = ["inicio","servicios","proceso","rendimiento","amortizacion","simulador",
+             "equipos","obra","glosario","visita","ficha",
              "proyectos","mantenimiento","nosotros","preguntas","contacto"];
 var TITULOS = {inicio:"tInicio",servicios:"tServicios",proceso:"tProceso",
   rendimiento:"tRendimiento",amortizacion:"tAmortizacion",proyectos:"tProyectos",
-  mantenimiento:"tMantenimiento",nosotros:"tNosotros",preguntas:"tPreguntas",contacto:"tContacto"};
+  mantenimiento:"tMantenimiento",nosotros:"tNosotros",preguntas:"tPreguntas",contacto:"tContacto",
+  simulador:"tSimulador",equipos:"tEquipos",obra:"tObra",glosario:"tGlosario",
+  visita:"tVisita",ficha:"tFicha"};
 
 var idioma = "es", reOri = 0;
 
@@ -1303,7 +2098,7 @@ function aplicar(codigo){
   var ac = document.getElementById("acuse");
   if (ac){ ac.textContent = ""; ac.classList.remove("mal"); }
 
-  pintarListas(); pintarRendimiento(); pintarAmortizacion(); lamina();
+  pintarListas(); pintarRendimiento(); pintarAmortizacion(); lamina(); pintarNuevas();
   try{ localStorage.setItem("nahar_lang", codigo); }catch(e){}
 }
 
@@ -1324,6 +2119,19 @@ for (var z = 0; z < bs.length; z++) bs[z].addEventListener("click", function(){ 
 window.addEventListener("hashchange", enrutar);
 document.getElementById("amKwp").addEventListener("input", pintarAmortizacion);
 document.getElementById("amAuto").addEventListener("input", pintarAmortizacion);
+["siCons","siPrec","siSup","siPerf"].forEach(function(id){
+  var el = document.getElementById(id);
+  if (el) el.addEventListener("input", pintarSimulador);
+});
+var glB = document.getElementById("glBuscar");
+if (glB) glB.addEventListener("input", pintarGlosario);
+var viR = document.getElementById("viReset");
+if (viR) viR.addEventListener("click", function(){
+  try{ localStorage.removeItem("nahar_visita"); }catch(e){}
+  pintarVisita();
+});
+var fiI = document.getElementById("fiImprimir");
+if (fiI) fiI.addEventListener("click", function(){ window.print(); });
 
 document.getElementById("f").addEventListener("submit", function(e){
   e.preventDefault();
