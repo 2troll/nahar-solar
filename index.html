@@ -116,6 +116,13 @@ html[dir="rtl"] .btn{letter-spacing:0;text-transform:none;font-size:.95rem;}
 .btn:hover{border-color:var(--acento);color:var(--acento);}
 .btn.sol:hover{color:#fff;}
 
+
+/* Los items de una rejilla tienen min-width:auto, que para una imagen es su
+   ancho intrínseco: sin esto, una foto de 1400 px desborda la columna. */
+.hero > *{min-width:0;}
+img{max-width:100%;}
+.foto{aspect-ratio:4/3;object-fit:cover;}
+
 /* ── Rejillas y tarjetas ─────────────────────────────────────────── */
 .rej{display:grid;gap:1px;background:var(--linea);border:1px solid var(--linea);}
 .r3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
@@ -182,6 +189,17 @@ html[dir="rtl"] .desliz label{letter-spacing:0;text-transform:none;font-size:.88
   letter-spacing:.08em;text-transform:uppercase;}
 html[dir="rtl"] .tabla th{letter-spacing:0;text-transform:none;font-size:.86rem;}
 .tabla td{color:var(--tinta-2);}
+
+
+/* ── Fotografía ──────────────────────────────────────────────────── */
+.foto{width:100%;height:auto;display:block;border:1px solid var(--linea);}
+figure.foto-fig{margin:0;}
+figure.foto-fig figcaption{font-size:.78rem;color:var(--tinta-3);margin-top:.6rem;}
+.banda-foto{width:100%;aspect-ratio:21/8;object-fit:cover;display:block;
+  border:1px solid var(--linea);margin-bottom:2rem;}
+.creditos{font-size:.78rem;color:var(--tinta-3);line-height:1.75;}
+.creditos li{margin-bottom:.35rem;}
+.creditos a{color:var(--tinta-2);}
 
 /* ── Preguntas ───────────────────────────────────────────────────── */
 .faq{border-top:1px solid var(--linea);}
@@ -265,7 +283,8 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
         <a class="btn" href="#/amortizacion" data-t="bCalcular">Calcular amortización</a>
       </div>
     </div>
-    <svg class="lam" id="lamina" viewBox="0 0 520 360" role="img" data-t-attr="aria-label:laminaAlt" aria-label="Esquema de una instalación en cubierta"></svg>
+    <img class="foto" src="img/tecnico-cubierta.jpg" width="1400" height="788"
+         data-t-attr="alt:altPortada" alt="Técnico instalando módulos fotovoltaicos en una cubierta">
   </div>
 
   <div class="marco bloque raya">
@@ -339,6 +358,8 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <p class="entrada" data-t="prEntrada">Seis pasos. Los tres primeros no le cuestan nada y puede pararlos en cualquier momento.</p>
   </div>
   <div class="marco">
+    <svg class="lam" id="lamina" viewBox="0 0 520 360" role="img" style="max-width:34rem;margin-bottom:2rem"
+         data-t-attr="aria-label:laminaAlt" aria-label="Esquema de una instalación en cubierta"></svg>
     <div class="filas" id="prPasos"></div>
     <p class="metodo" data-t="prNota">Los plazos son los habituales en instalaciones de entre 100 y 500 kWp. La tramitación con la distribuidora es la parte menos previsible y la única que no depende de nosotros.</p>
   </div>
@@ -399,7 +420,10 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="poH1">Tres tipos de cubierta, tres problemas distintos.</h1>
     <p class="entrada" data-t="poEntrada">Ejemplos representativos del tipo de encargo que hacemos. Los datos son de proyecto, no de cliente identificable.</p>
   </div>
-  <div class="marco"><div class="rej r3" id="poRej"></div>
+  <div class="marco">
+    <img class="banda-foto" src="img/planta-aerea.jpg" width="1400" height="533"
+         data-t-attr="alt:altProyectos" alt="Vista aérea de una planta fotovoltaica">
+    <div class="rej r3" id="poRej"></div>
     <p class="metodo" data-t="poNota">Fichas de ejemplo con cifras de proyecto redondeadas. Sustituibles por casos reales y fotografía de obra cuando el cliente autorice publicarlos.</p>
   </div>
 </section>
@@ -412,6 +436,8 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <p class="entrada" data-t="maEntrada">Una planta parada un mes en verano se lleva por delante buena parte del beneficio del año. Y casi nunca se para del todo: se degrada sin que nadie lo note.</p>
   </div>
   <div class="marco">
+    <img class="banda-foto" src="img/inversor.jpg" width="1400" height="533"
+         data-t-attr="alt:altMantenimiento" alt="Inversor y protecciones de una instalación fotovoltaica">
     <div class="rej r3" id="maRej"></div>
     <div style="margin-top:2rem">
       <p class="eti" data-t="maPlanesEti">Los dos contratos</p>
@@ -431,6 +457,11 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   <div class="marco">
     <div class="rej r3" id="noValores"></div>
     <div style="margin-top:2rem" class="rej r4" id="noDatos"></div>
+    <div style="margin-top:2.5rem">
+      <p class="eti" data-t="credEti">Créditos de las imágenes</p>
+      <p class="metodo" data-t="credNota">Fotografías de Wikimedia Commons con licencia libre, atribuidas a su autor. Se sustituirían por fotografía propia de obra en un encargo real.</p>
+      <ul class="creditos" id="credLista"></ul>
+    </div>
   </div>
 </section>
 
@@ -508,6 +539,16 @@ var T = {
 
 es:{
  _dir:"ltr", _lang:"es", _loc:"es-ES",
+ altPortada:"Técnico instalando módulos fotovoltaicos en una cubierta industrial",
+ altProyectos:"Vista aérea de una planta fotovoltaica entre campos de cultivo",
+ altMantenimiento:"Inversor y cuadro de protecciones de una instalación fotovoltaica",
+ credEti:"Créditos de las imágenes",
+ credNota:"Fotografías de Wikimedia Commons con licencia libre, atribuidas a su autor. Se sustituirían por fotografía propia de obra en un encargo real.",
+ creditos:[
+  {t:"Solar installation technician on rooftop", a:"CoCreatr", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"},
+  {t:"Mead, Nebraska solar farm aerial", a:"AllTheUsernamesAreInUse", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
+  {t:"Installation of solar PV panels — inverter", a:"David Hawgood", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"}
+ ],
  marca:"NAHAR", ariaMenu:"Secciones", ariaIdioma:"Idioma",
  nInicio:"Inicio", nServicios:"Servicios", nProceso:"Proceso", nRendimiento:"Rendimiento",
  nAmortizacion:"Amortización", nProyectos:"Proyectos", nMantenimiento:"Mantenimiento",
@@ -656,6 +697,16 @@ es:{
 
 en:{
  _dir:"ltr", _lang:"en", _loc:"en-GB",
+ altPortada:"Technician installing photovoltaic modules on an industrial roof",
+ altProyectos:"Aerial view of a photovoltaic plant among farmland",
+ altMantenimiento:"Inverter and protection board of a photovoltaic installation",
+ credEti:"Image credits",
+ credNota:"Photographs from Wikimedia Commons under free licences, credited to their authors. In a real commission these would be replaced with our own site photography.",
+ creditos:[
+  {t:"Solar installation technician on rooftop", a:"CoCreatr", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"},
+  {t:"Mead, Nebraska solar farm aerial", a:"AllTheUsernamesAreInUse", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
+  {t:"Installation of solar PV panels — inverter", a:"David Hawgood", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"}
+ ],
  marca:"NAHAR", ariaMenu:"Sections", ariaIdioma:"Language",
  nInicio:"Home", nServicios:"Services", nProceso:"Process", nRendimiento:"Output",
  nAmortizacion:"Payback", nProyectos:"Projects", nMantenimiento:"Maintenance",
@@ -804,6 +855,16 @@ en:{
 
 ar:{
  _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ altPortada:"فنّي يركّب وحدات كهروضوئية على سطح صناعي",
+ altProyectos:"منظر جوي لمحطة كهروضوئية بين الحقول الزراعية",
+ altMantenimiento:"عاكس ولوحة حماية في منشأة كهروضوئية",
+ credEti:"حقوق الصور",
+ credNota:"صور من ويكيميديا كومنز برخص حرة، منسوبة إلى أصحابها. وفي مشروع حقيقي تُستبدل بتصوير خاص من موقع العمل.",
+ creditos:[
+  {t:"Solar installation technician on rooftop", a:"CoCreatr", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"},
+  {t:"Mead, Nebraska solar farm aerial", a:"AllTheUsernamesAreInUse", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
+  {t:"Installation of solar PV panels — inverter", a:"David Hawgood", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"}
+ ],
  marca:"نهار", ariaMenu:"الأقسام", ariaIdioma:"اللغة",
  nInicio:"الرئيسية", nServicios:"خدماتنا", nProceso:"سير العمل", nRendimiento:"الإنتاج",
  nAmortizacion:"استرداد الكلفة", nProyectos:"مشاريع", nMantenimiento:"الصيانة",
@@ -1199,6 +1260,11 @@ function pintarListas(){
   if (nd) nd.innerHTML = t.datos.map(function(d){
     return '<div class="cel dato"><div class="v">'+esc(d.v)+'</div><div class="u">'+esc(d.u)+'</div></div>';
   }).join("");
+
+  var cr = document.getElementById("credLista");
+  if (cr) cr.innerHTML = t.creditos.map(function(c){
+    return '<li>' + esc(c.t) + ' — ' + esc(c.a) + ', <a href="' + c.u
+      + '" target="_blank" rel="noopener">' + esc(c.l) + '</a></li>'; }).join("");
 
   var pg = document.getElementById("pgLista");
   if (pg) pg.innerHTML = t.preguntas.map(function(p){

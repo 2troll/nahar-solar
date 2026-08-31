@@ -42,6 +42,22 @@ y las cifras del cálculo cuadran con las que anuncia la portada.
 - `background-position` del desplegable reflejada a mano: es la única propiedad
   del formulario sin versión lógica.
 
+## Fotografía
+
+3 fotografías reales de **Wikimedia Commons**, todas con licencia libre
+(CC0, CC BY o CC BY-SA), descargadas al repositorio y no enlazadas a un
+tercero: si mañana desaparecen de Commons, el sitio sigue igual.
+
+- Cada una lleva **texto alternativo traducido a los tres idiomas**, no un
+  `alt` en español dentro de la versión árabe.
+- Los créditos —título, autor y licencia con enlace— se muestran dentro del
+  propio sitio y también cambian de idioma.
+- Se redimensionaron a 1400 px de ancho; ninguna pasa de 500 KB.
+
+Se descartó una candidata de fisioterapia que la licencia permitía usar pero
+que retrataba a **un menor identificable**. En una maqueta comercial eso no se
+publica aunque sea legal.
+
 ## Comprobado
 
 ```
