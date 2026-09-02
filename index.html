@@ -820,10 +820,26 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="eqH1">Lo que montamos, y por qué esto y no lo otro.</h1>
     <p class="entrada" data-t="eqEntrada">Pulse una columna para ordenar. Es la misma tabla que usamos nosotros para decidir, sin la columna del margen.</p>
   </div>
+  <div class="marco" style="padding-bottom:clamp(2rem,4vw,3rem)">
+    <div class="rej r3" id="eqCriterios"></div>
+  </div>
   <div class="marco">
     <div class="filtros" id="eqFiltros" role="group" data-t-attr="aria-label:eqAria" aria-label="Tipo de equipo"></div>
     <div class="grafica"><table class="tabla-orden" id="eqTabla"></table></div>
     <p class="metodo" data-t="eqNota">Precios orientativos por unidad y sin instalar, a fecha de la maqueta. La garantía de producto es la del fabricante; la de producción, la que cubre que el módulo siga dando un mínimo a los veinticinco años.</p>
+  </div>
+  <div class="marco bloque">
+    <p class="eti" data-t="eqLecturaEti">Cómo se lee esta tabla</p>
+    <div class="filas" id="eqLectura"></div>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <div class="cinta-cta">
+      <div>
+        <h3 data-t="ctaEquiposH">La marca la elige usted; nosotros decimos lo que sabemos de cada una.</h3>
+        <p data-t="ctaEquiposP">Si ya tiene una oferta encima de la mesa, díganos qué material lleva y le decimos qué mirar antes de firmar.</p>
+      </div>
+      <a class="btn" href="#/ofertas" data-t="bCompararOf">Comparar ofertas</a>
+    </div>
   </div>
 </section>
 
@@ -840,6 +856,18 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <div class="grafica"><div id="obGantt" style="min-width:36rem;--col-g:clamp(7rem,16vw,13rem)"></div></div>
     <p class="hallazgo" id="obHallazgo"></p>
     <p class="metodo" data-t="obNota">Duraciones típicas, no un compromiso contractual. La tramitación con la distribuidora es la única tarea cuyo plazo no depende de nosotros, y por eso arranca la primera.</p>
+  </div>
+  <div class="marco bloque">
+    <p class="eti" data-t="obRiesgosEti">Las tres cosas que retrasan una obra</p>
+    <div class="rej r3" id="obRiesgos"></div>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2rem,4vw,3rem)">
+    <p class="eti" data-t="obConvivEti">Cómo convive la obra con su producción</p>
+    <div id="obConviv" style="max-width:66ch;margin-top:1rem"></div>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <p class="eti" data-t="obQuienEti">Quién pisa su planta</p>
+    <div class="rej r4" id="obQuien"></div>
   </div>
 </section>
 
@@ -1002,6 +1030,40 @@ es:{
  ],
  svIncluye:"Qué incluye", svNo:"Qué no le vamos a cobrar aparte", svEnt:"Qué recibe al terminar",
  caReto:"El problema", caSol:"Lo que hicimos", caRes:"El resultado", caAp:"Lo que nos dejó",
+ eqCriteriosEti:"Los tres criterios que aplicamos", eqLecturaEti:"Cómo se lee esta tabla",
+ ctaEquiposH:"La marca la elige usted; nosotros decimos lo que sabemos de cada una.",
+ ctaEquiposP:"Si ya tiene una oferta encima de la mesa, díganos qué material lleva y le decimos qué mirar antes de firmar.",
+ bCompararOf:"Comparar ofertas",
+ eqCriterios:[
+  {n:"01", t:"Que el fabricante siga existiendo", p:"Una garantía de producción a veinticinco años sólo vale lo que valga la empresa que la firma. Miramos años en el mercado, si tiene filial en Europa con la que reclamar sin pleitear fuera, y volumen de fabricación. Hemos visto marcas desaparecer con garantías de treinta años en el papel."},
+  {n:"02", t:"Que se pueda reparar sin desmontar media planta", p:"Que haya recambio disponible en dos semanas y no en cuatro meses. Que el inversor se pueda sustituir sin tocar el cableado de continua. Que los conectores sean de una marca corriente y no un formato propietario que obliga a rehacer el string entero."},
+  {n:"03", t:"Que la curva de degradación esté medida, no prometida", p:"Nos fijamos en la degradación garantizada del año uno, que suele ser mayor que la de los años siguientes, y en la anual a partir de ahí. La diferencia entre un 0,45 % y un 0,55 % anual son unos treinta mil kilovatios hora en veinticinco años sobre una planta de 400 kWp."}
+ ],
+ eqLectura:[
+  {i:"€/W", t:"El precio por vatio no decide nada por sí solo", d:"Un módulo veinte céntimos más barato por vatio que degrada un 0,1 % más al año sale más caro antes del año doce. Por eso en la comparación de ofertas usamos el coste por kilovatio hora producido a veinticinco años, no el precio de compra. Es la única cifra que mete en la misma ecuación el precio, la producción y la degradación."},
+  {i:"kW", t:"El inversor es lo que se rompe", d:"El módulo es un panel de vidrio sin partes móviles y aguanta décadas. El inversor tiene electrónica de potencia y ventiladores, y su vida útil ronda los doce o quince años. Al calcular la rentabilidad a veinticinco años hay que meter una sustitución de inversores en mitad del camino: son entre el 8 % y el 12 % de la inversión inicial."},
+  {i:"°C", t:"El coeficiente de temperatura importa más de lo que parece", d:"Un módulo da su potencia nominal a veinticinco grados de célula. En una cubierta de chapa en agosto la célula se pone a sesenta y cinco. Con un coeficiente de −0,34 %/°C eso son casi catorce puntos de pérdida en el momento de más radiación del año. Un módulo con −0,29 %/°C recupera dos de esos puntos, y en verano es cuando más se produce."},
+  {i:"—", t:"Lo que no está en esta tabla es la mitad del presupuesto", d:"Estructura, cableado, protecciones de continua y alterna, canalizaciones, monitorización y mano de obra. En una instalación industrial los módulos son entre el 30 % y el 40 % del coste. Una oferta que sólo detalla marca de módulo y de inversor está escondiendo la parte donde de verdad se puede recortar calidad sin que se note."}
+ ],
+
+ obRiesgosEti:"Las tres cosas que retrasan una obra", obConvivEti:"Cómo convive la obra con su producción",
+ obQuienEti:"Quién pisa su planta",
+ obRiesgos:[
+  {n:"01", t:"La distribuidora", p:"El permiso de acceso y conexión es la única tarea cuyo plazo no controlamos. Legalmente hay plazos máximos; en la práctica varían mucho según zona. Por eso se presenta el primer día, antes de comprar un solo módulo, y no cuando la obra ya está montada esperando a que alguien conteste."},
+  {n:"02", t:"El viento, no la lluvia", p:"Se puede trabajar bajo lluvia ligera; no se puede trabajar en cubierta con rachas por encima de cincuenta kilómetros por hora, ni izar estructura con grúa. En el calendario contamos entre tres y cinco días perdidos por meteorología en obras de invierno, y ese margen ya está dentro del plazo que le damos."},
+  {n:"03", t:"El acceso a la cubierta", p:"Si sólo hay una escalera de gato y la grúa no puede posicionarse por un muelle de carga en uso, la obra se alarga. Se resuelve en la visita técnica, no el primer día de montaje: es la razón principal por la que no damos plazo antes de pisar la planta."}
+ ],
+ obConviv:[
+  "La regla que nos ponemos es que su producción no pare por nuestra obra. En una instalación normal se cumple sin dificultad: el montaje de estructura y módulos ocurre encima de su cubierta, y desde dentro de la nave lo único que se nota es ruido de taladro en las fijaciones.",
+  "El momento sensible es la conexión al cuadro general, que exige corte de tensión. Son entre dos y cuatro horas y se hace en la ventana que usted diga: sábado por la mañana, parada de mantenimiento, cambio de turno de agosto. Se acuerda con un mes de antelación y no se mueve.",
+  "Si su actividad no admite ningún corte —una cámara de frío con producto dentro, una línea de proceso continuo—, se planifica con un grupo electrógeno de alquiler durante esas horas. Lo hemos hecho cuatro veces y sale por debajo de los mil euros, mucho menos de lo que cuesta perder un turno."
+ ],
+ obQuien:[
+  {t:"Jefe de obra", p:"Uno solo, el mismo de principio a fin. Es su interlocutor y quien firma el parte diario."},
+  {t:"Equipo de montaje", p:"Entre tres y seis personas según tamaño. Plantilla propia, no empresa de trabajo temporal."},
+  {t:"Recurso preventivo", p:"Presencia obligatoria en trabajos en altura. Va en nuestro presupuesto, no en el suyo."},
+  {t:"Instalador autorizado", p:"Con categoría de alta tensión si su acometida lo exige. Es quien firma el boletín."}
+ ],
  svBloques:[
   {n:"Estudio y diseño", f:"Fase 1", 
    p:["Partimos de su curva horaria, no de su factura anual. La diferencia importa más de lo que parece: dos plantas con el mismo consumo total pueden necesitar potencias muy distintas según a qué hora consuman. Una que trabaja de noche y otra que trabaja de día pagan lo mismo a la comercializadora y necesitan instalaciones que no se parecen en nada.",
@@ -1443,6 +1505,40 @@ en:{
  ],
  svIncluye:"What is included", svNo:"What we will not bill you separately for", svEnt:"What you receive at the end",
  caReto:"The problem", caSol:"What we did", caRes:"The result", caAp:"What it taught us",
+ eqCriteriosEti:"The three criteria we apply", eqLecturaEti:"How to read this table",
+ ctaEquiposH:"You choose the brand; we tell you what we know about each one.",
+ ctaEquiposP:"If you already have a quote on the table, tell us what equipment it lists and we will tell you what to check before signing.",
+ bCompararOf:"Compare quotes",
+ eqCriterios:[
+  {n:"01", t:"That the manufacturer still exists", p:"A twenty-five-year output warranty is worth only as much as the company signing it. We look at years in the market, whether it has a European subsidiary you can claim against without litigating abroad, and manufacturing volume. We have watched brands disappear holding thirty-year warranties on paper."},
+  {n:"02", t:"That it can be repaired without stripping half the plant", p:"That a spare is available in two weeks and not four months. That the inverter can be swapped without touching the DC wiring. That the connectors are a common brand and not a proprietary format that forces you to redo the whole string."},
+  {n:"03", t:"That the degradation curve is measured, not promised", p:"We look at the guaranteed first-year degradation, usually higher than the years that follow, and at the annual figure from then on. The difference between 0.45 % and 0.55 % a year is around thirty thousand kilowatt-hours over twenty-five years on a 400 kWp plant."}
+ ],
+ eqLectura:[
+  {i:"€/W", t:"Price per watt decides nothing on its own", d:"A module twenty cents per watt cheaper that degrades 0.1 % more per year works out more expensive before year twelve. That is why the quote comparison uses the cost per kilowatt-hour produced over twenty-five years, not the purchase price. It is the only figure that puts price, output and degradation into the same equation."},
+  {i:"kW", t:"The inverter is the part that breaks", d:"A module is a sheet of glass with no moving parts and lasts decades. The inverter has power electronics and fans, and its service life is around twelve to fifteen years. Any twenty-five-year return calculation has to include an inverter replacement halfway through: that is 8 % to 12 % of the initial investment."},
+  {i:"°C", t:"The temperature coefficient matters more than it looks", d:"A module gives its rated power at twenty-five degrees of cell temperature. On a metal roof in August the cell reaches sixty-five. With a coefficient of −0.34 %/°C that is nearly fourteen points of loss at the moment of highest irradiation in the year. A module at −0.29 %/°C wins two of those points back, and summer is when most output happens."},
+  {i:"—", t:"What is not in this table is half the budget", d:"Structure, cabling, DC and AC protections, conduit, monitoring and labour. On an industrial installation the modules are 30 % to 40 % of the cost. A quote that only names the module and inverter brand is hiding the part where quality can genuinely be cut without anyone noticing."}
+ ],
+
+ obRiesgosEti:"The three things that delay a job", obConvivEti:"How the works coexist with your production",
+ obQuienEti:"Who sets foot in your plant",
+ obRiesgos:[
+  {n:"01", t:"The grid operator", p:"The access and connection permit is the only task whose timing we do not control. There are legal maximums; in practice they vary a lot by area. That is why it is filed on day one, before a single module is bought, and not once the works are already installed waiting for someone to answer."},
+  {n:"02", t:"Wind, not rain", p:"You can work in light rain; you cannot work on a roof with gusts above fifty kilometres an hour, nor lift structure with a crane. In the schedule we count three to five days lost to weather on winter jobs, and that margin is already inside the deadline we give you."},
+  {n:"03", t:"Roof access", p:"If there is only a cat ladder and the crane cannot be positioned because of a loading bay in use, the job stretches. This is resolved during the technical visit, not on the first day of installation: it is the main reason we do not give a deadline before setting foot on site."}
+ ],
+ obConviv:[
+  "The rule we set ourselves is that your production does not stop for our works. On a normal installation that is easy to meet: structure and modules are installed on top of your roof, and from inside the building the only thing you notice is the drilling for the fixings.",
+  "The sensitive moment is the connection to the main switchboard, which requires the power to be cut. It takes two to four hours and is done in whatever window you name: Saturday morning, a maintenance shutdown, the August shift change. It is agreed a month in advance and it does not move.",
+  "If your activity admits no outage at all — a cold room with product inside, a continuous process line — we plan it with a hired generator for those hours. We have done it four times and it comes to under a thousand euros, far less than losing a shift costs."
+ ],
+ obQuien:[
+  {t:"Site manager", p:"One person, the same from start to finish. Your point of contact and who signs the daily report."},
+  {t:"Installation crew", p:"Three to six people depending on size. Our own staff, not an agency."},
+  {t:"Preventive resource", p:"Mandatory presence for work at height. It is in our budget, not yours."},
+  {t:"Authorised installer", p:"With high-voltage category if your supply requires it. This is who signs the electrical bulletin."}
+ ],
  svBloques:[
   {n:"Study and design", f:"Phase 1",
    p:["We start from your hourly curve, not your annual bill. The difference matters more than it seems: two plants with the same total consumption can need very different capacities depending on when they consume. One that runs at night and one that runs by day pay the same to the utility and need installations that look nothing alike.",
@@ -1884,6 +1980,40 @@ ar:{
  ],
  svIncluye:"ما الذي يشمله", svNo:"ما لن نُفوتِره عليك منفصلًا", svEnt:"ما تستلمه عند الانتهاء",
  caReto:"المشكلة", caSol:"ما فعلناه", caRes:"النتيجة", caAp:"ما أفادنا به",
+ eqCriteriosEti:"المعايير الثلاثة التي نطبّقها", eqLecturaEti:"كيف يُقرأ هذا الجدول",
+ ctaEquiposH:"العلامة التجارية تختارها أنت؛ ونحن نقول لك ما نعرفه عن كلٍّ منها.",
+ ctaEquiposP:"إن كان لديك عرض بالفعل، فأخبرنا بما فيه من معدّات ونقول لك ما ينبغي التدقيق فيه قبل التوقيع.",
+ bCompararOf:"مقارنة العروض",
+ eqCriterios:[
+  {n:"٠١", t:"أن تبقى الشركة المصنّعة قائمة", p:"ضمان إنتاج لخمس وعشرين سنة لا يساوي إلا بقدر ما تساويه الشركة التي توقّعه. ننظر في سنوات وجودها في السوق، وفي وجود فرع أوروبي تستطيع مطالبته دون التقاضي في الخارج، وفي حجم التصنيع. وقد رأينا علامات تختفي وبيدها ضمانات ثلاثين سنة على الورق."},
+  {n:"٠٢", t:"أن يمكن إصلاحه دون تفكيك نصف المحطة", p:"أن تتوفر قطعة الغيار في أسبوعين لا في أربعة أشهر. وأن يُستبدل العاكس دون المساس بتمديدات التيار المستمر. وأن تكون الموصّلات من علامة شائعة لا من صيغة احتكارية تُلزمك بإعادة السلسلة كلها."},
+  {n:"٠٣", t:"أن يكون منحنى التدهور مقيسًا لا موعودًا", p:"ننظر في التدهور المضمون للسنة الأولى، وهو عادةً أعلى من السنوات التالية، ثم في المعدّل السنوي بعدها. والفرق بين ٠٫٤٥٪ و٠٫٥٥٪ سنويًا يعادل نحو ثلاثين ألف كيلوواط ساعة على مدى خمس وعشرين سنة في محطة قدرتها ٤٠٠ كيلوواط."}
+ ],
+ eqLectura:[
+  {i:"يورو/واط", t:"السعر لكل واط لا يحسم شيئًا وحده", d:"لوح أرخص بعشرين سنتًا لكل واط ويتدهور أكثر بـ٠٫١٪ سنويًا يخرج أغلى قبل السنة الثانية عشرة. ولهذا نستخدم في مقارنة العروض كلفة كيلوواط الساعة المنتَج على خمس وعشرين سنة، لا سعر الشراء. فهي الرقم الوحيد الذي يجمع السعر والإنتاج والتدهور في معادلة واحدة."},
+  {i:"كيلوواط", t:"العاكس هو ما يتعطّل", d:"اللوح لوح زجاجي بلا أجزاء متحركة ويصمد عقودًا. أما العاكس فيحمل إلكترونيات قدرة ومراوح، وعمره النافع نحو اثنتي عشرة إلى خمس عشرة سنة. وكل حساب مردود على خمس وعشرين سنة يجب أن يتضمن استبدال العواكس في منتصف الطريق: وهو ما بين ٨٪ و١٢٪ من الاستثمار الأولي."},
+  {i:"°م", t:"معامل الحرارة أهم مما يبدو", d:"يعطي اللوح قدرته الاسمية عند خمس وعشرين درجة لحرارة الخلية. وعلى سطح معدني في آب تبلغ الخلية خمسًا وستين. وبمعامل −٠٫٣٤٪ لكل درجة يعني ذلك قرابة أربع عشرة نقطة خسارة في لحظة أشدّ إشعاع في السنة. أما لوح بمعامل −٠٫٢٩٪ فيستعيد نقطتين منها، والصيف هو موسم أكبر إنتاج."},
+  {i:"—", t:"ما ليس في هذا الجدول هو نصف الميزانية", d:"الهياكل والتمديدات وحماية التيار المستمر والمتردد والمجاري والمراقبة واليد العاملة. ففي منشأة صناعية تمثّل الألواح ما بين ٣٠٪ و٤٠٪ من الكلفة. والعرض الذي لا يذكر إلا علامة اللوح والعاكس يُخفي الجزء الذي يمكن فيه فعلًا خفض الجودة دون أن ينتبه أحد."}
+ ],
+
+ obRiesgosEti:"الأمور الثلاثة التي تؤخّر الأعمال", obConvivEti:"كيف تتعايش الأعمال مع إنتاجك",
+ obQuienEti:"من يدخل منشأتك",
+ obRiesgos:[
+  {n:"٠١", t:"شركة التوزيع", p:"إذن الوصول والربط هو المهمة الوحيدة التي لا نتحكم في مدتها. وثمة مهل قصوى قانونًا؛ لكنها تتفاوت كثيرًا عمليًا بحسب المنطقة. ولذلك يُقدَّم في اليوم الأول، قبل شراء لوح واحد، لا بعد أن تكون الأعمال قائمة تنتظر ردًّا من أحد."},
+  {n:"٠٢", t:"الريح، لا المطر", p:"يمكن العمل تحت مطر خفيف؛ ولا يمكن العمل على سطح مع هبّات تتجاوز خمسين كيلومترًا في الساعة، ولا رفع الهياكل بالرافعة. ونحتسب في الجدول ثلاثة إلى خمسة أيام تُفقد بسبب الطقس في أعمال الشتاء، وهذا الهامش داخل المهلة التي نعطيك إياها أصلًا."},
+  {n:"٠٣", t:"الوصول إلى السطح", p:"إن لم يكن ثمة إلا سلّم رأسي وتعذّر وضع الرافعة بسبب رصيف تحميل قيد الاستعمال، طالت الأعمال. ويُحسم هذا في الزيارة الفنية لا في أول أيام التركيب: وهو السبب الرئيس في أننا لا نعطي مهلة قبل أن نطأ الموقع."}
+ ],
+ obConviv:[
+  "القاعدة التي نُلزم أنفسنا بها أن إنتاجك لا يتوقف بسبب أعمالنا. وهذا يسير التحقيق في منشأة عادية: فتركيب الهياكل والألواح يجري فوق سطحك، ولا يُلاحَظ من داخل المبنى سوى صوت الثقب عند التثبيت.",
+  "واللحظة الحسّاسة هي الربط باللوحة الرئيسية، وهو يقتضي فصل التيار. وتستغرق من ساعتين إلى أربع وتُنفَّذ في النافذة التي تحددها أنت: صباح السبت، أو توقف صيانة، أو تبديل مناوبة آب. ويُتّفق عليها قبل شهر ولا تتغيّر.",
+  "وإن كان نشاطك لا يحتمل أي انقطاع — غرفة تبريد فيها بضاعة، أو خط إنتاج متواصل — خطّطنا لها بمولّد كهربائي مستأجَر خلال تلك الساعات. وقد فعلناها أربع مرات وكلفتها دون ألف يورو، أي أقل بكثير من كلفة خسارة مناوبة."
+ ],
+ obQuien:[
+  {t:"مدير الأعمال", p:"شخص واحد، هو نفسه من البداية إلى النهاية. وهو مُحاورك ومن يوقّع التقرير اليومي."},
+  {t:"فريق التركيب", p:"من ثلاثة إلى ستة أشخاص بحسب الحجم. من موظفينا، لا من شركة توظيف مؤقت."},
+  {t:"المورد الوقائي", p:"حضوره إلزامي في العمل على ارتفاع. وهو في ميزانيتنا لا في ميزانيتك."},
+  {t:"المُركِّب المعتمد", p:"بفئة الجهد العالي إن اقتضى تغذيتك ذلك. وهو من يوقّع النشرة الكهربائية."}
+ ],
  svBloques:[
   {n:"الدراسة والتصميم", f:"المرحلة ١",
    p:["نبدأ من منحناك الساعي، لا من فاتورتك السنوية. والفرق أهم مما يبدو: فمحطتان بالاستهلاك الإجمالي نفسه قد تحتاجان قدرتين مختلفتين تمامًا بحسب ساعات الاستهلاك. فمن يعمل ليلًا ومن يعمل نهارًا يدفعان الشيء نفسه لشركة الكهرباء ويحتاجان منشأتين لا تتشابهان في شيء.",
@@ -3047,6 +3177,34 @@ function pintarListas(){
       + b.noi.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul></div><div>'
       + '<p class="eti">'+esc(t.svEnt)+'</p><ul class="lista">'
       + b.ent.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul></div></div></section>';
+  }).join("");
+
+  /* Equipos: criterios de selección y cómo se lee la tabla */
+  var ec = document.getElementById("eqCriterios");
+  if (ec) ec.innerHTML = t.eqCriterios.map(function(c){
+    return '<div class="cel"><span class="n">'+esc(c.n)+'</span><h3>'+esc(c.t)+'</h3><p>'+esc(c.p)+'</p></div>';
+  }).join("");
+
+  var el = document.getElementById("eqLectura");
+  if (el) el.innerHTML = t.eqLectura.map(function(l){
+    return '<div class="fila"><div class="i">'+esc(l.i)+'</div><div><h3>'+esc(l.t)+'</h3></div>'
+      + '<div class="d"><p>'+esc(l.d)+'</p></div></div>';
+  }).join("");
+
+  /* Obra: riesgos de plazo, convivencia con la producción y quién va */
+  var or_ = document.getElementById("obRiesgos");
+  if (or_) or_.innerHTML = t.obRiesgos.map(function(r){
+    return '<div class="cel"><span class="n">'+esc(r.n)+'</span><h3>'+esc(r.t)+'</h3><p>'+esc(r.p)+'</p></div>';
+  }).join("");
+
+  var oc = document.getElementById("obConviv");
+  if (oc) oc.innerHTML = t.obConviv.map(function(x){
+    return '<p style="margin-bottom:1rem;color:var(--tinta-2)">'+esc(x)+'</p>';
+  }).join("");
+
+  var oq = document.getElementById("obQuien");
+  if (oq) oq.innerHTML = t.obQuien.map(function(q){
+    return '<div class="cel"><h3 style="font-size:1.05rem">'+esc(q.t)+'</h3><p>'+esc(q.p)+'</p></div>';
   }).join("");
 
   /* Contacto: oficinas, personas y qué pasa después */
