@@ -132,6 +132,23 @@ html[dir="rtl"] .ck-t{letter-spacing:0;text-transform:none;font-size:.85rem;font
 .legal-b .fecha{font-family:var(--mono);font-size:.7rem;color:var(--tinta-3);margin-bottom:.6rem;}
 html[dir="rtl"] .legal-b .fecha{font-family:var(--cuerpo);font-size:.85rem;}
 
+/* ── 404 y mapa del sitio ─────────────────────────────────────────── */
+.err-ruta{font-family:var(--mono);font-size:.84rem;color:var(--tinta-3);margin-top:1.2rem;}
+html[dir="rtl"] .err-ruta{font-family:var(--cuerpo);}
+.err-ruta code{background:var(--fondo-2);border:1px solid var(--linea);padding:.15rem .5rem;
+  color:var(--alerta);direction:ltr;display:inline-block;}
+.mapa-rej{display:grid;gap:2rem;}
+@media(min-width:760px){.mapa-rej{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2.5rem;}}
+.mapa-col h2{font-size:1.05rem;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--linea);}
+.mapa-col nav{display:grid;gap:.5rem;}
+.mapa-col a{color:var(--tinta-2);text-decoration:none;font-size:.9rem;}
+.mapa-col a:hover{color:var(--acento);}
+.mapa-col .sola{color:var(--tinta-3);font-size:.82rem;}
+
+/* ── Empleo ───────────────────────────────────────────────────────── */
+.puesto-b{font-family:var(--mono);font-size:.8rem;color:var(--acento);display:block;margin-top:.4rem;}
+html[dir="rtl"] .puesto-b{font-family:var(--cuerpo);font-size:.9rem;}
+
 /* ── Barra de utilidades: en un sitio industrial el teléfono y las
    descargas van arriba del todo, no escondidos en el pie. ────────── */
 .util{background:var(--tinta);color:var(--fondo);font-size:.74rem;}
@@ -167,7 +184,7 @@ html[dir="rtl"] .miga li+li::before{content:"\\";}
 
 /* ── Pie a cuatro columnas, agrupado por categoría ─────────────────── */
 .pie-rej{display:grid;gap:2.5rem;padding-block:clamp(2.5rem,5vw,4rem);}
-@media(min-width:820px){.pie-rej{grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;}}
+@media(min-width:820px){.pie-rej{grid-template-columns:1.5fr repeat(4,1fr);gap:2.2rem;}}
 .pie-logo{font-family:var(--disp);font-weight:600;font-size:1.15rem;display:block;margin-bottom:.9rem;}
 .pie-marca p{font-size:.88rem;color:var(--tinta-2);max-width:38ch;}
 .pie-dir{font-size:.8rem !important;color:var(--tinta-3) !important;}
@@ -1191,6 +1208,47 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 
 
 
+<section data-ruta="err" id="ap-err">
+  <div class="marco bloque">
+    <p class="eti" data-t="errEti">Error 404</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="errH1">Esa página no existe.</h1>
+    <p class="entrada" data-t="errEntrada">O la dirección está mal escrita, o la teníamos y la hemos movido. Las dos son culpa nuestra si el enlace venía de aquí.</p>
+    <p class="err-ruta"><span data-t="errPedida">Ha pedido:</span> <code id="errRuta"></code></p>
+    <div class="acc">
+      <a class="btn sol" href="#/inicio" data-t="nInicio">Inicio</a>
+      <a class="btn" href="#/mapa" data-t="nMapa">Mapa del sitio</a>
+      <a class="btn" href="#/empresa" data-ir="ap-contacto" data-t="errAvisar">Avisarnos del enlace roto</a>
+    </div>
+  </div>
+</section>
+
+<section data-ruta="mapa" id="ap-mapa">
+  <div class="marco bloque">
+    <p class="eti" data-t="nMapa">Mapa del sitio</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="maH1b">Todo lo que hay, en una página.</h1>
+    <p class="entrada" data-t="maEntradaB">Generado del propio índice del sitio: si se añade un apartado, aparece aquí solo. No hay una lista escrita a mano que se quede vieja.</p>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <div class="mapa-rej" id="mapaSitio"></div>
+  </div>
+</section>
+
+<section data-ruta="empleo" id="ap-empleo">
+  <div class="marco bloque">
+    <p class="eti" data-t="nEmpleo">Empleo</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="emH1">Catorce personas, y el sueldo puesto en el anuncio.</h1>
+    <p class="entrada" data-t="emEntrada">Publicamos la banda salarial siempre. Si no la ve en una oferta nuestra, es un error y le agradecemos que nos lo diga.</p>
+  </div>
+  <div class="marco">
+    <div class="filas" id="emPuestos"></div>
+  </div>
+  <div class="marco bloque" style="padding-top:2rem">
+    <p class="eti" data-t="emComoEti">Cómo es el proceso</p>
+    <ol class="despues" id="emComo"></ol>
+    <p class="metodo" data-t="emNota">Maqueta de demostración: las ofertas son de ejemplo y no hay proceso de selección abierto.</p>
+  </div>
+</section>
+
 <section data-ruta="legal" id="ap-legal">
   <div class="marco bloque">
     <p class="eti" data-t="nLegal">Legal</p>
@@ -1250,6 +1308,12 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <div class="pie-col"><p class="pie-t" data-t="nServicios">Servicios</p><nav id="pieServicios"></nav></div>
     <div class="pie-col"><p class="pie-t" data-t="nNumeros">Los números</p><nav id="pieNumeros"></nav></div>
     <div class="pie-col"><p class="pie-t" data-t="nRecursos">Recursos</p><nav id="pieRecursos"></nav></div>
+    <div class="pie-col"><p class="pie-t" data-t="pieEmpresaEti">La empresa</p><nav>
+      <a href="#/empresa" data-t="nNosotros">Empresa</a>
+      <a href="#/empleo" data-t="nEmpleo">Empleo</a>
+      <a href="#/mapa" data-t="nMapa">Mapa del sitio</a>
+      <a href="#/legal" data-t="nLegal">Legal</a>
+    </nav></div>
   </div>
   <div class="marco pie-fin">
     <span data-t="pieAviso">Maqueta de demostración</span>
@@ -1268,7 +1332,36 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 var T = {
 
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", ckPrefs:"Preferencias de cookies",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", pieEmpresaEti:"La empresa",
+
+ nMapa:"Mapa del sitio", nEmpleo:"Empleo", tMapa:"Mapa del sitio — NAHAR",
+ tEmpleo:"Empleo — NAHAR", tErr:"Página no encontrada — NAHAR",
+ errEti:"Error 404", errH1:"Esa página no existe.",
+ errEntrada:"O la dirección está mal escrita, o la teníamos y la hemos movido. Las dos son culpa nuestra si el enlace venía de aquí.",
+ errPedida:"Ha pedido:", errAvisar:"Avisarnos del enlace roto",
+ maH1b:"Todo lo que hay, en una página.",
+ maEntradaB:"Generado del propio índice del sitio: si se añade un apartado, aparece aquí solo. No hay una lista escrita a mano que se quede vieja.",
+ mapaSinApartados:"Página única, sin apartados.",
+ emH1:"Catorce personas, y el sueldo puesto en el anuncio.",
+ emEntrada:"Publicamos la banda salarial siempre. Si no la ve en una oferta nuestra, es un error y le agradecemos que nos lo diga.",
+ emComoEti:"Cómo es el proceso", emNota:"Maqueta de demostración: las ofertas son de ejemplo y no hay proceso de selección abierto.",
+ puestos:[
+  {i:"Zaragoza", t:"Ingeniero/a de proyectos fotovoltaicos", b:"32.000–38.000 € brutos · jornada completa",
+   d:"Cálculo eléctrico y estructural, memorias, tramitación con distribuidora y dirección de obra. Se pide titulación técnica y haber legalizado al menos tres instalaciones; no se pide experiencia en una marca concreta de software, que se aprende. Hay una tarde a la semana de formación pagada dentro de horario."},
+  {i:"Zaragoza", t:"Instalador/a electricista", b:"26.000–31.000 € brutos · jornada completa",
+   d:"Montaje de estructura, módulos, cableado de continua y cuadros. Se valora categoría de alta tensión, y si no se tiene, se paga el curso. Trabajo en altura con formación y equipo puestos por la empresa. No hay guardias de fin de semana salvo puesta en marcha acordada, y esa se compensa con día libre."},
+  {i:"Valencia", t:"Técnico/a de explotación y mantenimiento", b:"28.000–33.000 € brutos · jornada completa",
+   d:"Monitorización remota, atención de alarmas, limpiezas programadas y termografía. Es el puesto que más se aprende y el que menos se valora en el sector: aquí lleva coche de empresa, dietas reales y un teléfono de guardia que rota entre tres personas, no siempre el mismo."},
+  {i:"Híbrido", t:"Administración y compras", b:"24.000–28.000 € brutos · 32 h semanales",
+   d:"Pedidos, albaranes, seguimiento de plazos de proveedor y apoyo a facturación. Jornada de cuatro días con el mismo salario que treinta y dos horas en cinco, porque nos interesa el trabajo hecho y no la silla ocupada."}
+ ],
+ emComo:[
+  {t:"Se lee todo, y contestamos a todo el mundo", d:"Aunque sea que no. Nadie se queda sin respuesta, y no usamos filtros automáticos que descartan currículos por palabras clave."},
+  {t:"Una conversación de una hora, sin prueba técnica gratis", d:"Preguntamos por trabajos que haya hecho de verdad. No mandamos ejercicios que casualmente se parecen a un encargo real que tenemos pendiente."},
+  {t:"Media jornada en obra o en oficina, pagada", d:"Para que vea cómo se trabaja aquí antes de decidir. Se paga a precio de jornada aunque después no siga el proceso."},
+  {t:"Respuesta en una semana, con el motivo", d:"Si no encaja, decimos por qué en dos líneas. Un «hemos seguido con otro perfil» no le sirve a nadie para la siguiente."}
+ ],
+ ckPrefs:"Preferencias de cookies",
 
  nLegal:"Legal", tLegal:"Legal — NAHAR", leH1:"Condiciones, datos y cookies.",
  leEntrada:"Todo lo que rige la relación con un cliente, escrito para que se entienda sin abogado al lado.",
@@ -1310,7 +1403,27 @@ es:{
   {t:"6. Accesibilidad", p:[
    "Este sitio se ha construido buscando cumplir las pautas WCAG 2.2 en nivel AA: navegación completa con teclado, foco visible, contraste suficiente en ambos temas, texto alternativo en las imágenes y respeto de la preferencia de movimiento reducido del sistema.",
    "Las gráficas no dependen sólo del color: cada serie lleva etiqueta directa o leyenda, y las tablas de datos que las acompañan se pueden abrir para leer las mismas cifras en texto. Los documentos descargables se entregan en formatos etiquetados.",
-   "Si encuentra una barrera —un contraste bajo, un control que no alcanza con teclado, un lector de pantalla que se atasca— escríbanos a <b>accesibilidad@nahar.example</b> describiendo qué pasó y con qué navegador. Lo tratamos como una incidencia, no como una sugerencia."]}
+   "Si encuentra una barrera —un contraste bajo, un control que no alcanza con teclado, un lector de pantalla que se atasca— escríbanos a <b>accesibilidad@nahar.example</b> describiendo qué pasó y con qué navegador. Lo tratamos como una incidencia, no como una sugerencia."]},
+  {t:"7. Términos de uso del sitio", p:[
+   "Puede leer, imprimir y compartir el contenido de este sitio libremente, incluido citarlo mencionando la fuente. Lo que no puede hacer es <b>reproducirlo entero en otro sitio como si fuera propio</b>, ni usar nuestras herramientas de cálculo dentro de una web de terceros sin permiso escrito.",
+   "Los textos y el código son nuestros. Las fotografías proceden de Wikimedia Commons con licencia libre y se atribuyen a su autor en la ficha de créditos de cada página; su licencia es la que diga Commons, no la nuestra. Las tipografías son de Google Fonts bajo licencia SIL Open Font.",
+   "<b>Enlaces a otros sitios.</b> Si enlazamos a un fabricante o a un organismo, es para que compruebe un dato, no porque respondamos de lo que publiquen. Puede enlazar a cualquier página nuestra sin pedir permiso, siempre que no dé a entender que hay una relación comercial que no existe.",
+   "<b>Disponibilidad.</b> No garantizamos que el sitio esté disponible el cien por cien del tiempo. Si algo se cae, se arregla; no hay indemnización por no poder usar un simulador durante una tarde."]},
+  {t:"8. Ley aplicable y resolución de conflictos", p:[
+   "La relación se rige por la <b>legislación española</b>. Para los contratos con empresas, los juzgados competentes son los de Zaragoza salvo que el contrato diga otra cosa. Si usted es consumidor, esa cláusula no le aplica: puede acudir a los juzgados de su domicilio, y ninguna condición nuestra puede quitarle ese derecho.",
+   "<b>Antes de un juzgado.</b> Preferimos resolverlo hablando. Escriba a reclamaciones@nahar.example describiendo qué ha pasado: contestamos por escrito en menos de quince días diciendo qué vamos a hacer, no sólo pidiendo disculpas.",
+   "<b>Vía extrajudicial.</b> Si no llegamos a un acuerdo, existe la <b>plataforma europea de resolución de litigios en línea</b> de la Comisión Europea, y en España las juntas arbitrales de consumo. Estamos adheridos al arbitraje de consumo, lo que significa que un laudo nos obliga aunque no nos guste.",
+   "<b>Nulidad parcial.</b> Si un tribunal declara nula una de estas cláusulas, el resto sigue en vigor. Lo decimos porque a veces se usa la nulidad de una línea para tumbar un contrato entero."]},
+  {t:"9. Canal ético y cumplimiento", p:[
+   "Existe un canal para comunicar irregularidades: <b>etica@nahar.example</b>, atendido por una persona de dirección que no participa en obra ni en compras. Se puede escribir de forma anónima desde cualquier correo; no registramos direcciones IP ni intentamos identificar a quien escribe.",
+   "<b>Qué se puede comunicar:</b> un sobrecoste que no cuadra, presión para certificar algo no ejecutado, un riesgo de seguridad que se está pasando por alto, o trato inadecuado a alguien de la plantilla o de un proveedor. También si alguien de aquí le ha pedido algo que no debía.",
+   "La Ley 2/2023 de protección del informante obliga a tener sistema interno de información a las empresas de cincuenta o más trabajadores. Nosotros somos catorce, así que <b>no estamos obligados</b>: lo tenemos porque una obra pequeña tiene los mismos incentivos que una grande para cortar por lo sano donde no se ve.",
+   "Quien comunica de buena fe no sufre ninguna consecuencia. Y si el problema afecta a la seguridad de una obra en curso, se para la obra mientras se comprueba, aunque cueste días de plazo."]},
+  {t:"10. Seguridad de la información", p:[
+   "El sitio se sirve por HTTPS y no tiene formularios que envíen datos a un servidor: el formulario de contacto de esta maqueta no manda nada a ninguna parte, y así se dice en el propio formulario.",
+   "En la plataforma de monitorización de clientes, cada instalación es un usuario distinto con su propia contraseña, y nadie de NAHAR puede ver los datos de una planta que no gestiona. Los accesos quedan registrados y el registro se conserva un año.",
+   "<b>Si encuentra una vulnerabilidad</b> en este sitio o en la plataforma, escriba a <b>seguridad@nahar.example</b> con lo que ha encontrado y cómo reproducirlo. Contestamos en setenta y dos horas, no denunciamos a quien informa de buena fe, y le decimos cuándo queda corregido. No pedimos que se calle a cambio de nada.",
+   "Lo que sí pedimos: que no acceda a datos de terceros más allá de lo imprescindible para demostrar el fallo, que no lo publique hasta que esté corregido o pasen noventa días, y que no degrade el servicio."]}
  ],
  utilAtencion:"Atención técnica de lunes a viernes, 8:00–18:00 CET", utilDescargas:"Descargas", utilGlosario:"Glosario",
  ariaMiga:"Ruta", pieQue:"Ingeniería e instalación de autoconsumo solar industrial. Estudio, obra y explotación con un solo interlocutor.",
@@ -1820,7 +1933,36 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", ckPrefs:"Cookie preferences",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", pieEmpresaEti:"The company",
+
+ nMapa:"Sitemap", nEmpleo:"Jobs", tMapa:"Sitemap — NAHAR",
+ tEmpleo:"Jobs — NAHAR", tErr:"Page not found — NAHAR",
+ errEti:"Error 404", errH1:"That page does not exist.",
+ errEntrada:"Either the address is mistyped, or we had it and moved it. Both are our fault if the link came from here.",
+ errPedida:"You asked for:", errAvisar:"Report the broken link",
+ maH1b:"Everything there is, on one page.",
+ maEntradaB:"Generated from the site's own index: if a section is added, it appears here by itself. There is no hand-written list to go stale.",
+ mapaSinApartados:"Single page, no sections.",
+ emH1:"Fourteen people, and the salary in the advert.",
+ emEntrada:"We always publish the salary band. If you do not see one in an advert of ours, it is a mistake and we would be grateful if you told us.",
+ emComoEti:"How the process works", emNota:"Demonstration mock-up: the vacancies are examples and no recruitment process is open.",
+ puestos:[
+  {i:"Zaragoza", t:"Photovoltaic project engineer", b:"€32,000–38,000 gross · full time",
+   d:"Electrical and structural calculation, reports, grid operator paperwork and works supervision. A technical degree and at least three legalised installations are required; experience in one particular software brand is not, since that is learned. There is one paid training afternoon a week, within working hours."},
+  {i:"Zaragoza", t:"Electrical installer", b:"€26,000–31,000 gross · full time",
+   d:"Structure, modules, DC cabling and switchboard assembly. A high-voltage category is valued, and if you do not have it, we pay for the course. Work at height with training and equipment provided by the company. There are no weekend call-outs except an agreed commissioning, and that is compensated with a day off."},
+  {i:"Valencia", t:"Operations and maintenance technician", b:"€28,000–33,000 gross · full time",
+   d:"Remote monitoring, alarm response, scheduled cleaning and thermography. It is the job you learn most in and the one the sector values least: here it comes with a company vehicle, real expenses and an on-call phone that rotates between three people, not always the same one."},
+  {i:"Hybrid", t:"Administration and purchasing", b:"€24,000–28,000 gross · 32 h a week",
+   d:"Orders, delivery notes, supplier lead-time tracking and invoicing support. A four-day week on the same salary as thirty-two hours over five, because what interests us is the work done, not the chair occupied."}
+ ],
+ emComo:[
+  {t:"Everything is read, and everyone gets an answer", d:"Even if it is a no. Nobody is left without a reply, and we do not use automatic filters that discard CVs on keywords."},
+  {t:"A one-hour conversation, no free technical test", d:"We ask about work you have actually done. We do not send exercises that happen to resemble a real job we have pending."},
+  {t:"Half a day on site or in the office, paid", d:"So you can see how we work before deciding. It is paid at the day rate even if you do not continue with the process afterwards."},
+  {t:"An answer within a week, with the reason", d:"If it is not a fit, we say why in two lines. \u201cWe went with another profile\u201d helps nobody with the next application."}
+ ],
+ ckPrefs:"Cookie preferences",
 
  nLegal:"Legal", tLegal:"Legal — NAHAR", leH1:"Terms, data and cookies.",
  leEntrada:"Everything that governs the relationship with a client, written to be understood without a lawyer beside you.",
@@ -1862,7 +2004,27 @@ en:{
   {t:"6. Accessibility", p:[
    "This site was built aiming to meet WCAG 2.2 at level AA: full keyboard navigation, visible focus, sufficient contrast in both themes, alternative text on images, and respect for the system's reduced-motion preference.",
    "The charts do not rely on colour alone: every series carries a direct label or a legend, and the accompanying data tables can be opened to read the same figures as text. Downloadable documents are delivered in tagged formats.",
-   "If you hit a barrier — low contrast, a control you cannot reach with the keyboard, a screen reader that gets stuck — write to <b>accesibilidad@nahar.example</b> describing what happened and in which browser. We treat it as an incident, not as a suggestion."]}
+   "If you hit a barrier — low contrast, a control you cannot reach with the keyboard, a screen reader that gets stuck — write to <b>accesibilidad@nahar.example</b> describing what happened and in which browser. We treat it as an incident, not as a suggestion."]},
+  {t:"7. Website terms of use", p:[
+   "You may read, print and share the content of this site freely, including quoting it with attribution. What you may not do is <b>reproduce it wholesale on another site as your own</b>, or embed our calculation tools inside a third-party website without written permission.",
+   "The texts and the code are ours. The photographs come from Wikimedia Commons under free licences and are attributed to their author in the credits panel on each page; their licence is whatever Commons says, not ours. The typefaces come from Google Fonts under the SIL Open Font Licence.",
+   "<b>Links to other sites.</b> If we link to a manufacturer or an authority, it is so you can check a fact, not because we answer for what they publish. You may link to any page of ours without asking, provided you do not imply a commercial relationship that does not exist.",
+   "<b>Availability.</b> We do not guarantee the site is available one hundred per cent of the time. If something goes down, it gets fixed; there is no compensation for not being able to use a simulator for an afternoon."]},
+  {t:"8. Governing law and dispute resolution", p:[
+   "The relationship is governed by <b>Spanish law</b>. For contracts with companies, the competent courts are those of Zaragoza unless the contract says otherwise. If you are a consumer, that clause does not apply to you: you may go to the courts where you live, and no condition of ours can take that right away.",
+   "<b>Before a court.</b> We would rather sort it out by talking. Write to reclamaciones@nahar.example describing what happened: we answer in writing within fifteen days saying what we are going to do, not merely apologising.",
+   "<b>Out-of-court route.</b> If we cannot agree, there is the European Commission's <b>online dispute resolution platform</b>, and in Spain the consumer arbitration boards. We are signed up to consumer arbitration, which means an award binds us whether we like it or not.",
+   "<b>Partial invalidity.</b> If a court declares one of these clauses void, the rest remains in force. We say so because the invalidity of one line is sometimes used to bring down a whole contract."]},
+  {t:"9. Ethics channel and compliance", p:[
+   "There is a channel for reporting irregularities: <b>etica@nahar.example</b>, handled by a director who takes no part in works or purchasing. You can write anonymously from any address; we do not log IP addresses and we do not try to identify who wrote.",
+   "<b>What can be reported:</b> an overcost that does not add up, pressure to certify something not executed, a safety risk being overlooked, or poor treatment of someone on the staff or at a supplier. Also if someone here asked you for something they should not have.",
+   "Spain's whistleblower protection act (Law 2/2023) requires an internal reporting system at companies with fifty or more employees. We are fourteen, so we are <b>not obliged</b>: we have it because a small job has the same incentives as a big one to cut corners where nobody looks.",
+   "Anyone reporting in good faith suffers no consequence. And if the problem affects the safety of works in progress, the works stop while it is checked, even if it costs days of the schedule."]},
+  {t:"10. Information security", p:[
+   "The site is served over HTTPS and has no forms that send data to a server: the contact form in this mock-up sends nothing anywhere, and the form itself says so.",
+   "On the client monitoring platform, each installation is a separate user with its own password, and nobody at NAHAR can see data for a plant they do not manage. Access is logged and the log is kept for a year.",
+   "<b>If you find a vulnerability</b> in this site or on the platform, write to <b>seguridad@nahar.example</b> with what you found and how to reproduce it. We answer within seventy-two hours, we do not report anyone acting in good faith, and we tell you when it is fixed. We do not ask for silence in exchange for anything.",
+   "What we do ask: do not access third-party data beyond what is strictly needed to demonstrate the flaw, do not publish it until it is fixed or ninety days have passed, and do not degrade the service."]}
  ],
  utilAtencion:"Technical support Monday to Friday, 8:00–18:00 CET", utilDescargas:"Downloads", utilGlosario:"Glossary",
  ariaMiga:"Breadcrumb", pieQue:"Engineering and installation of industrial solar self-consumption. Study, works and operation with a single point of contact.",
@@ -2372,7 +2534,36 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", ckPrefs:"تفضيلات ملفات الارتباط",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", pieEmpresaEti:"الشركة",
+
+ nMapa:"خريطة الموقع", nEmpleo:"وظائف", tMapa:"خريطة الموقع — نهار",
+ tEmpleo:"وظائف — نهار", tErr:"الصفحة غير موجودة — نهار",
+ errEti:"خطأ ٤٠٤", errH1:"هذه الصفحة غير موجودة.",
+ errEntrada:"إما أن العنوان مكتوب خطأً، وإما أنها كانت لدينا فنقلناها. وكلاهما ذنبنا إن كان الرابط من هنا.",
+ errPedida:"طلبت:", errAvisar:"أبلغنا بالرابط المكسور",
+ maH1b:"كل ما في الموقع، في صفحة واحدة.",
+ maEntradaB:"مولَّدة من فهرس الموقع نفسه: فإن أُضيف قسم ظهر هنا وحده. ولا توجد قائمة مكتوبة يدويًّا تتقادم.",
+ mapaSinApartados:"صفحة واحدة، بلا أقسام.",
+ emH1:"أربعة عشر شخصًا، والراتب مكتوب في الإعلان.",
+ emEntrada:"ننشر نطاق الراتب دائمًا. فإن لم تره في إعلان لنا فذلك خطأ ونشكرك على إخبارنا.",
+ emComoEti:"كيف تجري العملية", emNota:"نسخة عرض توضيحية: الوظائف أمثلة ولا توجد عملية توظيف مفتوحة.",
+ puestos:[
+  {i:"سرقسطة", t:"مهندس/ة مشاريع كهروضوئية", b:"٣٢٬٠٠٠–٣٨٬٠٠٠ € إجمالًا · دوام كامل",
+   d:"حساب كهربائي وإنشائي، وتقارير، ومعاملات مع شركة التوزيع، وإشراف على الأعمال. يُشترط مؤهل تقني وتقنين ثلاث منشآت على الأقل؛ ولا تُشترط خبرة ببرنامج بعينه فذلك يُتعلَّم. وثمة بعد ظهر أسبوعي للتدريب مدفوع ضمن الدوام."},
+  {i:"سرقسطة", t:"مُركِّب/ة كهربائي", b:"٢٦٬٠٠٠–٣١٬٠٠٠ € إجمالًا · دوام كامل",
+   d:"تركيب الهياكل والألواح وتمديدات التيار المستمر واللوحات. وتُقدَّر فئة الجهد العالي، وإن لم تكن لديك دفعنا ثمن الدورة. عمل على ارتفاع بتدريب ومعدّات من الشركة. ولا مناوبات في عطلة نهاية الأسبوع إلا لتشغيل متفق عليه، ويُعوَّض بيوم إجازة."},
+  {i:"بلنسية", t:"فني/ة تشغيل وصيانة", b:"٢٨٬٠٠٠–٣٣٬٠٠٠ € إجمالًا · دوام كامل",
+   d:"مراقبة عن بُعد، والاستجابة للإنذارات، والتنظيف المجدول، والتصوير الحراري. وهو أكثر المواقع تعليمًا وأقلّها تقديرًا في القطاع: وهنا يأتي بسيارة شركة وبدلات حقيقية وهاتف مناوبة يتناوب عليه ثلاثة أشخاص، لا شخص واحد دائمًا."},
+  {i:"مختلط", t:"إدارة ومشتريات", b:"٢٤٬٠٠٠–٢٨٬٠٠٠ € إجمالًا · ٣٢ ساعة أسبوعيًا",
+   d:"الطلبات وإشعارات التسليم ومتابعة مُدد المورّدين ودعم الفوترة. أسبوع من أربعة أيام بالراتب نفسه لاثنتين وثلاثين ساعة على خمسة، لأن ما يعنينا العمل المنجَز لا الكرسي المشغول."}
+ ],
+ emComo:[
+  {t:"يُقرأ كل شيء، ونردّ على الجميع", d:"ولو كان الردّ لا. فلا يبقى أحد بلا جواب، ولا نستخدم مرشّحات آلية تستبعد السير الذاتية بكلمات مفتاحية."},
+  {t:"محادثة ساعة واحدة، بلا اختبار تقني مجاني", d:"نسأل عن أعمال أنجزتها فعلًا. ولا نرسل تمارين تشبه مصادفةً عملًا حقيقيًّا معلَّقًا لدينا."},
+  {t:"نصف يوم في الموقع أو المكتب، مدفوع", d:"لترى كيف يُعمَل هنا قبل أن تقرّر. ويُدفَع بسعر اليوم ولو لم تُكمل العملية بعدها."},
+  {t:"ردّ خلال أسبوع، مع السبب", d:"فإن لم تناسب قلنا لماذا في سطرين. أما «اخترنا ملفًّا آخر» فلا تفيد أحدًا في المرة التالية."}
+ ],
+ ckPrefs:"تفضيلات ملفات الارتباط",
 
  nLegal:"قانوني", tLegal:"قانوني — نهار", leH1:"الشروط والبيانات وملفات الارتباط.",
  leEntrada:"كل ما ينظّم العلاقة مع العميل، مكتوبًا ليُفهم دون محامٍ إلى جانبك.",
@@ -2414,7 +2605,27 @@ ar:{
   {t:"٦. سهولة الوصول", p:[
    "بُني هذا الموقع سعيًا إلى استيفاء إرشادات WCAG 2.2 عند المستوى AA: تصفّح كامل بلوحة المفاتيح، وتركيز مرئي، وتباين كافٍ في السمتين، ونص بديل للصور، واحترام تفضيل تقليل الحركة في النظام.",
    "والرسوم البيانية لا تعتمد على اللون وحده: فلكل سلسلة تسمية مباشرة أو مفتاح، ويمكن فتح جداول البيانات المرافقة لقراءة الأرقام نفسها نصًّا. وتُسلَّم الوثائق القابلة للتنزيل بصيغ موسومة.",
-   "وإن واجهت عائقًا — تباينًا منخفضًا، أو عنصرًا لا يمكن بلوغه بلوحة المفاتيح، أو قارئ شاشة يتعثّر — فاكتب إلى <b>accesibilidad@nahar.example</b> واصفًا ما حدث وبأي متصفح. ونعامله بلاغًا، لا اقتراحًا."]}
+   "وإن واجهت عائقًا — تباينًا منخفضًا، أو عنصرًا لا يمكن بلوغه بلوحة المفاتيح، أو قارئ شاشة يتعثّر — فاكتب إلى <b>accesibilidad@nahar.example</b> واصفًا ما حدث وبأي متصفح. ونعامله بلاغًا، لا اقتراحًا."]},
+  {t:"٧. شروط استخدام الموقع", p:[
+   "يمكنك قراءة محتوى هذا الموقع وطباعته ومشاركته بحرّية، بما في ذلك اقتباسه مع ذكر المصدر. أما ما لا يجوز فهو <b>إعادة نشره كاملًا في موقع آخر كأنه ملكك</b>، أو تضمين أدوات الحساب لدينا داخل موقع طرف ثالث دون إذن مكتوب.",
+   "النصوص والشيفرة ملكنا. أما الصور فمن ويكيميديا كومنز بتراخيص حرّة، وتُنسَب إلى مؤلفيها في لوحة الاعتمادات بكل صفحة؛ وترخيصها ما تقوله كومنز لا ما نقوله نحن. والخطوط من غوغل فونتس بترخيص SIL المفتوح.",
+   "<b>الروابط إلى مواقع أخرى.</b> إن ربطنا بمصنّع أو بجهة رسمية فلتتحقق من معلومة، لا لأننا نجيب عمّا ينشرونه. ويمكنك الربط بأي صفحة لنا دون استئذان، ما لم توحِ بعلاقة تجارية غير موجودة.",
+   "<b>التوافر.</b> لا نضمن توافر الموقع مئة بالمئة من الوقت. فإن تعطّل شيء أُصلح؛ ولا يوجد تعويض عن تعذّر استخدام محاكٍ بعد ظهر يوم."]},
+  {t:"٨. القانون الواجب التطبيق وحل النزاعات", p:[
+   "تخضع العلاقة <b>للقانون الإسباني</b>. وفي العقود مع الشركات تكون محاكم سرقسطة هي المختصة ما لم ينصّ العقد على غير ذلك. أما إن كنت مستهلكًا فلا ينطبق عليك ذلك الشرط: فلك اللجوء إلى محاكم محل إقامتك، ولا يمكن لأي شرط لدينا أن يسلبك هذا الحق.",
+   "<b>قبل المحكمة.</b> نفضّل الحلّ بالحوار. اكتب إلى reclamaciones@nahar.example واصفًا ما جرى: نردّ كتابةً خلال أقل من خمسة عشر يومًا بما سنفعله، لا بالاعتذار وحده.",
+   "<b>المسار خارج القضاء.</b> إن لم نتفق، فثمة <b>المنصة الأوروبية لتسوية المنازعات عبر الإنترنت</b> التابعة للمفوضية الأوروبية، وفي إسبانيا هيئات التحكيم الاستهلاكي. ونحن منضمّون إلى التحكيم الاستهلاكي، ومعناه أن القرار يُلزمنا شئنا أم أبينا.",
+   "<b>البطلان الجزئي.</b> إن قضت محكمة ببطلان أحد هذه الشروط، بقي الباقي نافذًا. ونقول ذلك لأن بطلان سطر يُستعمل أحيانًا لإسقاط عقد بأكمله."]},
+  {t:"٩. القناة الأخلاقية والامتثال", p:[
+   "توجد قناة للإبلاغ عن المخالفات: <b>etica@nahar.example</b>، يتولّاها أحد أعضاء الإدارة لا يشارك في الأعمال ولا في المشتريات. ويمكن الكتابة بلا هوية من أي بريد؛ ولا نسجّل عناوين الإنترنت ولا نحاول التعرّف على المُبلِّغ.",
+   "<b>ما يمكن الإبلاغ عنه:</b> كلفة زائدة لا تتّسق، أو ضغط للتصديق على ما لم يُنفَّذ، أو خطر سلامة يُتغاضى عنه، أو سوء معاملة لأحد الموظفين أو المورّدين. وكذلك إن طلب أحدنا منك ما لا ينبغي.",
+   "ويُلزِم قانون حماية المُبلِّغين الإسباني (٢/٢٠٢٣) الشركات التي فيها خمسون عاملًا فأكثر بنظام إبلاغ داخلي. ونحن أربعة عشر، فلسنا <b>ملزَمين</b>: ولدينا القناة لأن العمل الصغير فيه الحوافز نفسها التي في الكبير لاختصار الطريق حيث لا يرى أحد.",
+   "ومن يُبلغ بحسن نية لا يتعرّض لأي عاقبة. وإن مسّت المشكلة سلامة أعمال جارية، أُوقفت الأعمال ريثما يُتحقق، ولو كلّف ذلك أيامًا من المهلة."]},
+  {t:"١٠. أمن المعلومات", p:[
+   "يُقدَّم الموقع عبر HTTPS ولا يحوي نماذج ترسل بيانات إلى خادم: فنموذج التواصل في هذه النسخة لا يرسل شيئًا إلى أي جهة، وهو ما يقوله النموذج نفسه.",
+   "وفي منصة مراقبة العملاء، كل منشأة مستخدِم مستقل بكلمة سرّه، ولا يستطيع أحد في نهار رؤية بيانات محطة لا يديرها. وتُسجَّل عمليات الدخول ويُحفَظ السجل سنةً.",
+   "<b>وإن وجدت ثغرة</b> في هذا الموقع أو في المنصة، فاكتب إلى <b>seguridad@nahar.example</b> بما وجدت وكيفية تكراره. نردّ خلال اثنتين وسبعين ساعة، ولا نُبلّغ عن مَن يتصرّف بحسن نية، ونخبرك متى صُحّحت. ولا نطلب صمتًا مقابل شيء.",
+   "أما ما نطلبه فهو: ألّا تصل إلى بيانات الغير أكثر مما يلزم لإثبات الخلل، وألّا تنشرها حتى تُصحَّح أو تمرّ تسعون يومًا، وألّا تُضعف الخدمة."]}
  ],
  utilAtencion:"دعم فني من الاثنين إلى الجمعة، ٨:٠٠–١٨:٠٠ بتوقيت وسط أوروبا", utilDescargas:"التنزيلات", utilGlosario:"مسرد المصطلحات",
  ariaMiga:"المسار", pieQue:"هندسة وتركيب الاستهلاك الذاتي الشمسي الصناعي. دراسة وتنفيذ وتشغيل بمحاور واحد.",
@@ -3437,9 +3648,10 @@ var INDICE = {
   empresa:[["ap-nosotros","nNosotros"],["ap-contacto","nContacto"]]
 };
 
-var RUTAS = ["inicio","servicios","numeros","proyectos","recursos","empresa","legal"];
+var RUTAS = ["inicio","servicios","numeros","proyectos","recursos","empresa","legal","mapa","empleo","err"];
 var TITULOS = {inicio:"tInicio",servicios:"tServicios",numeros:"tNumeros",
-  proyectos:"tProyectos",recursos:"tRecursos",empresa:"tEmpresa",legal:"tLegal"};
+  proyectos:"tProyectos",recursos:"tRecursos",empresa:"tEmpresa",legal:"tLegal",
+  mapa:"tMapa",empleo:"tEmpleo",err:"tErr"};
 
 var idioma = "es", reOri = 0;
 
@@ -3674,6 +3886,32 @@ function pintarListas(){
       + b.ent.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul></div></div></section>';
   }).join("");
 
+  var er = document.getElementById("errRuta");
+  if (er) er.textContent = "#/" + (rutaPedida || "");
+
+  /* El mapa se genera del índice: una lista a mano se queda vieja sola */
+  var ms = document.getElementById("mapaSitio");
+  if (ms) ms.innerHTML = RUTAS.filter(function(r){ return r !== "err"; }).map(function(r){
+    var hijos = INDICE[r];
+    return '<div class="mapa-col"><h2><a href="#/'+r+'">'+esc(t[TITULOS[r]].split("—")[0].trim())+'</a></h2>'
+      + (hijos
+         ? '<nav>' + hijos.map(function(x){
+             return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(x[2] || t[x[1]])+'</a>'; }).join("") + '</nav>'
+         : '<p class="sola">'+esc(t.mapaSinApartados)+'</p>')
+      + '</div>';
+  }).join("");
+
+  var ep = document.getElementById("emPuestos");
+  if (ep) ep.innerHTML = t.puestos.map(function(x){
+    return '<div class="fila"><div class="i">'+esc(x.i)+'</div>'
+      + '<div><h3>'+esc(x.t)+'</h3><span class="puesto-b">'+esc(x.b)+'</span></div>'
+      + '<div class="d"><p>'+esc(x.d)+'</p></div></div>';
+  }).join("");
+  var ec = document.getElementById("emComo");
+  if (ec) ec.innerHTML = t.emComo.map(function(x){
+    return '<li><div><b>'+esc(x.t)+'</b><span>'+esc(x.d)+'</span></div></li>';
+  }).join("");
+
   var lb = document.getElementById("leBloques");
   if (lb) lb.innerHTML = t.legal.map(function(b,i){
     return '<section class="legal-b" id="ap-le'+i+'">'
@@ -3802,9 +4040,14 @@ function pintarListas(){
   }).join("");
 }
 
+var rutaPedida = "";
 function ruta(){
   var r = (location.hash||"").replace(/^#\/?/,"");
-  return RUTAS.indexOf(r) >= 0 ? r : "inicio";
+  if (!r) return "inicio";
+  if (RUTAS.indexOf(r) >= 0) return r;
+  /* Antes se caía a inicio en silencio y parecía que el enlace funcionaba */
+  rutaPedida = r;
+  return "err";
 }
 
 function aplicar(codigo){
