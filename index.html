@@ -99,6 +99,39 @@ html[dir="rtl"] .idi{font-size:.85rem;}
 .idi button:hover{color:var(--acento);}
 @media(max-width:980px){.barra{gap:.6rem 1rem}.idi{margin-inline-start:auto}nav.n{order:3;width:100%;margin-inline-start:0}}
 
+/* ── Cookies: por defecto sólo lo imprescindible, y el botón que menos
+   compromete es el que va destacado. ─────────────────────────────── */
+.ck{position:fixed;inset-inline:0;bottom:0;z-index:100;background:var(--sup);
+  border-top:2px solid var(--tinta);box-shadow:0 -18px 40px -25px rgba(0,0,0,.5);}
+.ck-caja{width:var(--marco);margin-inline:auto;display:grid;gap:1.2rem;padding-block:1.3rem;}
+@media(min-width:900px){.ck-caja{grid-template-columns:1fr auto;gap:2.5rem;align-items:center;}}
+.ck-t{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--acento);margin:0 0 .4rem;}
+html[dir="rtl"] .ck-t{letter-spacing:0;text-transform:none;font-size:.85rem;font-family:var(--cuerpo);}
+.ck-p{font-size:.86rem;color:var(--tinta-2);margin:0;max-width:74ch;}
+.ck-acc{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;}
+.ck-mas{background:none;border:0;color:var(--tinta-3);cursor:pointer;font:inherit;
+  font-size:.8rem;text-decoration:underline;text-underline-offset:3px;padding:.4rem;}
+.ck-mas:hover{color:var(--acento);}
+.ck-pref{width:var(--marco);margin-inline:auto;padding-bottom:1.4rem;border-top:1px solid var(--linea);}
+.ck-fila{display:grid;grid-template-columns:auto 1fr;gap:.9rem;padding-block:.9rem;
+  border-bottom:1px solid var(--linea-2);align-items:start;}
+.ck-fila b{display:block;font-weight:500;font-size:.92rem;}
+.ck-fila span{display:block;font-size:.82rem;color:var(--tinta-3);}
+.ck-fila input{width:1.05rem;height:1.05rem;margin-top:.25rem;accent-color:var(--acento);}
+.ck-pref .btn{margin-top:1.1rem;}
+
+/* Aviso de maqueta: no debe parecer un documento legal de verdad */
+.maqueta{border-inline-start:3px solid var(--alerta);background:var(--fondo-2);
+  padding:.9rem 1.1rem;font-size:.84rem;color:var(--tinta-2);margin-top:1.6rem;max-width:70ch;}
+
+/* ── Bloques legales ──────────────────────────────────────────────── */
+.legal-b{border-top:1px solid var(--linea);padding-block:2rem;}
+.legal-b h2{font-size:clamp(1.25rem,2.4vw,1.7rem);margin-bottom:1rem;}
+.legal-b p{color:var(--tinta-2);font-size:.94rem;}
+.legal-b .fecha{font-family:var(--mono);font-size:.7rem;color:var(--tinta-3);margin-bottom:.6rem;}
+html[dir="rtl"] .legal-b .fecha{font-family:var(--cuerpo);font-size:.85rem;}
+
 /* ── Barra de utilidades: en un sitio industrial el teléfono y las
    descargas van arriba del todo, no escondidos en el pie. ────────── */
 .util{background:var(--tinta);color:var(--fondo);font-size:.74rem;}
@@ -144,6 +177,11 @@ html[dir="rtl"] .pie-t{letter-spacing:0;text-transform:none;font-size:.85rem;fon
 .pie-col nav{display:grid;gap:.55rem;}
 .pie-col a{color:var(--tinta-2);text-decoration:none;font-size:.88rem;}
 .pie-col a:hover{color:var(--acento);}
+.pie-legal{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;}
+.pie-legal a,.pie-legal button{color:var(--tinta-3);text-decoration:none;font-size:.76rem;
+  background:none;border:0;cursor:pointer;font-family:inherit;padding:0;}
+.pie-legal a:hover,.pie-legal button:hover{color:var(--acento);text-decoration:underline;}
+
 .pie-fin{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;
   padding-block:1.2rem;border-top:1px solid var(--linea);font-size:.76rem;color:var(--tinta-3);}
 
@@ -1153,9 +1191,40 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 
 
 
+<section data-ruta="legal" id="ap-legal">
+  <div class="marco bloque">
+    <p class="eti" data-t="nLegal">Legal</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="leH1">Condiciones, datos y cookies.</h1>
+    <p class="entrada" data-t="leEntrada">Todo lo que rige la relación con un cliente, escrito para que se entienda sin abogado al lado.</p>
+    <p class="maqueta" data-t="leMaqueta">Aviso: esto es una maqueta de demostración. Los textos siguen la estructura de un aviso legal real, pero los datos de la sociedad son inventados y no constituyen asesoramiento jurídico.</p>
+  </div>
+  <div class="marco"><nav class="indice-pag" id="ix-legal" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <div id="leBloques"></div>
+  </div>
+</section>
+
   </div>
 </div>
 </main>
+
+<div class="ck" id="ck" hidden role="dialog" aria-modal="false" data-t-attr="aria-label:ckTitulo">
+  <div class="ck-caja">
+    <div class="ck-txt">
+      <p class="ck-t" data-t="ckTitulo">Cookies</p>
+      <p class="ck-p" data-t="ckTexto">Usamos cookies propias imprescindibles para que el sitio funcione y recuerde su idioma. Las de medición son opcionales y están desactivadas hasta que usted diga lo contrario.</p>
+    </div>
+    <div class="ck-acc">
+      <button type="button" class="btn sol" id="ckMin" data-t="ckMin">Sólo las imprescindibles</button>
+      <button type="button" class="btn" id="ckTodo" data-t="ckTodo">Aceptar todas</button>
+      <button type="button" class="ck-mas" id="ckMas" data-t="ckMas">Preferencias</button>
+    </div>
+  </div>
+  <div class="ck-pref" id="ckPref" hidden>
+    <div id="ckLista"></div>
+    <button type="button" class="btn sol" id="ckGuardar" data-t="ckGuardar">Guardar mi elección</button>
+  </div>
+</div>
 
 <div class="barra-baja" id="barraBaja" hidden>
   <div class="bb-marco">
@@ -1184,6 +1253,7 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
   <div class="marco pie-fin">
     <span data-t="pieAviso">Maqueta de demostración</span>
+    <nav class="pie-legal" id="pieLegal"></nav>
     <span class="ltr">© 2026 NAHAR</span>
   </div>
 </footer>
@@ -1198,7 +1268,51 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 var T = {
 
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", utilAtencion:"Atención técnica de lunes a viernes, 8:00–18:00 CET", utilDescargas:"Descargas", utilGlosario:"Glosario",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", ckPrefs:"Preferencias de cookies",
+
+ nLegal:"Legal", tLegal:"Legal — NAHAR", leH1:"Condiciones, datos y cookies.",
+ leEntrada:"Todo lo que rige la relación con un cliente, escrito para que se entienda sin abogado al lado.",
+ leMaqueta:"Aviso: esto es una maqueta de demostración. Los textos siguen la estructura de un aviso legal real, pero los datos de la sociedad son inventados y no constituyen asesoramiento jurídico.",
+ leActualizado:"Actualizado en septiembre de 2026",
+ ckTitulo:"Cookies", ckMin:"Sólo las imprescindibles", ckTodo:"Aceptar todas",
+ ckMas:"Preferencias", ckGuardar:"Guardar mi elección",
+ ckTexto:"Usamos cookies propias imprescindibles para que el sitio funcione y recuerde su idioma. Las de medición son opcionales y están desactivadas hasta que usted diga lo contrario.",
+ ckCats:[
+  {n:"Imprescindibles", d:"Recuerdan el idioma elegido y el estado del simulador. Sin ellas el sitio no funciona, y por eso no se pueden desactivar. No salen de su navegador."},
+  {n:"Medición", d:"Cuentan cuántas personas visitan cada página y desde dónde llegan, de forma agregada. Nos sirven para saber qué apartados sobran. Desactivadas por defecto."},
+  {n:"Preferencias", d:"Guardan cosas como el tamaño de planta que dejó puesto en el comparador. Cómodas, pero prescindibles."}
+ ],
+ legal:[
+  {t:"1. Aviso legal", p:[
+   "Titular del sitio: <b>NAHAR Ingeniería Solar, S.L.</b>, con domicilio en Polígono Industrial Las Salinas, nave 14, 50016 Zaragoza (España), inscrita en el Registro Mercantil de Zaragoza. Correo de contacto: legal@nahar.example. Teléfono: +34 976 000 000.",
+   "El acceso a este sitio es libre y gratuito. Los contenidos técnicos —curvas de producción, plazos de obra, precios orientativos de material— se publican con fines informativos y <b>no constituyen una oferta contractual</b>. Una oferta vinculante sólo existe cuando va firmada, con alcance, plazo y precio cerrados, y siempre después de una visita técnica.",
+   "Las herramientas de cálculo del sitio (simulador, curva horaria, comparador de ofertas y tabla de amortización) usan modelos simplificados con supuestos que se explican al pie de cada una. Sirven para orientar una decisión, no para dimensionar una instalación."]},
+  {t:"2. Protección de datos", p:[
+   "<b>Responsable:</b> NAHAR Ingeniería Solar, S.L. <b>Finalidad:</b> responder a las consultas enviadas por el formulario y, si hay contrato, gestionar la relación técnica y comercial. <b>Base legal:</b> su consentimiento al enviar el formulario, y la ejecución del contrato cuando lo hay. <b>Conservación:</b> las consultas que no acaban en contrato se borran a los doce meses; la documentación contractual se conserva seis años por obligación mercantil y fiscal.",
+   "<b>Qué pedimos y por qué.</b> Nombre y correo para poder contestar. Teléfono sólo si usted lo da. Consumo anual, tipo de cubierta y ubicación aproximada, porque sin eso no se puede hacer una estimación. No pedimos NIF ni datos bancarios en el formulario: eso llega después y por otro canal.",
+   "<b>Destinatarios.</b> No cedemos datos a terceros con fines comerciales. Los únicos accesos externos son el proveedor de correo y el de alojamiento, ambos en la Unión Europea y con contrato de encargado de tratamiento firmado. No hay transferencias internacionales.",
+   "<b>Sus derechos.</b> Puede pedirnos acceso, rectificación, supresión, limitación, portabilidad y oposición escribiendo a <b>datos@nahar.example</b> desde la dirección con la que nos escribió. Contestamos en menos de un mes y no exigimos formulario ni copia del DNI para una supresión simple. Si no queda conforme, puede reclamar ante la Agencia Española de Protección de Datos."]},
+  {t:"3. Cookies", p:[
+   "Sólo usamos cookies propias. No hay píxeles de redes sociales, ni publicidad, ni cesión de datos a plataformas de terceros. Al entrar por primera vez sólo se activan las imprescindibles: las de medición quedan apagadas hasta que usted las encienda.",
+   "Las imprescindibles guardan el idioma y el estado de las calculadoras en su propio navegador, mediante almacenamiento local. Esa información no viaja a ningún servidor: si borra los datos del sitio en su navegador, desaparece por completo.",
+   "Puede cambiar de opinión cuando quiera desde el enlace <b>Cookies</b> del pie de página. Su elección se guarda con la fecha y con una versión: si algún día cambiamos las categorías, se lo volvemos a preguntar en vez de dar por buena la respuesta anterior."]},
+  {t:"4. Condiciones generales de contratación", p:[
+   "<b>Validez de la oferta:</b> treinta días naturales. Pasado ese plazo se revisa el precio del material, que es la partida que más se mueve. El resto del presupuesto se mantiene.",
+   "<b>Pagos:</b> 30 % a la firma, 50 % contra acopio justificado con albarán a nombre del cliente, y 20 % a la puesta en marcha con el certificado de instalación entregado. Se retiene un 5 % durante doce meses en concepto de garantía, sustituible por aval bancario.",
+   "<b>Plazos y penalización:</b> el plazo de obra se cierra en contrato tras la visita técnica y lleva penalización por día de retraso imputable a NAHAR. Quedan fuera del cómputo los días perdidos por meteorología adversa documentada y el tiempo de tramitación de la distribuidora, que no depende de nosotros y se acredita con los registros de entrada.",
+   "<b>Modificaciones:</b> cualquier cambio de alcance se documenta por escrito con su repercusión en precio y plazo antes de ejecutarse. No facturamos trabajos no aprobados previamente.",
+   "<b>Resolución:</b> si el cliente resuelve el contrato después del acopio, el material adquirido a su nombre queda a su disposición. Si resolvemos nosotros por causa imputable a NAHAR, se devuelven las cantidades entregadas más el interés legal."]},
+  {t:"5. Garantías", p:[
+   "<b>Garantía de producto:</b> la del fabricante de cada equipo, que se entrega con la documentación de la instalación. Habitualmente doce años en módulos, diez en inversores y diez en estructura.",
+   "<b>Garantía de producción:</b> comprometemos una producción mínima anual en el contrato. Se mide con la monitorización y se corrige por radiación real del año, con datos de la estación de referencia que se nombra en el contrato. Si no se alcanza, compensamos la diferencia en euros al precio de energía pactado.",
+   "<b>Garantía de instalación:</b> tres años sobre el montaje, el cableado y la fijación, incluidas mano de obra y desplazamiento. La cubertura estructural va además cubierta por el seguro decenal.",
+   "<b>Qué no cubre:</b> daños por fenómenos meteorológicos extraordinarios cubiertos por el consorcio, manipulación por terceros no autorizados, y pérdida de producción por sombras nuevas que aparezcan después de la puesta en marcha (una construcción vecina, por ejemplo). En ese último caso lo avisamos en el informe anual aunque no sea responsabilidad nuestra."]},
+  {t:"6. Accesibilidad", p:[
+   "Este sitio se ha construido buscando cumplir las pautas WCAG 2.2 en nivel AA: navegación completa con teclado, foco visible, contraste suficiente en ambos temas, texto alternativo en las imágenes y respeto de la preferencia de movimiento reducido del sistema.",
+   "Las gráficas no dependen sólo del color: cada serie lleva etiqueta directa o leyenda, y las tablas de datos que las acompañan se pueden abrir para leer las mismas cifras en texto. Los documentos descargables se entregan en formatos etiquetados.",
+   "Si encuentra una barrera —un contraste bajo, un control que no alcanza con teclado, un lector de pantalla que se atasca— escríbanos a <b>accesibilidad@nahar.example</b> describiendo qué pasó y con qué navegador. Lo tratamos como una incidencia, no como una sugerencia."]}
+ ],
+ utilAtencion:"Atención técnica de lunes a viernes, 8:00–18:00 CET", utilDescargas:"Descargas", utilGlosario:"Glosario",
  ariaMiga:"Ruta", pieQue:"Ingeniería e instalación de autoconsumo solar industrial. Estudio, obra y explotación con un solo interlocutor.",
  pieDir:"Polígono Industrial Las Salinas, nave 14 · 50016 Zaragoza",
 
@@ -1706,7 +1820,51 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", utilAtencion:"Technical support Monday to Friday, 8:00–18:00 CET", utilDescargas:"Downloads", utilGlosario:"Glossary",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", ckPrefs:"Cookie preferences",
+
+ nLegal:"Legal", tLegal:"Legal — NAHAR", leH1:"Terms, data and cookies.",
+ leEntrada:"Everything that governs the relationship with a client, written to be understood without a lawyer beside you.",
+ leMaqueta:"Notice: this is a demonstration mock-up. The texts follow the structure of a real legal notice, but the company details are invented and this is not legal advice.",
+ leActualizado:"Updated September 2026",
+ ckTitulo:"Cookies", ckMin:"Essential only", ckTodo:"Accept all",
+ ckMas:"Preferences", ckGuardar:"Save my choice",
+ ckTexto:"We use our own essential cookies so the site works and remembers your language. Measurement ones are optional and stay off until you say otherwise.",
+ ckCats:[
+  {n:"Essential", d:"They remember the chosen language and the state of the simulator. The site does not work without them, which is why they cannot be turned off. They never leave your browser."},
+  {n:"Measurement", d:"They count how many people visit each page and where they arrive from, in aggregate. They tell us which sections are redundant. Off by default."},
+  {n:"Preferences", d:"They store things like the plant size you left in the comparison tool. Convenient, but dispensable."}
+ ],
+ legal:[
+  {t:"1. Legal notice", p:[
+   "Site owner: <b>NAHAR Ingeniería Solar, S.L.</b>, registered office at Polígono Industrial Las Salinas, unit 14, 50016 Zaragoza (Spain), entered in the Zaragoza Companies Register. Contact: legal@nahar.example. Phone: +34 976 000 000.",
+   "Access to this site is free and open. The technical content — production curves, works timescales, indicative material prices — is published for information and <b>does not constitute a contractual offer</b>. A binding offer only exists once signed, with scope, deadline and price fixed, and always after a technical visit.",
+   "The site's calculation tools (simulator, hourly curve, quote comparison and payback table) use simplified models whose assumptions are stated under each one. They are there to guide a decision, not to size an installation."]},
+  {t:"2. Data protection", p:[
+   "<b>Controller:</b> NAHAR Ingeniería Solar, S.L. <b>Purpose:</b> to answer enquiries sent through the form and, where there is a contract, to manage the technical and commercial relationship. <b>Legal basis:</b> your consent when submitting the form, and performance of the contract where one exists. <b>Retention:</b> enquiries that do not lead to a contract are deleted after twelve months; contractual documentation is kept for six years under commercial and tax obligations.",
+   "<b>What we ask for and why.</b> Name and email so we can reply. Phone only if you give it. Annual consumption, roof type and approximate location, because no estimate is possible without them. We do not ask for tax numbers or bank details in the form: that comes later and through another channel.",
+   "<b>Recipients.</b> We do not pass data to third parties for commercial purposes. The only external access is our email and hosting providers, both in the European Union and under a signed processor agreement. There are no international transfers.",
+   "<b>Your rights.</b> You may request access, rectification, erasure, restriction, portability and objection by writing to <b>datos@nahar.example</b> from the address you wrote to us with. We answer within one month and do not require a form or a copy of your ID for a simple erasure. If you are not satisfied, you may complain to the Spanish Data Protection Agency."]},
+  {t:"3. Cookies", p:[
+   "We only use our own cookies. There are no social network pixels, no advertising and no data shared with third-party platforms. On a first visit only the essential ones are active: measurement stays off until you switch it on.",
+   "The essential ones store your language and the state of the calculators in your own browser, using local storage. That information never travels to any server: if you clear the site data in your browser, it disappears completely.",
+   "You can change your mind at any time from the <b>Cookies</b> link in the footer. Your choice is stored with a date and a version: if we ever change the categories, we ask you again rather than assuming the previous answer still holds."]},
+  {t:"4. General terms of contract", p:[
+   "<b>Quote validity:</b> thirty calendar days. After that the material price is revised, as it is the line that moves most. The rest of the quotation holds.",
+   "<b>Payments:</b> 30 % on signature, 50 % against procurement evidenced by a delivery note in the client's name, and 20 % on commissioning with the installation certificate handed over. 5 % of the total is retained for twelve months as a guarantee, replaceable by a bank bond.",
+   "<b>Deadlines and penalties:</b> the works deadline is fixed in the contract after the technical visit and carries a penalty per day of delay attributable to NAHAR. Days lost to documented adverse weather and the grid operator's processing time are excluded, since the latter does not depend on us and is evidenced by the filing records.",
+   "<b>Variations:</b> any change of scope is documented in writing, with its effect on price and deadline, before being carried out. We do not invoice work that was not approved beforehand.",
+   "<b>Termination:</b> if the client terminates after procurement, the material bought in their name is at their disposal. If we terminate for reasons attributable to NAHAR, sums paid are returned plus statutory interest."]},
+  {t:"5. Warranties", p:[
+   "<b>Product warranty:</b> that of each equipment manufacturer, handed over with the installation documentation. Typically twelve years on modules, ten on inverters and ten on structure.",
+   "<b>Output guarantee:</b> we commit to a minimum annual output in the contract. It is measured through the monitoring and corrected for the year's actual irradiation, using data from the reference station named in the contract. If it is not reached, we compensate the difference in euros at the agreed energy price.",
+   "<b>Installation warranty:</b> three years on the mounting, wiring and fixings, including labour and travel. The roof anchoring is additionally covered by the ten-year structural insurance.",
+   "<b>What it does not cover:</b> damage from extraordinary weather events covered by the national insurance consortium, tampering by unauthorised third parties, and output lost to new shading appearing after commissioning (a neighbouring building, for instance). In that last case we flag it in the annual report even though it is not our responsibility."]},
+  {t:"6. Accessibility", p:[
+   "This site was built aiming to meet WCAG 2.2 at level AA: full keyboard navigation, visible focus, sufficient contrast in both themes, alternative text on images, and respect for the system's reduced-motion preference.",
+   "The charts do not rely on colour alone: every series carries a direct label or a legend, and the accompanying data tables can be opened to read the same figures as text. Downloadable documents are delivered in tagged formats.",
+   "If you hit a barrier — low contrast, a control you cannot reach with the keyboard, a screen reader that gets stuck — write to <b>accesibilidad@nahar.example</b> describing what happened and in which browser. We treat it as an incident, not as a suggestion."]}
+ ],
+ utilAtencion:"Technical support Monday to Friday, 8:00–18:00 CET", utilDescargas:"Downloads", utilGlosario:"Glossary",
  ariaMiga:"Breadcrumb", pieQue:"Engineering and installation of industrial solar self-consumption. Study, works and operation with a single point of contact.",
  pieDir:"Polígono Industrial Las Salinas, unit 14 · 50016 Zaragoza",
 
@@ -2214,7 +2372,51 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", utilAtencion:"دعم فني من الاثنين إلى الجمعة، ٨:٠٠–١٨:٠٠ بتوقيت وسط أوروبا", utilDescargas:"التنزيلات", utilGlosario:"مسرد المصطلحات",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", ckPrefs:"تفضيلات ملفات الارتباط",
+
+ nLegal:"قانوني", tLegal:"قانوني — نهار", leH1:"الشروط والبيانات وملفات الارتباط.",
+ leEntrada:"كل ما ينظّم العلاقة مع العميل، مكتوبًا ليُفهم دون محامٍ إلى جانبك.",
+ leMaqueta:"تنبيه: هذه نسخة عرض توضيحية. تتبع النصوص بنية إشعار قانوني حقيقي، لكن بيانات الشركة متخيَّلة وهذا ليس استشارة قانونية.",
+ leActualizado:"محدَّث في أيلول ٢٠٢٦",
+ ckTitulo:"ملفات الارتباط", ckMin:"الضرورية فقط", ckTodo:"قبول الكل",
+ ckMas:"التفضيلات", ckGuardar:"احفظ اختياري",
+ ckTexto:"نستخدم ملفات ارتباط خاصة بنا لا غنى عنها كي يعمل الموقع ويتذكّر لغتك. أما ملفات القياس فاختيارية وتبقى متوقفة حتى تقول غير ذلك.",
+ ckCats:[
+  {n:"الضرورية", d:"تتذكّر اللغة المختارة وحالة المحاكي. ولا يعمل الموقع بدونها، ولهذا لا يمكن تعطيلها. وهي لا تغادر متصفحك."},
+  {n:"القياس", d:"تحصي كم شخصًا يزور كل صفحة ومن أين يصل، بصورة إجمالية. وتفيدنا في معرفة الأقسام الزائدة. ومتوقفة افتراضيًّا."},
+  {n:"التفضيلات", d:"تحفظ أمورًا كحجم المحطة الذي تركته في أداة المقارنة. مريحة، لكن يمكن الاستغناء عنها."}
+ ],
+ legal:[
+  {t:"١. الإشعار القانوني", p:[
+   "مالك الموقع: <b>نهار للهندسة الشمسية ذ.م.م.</b>، ومقرها المنطقة الصناعية لاس ساليناس، وحدة ١٤، ٥٠٠١٦ سرقسطة (إسبانيا)، ومقيّدة في السجل التجاري بسرقسطة. البريد: legal@nahar.example. الهاتف: ‎+34 976 000 000‎.",
+   "الدخول إلى هذا الموقع حرّ ومجاني. أما المحتوى الفني — منحنيات الإنتاج ومُدد الأعمال والأسعار الاسترشادية للمواد — فيُنشر للعلم و<b>لا يشكّل عرضًا تعاقديًّا</b>. ولا يوجد عرض مُلزِم إلا موقَّعًا، بنطاق ومهلة وسعر محددة، وبعد زيارة فنية دائمًا.",
+   "وأدوات الحساب في الموقع (المحاكي والمنحنى الساعي ومقارنة العروض وجدول الاسترداد) تستعمل نماذج مبسَّطة تُذكر افتراضاتها أسفل كلٍّ منها. وهي لتوجيه قرار، لا لتحديد قدرة منشأة."]},
+  {t:"٢. حماية البيانات", p:[
+   "<b>المسؤول:</b> نهار للهندسة الشمسية ذ.م.م. <b>الغرض:</b> الردّ على الاستفسارات المُرسَلة عبر النموذج، وإدارة العلاقة الفنية والتجارية عند وجود عقد. <b>الأساس القانوني:</b> موافقتك عند إرسال النموذج، وتنفيذ العقد حيث يوجد. <b>مدة الحفظ:</b> تُحذف الاستفسارات التي لا تنتهي بعقد بعد اثني عشر شهرًا؛ وتُحفظ الوثائق التعاقدية ست سنوات بموجب التزامات تجارية وضريبية.",
+   "<b>ما نطلبه ولماذا.</b> الاسم والبريد كي نستطيع الردّ. والهاتف فقط إن أعطيته. والاستهلاك السنوي ونوع السطح والموقع التقريبي، إذ لا يمكن التقدير بدونها. ولا نطلب رقمًا ضريبيًّا ولا بيانات مصرفية في النموذج: فتلك تأتي لاحقًا وبقناة أخرى.",
+   "<b>المستلمون.</b> لا نُحيل بيانات إلى غيرنا لأغراض تجارية. والوصول الخارجي الوحيد لمزوّدَي البريد والاستضافة، وكلاهما في الاتحاد الأوروبي وبعقد معالِج موقَّع. ولا توجد عمليات نقل دولية.",
+   "<b>حقوقك.</b> يمكنك طلب الاطلاع والتصحيح والمحو والتقييد وقابلية النقل والاعتراض بالكتابة إلى <b>datos@nahar.example</b> من العنوان الذي راسلتنا منه. ونردّ خلال أقل من شهر، ولا نشترط نموذجًا ولا صورة هوية لمحوٍ بسيط. وإن لم تقتنع فلك أن تشتكي إلى الوكالة الإسبانية لحماية البيانات."]},
+  {t:"٣. ملفات الارتباط", p:[
+   "لا نستخدم إلا ملفات ارتباط خاصة بنا. ولا توجد بكسلات شبكات اجتماعية ولا إعلانات ولا مشاركة بيانات مع منصات خارجية. وعند أول دخول لا يُفعَّل إلا الضروري منها: ويبقى القياس متوقفًا حتى تُشغّله أنت.",
+   "والضرورية تحفظ لغتك وحالة الحاسبات في متصفحك أنت، عبر التخزين المحلي. ولا تنتقل تلك المعلومات إلى أي خادم: فإن مسحت بيانات الموقع من متصفحك اختفت تمامًا.",
+   "ويمكنك تغيير رأيك متى شئت من رابط <b>ملفات الارتباط</b> في التذييل. ويُحفَظ اختيارك بتاريخه وبرقم إصدار: فإن غيّرنا الفئات يومًا سألناك من جديد بدل افتراض أن الجواب السابق لا يزال قائمًا."]},
+  {t:"٤. الشروط العامة للتعاقد", p:[
+   "<b>صلاحية العرض:</b> ثلاثون يومًا تقويميًّا. وبعدها يُراجَع سعر المواد، وهو البند الأكثر تقلّبًا. أما بقية العرض فتبقى كما هي.",
+   "<b>الدفعات:</b> ٣٠٪ عند التوقيع، و٥٠٪ مقابل تأمين المواد مثبتًا بإشعار تسليم باسم العميل، و٢٠٪ عند التشغيل مع تسليم شهادة التركيب. ويُحتجَز ٥٪ من الإجمالي اثني عشر شهرًا ضمانًا، ويمكن استبداله بكفالة بنكية.",
+   "<b>المُدد والغرامة:</b> تُحدَّد مهلة الأعمال في العقد بعد الزيارة الفنية وتحمل غرامة عن كل يوم تأخير يُنسب إلى نهار. ويُستثنى من الحساب ما يُفقَد بسبب طقس سيئ موثَّق، ومدة معاملات شركة التوزيع، فتلك لا تتوقف علينا وتُثبَت بسجلّات التقديم.",
+   "<b>التعديلات:</b> يُوثَّق أي تغيير في النطاق كتابةً بأثره في السعر والمهلة قبل تنفيذه. ولا نُفوتِر أعمالًا لم تُعتمد مسبقًا.",
+   "<b>الفسخ:</b> إن فسخ العميل بعد تأمين المواد، بقيت المواد المشتراة باسمه تحت تصرّفه. وإن فسخنا نحن لسبب يُنسب إلينا، رُدّت المبالغ المدفوعة مع الفائدة القانونية."]},
+  {t:"٥. الضمانات", p:[
+   "<b>ضمان المنتج:</b> ضمان الشركة المصنّعة لكل جهاز، ويُسلَّم مع وثائق المنشأة. وهو عادةً اثنتا عشرة سنة للألواح، وعشر للعواكس، وعشر للهياكل.",
+   "<b>ضمان الإنتاج:</b> نلتزم بإنتاج سنوي أدنى في العقد. ويُقاس بالمراقبة ويُصحَّح بإشعاع السنة الفعلي، ببيانات المحطة المرجعية المسمّاة في العقد. وإن لم يتحقق عوّضنا الفارق باليورو بسعر الطاقة المتفق عليه.",
+   "<b>ضمان التركيب:</b> ثلاث سنوات على التركيب والتمديدات والتثبيت، شاملةً اليد العاملة والتنقّل. أما التثبيت على السطح فمشمول إضافةً بالتأمين العشري.",
+   "<b>ما لا يغطيه:</b> الأضرار الناجمة عن ظواهر جوية استثنائية يغطيها اتحاد التأمين الوطني، والعبث من غير المخوَّلين، وفقدان الإنتاج بسبب ظلال جديدة تظهر بعد التشغيل (بناء مجاور مثلًا). وفي الحالة الأخيرة ننبّه إليها في التقرير السنوي وإن لم تكن مسؤوليتنا."]},
+  {t:"٦. سهولة الوصول", p:[
+   "بُني هذا الموقع سعيًا إلى استيفاء إرشادات WCAG 2.2 عند المستوى AA: تصفّح كامل بلوحة المفاتيح، وتركيز مرئي، وتباين كافٍ في السمتين، ونص بديل للصور، واحترام تفضيل تقليل الحركة في النظام.",
+   "والرسوم البيانية لا تعتمد على اللون وحده: فلكل سلسلة تسمية مباشرة أو مفتاح، ويمكن فتح جداول البيانات المرافقة لقراءة الأرقام نفسها نصًّا. وتُسلَّم الوثائق القابلة للتنزيل بصيغ موسومة.",
+   "وإن واجهت عائقًا — تباينًا منخفضًا، أو عنصرًا لا يمكن بلوغه بلوحة المفاتيح، أو قارئ شاشة يتعثّر — فاكتب إلى <b>accesibilidad@nahar.example</b> واصفًا ما حدث وبأي متصفح. ونعامله بلاغًا، لا اقتراحًا."]}
+ ],
+ utilAtencion:"دعم فني من الاثنين إلى الجمعة، ٨:٠٠–١٨:٠٠ بتوقيت وسط أوروبا", utilDescargas:"التنزيلات", utilGlosario:"مسرد المصطلحات",
  ariaMiga:"المسار", pieQue:"هندسة وتركيب الاستهلاك الذاتي الشمسي الصناعي. دراسة وتنفيذ وتشغيل بمحاور واحد.",
  pieDir:"المنطقة الصناعية لاس ساليناس، وحدة ١٤ · ٥٠٠١٦ سرقسطة",
 
@@ -3235,9 +3437,9 @@ var INDICE = {
   empresa:[["ap-nosotros","nNosotros"],["ap-contacto","nContacto"]]
 };
 
-var RUTAS = ["inicio","servicios","numeros","proyectos","recursos","empresa"];
+var RUTAS = ["inicio","servicios","numeros","proyectos","recursos","empresa","legal"];
 var TITULOS = {inicio:"tInicio",servicios:"tServicios",numeros:"tNumeros",
-  proyectos:"tProyectos",recursos:"tRecursos",empresa:"tEmpresa"};
+  proyectos:"tProyectos",recursos:"tRecursos",empresa:"tEmpresa",legal:"tLegal"};
 
 var idioma = "es", reOri = 0;
 
@@ -3472,6 +3674,15 @@ function pintarListas(){
       + b.ent.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul></div></div></section>';
   }).join("");
 
+  var lb = document.getElementById("leBloques");
+  if (lb) lb.innerHTML = t.legal.map(function(b,i){
+    return '<section class="legal-b" id="ap-le'+i+'">'
+      + '<p class="fecha">'+esc(t.leActualizado)+'</p>'
+      + '<h2>'+esc(b.t)+'</h2>'
+      + b.p.map(function(x){ return '<p>'+x+'</p>'; }).join("")
+      + '</section>';
+  }).join("");
+
   var nf = document.getElementById("noFicha");
   if (nf) nf.innerHTML = t.noFicha.map(function(f){
     return '<tr><th scope="row">'+esc(f.k)+'</th><td>'+esc(f.v)
@@ -3622,11 +3833,12 @@ function aplicar(codigo){
   var ac = document.getElementById("acuse");
   if (ac){ ac.textContent = ""; ac.classList.remove("mal"); }
 
-  pintarRail(); pintarBarraBaja(); pintarMiga(); pintarPie();
+  INDICE.legal = t.legal.map(function(b,i){ return ["ap-le"+i, null, b.t]; });
+  pintarRail(); pintarBarraBaja(); pintarMiga(); pintarPie(); pintarCookies();
   Object.keys(INDICE).forEach(function(r){
     var e = document.getElementById("ix-"+r); if (!e) return;
     e.innerHTML = INDICE[r].map(function(x){
-      return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(t[x[1]])+'</a>';
+      return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(x[2] || t[x[1]])+'</a>';
     }).join("");
   });
   pintarListas(); pintarRendimiento(); pintarAmortizacion(); lamina(); pintarNuevas();
@@ -3637,6 +3849,40 @@ function aplicar(codigo){
    técnico interesa tener el sumario del apartado siempre delante. */
 /* Migas y columnas de pie: se generan del mismo índice que el raíl, así
    que no hay tres listas que puedan desincronizarse. */
+/* ── Cookies ───────────────────────────────────────────────────────
+   El consentimiento se guarda con la versión: si mañana cambian las
+   categorías, hay que volver a preguntar y no dar por bueno lo viejo. */
+var CK_VERSION = 1;
+var CK_CATS = ["necesarias","medicion","preferencias"];
+var ck = null;
+try { ck = JSON.parse(localStorage.getItem("nahar_ck") || "null"); } catch(e){ ck = null; }
+if (ck && ck.v !== CK_VERSION) ck = null;
+
+function ckGuarda(elegidas){
+  ck = {v:CK_VERSION, e:elegidas, f:new Date().toISOString().slice(0,10)};
+  try { localStorage.setItem("nahar_ck", JSON.stringify(ck)); } catch(e){}
+  document.getElementById("ck").hidden = true;
+}
+function ckAbrir(){
+  var caja = document.getElementById("ck");
+  caja.hidden = false;
+  document.getElementById("ckPref").hidden = false;
+  caja.scrollIntoView({block:"end"});
+}
+function pintarCookies(){
+  var caja = document.getElementById("ck");
+  if (!caja) return;
+  var t = T[idioma];
+  caja.hidden = !!ck;
+  document.getElementById("ckLista").innerHTML = CK_CATS.map(function(c,i){
+    var fijo = i === 0;
+    var marcada = fijo || (ck && ck.e.indexOf(c) >= 0);
+    return '<label class="ck-fila"><input type="checkbox" value="'+c+'"'
+      + (marcada ? " checked" : "") + (fijo ? " disabled" : "") + '>'
+      + '<span><b>'+esc(t.ckCats[i].n)+'</b><span>'+esc(t.ckCats[i].d)+'</span></span></label>';
+  }).join("");
+}
+
 function pintarMiga(){
   var caja = document.getElementById("miga");
   if (!caja) return;
@@ -3653,9 +3899,16 @@ function pintarPie(){
     var e = document.getElementById(par[0]);
     if (!e) return;
     e.innerHTML = INDICE[par[1]].map(function(x){
-      return '<a href="#/'+par[1]+'" data-ir="'+x[0]+'">'+esc(t[x[1]])+'</a>';
+      return '<a href="#/'+par[1]+'" data-ir="'+x[0]+'">'+esc(x[2] || t[x[1]])+'</a>';
     }).join("");
   });
+  var pl = document.getElementById("pieLegal");
+  if (pl){
+    pl.innerHTML = t.legal.map(function(b,i){
+      return '<a href="#/legal" data-ir="ap-le'+i+'">'+esc(b.t.replace(/^\d+\.\s*|^[٠-٩]+\.\s*/, ""))+'</a>';
+    }).join("") + '<button type="button" id="ckReabrir">'+esc(t.ckPrefs)+'</button>';
+    document.getElementById("ckReabrir").addEventListener("click", ckAbrir);
+  }
 }
 
 function pintarRail(){
@@ -3666,7 +3919,7 @@ function pintarRail(){
   if (!lista) return;
   document.getElementById("railTitulo").textContent = t[TITULOS[r]].split("—")[0].trim();
   document.getElementById("rail").innerHTML = lista.map(function(x){
-    return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(t[x[1]])+'</a>';
+    return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(x[2] || t[x[1]])+'</a>';
   }).join("");
   marcarRail();
 }
@@ -3733,6 +3986,19 @@ document.addEventListener("click", function(ev){
     var alto = cab ? cab.getBoundingClientRect().height : 0;
     window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - alto - 12);
   }, 60);
+});
+document.getElementById("ckMin").addEventListener("click", function(){ ckGuarda(["necesarias"]); });
+document.getElementById("ckTodo").addEventListener("click", function(){ ckGuarda(CK_CATS.slice()); });
+document.getElementById("ckMas").addEventListener("click", function(){
+  var pr = document.getElementById("ckPref"); pr.hidden = !pr.hidden;
+  this.setAttribute("aria-expanded", String(!pr.hidden));
+});
+document.getElementById("ckGuardar").addEventListener("click", function(){
+  var marcadas = ["necesarias"];
+  Array.prototype.forEach.call(document.querySelectorAll("#ckLista input:not([disabled])"), function(i){
+    if (i.checked) marcadas.push(i.value);
+  });
+  ckGuarda(marcadas);
 });
 window.addEventListener("hashchange", enrutar);
 window.addEventListener("scroll", marcarRail, {passive:true});
