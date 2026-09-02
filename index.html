@@ -95,6 +95,56 @@ html[dir="rtl"] .idi{font-size:.85rem;}
 .idi button:hover{color:var(--acento);}
 @media(max-width:980px){.barra{gap:.6rem 1rem}.idi{margin-inline-start:auto}nav.n{order:3;width:100%;margin-inline-start:0}}
 
+/* ── Rejilla de documento técnico: raíl fijo + columna de contenido ──
+   No es una web de folleto: se navega como una ficha de proyecto, con el
+   índice del apartado siempre a la vista y las cifras vivas abajo. */
+.doc{display:block;}
+.rail{display:none;}
+.doc-cuerpo{min-width:0;}
+@media(min-width:1120px){
+  .doc{display:grid;grid-template-columns:15.5rem minmax(0,1fr);
+       width:min(1460px,100% - 3rem);margin-inline:auto;align-items:start;}
+  .rail{display:block;position:sticky;top:3.6rem;align-self:start;
+        max-height:calc(100vh - 3.6rem);overflow-y:auto;padding:2.6rem 1.8rem 2rem 0;}
+  html[dir="rtl"] .rail{padding:2.6rem 0 2rem 1.8rem;}
+  .doc-cuerpo{border-inline-start:1px solid var(--linea);}
+  .doc-cuerpo .marco{width:auto;margin-inline:0;padding-inline:clamp(1.8rem,3vw,3.2rem);}
+  .doc .indice-pag{display:none;}
+}
+.rail-t{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tinta-3);margin:0 0 1rem;}
+html[dir="rtl"] .rail-t{letter-spacing:0;text-transform:none;font-size:.85rem;font-family:var(--cuerpo);}
+.rail nav{display:grid;}
+.rail a{display:block;text-decoration:none;color:var(--tinta-2);font-size:.86rem;
+  padding:.5rem 0 .5rem .9rem;border-inline-start:2px solid var(--linea);line-height:1.4;}
+html[dir="rtl"] .rail a{padding:.5rem .9rem .5rem 0;}
+.rail a:hover{color:var(--tinta);border-inline-start-color:var(--tinta-3);}
+.rail a[aria-current="true"]{color:var(--tinta);border-inline-start-color:var(--acento);}
+.rail-pie{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--linea);}
+.rail-eti{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--acento);margin:0 0 .5rem;}
+html[dir="rtl"] .rail-eti{letter-spacing:0;text-transform:none;font-size:.85rem;font-family:var(--cuerpo);}
+.rail-p{font-size:.82rem;color:var(--tinta-3);margin-bottom:1rem;line-height:1.55;}
+.rail-pie .btn{width:100%;text-align:center;}
+
+/* ── Barra inferior con el resultado vivo del simulador ────────────── */
+.barra-baja{position:fixed;inset-inline:0;bottom:0;z-index:70;background:var(--tinta);
+  color:var(--fondo);border-top:1px solid var(--tinta);}
+.bb-marco{width:var(--marco);margin-inline:auto;display:flex;flex-wrap:wrap;gap:1rem 2rem;
+  align-items:center;justify-content:space-between;padding-block:.75rem;}
+.bb-cifras{display:flex;gap:1.6rem 2.4rem;flex-wrap:wrap;}
+.bb-cifras b{display:block;font-family:var(--disp);font-size:1.15rem;font-weight:500;line-height:1.1;}
+.bb-cifras span{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  color:color-mix(in srgb,var(--fondo) 60%,transparent);display:block;margin-top:.2rem;}
+html[dir="rtl"] .bb-cifras span{letter-spacing:0;text-transform:none;font-size:.78rem;font-family:var(--cuerpo);}
+.bb-acc{display:flex;align-items:center;gap:1.2rem;}
+.bb-nota{font-family:var(--mono);font-size:.62rem;color:color-mix(in srgb,var(--fondo) 55%,transparent);}
+html[dir="rtl"] .bb-nota{font-size:.78rem;font-family:var(--cuerpo);}
+.barra-baja .btn.sol{background:var(--fondo);color:var(--tinta);border-color:var(--fondo);}
+.barra-baja .btn.sol:hover{background:transparent;color:var(--fondo);}
+@media(max-width:720px){.bb-nota{display:none}.bb-cifras div:nth-child(3){display:none}}
+body:has(.barra-baja:not([hidden])){padding-bottom:4.6rem;}
+
 [data-ruta]{display:none;} [data-ruta].on{display:block;animation:ap .4s ease both;}
 @keyframes ap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
@@ -498,6 +548,17 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 </header>
 
 <main>
+<div class="doc">
+  <aside class="rail" hidden>
+    <p class="rail-t" id="railTitulo"></p>
+    <nav id="rail" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav>
+    <div class="rail-pie">
+      <p class="rail-eti" data-t="railAyudaEti">¿Duda por dónde empezar?</p>
+      <p class="rail-p" data-t="railAyuda">Mándenos doce facturas y una foto de la cubierta. El estudio no se cobra.</p>
+      <a class="btn sol" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
+    </div>
+  </aside>
+  <div class="doc-cuerpo">
 
 <section data-ruta="inicio" id="ap-inicio">
   <div class="marco hero">
@@ -994,7 +1055,23 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 
 
 
+  </div>
+</div>
 </main>
+
+<div class="barra-baja" id="barraBaja" hidden>
+  <div class="bb-marco">
+    <div class="bb-cifras">
+      <div><b id="bbPot">—</b><span data-t="bbPotEti">Potencia recomendada</span></div>
+      <div><b id="bbAho">—</b><span data-t="bbAhoEti">Ahorro al año</span></div>
+      <div><b id="bbAmo">—</b><span data-t="bbAmoEti">Amortización</span></div>
+    </div>
+    <div class="bb-acc">
+      <span class="bb-nota" data-t="bbNota">Calculado con los datos del simulador</span>
+      <a class="btn sol" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
+    </div>
+  </div>
+</div>
 
 <footer class="n">
   <div class="marco pie">
@@ -1019,7 +1096,9 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 var T = {
 
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", nNumeros:"Los números", nRecursos:"Recursos", nEmpresa:"Empresa", ariaEnPagina:"En esta página",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", railAyudaEti:"¿Duda por dónde empezar?", railAyuda:"Mándenos doce facturas y una foto de la cubierta. El estudio no se cobra.",
+ bbPotEti:"Potencia recomendada", bbAhoEti:"Ahorro al año", bbAmoEti:"Amortización", bbNota:"Calculado con los datos del simulador",
+ nNumeros:"Los números", nRecursos:"Recursos", nEmpresa:"Empresa", ariaEnPagina:"En esta página",
  tNumeros:"Los números — NAHAR", tRecursos:"Recursos — NAHAR", tEmpresa:"Empresa y contacto — NAHAR",
 
  coOficinasEti:"Dónde estamos", coEquipoEti:"Con quién habla directamente",
@@ -1496,7 +1575,9 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", nNumeros:"The numbers", nRecursos:"Resources", nEmpresa:"Company", ariaEnPagina:"On this page",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", railAyudaEti:"Not sure where to start?", railAyuda:"Send us twelve bills and a photo of the roof. The study is free.",
+ bbPotEti:"Recommended capacity", bbAhoEti:"Saving per year", bbAmoEti:"Payback", bbNota:"Calculated from the simulator inputs",
+ nNumeros:"The numbers", nRecursos:"Resources", nEmpresa:"Company", ariaEnPagina:"On this page",
  tNumeros:"The numbers — NAHAR", tRecursos:"Resources — NAHAR", tEmpresa:"Company and contact — NAHAR",
 
  coOficinasEti:"Where we are", coEquipoEti:"Who you speak to directly",
@@ -1973,7 +2054,9 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", nNumeros:"الأرقام", nRecursos:"موارد", nEmpresa:"الشركة", ariaEnPagina:"في هذه الصفحة",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", railAyudaEti:"لا تدري من أين تبدأ؟", railAyuda:"أرسل إلينا اثنتي عشرة فاتورة وصورة للسطح. والدراسة بلا مقابل.",
+ bbPotEti:"القدرة الموصى بها", bbAhoEti:"الوفر السنوي", bbAmoEti:"مدة الاسترداد", bbNota:"محسوبة ببيانات المحاكي",
+ nNumeros:"الأرقام", nRecursos:"موارد", nEmpresa:"الشركة", ariaEnPagina:"في هذه الصفحة",
  tNumeros:"الأرقام — نهار", tRecursos:"موارد — نهار", tEmpresa:"الشركة والتواصل — نهار",
 
  coOficinasEti:"أين نحن", coEquipoEti:"مع من تتحدث مباشرةً",
@@ -3334,6 +3417,7 @@ function aplicar(codigo){
   var ac = document.getElementById("acuse");
   if (ac){ ac.textContent = ""; ac.classList.remove("mal"); }
 
+  pintarRail(); pintarBarraBaja();
   Object.keys(INDICE).forEach(function(r){
     var e = document.getElementById("ix-"+r); if (!e) return;
     e.innerHTML = INDICE[r].map(function(x){
@@ -3342,6 +3426,48 @@ function aplicar(codigo){
   });
   pintarListas(); pintarRendimiento(); pintarAmortizacion(); lamina(); pintarNuevas();
   try{ localStorage.setItem("nahar_lang", codigo); }catch(e){}
+}
+
+/* El raíl sustituye al índice horizontal en pantallas anchas: en un sitio
+   técnico interesa tener el sumario del apartado siempre delante. */
+function pintarRail(){
+  var r = ruta(), t = T[idioma], caja = document.querySelector(".rail");
+  if (!caja) return;
+  var lista = INDICE[r];
+  caja.hidden = !lista;
+  if (!lista) return;
+  document.getElementById("railTitulo").textContent = t[TITULOS[r]].split("—")[0].trim();
+  document.getElementById("rail").innerHTML = lista.map(function(x){
+    return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(t[x[1]])+'</a>';
+  }).join("");
+  marcarRail();
+}
+
+/* Marca el apartado que el lector tiene delante ahora mismo. */
+function marcarRail(){
+  var enlaces = document.querySelectorAll("#rail a[data-ir]"), i, activo = null;
+  for (i = 0; i < enlaces.length; i++){
+    var el = document.getElementById(enlaces[i].getAttribute("data-ir"));
+    /* offsetParent nulo = el apartado pertenece a otra página y está oculto */
+    if (el && el.offsetParent && el.getBoundingClientRect().top <= 140) activo = enlaces[i];
+  }
+  if (!activo && enlaces.length) activo = enlaces[0];
+  for (i = 0; i < enlaces.length; i++)
+    enlaces[i].setAttribute("aria-current", String(enlaces[i] === activo));
+}
+
+/* La barra inferior lleva el resultado del simulador allá donde vaya el
+   lector: es la cifra por la que ha entrado, y no debería perderla de vista. */
+function pintarBarraBaja(){
+  var caja = document.getElementById("barraBaja");
+  if (!caja || typeof leerSim !== "function") return;
+  var t = T[idioma], r;
+  try { r = leerSim(); } catch(e){ caja.hidden = true; return; }
+  caja.hidden = ruta() === "inicio";
+  document.getElementById("bbPot").innerHTML = num(r.kwp) + " kWp";
+  document.getElementById("bbAho").textContent = eur(r.ahorro);
+  document.getElementById("bbAmo").textContent = r.payback
+    ? num(r.payback,1) + " " + (r.payback < 2 ? t.anio : t.anios) : "—";
 }
 
 function enrutar(){
@@ -3354,6 +3480,7 @@ function enrutar(){
   }
   document.title = T[idioma][TITULOS[r]] || T[idioma].tInicio;
   window.scrollTo(0,0);
+  pintarRail(); pintarBarraBaja();
 }
 
 var bs = document.querySelectorAll(".idi button");
@@ -3373,11 +3500,16 @@ document.addEventListener("click", function(ev){
   }, 60);
 });
 window.addEventListener("hashchange", enrutar);
+window.addEventListener("scroll", marcarRail, {passive:true});
 document.getElementById("amKwp").addEventListener("input", pintarAmortizacion);
 document.getElementById("amAuto").addEventListener("input", pintarAmortizacion);
 ["siCons","siPrec","siSup","siPerf"].forEach(function(id){
   var el = document.getElementById(id);
   if (el) el.addEventListener("input", pintarSimulador);
+});
+["siCons","siPrec","siSup","siPerf"].forEach(function(id){
+  var el = document.getElementById(id);
+  if (el) el.addEventListener("input", pintarBarraBaja);
 });
 var glB = document.getElementById("glBuscar");
 if (glB) glB.addEventListener("input", pintarGlosario);
