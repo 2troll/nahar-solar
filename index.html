@@ -55,6 +55,10 @@
 html[dir="rtl"]{ --disp:"Cairo",sans-serif; --cuerpo:"Cairo",sans-serif; --mono:"Cairo",sans-serif; }
 
 *,*::before,*::after{box-sizing:border-box;}
+/* Un display explícito gana al [hidden] de la hoja del navegador: hay que
+   decirlo a mano o los paneles ocultos se siguen viendo. */
+[hidden]{display:none !important;}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
 body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--cuerpo);
   font-weight:300;font-size:clamp(15px,1.02vw,16.5px);line-height:1.65;
@@ -482,6 +486,28 @@ html[dir="rtl"] .despues li::before{content:counter(d,arabic-indic);font-family:
   color:var(--tinta-3);display:block;margin-top:.4rem;}
 html[dir="rtl"] .serv-meta span{letter-spacing:0;text-transform:none;font-size:.8rem;font-family:var(--cuerpo);}
 .serv-cols{display:grid;gap:2rem;} @media(min-width:820px){.serv-cols{grid-template-columns:1fr 1fr;gap:3rem;}}
+
+/* ── Ficha técnica: en un sitio de ingeniería los datos van en tabla,
+   no en tarjetas con esquinas redondeadas. ─────────────────────────── */
+.ficha-tec{width:100%;border-collapse:collapse;margin-top:1rem;}
+.ficha-tec tr{border-bottom:1px solid var(--linea-2);}
+.ficha-tec tr:first-child{border-top:1px solid var(--linea);}
+.ficha-tec th{text-align:start;font-weight:400;color:var(--tinta-3);font-size:.86rem;
+  padding:.85rem 1.5rem .85rem 0;width:38%;vertical-align:top;}
+html[dir="rtl"] .ficha-tec th{padding:.85rem 0 .85rem 1.5rem;}
+.ficha-tec td{padding:.85rem 0;font-size:.92rem;vertical-align:top;}
+.ficha-tec td small{display:block;color:var(--tinta-3);font-size:.8rem;margin-top:.2rem;}
+@media(max-width:560px){.ficha-tec th,.ficha-tec td{display:block;width:auto;padding:.5rem 0;}
+  .ficha-tec th{padding-bottom:0;} .ficha-tec tr{padding-block:.5rem;}}
+
+.hitos{list-style:none;margin:1rem 0 0;padding:0;}
+.hitos li{display:grid;grid-template-columns:5rem 1fr;gap:1.5rem;padding-block:1.3rem;
+  border-bottom:1px solid var(--linea-2);}
+.hitos li:first-child{border-top:1px solid var(--linea);}
+.hitos b{font-family:var(--mono);font-size:.86rem;color:var(--acento);padding-top:.15rem;}
+html[dir="rtl"] .hitos b{font-family:var(--cuerpo);}
+.hitos h3{font-size:1.05rem;margin-bottom:.3rem;}
+.hitos p{color:var(--tinta-2);font-size:.92rem;margin:0;}
 
 /* ── Preguntas ───────────────────────────────────────────────────── */
 .faq{border-top:1px solid var(--linea);}
@@ -960,6 +986,18 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   <div class="marco">
     <div class="rej r3" id="noValores"></div>
     <div style="margin-top:2rem" class="rej r4" id="noDatos"></div>
+    <div style="margin-top:3rem">
+      <p class="eti" data-t="noFichaEti">Datos de la sociedad</p>
+      <table class="ficha-tec" id="noFicha"></table>
+    </div>
+    <div style="margin-top:3rem">
+      <p class="eti" data-t="noHitosEti">Por dónde hemos pasado</p>
+      <ol class="hitos" id="noHitos"></ol>
+    </div>
+    <div style="margin-top:3rem">
+      <p class="eti" data-t="noPagoEti">Cómo se factura y cómo se cobra</p>
+      <div id="noPago" style="max-width:66ch;margin-top:1rem"></div>
+    </div>
     <div style="margin-top:2.5rem">
       <p class="eti" data-t="credEti">Créditos de las imágenes</p>
       <p class="metodo" data-t="credNota">Fotografías de Wikimedia Commons con licencia libre, atribuidas a su autor. Se sustituirían por fotografía propia de obra en un encargo real.</p>
@@ -1096,7 +1134,33 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 var T = {
 
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", railAyudaEti:"¿Duda por dónde empezar?", railAyuda:"Mándenos doce facturas y una foto de la cubierta. El estudio no se cobra.",
+ _dir:"ltr", _lang:"es", _loc:"es-ES",
+ noFichaEti:"Datos de la sociedad", noHitosEti:"Por dónde hemos pasado",
+ noPagoEti:"Cómo se factura y cómo se cobra",
+ noFicha:[
+  {k:"Forma jurídica", v:"Sociedad limitada", n:"Constituida en 2016. No trabajamos con autónomos subcontratados en la parte de ingeniería."},
+  {k:"Plantilla", v:"14 personas", n:"9 en obra, 3 en ingeniería, 2 en administración. Ninguna empresa de trabajo temporal."},
+  {k:"Potencia instalada", v:"11,4 MWp", n:"Repartidos en 38 plantas industriales entre 80 y 900 kWp."},
+  {k:"Seguro de responsabilidad civil", v:"3.000.000 €", n:"Certificado a nombre del cliente, entregado antes de pisar la obra."},
+  {k:"Seguro decenal de estructura", v:"Sí", n:"Cubre el anclaje a cubierta, que es donde de verdad se juega uno un problema."},
+  {k:"Clasificación de contratista", v:"Grupo I, subgrupo 7", n:"Necesaria para licitar obra pública; en privado no la piden casi nunca."},
+  {k:"Instalador autorizado", v:"Baja y alta tensión", n:"Categoría especialista. El boletín lo firma alguien de la plantilla."},
+  {k:"Aval de garantía", v:"5 % durante 12 meses", n:"Retenido o avalado, como prefiera. Se libera con el informe del primer año."}
+ ],
+ noHitos:[
+  {a:"2016", t:"Empezamos haciendo proyectos para otros", p:"Tres años firmando la ingeniería de instalaciones que montaban terceros. Se aprende mucho viendo cómo se ejecuta mal lo que uno ha calculado bien, y es la razón por la que hoy no subcontratamos el montaje."},
+  {a:"2019", t:"Primera obra propia, y el primer disgusto", p:"420 kWp en una nave de automoción. La estructura llegó con seis semanas de retraso porque no habíamos cerrado el suministro por contrato. Desde entonces el acopio de material se cierra antes de firmar el plazo de obra, no después."},
+  {a:"2021", t:"Montamos el departamento de explotación", p:"Nos dimos cuenta de que las plantas de 2019 producían un 8 % menos de lo previsto por suciedad y por dos inversores que llevaban meses en fallo sin que nadie mirase. Contratamos a una persona sólo para eso y hoy es el servicio que más recomiendan nuestros clientes."},
+  {a:"2023", t:"Primera garantía de producción con compensación", p:"Un cliente nos pidió que pusiéramos por escrito lo que decíamos de palabra. Nos costó rehacer el modelo económico para poder firmarlo sin arruinarnos. Hemos compensado dos veces en tres años, ambas por un año malo de radiación."},
+  {a:"2025", t:"Delegación en Levante", p:"Abrimos en Valencia porque hacer seiscientos kilómetros para atender una incidencia de dos horas no es un servicio de mantenimiento, es una factura de desplazamiento."}
+ ],
+ noPago:[
+  "En una obra de autoconsumo industrial el reparto habitual es 30 % a la firma, 50 % contra acopio de material en almacén y 20 % a la puesta en marcha. No pedimos nada por adelantado antes de firmar y no empezamos a facturar hasta que hay proyecto entregado.",
+  "El 50 % del acopio se justifica con albaranes: usted paga cuando el material está comprado y a su nombre, no cuando nosotros decimos que lo hemos pedido. Si la obra se cae por causa nuestra, ese material es suyo.",
+  "El último 20 % se cobra con la planta produciendo y con el certificado de instalación entregado, no con la obra \u201cprácticamente terminada\u201d. Y del total se retiene un 5 % durante doce meses como garantía, que puede sustituirse por aval bancario si prefiere no inmovilizar el dinero.",
+  "Trabajamos también contra pago aplazado a 60 o 90 días con empresas que lo necesiten por tesorería, pero eso se habla antes del presupuesto y se refleja en el precio. Lo que no hacemos es aceptarlo de hecho y luego perseguir la factura."
+ ],
+ railAyudaEti:"¿Duda por dónde empezar?", railAyuda:"Mándenos doce facturas y una foto de la cubierta. El estudio no se cobra.",
  bbPotEti:"Potencia recomendada", bbAhoEti:"Ahorro al año", bbAmoEti:"Amortización", bbNota:"Calculado con los datos del simulador",
  nNumeros:"Los números", nRecursos:"Recursos", nEmpresa:"Empresa", ariaEnPagina:"En esta página",
  tNumeros:"Los números — NAHAR", tRecursos:"Recursos — NAHAR", tEmpresa:"Empresa y contacto — NAHAR",
@@ -1575,7 +1639,33 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", railAyudaEti:"Not sure where to start?", railAyuda:"Send us twelve bills and a photo of the roof. The study is free.",
+ _dir:"ltr", _lang:"en", _loc:"en-GB",
+ noFichaEti:"Company details", noHitosEti:"Where we have been",
+ noPagoEti:"How invoicing and payment work",
+ noFicha:[
+  {k:"Legal form", v:"Limited company", n:"Incorporated in 2016. We do not use subcontracted freelancers on the engineering side."},
+  {k:"Headcount", v:"14 people", n:"9 on site, 3 in engineering, 2 in administration. No agency staff."},
+  {k:"Installed capacity", v:"11.4 MWp", n:"Across 38 industrial plants between 80 and 900 kWp."},
+  {k:"Public liability insurance", v:"€3,000,000", n:"Certified in the client's name, handed over before we set foot on site."},
+  {k:"Ten-year structural insurance", v:"Yes", n:"Covers the roof anchoring, which is where a real problem would actually come from."},
+  {k:"Contractor classification", v:"Group I, subgroup 7", n:"Needed to bid for public works; private clients almost never ask for it."},
+  {k:"Authorised installer", v:"Low and high voltage", n:"Specialist category. The electrical certificate is signed by someone on the payroll."},
+  {k:"Retention guarantee", v:"5 % for 12 months", n:"Retained or bonded, as you prefer. Released with the first-year report."}
+ ],
+ noHitos:[
+  {a:"2016", t:"We started designing for other people", p:"Three years signing off the engineering for installations built by third parties. You learn a great deal watching something you calculated well get built badly, and it is why we do not subcontract installation today."},
+  {a:"2019", t:"First job of our own, and the first hard lesson", p:"420 kWp on an automotive plant. The structure arrived six weeks late because we had not tied the supply down by contract. Since then material procurement is closed before the works deadline is agreed, not after."},
+  {a:"2021", t:"We set up the operations department", p:"We realised the 2019 plants were producing 8 % below forecast from dirt and from two inverters that had been in fault for months with nobody looking. We hired someone solely for that, and today it is the service our clients recommend most."},
+  {a:"2023", t:"First output guarantee with compensation", p:"A client asked us to put in writing what we were saying out loud. It took a rebuild of the financial model to be able to sign it without ruining ourselves. We have compensated twice in three years, both times for a poor irradiation year."},
+  {a:"2025", t:"Levante branch", p:"We opened in Valencia because driving six hundred kilometres to deal with a two-hour incident is not a maintenance service, it is a travel invoice."}
+ ],
+ noPago:[
+  "On an industrial self-consumption job the usual split is 30 % on signature, 50 % against material delivered to the warehouse and 20 % on commissioning. We ask for nothing up front before signing and we do not start invoicing until the design has been delivered.",
+  "The 50 % on procurement is evidenced with delivery notes: you pay when the material has been bought and is in your name, not when we say we have ordered it. If the job falls through because of us, that material is yours.",
+  "The final 20 % is invoiced with the plant producing and the installation certificate handed over, not with the job \u201cpractically finished\u201d. And 5 % of the total is retained for twelve months as a guarantee, which can be replaced by a bank bond if you would rather not tie up the cash.",
+  "We also work on 60 or 90 day terms with companies that need it for cash flow, but that is discussed before the quotation and it is reflected in the price. What we do not do is accept it in practice and then chase the invoice."
+ ],
+ railAyudaEti:"Not sure where to start?", railAyuda:"Send us twelve bills and a photo of the roof. The study is free.",
  bbPotEti:"Recommended capacity", bbAhoEti:"Saving per year", bbAmoEti:"Payback", bbNota:"Calculated from the simulator inputs",
  nNumeros:"The numbers", nRecursos:"Resources", nEmpresa:"Company", ariaEnPagina:"On this page",
  tNumeros:"The numbers — NAHAR", tRecursos:"Resources — NAHAR", tEmpresa:"Company and contact — NAHAR",
@@ -2054,7 +2144,33 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", railAyudaEti:"لا تدري من أين تبدأ؟", railAyuda:"أرسل إلينا اثنتي عشرة فاتورة وصورة للسطح. والدراسة بلا مقابل.",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ noFichaEti:"بيانات الشركة", noHitosEti:"أين مررنا",
+ noPagoEti:"كيف تجري الفوترة والتحصيل",
+ noFicha:[
+  {k:"الشكل القانوني", v:"شركة ذات مسؤولية محدودة", n:"تأسست سنة ٢٠١٦. ولا نستعين بمستقلّين من الباطن في الجانب الهندسي."},
+  {k:"عدد الموظفين", v:"١٤ شخصًا", n:"٩ في الموقع، و٣ في الهندسة، و٢ في الإدارة. ولا أحد من شركات التوظيف المؤقت."},
+  {k:"القدرة المركَّبة", v:"١١٫٤ ميغاواط", n:"موزّعة على ٣٨ محطة صناعية بين ٨٠ و٩٠٠ كيلوواط."},
+  {k:"تأمين المسؤولية المدنية", v:"٣٬٠٠٠٬٠٠٠ يورو", n:"بشهادة باسم العميل، تُسلَّم قبل دخول الموقع."},
+  {k:"التأمين العشري للهياكل", v:"نعم", n:"يغطي التثبيت على السطح، وهو موضع المشكلة الحقيقية إن وقعت."},
+  {k:"تصنيف المقاول", v:"المجموعة ١، الفئة ٧", n:"لازم للمناقصات العامة؛ أما الخاصة فنادرًا ما تطلبه."},
+  {k:"مُركِّب معتمد", v:"جهد منخفض وعالٍ", n:"فئة أخصائي. ويوقّع النشرة الكهربائية أحد موظفينا."},
+  {k:"ضمان الاحتجاز", v:"٥٪ لمدة ١٢ شهرًا", n:"محتجَز أو بكفالة، كما تفضّل. ويُفرَج عنه مع تقرير السنة الأولى."}
+ ],
+ noHitos:[
+  {a:"٢٠١٦", t:"بدأنا نُعدّ المشاريع لغيرنا", p:"ثلاث سنوات نوقّع هندسة منشآت ينفّذها آخرون. ويتعلّم المرء كثيرًا وهو يرى ما حسبه جيدًا يُنفَّذ رديئًا، وهذا سبب امتناعنا اليوم عن إسناد التركيب من الباطن."},
+  {a:"٢٠١٩", t:"أول أعمالنا، وأول خيبة", p:"٤٢٠ كيلوواط في مصنع سيارات. وصل الهيكل متأخرًا ستة أسابيع لأننا لم نُحكم عقد التوريد. ومنذ ذلك الحين يُغلق تأمين المواد قبل الاتفاق على مهلة الأعمال، لا بعده."},
+  {a:"٢٠٢١", t:"أنشأنا قسم التشغيل", p:"تبيّن لنا أن محطات ٢٠١٩ تُنتج أقل بـ٨٪ من المتوقَّع بسبب الأوساخ وعاكسين معطّلين منذ أشهر دون أن ينظر إليهما أحد. فوظّفنا شخصًا لهذا وحده، وهو اليوم أكثر خدماتنا التي يوصي بها عملاؤنا."},
+  {a:"٢٠٢٣", t:"أول ضمان إنتاج مع تعويض", p:"طلب منا عميل أن نكتب ما نقوله شفاهةً. وكلّفنا ذلك إعادة بناء النموذج الاقتصادي كي نوقّعه دون أن نُفلس. وقد عوّضنا مرتين في ثلاث سنوات، وكلتاهما بسبب سنة إشعاع رديئة."},
+  {a:"٢٠٢٥", t:"فرع ليبانتي", p:"افتتحنا في بلنسية لأن قطع ستمئة كيلومتر لمعالجة بلاغ مدته ساعتان ليس خدمة صيانة، بل فاتورة تنقّل."}
+ ],
+ noPago:[
+  "في أعمال الاستهلاك الذاتي الصناعي يكون التقسيم المعتاد ٣٠٪ عند التوقيع، و٥٠٪ مقابل وصول المواد إلى المستودع، و٢٠٪ عند التشغيل. ولا نطلب شيئًا مقدَّمًا قبل التوقيع، ولا نبدأ الفوترة قبل تسليم المشروع.",
+  "و٥٠٪ المواد تُثبَت بإشعارات التسليم: فأنت تدفع حين تُشترى المواد وتصير باسمك، لا حين نقول إننا طلبناها. وإن تعثّرت الأعمال بسببنا، فتلك المواد لك.",
+  "أما الـ٢٠٪ الأخيرة فتُفوتَر والمحطة تُنتج وشهادة التركيب مسلَّمة، لا والأعمال «شبه منتهية». ويُحتجَز ٥٪ من الإجمالي اثني عشر شهرًا ضمانًا، ويمكن استبداله بكفالة بنكية إن فضّلت ألّا تجمّد المال.",
+  "ونعمل أيضًا بالدفع المؤجَّل إلى ٦٠ أو ٩٠ يومًا مع الشركات التي تحتاجه لأسباب سيولة، لكن ذلك يُبحث قبل عرض السعر ويُعكس في السعر. أما ما لا نفعله فهو قبوله أمرًا واقعًا ثم ملاحقة الفاتورة."
+ ],
+ railAyudaEti:"لا تدري من أين تبدأ؟", railAyuda:"أرسل إلينا اثنتي عشرة فاتورة وصورة للسطح. والدراسة بلا مقابل.",
  bbPotEti:"القدرة الموصى بها", bbAhoEti:"الوفر السنوي", bbAmoEti:"مدة الاسترداد", bbNota:"محسوبة ببيانات المحاكي",
  nNumeros:"الأرقام", nRecursos:"موارد", nEmpresa:"الشركة", ariaEnPagina:"في هذه الصفحة",
  tNumeros:"الأرقام — نهار", tRecursos:"موارد — نهار", tEmpresa:"الشركة والتواصل — نهار",
@@ -3281,6 +3397,22 @@ function pintarListas(){
       + b.noi.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul></div><div>'
       + '<p class="eti">'+esc(t.svEnt)+'</p><ul class="lista">'
       + b.ent.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul></div></div></section>';
+  }).join("");
+
+  var nf = document.getElementById("noFicha");
+  if (nf) nf.innerHTML = t.noFicha.map(function(f){
+    return '<tr><th scope="row">'+esc(f.k)+'</th><td>'+esc(f.v)
+      + '<small>'+esc(f.n)+'</small></td></tr>';
+  }).join("");
+
+  var nh = document.getElementById("noHitos");
+  if (nh) nh.innerHTML = t.noHitos.map(function(h){
+    return '<li><b>'+esc(h.a)+'</b><div><h3>'+esc(h.t)+'</h3><p>'+esc(h.p)+'</p></div></li>';
+  }).join("");
+
+  var np = document.getElementById("noPago");
+  if (np) np.innerHTML = t.noPago.map(function(x){
+    return '<p style="margin-bottom:1rem;color:var(--tinta-2)">'+esc(x)+'</p>';
   }).join("");
 
   /* Equipos: criterios de selección y cómo se lee la tabla */
