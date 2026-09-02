@@ -394,6 +394,45 @@ html[dir="rtl"] .of-v .u{letter-spacing:0;text-transform:none;font-size:.8rem;fo
 .of-v li i{font-style:normal;}
 .of-v li.si i{color:var(--s3);} .of-v li.no i{color:var(--s2);}
 
+
+/* ── Contacto de empresa ─────────────────────────────────────────── */
+.cont-rej{display:grid;gap:2.5rem;} @media(min-width:900px){.cont-rej{grid-template-columns:1.1fr .9fr;gap:3.5rem;align-items:start;}}
+.oficinas{display:grid;gap:1px;background:var(--linea);border:1px solid var(--linea);margin-bottom:2rem;}
+@media(min-width:560px){.oficinas{grid-template-columns:1fr 1fr;}}
+.ofi{background:var(--fondo);padding:1.4rem;}
+.ofi h4{font-family:var(--disp);font-size:1.1rem;margin:0 0 .6rem;}
+.ofi address{font-style:normal;font-size:.92rem;color:var(--tinta-2);line-height:1.75;}
+.ofi .tel{display:block;margin-top:.7rem;font-family:var(--mono);font-size:.88rem;color:var(--acento);text-decoration:none;}
+html[dir="rtl"] .ofi .tel{font-family:var(--cuerpo);}
+.equipo-cont{border-top:1px solid var(--linea);}
+.equipo-cont div{display:grid;grid-template-columns:1fr auto;gap:1rem;padding-block:.9rem;
+  border-bottom:1px solid var(--linea-2);align-items:baseline;}
+.equipo-cont b{font-weight:500;font-size:.95rem;display:block;}
+.equipo-cont span{font-size:.85rem;color:var(--tinta-3);display:block;}
+.equipo-cont a{font-family:var(--mono);font-size:.82rem;color:var(--acento);text-decoration:none;white-space:nowrap;}
+html[dir="rtl"] .equipo-cont a{font-family:var(--cuerpo);font-size:.9rem;}
+.despues{counter-reset:d;list-style:none;margin:1rem 0 0;padding:0;}
+.despues li{counter-increment:d;display:grid;grid-template-columns:2rem 1fr;gap:1rem;
+  padding-block:.9rem;border-bottom:1px solid var(--linea-2);}
+.despues li::before{content:counter(d);font-family:var(--mono);color:var(--acento);font-size:.8rem;padding-top:.15rem;}
+html[dir="rtl"] .despues li::before{content:counter(d,arabic-indic);font-family:var(--cuerpo);font-size:.95rem;}
+.despues b{display:block;font-weight:500;font-size:.95rem;margin-bottom:.15rem;}
+.despues span{font-size:.88rem;color:var(--tinta-2);}
+
+/* ── Servicio en profundidad ─────────────────────────────────────── */
+.serv-bloque{border-top:1px solid var(--linea);padding-block:clamp(2rem,4vw,3rem);}
+.serv-cab{display:grid;gap:1.5rem;margin-bottom:1.8rem;}
+@media(min-width:820px){.serv-cab{grid-template-columns:1fr 1fr;gap:3rem;}}
+.serv-cab h3{font-size:clamp(1.5rem,2.8vw,2.1rem);}
+.serv-meta{display:grid;gap:1px;background:var(--linea);border:1px solid var(--linea);
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-bottom:1.6rem;}
+.serv-meta div{background:var(--fondo);padding:1rem;}
+.serv-meta b{display:block;font-size:1rem;font-weight:500;}
+.serv-meta span{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--tinta-3);display:block;margin-top:.4rem;}
+html[dir="rtl"] .serv-meta span{letter-spacing:0;text-transform:none;font-size:.8rem;font-family:var(--cuerpo);}
+.serv-cols{display:grid;gap:2rem;} @media(min-width:820px){.serv-cols{grid-template-columns:1fr 1fr;gap:3rem;}}
+
 /* ── Preguntas ───────────────────────────────────────────────────── */
 .faq{border-top:1px solid var(--linea);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
@@ -556,37 +595,15 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:18ch" data-t="svH1">Tres fases, un solo interlocutor.</h1>
     <p class="entrada" data-t="svEntrada">No subcontratamos la ingeniería ni la obra. Quien firma el estudio es quien responde de la producción cinco años después.</p>
   </div>
-  <div class="marco">
-    <div class="filas">
-      <div class="fila"><div class="i">01</div><div><h3 data-t="s1t">Estudio y diseño</h3></div><div class="d">
-        <p data-t="sv1p">Partimos de su curva horaria, no de su factura anual. La diferencia importa: dos plantas con el mismo consumo total pueden necesitar potencias muy distintas según a qué hora consuman.</p>
-        <ul class="lista">
-          <li data-t="sv1a">Lectura de la curva horaria del contador (15 minutos)</li>
-          <li data-t="sv1b">Levantamiento de cubierta y estudio de sombras</li>
-          <li data-t="sv1c">Cálculo estructural y comprobación de sobrecarga</li>
-          <li data-t="sv1d">Dimensionado por rentabilidad, no por superficie disponible</li>
-        </ul></div></div>
-      <div class="fila"><div class="i">02</div><div><h3 data-t="s2t">Ejecución</h3></div><div class="d">
-        <p data-t="sv2p">Obra llave en mano con equipo propio y plazo cerrado en contrato. La coordinación de seguridad y salud y la legalización van incluidas.</p>
-        <ul class="lista">
-          <li data-t="sv2a">Estructura, módulos, inversores y protecciones</li>
-          <li data-t="sv2b">Legalización y tramitación completa ante distribuidora</li>
-          <li data-t="sv2c">Trabajo en parada programada o fuera de turno</li>
-          <li data-t="sv2d">Penalización por día de retraso, escrita en contrato</li>
-        </ul>
-        <ul class="lista no">
-          <li data-t="sv2n1">No cobramos ampliaciones que no estuvieran en el proyecto</li>
-        </ul></div></div>
-      <div class="fila"><div class="i">03</div><div><h3 data-t="s3t">Explotación</h3></div><div class="d">
-        <p data-t="sv3p">Una planta sin mantenimiento pierde entre un 3 % y un 7 % de producción al año por suciedad y microfallos que nadie ve desde el suelo.</p>
-        <ul class="lista">
-          <li data-t="sv3a">Monitorización remota con alarma por bajo rendimiento</li>
-          <li data-t="sv3b">Limpieza programada según la época y el entorno</li>
-          <li data-t="sv3c">Termografía anual para detectar células calientes</li>
-          <li data-t="sv3d">Garantía de producción con compensación si no se alcanza</li>
-        </ul></div></div>
+  <div class="marco" id="svBloques"></div>
+  <div class="marco bloque">
+    <div class="cinta-cta">
+      <div>
+        <h3 data-t="ctaEstudioH">El estudio de viabilidad no se cobra.</h3>
+        <p data-t="ctaEstudioP">Con doce facturas y una foto de la cubierta le decimos en dos semanas si le sale a cuenta.</p>
+      </div>
+      <a class="btn" href="#/contacto" data-t="bEstudio">Pedir estudio</a>
     </div>
-    <div class="acc"><a class="btn sol" href="#/contacto" data-t="bEstudio">Pedir estudio</a></div>
   </div>
 </section>
 
@@ -721,7 +738,8 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:18ch" data-t="coH1">Mándenos una factura y le decimos si le sale a cuenta.</h1>
     <p class="entrada" data-t="coEntrada">El primer estudio no se cobra. Si no sale rentable, se lo decimos y ahí acaba.</p>
   </div>
-  <div class="marco">
+  <div class="marco cont-rej">
+    <div>
     <form id="f" novalidate>
       <div class="par">
         <div><label for="emp" data-t="lEmpresa">Empresa</label><input id="emp" autocomplete="organization"></div>
@@ -750,6 +768,18 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
       </div>
       <p class="aviso" data-t="coAviso">Sus datos se usan sólo para responder a esta consulta. No se ceden a terceros.</p>
     </form>
+    <div style="margin-top:2.5rem">
+      <p class="eti" data-t="coDespuesEti">Qué pasa después de darle a enviar</p>
+      <ol class="despues" id="coDespues"></ol>
+    </div>
+    </div>
+    <aside>
+      <p class="eti" data-t="coOficinasEti">Dónde estamos</p>
+      <div class="oficinas" id="coOficinas"></div>
+      <p class="eti" data-t="coEquipoEti">Con quién habla directamente</p>
+      <div class="equipo-cont" id="coEquipo"></div>
+      <p class="metodo" data-t="coHorario">Atendemos de lunes a viernes de 8:00 a 18:00 (CET). Fuera de ese horario puede escribir igualmente: los correos se leen a primera hora del día siguiente laborable. Para incidencias en plantas con contrato de mantenimiento hay un teléfono de guardia que se entrega con la puesta en marcha.</p>
+    </aside>
   </div>
 </section>
 
@@ -951,6 +981,73 @@ var T = {
 
 es:{
  _dir:"ltr", _lang:"es", _loc:"es-ES",
+ coOficinasEti:"Dónde estamos", coEquipoEti:"Con quién habla directamente",
+ coDespuesEti:"Qué pasa después de darle a enviar",
+ coHorario:"Atendemos de lunes a viernes de 8:00 a 18:00 (CET). Fuera de ese horario puede escribir igualmente: los correos se leen a primera hora del día siguiente laborable. Para incidencias en plantas con contrato de mantenimiento hay un teléfono de guardia que se entrega con la puesta en marcha.",
+ oficinas:[
+  {n:"Oficina técnica", d:"Polígono Industrial Las Salinas<br>Nave 14, 50016 Zaragoza<br>España", t:"+34 976 000 000"},
+  {n:"Delegación Levante", d:"Camí del Port 88, planta 2<br>46540 El Puig, Valencia<br>España", t:"+34 961 000 000"}
+ ],
+ equipoCont:[
+  {n:"Estudios y viabilidad", r:"Curvas de consumo, dimensionado y presupuesto", m:"estudios@nahar.example"},
+  {n:"Ingeniería y proyecto", r:"Cálculo estructural, legalización y tramitación", m:"proyecto@nahar.example"},
+  {n:"Obra", r:"Planificación, coordinación y ejecución en planta", m:"obra@nahar.example"},
+  {n:"Explotación y garantías", r:"Monitorización, incidencias y garantía de producción", m:"soporte@nahar.example"}
+ ],
+ despues:[
+  {t:"Le contestamos en menos de 48 horas laborables", d:"Una persona, no un acuse automático. Si su caso está fuera de lo que hacemos, se lo decimos en ese mismo correo y le orientamos."},
+  {t:"Le pedimos tres cosas", d:"Las doce últimas facturas, la curva horaria del contador y una vista de la cubierta. Con eso podemos hacer una primera estimación sin pisar la planta."},
+  {t:"Visita técnica de una mañana", d:"Medimos cubierta, comprobamos estructura y localizamos el cuadro general. Sin compromiso y sin coste, aunque después no siga adelante."},
+  {t:"Estudio y propuesta cerrada", d:"Entre una y dos semanas después. Precio, plazo, producción garantizada y calendario. A partir de ahí decide usted, sin llamadas de seguimiento."}
+ ],
+ svIncluye:"Qué incluye", svNo:"Qué no le vamos a cobrar aparte", svEnt:"Qué recibe al terminar",
+ caReto:"El problema", caSol:"Lo que hicimos", caRes:"El resultado", caAp:"Lo que nos dejó",
+ svBloques:[
+  {n:"Estudio y diseño", f:"Fase 1", 
+   p:["Partimos de su curva horaria, no de su factura anual. La diferencia importa más de lo que parece: dos plantas con el mismo consumo total pueden necesitar potencias muy distintas según a qué hora consuman. Una que trabaja de noche y otra que trabaja de día pagan lo mismo a la comercializadora y necesitan instalaciones que no se parecen en nada.",
+       "El levantamiento de cubierta lo hacemos in situ, no con una vista de satélite. Medimos, comprobamos el estado de la chapa o del panel sándwich, localizamos lucernarios y extractores, y hacemos el estudio de sombras con las obstrucciones reales. Una chimenea que a las nueve de la mañana proyecta sombra sobre tres filas de módulos puede costar más que los propios módulos."],
+   meta:[{v:"1–2 sem",u:"Plazo"},{v:"0 €",u:"Coste"},{v:"15 min",u:"Resolución de la curva"},{v:"Sí",u:"Sin compromiso"}],
+   inc:["Lectura y análisis de la curva horaria en tramos de 15 minutos","Levantamiento de cubierta y comprobación de estado","Estudio de sombras con obstrucciones reales","Cálculo estructural preliminar y comprobación de sobrecarga","Dimensionado por rentabilidad, no por superficie disponible","Previsión de producción mes a mes y de amortización"],
+   noi:["No cobramos el estudio, ni siquiera si después no contrata","No entregamos un PDF genérico con su logo encima"],
+   ent:["Memoria de viabilidad con producción estimada mes a mes","Previsión de flujo de caja a 25 años","Plano de implantación sobre la cubierta","Presupuesto cerrado por partidas"]},
+  {n:"Ejecución", f:"Fase 2",
+   p:["Obra llave en mano con equipo propio y plazo cerrado en contrato, con penalización por día de retraso escrita. La coordinación de seguridad y salud, el recurso preventivo y la coordinación de actividades empresariales con su empresa van incluidos y no aparecen como extra al final.",
+       "Trabajamos en parada programada o fuera de turno. El único momento en que su planta se ve afectada es el corte para la conexión, que son entre dos y cuatro horas y se acuerda con un mes de antelación. Hemos montado plantas de 400 kWp sin que producción perdiera una sola hora."],
+   meta:[{v:"2–6 sem",u:"Duración"},{v:"2–4 h",u:"Corte para conexión"},{v:"Propio",u:"Equipo de montaje"},{v:"Sí",u:"Penalización por retraso"}],
+   inc:["Estructura, módulos, inversores, protecciones y cableado","Legalización y tramitación completa ante distribuidora","Proyecto visado y dirección de obra","Coordinación de seguridad y salud y recurso preventivo","Seguro de responsabilidad civil con certificado a su nombre","Puesta en marcha y formación a su equipo de mantenimiento"],
+   noi:["No cobramos ampliaciones que no estuvieran en el proyecto","No subcontratamos el montaje a terceros"],
+   ent:["Certificado de instalación y boletín eléctrico","Documentación de legalización y acceso a red","Manual de operación y esquemas unifilares as-built","Acceso a la plataforma de monitorización"]},
+  {n:"Explotación", f:"Fase 3",
+   p:["Una planta sin mantenimiento pierde entre un 3 % y un 7 % de producción al año por suciedad y microfallos que nadie ve desde el suelo. El problema no es que se pare: es que se degrada despacio y usted no lo nota, porque la cifra absoluta sube en verano de todas formas.",
+       "Por eso la monitorización no compara con el mes anterior, sino con lo que debería producir con la radiación de ese día concreto. Si baja de un umbral, salta una alarma y la vemos nosotros antes que usted. Y si aun así la planta no alcanza la producción comprometida en el contrato, compensamos la diferencia."],
+   meta:[{v:"48 h",u:"Respuesta ante alarma"},{v:"1–2/año",u:"Limpiezas"},{v:"Anual",u:"Termografía"},{v:"Sí",u:"Garantía de producción"}],
+   inc:["Monitorización remota con alarma por bajo rendimiento","Limpieza programada según época y entorno","Termografía anual para detectar células calientes","Revisión de conexiones y aprietes","Informe anual de producción frente a lo previsto","Garantía de producción con compensación económica"],
+   noi:["No facturamos desplazamiento dentro del contrato de mantenimiento"],
+   ent:["Informe anual con producción real frente a esperada","Informe de termografía con imágenes","Registro de intervenciones y piezas sustituidas"]}
+ ],
+
+ poNota:"Fichas de proyecto con cifras redondeadas. Sustituibles por casos reales con fotografía de obra cuando el cliente autorice publicarlos.",
+ casos:[
+  {t:"Fabricante de componentes de automoción", s:"Zaragoza · cubierta de chapa · dos turnos",
+   m:[{v:"420",u:"kWp instalados"},{v:"682",u:"MWh al año"},{v:"58.000 €",u:"Ahorro anual"},{v:"6,4",u:"Años de amortización"}],
+   reto:"Consumo muy constante en dos turnos, de seis de la mañana a diez de la noche, con una factura anual de 1,4 GWh. La cubierta admitía 780 kWp, y dos de las tres ofertas que tenían encima de la mesa proponían llenarla entera.",
+   sol:"La curva horaria enseñó que por encima de 420 kWp empezaba a verterse a la red más del 20 % de la producción en los meses de verano. Se dimensionó al 80 % del consumo diurno, dejando el inversor con margen para una segunda fase si electrifican la flota de carretillas.",
+   res:"Cobertura del 41 % del consumo total y del 63 % del consumo en horas de sol, con sólo un 6 % de vertido. La instalación de 780 kWp que les ofrecían habría producido un 71 % más pero habría amortizado dos años y medio más tarde.",
+   ap:"La potencia que cabe en la cubierta y la potencia que conviene instalar casi nunca son la misma cifra."},
+  {t:"Centro logístico con cámaras de frío", s:"Valencia · cubierta plana · actividad continua",
+   m:[{v:"780",u:"kWp instalados"},{v:"1.266",u:"MWh al año"},{v:"121.000 €",u:"Ahorro anual"},{v:"5,6",u:"Años de amortización"}],
+   reto:"Las cámaras de frío tienen su punta de consumo justo al mediodía, cuando más aprieta el calor. Es el perfil que mejor encaja con la curva solar que existe, y aun así llegaron pensando que necesitaban baterías.",
+   sol:"Se descartaron las baterías tras verificar con la curva horaria que el 94 % de la producción se autoconsumía sin almacenamiento. Ese dinero se destinó a ampliar potencia y a un contrato de mantenimiento completo con termografía anual.",
+   res:"Autoconsumo del 94 % sin una sola batería. La cobertura llega al 52 % del consumo anual y al 71 % en verano, que es cuando la factura de frío se dispara.",
+   ap:"Antes de comprar baterías, mire cuánto está vertiendo de verdad. Muchas veces la respuesta es: casi nada."},
+  {t:"Marquesina para flota de vehículos", s:"Madrid · aparcamiento · uso administrativo",
+   m:[{v:"190",u:"kWp instalados"},{v:"308",u:"MWh al año"},{v:"27.000 €",u:"Ahorro anual"},{v:"7,9",u:"Años de amortización"}],
+   reto:"No había cubierta disponible: la nave era alquilada y el propietario no autorizaba tocarla. Quedaba el aparcamiento de la flota, con el coste añadido de la estructura y el cálculo de viento.",
+   sol:"Marquesina con estructura calculada para viento y para la carga de los puntos de recarga previstos. Se dimensionó contando ya con el consumo futuro de la flota eléctrica, que entra en servicio de forma escalonada.",
+   res:"Amortización más larga que en cubierta, casi ocho años, pero con dos beneficios que no salen en el cálculo: sombra para la flota y la infraestructura de recarga ya montada y pagada.",
+   ap:"Cuando no hay cubierta propia, la marquesina sale más cara por kWp pero resuelve dos problemas a la vez."}
+ ],
+
  nCurva:"Curva horaria", nOfertas:"Comparar ofertas",
  tCurva:"Curva horaria — NAHAR", tOfertas:"Comparar ofertas — NAHAR",
  cuH1:"La gráfica que decide el tamaño de su instalación.",
@@ -1325,6 +1422,73 @@ es:{
 
 en:{
  _dir:"ltr", _lang:"en", _loc:"en-GB",
+ coOficinasEti:"Where we are", coEquipoEti:"Who you speak to directly",
+ coDespuesEti:"What happens after you press send",
+ coHorario:"We are open Monday to Friday, 8:00 to 18:00 CET. Outside those hours you can still write: emails are read first thing the next working day. For incidents at plants under a maintenance contract there is an on-call number, handed over at commissioning.",
+ oficinas:[
+  {n:"Engineering office", d:"Polígono Industrial Las Salinas<br>Unit 14, 50016 Zaragoza<br>Spain", t:"+34 976 000 000"},
+  {n:"Levante branch", d:"Camí del Port 88, floor 2<br>46540 El Puig, Valencia<br>Spain", t:"+34 961 000 000"}
+ ],
+ equipoCont:[
+  {n:"Studies and feasibility", r:"Load curves, sizing and quotations", m:"estudios@nahar.example"},
+  {n:"Engineering and design", r:"Structural calculation, legalisation and permits", m:"proyecto@nahar.example"},
+  {n:"Works", r:"Planning, coordination and on-site execution", m:"obra@nahar.example"},
+  {n:"Operation and warranties", r:"Monitoring, incidents and output guarantee", m:"soporte@nahar.example"}
+ ],
+ despues:[
+  {t:"We reply within 48 working hours", d:"A person, not an automatic acknowledgement. If your case is outside what we do, we say so in that same email and point you elsewhere."},
+  {t:"We ask you for three things", d:"The last twelve bills, the meter's hourly curve and a view of the roof. With those we can make a first estimate without setting foot on site."},
+  {t:"A technical visit of one morning", d:"We measure the roof, check the structure and locate the main switchboard. No obligation and no charge, even if you do not go ahead."},
+  {t:"Study and fixed proposal", d:"One to two weeks later. Price, deadline, guaranteed output and schedule. From there you decide, with no follow-up calls."}
+ ],
+ svIncluye:"What is included", svNo:"What we will not bill you separately for", svEnt:"What you receive at the end",
+ caReto:"The problem", caSol:"What we did", caRes:"The result", caAp:"What it taught us",
+ svBloques:[
+  {n:"Study and design", f:"Phase 1",
+   p:["We start from your hourly curve, not your annual bill. The difference matters more than it seems: two plants with the same total consumption can need very different capacities depending on when they consume. One that runs at night and one that runs by day pay the same to the utility and need installations that look nothing alike.",
+       "The roof survey is done on site, not from satellite imagery. We measure, check the condition of the sheeting or sandwich panel, locate skylights and extractors, and run the shading study against the real obstructions. A chimney casting a shadow across three rows of modules at nine in the morning can cost more than the modules themselves."],
+   meta:[{v:"1–2 wk",u:"Timescale"},{v:"€0",u:"Cost"},{v:"15 min",u:"Curve resolution"},{v:"Yes",u:"No obligation"}],
+   inc:["Reading and analysis of the hourly curve in 15-minute intervals","Roof survey and condition check","Shading study against real obstructions","Preliminary structural calculation and overload check","Sizing for return, not for available surface","Month-by-month output and payback forecast"],
+   noi:["We do not charge for the study, even if you never sign","We do not hand over a generic PDF with your logo on it"],
+   ent:["Feasibility report with month-by-month estimated output","25-year cash flow forecast","Layout drawing over the roof","Fixed quotation broken down by line"]},
+  {n:"Installation", f:"Phase 2",
+   p:["Turnkey works with our own crew and a deadline fixed in the contract, with a written penalty per day of delay. Health-and-safety coordination, the preventive resource and the coordination of business activities with your company are included and do not appear as an extra at the end.",
+       "We work during planned shutdowns or outside shift hours. The only moment your plant is affected is the outage for the connection, which is two to four hours and agreed a month in advance. We have built 400 kWp plants without production losing a single hour."],
+   meta:[{v:"2–6 wk",u:"Duration"},{v:"2–4 h",u:"Connection outage"},{v:"In-house",u:"Installation crew"},{v:"Yes",u:"Penalty for delay"}],
+   inc:["Structure, modules, inverters, protections and cabling","Full legalisation and grid operator paperwork","Stamped design and works supervision","Health-and-safety coordination and preventive resource","Public liability insurance with a certificate in your name","Commissioning and training for your maintenance team"],
+   noi:["We do not charge for extensions that were not in the project","We do not subcontract the installation"],
+   ent:["Installation certificate and electrical bulletin","Legalisation and grid access documentation","Operating manual and as-built single-line diagrams","Access to the monitoring platform"]},
+  {n:"Operation", f:"Phase 3",
+   p:["A plant without maintenance loses between 3 % and 7 % of its output each year to dirt and small faults nobody sees from the ground. The problem is not that it stops: it is that it degrades slowly and you do not notice, because the absolute figure rises in summer anyway.",
+       "That is why the monitoring does not compare against last month, but against what it should produce given that particular day's irradiation. If it drops below a threshold an alarm fires and we see it before you do. And if even so the plant does not reach the output committed in the contract, we compensate the difference."],
+   meta:[{v:"48 h",u:"Response to alarm"},{v:"1–2/yr",u:"Cleanings"},{v:"Annual",u:"Thermography"},{v:"Yes",u:"Output guarantee"}],
+   inc:["Remote monitoring with a low-output alarm","Cleaning scheduled by season and surroundings","Annual thermography to find hot cells","Connection and torque checks","Annual report of output against forecast","Output guarantee with financial compensation"],
+   noi:["We do not invoice travel within the maintenance contract"],
+   ent:["Annual report of real against expected output","Thermography report with images","Log of interventions and parts replaced"]}
+ ],
+
+ poNota:"Project sheets with rounded figures. Replaceable with real cases and site photography once a client authorises publication.",
+ casos:[
+  {t:"Automotive component manufacturer", s:"Zaragoza · metal deck roof · two shifts",
+   m:[{v:"420",u:"kWp installed"},{v:"682",u:"MWh a year"},{v:"€58,000",u:"Annual saving"},{v:"6.4",u:"Years to payback"}],
+   reto:"Very steady consumption across two shifts, from six in the morning to ten at night, with an annual bill of 1.4 GWh. The roof took 780 kWp, and two of the three quotes on the table proposed filling it entirely.",
+   sol:"The hourly curve showed that above 420 kWp more than 20 % of summer output started going to the grid. It was sized to 80 % of daytime load, leaving inverter headroom for a second phase if they electrify the forklift fleet.",
+   res:"41 % of total consumption covered and 63 % of daylight consumption, with only 6 % exported. The 780 kWp installation on offer would have produced 71 % more but paid back two and a half years later.",
+   ap:"The capacity that fits on the roof and the capacity worth installing are almost never the same number."},
+  {t:"Logistics centre with cold rooms", s:"Valencia · flat roof · continuous operation",
+   m:[{v:"780",u:"kWp installed"},{v:"1,266",u:"MWh a year"},{v:"€121,000",u:"Annual saving"},{v:"5.6",u:"Years to payback"}],
+   reto:"Cold rooms peak exactly at midday, when the heat is worst. It is the profile that fits the solar curve best there is, and even so they arrived convinced they needed batteries.",
+   sol:"Batteries were ruled out after verifying on the hourly curve that 94 % of output was self-consumed without storage. That money went into more capacity and a full maintenance contract with annual thermography.",
+   res:"94 % self-consumption without a single battery. Coverage reaches 52 % of annual consumption and 71 % in summer, which is when the refrigeration bill spikes.",
+   ap:"Before buying batteries, look at how much you are actually exporting. Often the answer is: almost nothing."},
+  {t:"Canopy for a vehicle fleet", s:"Madrid · car park · administrative use",
+   m:[{v:"190",u:"kWp installed"},{v:"308",u:"MWh a year"},{v:"€27,000",u:"Annual saving"},{v:"7.9",u:"Years to payback"}],
+   reto:"There was no roof available: the building was rented and the owner would not authorise touching it. That left the fleet car park, with the added cost of the structure and the wind calculation.",
+   sol:"A canopy with a structure calculated for wind and for the load of the planned charging points. It was sized already counting the future consumption of the electric fleet, which comes into service in stages.",
+   res:"A longer payback than on a roof, almost eight years, but with two benefits that do not appear in the calculation: shade for the fleet and the charging infrastructure already built and paid for.",
+   ap:"When there is no roof of your own, a canopy costs more per kWp but solves two problems at once."}
+ ],
+
  nCurva:"Hourly curve", nOfertas:"Compare quotes",
  tCurva:"Hourly curve — NAHAR", tOfertas:"Compare quotes — NAHAR",
  cuH1:"The chart that decides the size of your plant.",
@@ -1699,6 +1863,73 @@ en:{
 
 ar:{
  _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ coOficinasEti:"أين نحن", coEquipoEti:"مع من تتحدث مباشرةً",
+ coDespuesEti:"ماذا يحدث بعد أن تضغط إرسال",
+ coHorario:"نعمل من الاثنين إلى الجمعة، من الثامنة إلى السادسة بتوقيت وسط أوروبا. وخارج هذه الأوقات يمكنك الكتابة أيضًا: تُقرأ الرسائل أول يوم العمل التالي. أما بلاغات المحطات المشمولة بعقد صيانة فلها رقم مناوبة يُسلَّم عند التشغيل.",
+ oficinas:[
+  {n:"المكتب الهندسي", d:"المنطقة الصناعية لاس ساليناس<br>وحدة ١٤، ٥٠٠١٦ سرقسطة<br>إسبانيا", t:"+34 976 000 000"},
+  {n:"فرع ليبانتي", d:"كامي دل بورت ٨٨، الطابق الثاني<br>٤٦٥٤٠ إل بويغ، بلنسية<br>إسبانيا", t:"+34 961 000 000"}
+ ],
+ equipoCont:[
+  {n:"الدراسات والجدوى", r:"منحنيات الاستهلاك وتحديد القدرة والتسعير", m:"estudios@nahar.example"},
+  {n:"الهندسة والمشروع", r:"الحساب الإنشائي والتقنين والتراخيص", m:"proyecto@nahar.example"},
+  {n:"الأعمال", r:"التخطيط والتنسيق والتنفيذ في الموقع", m:"obra@nahar.example"},
+  {n:"التشغيل والضمانات", r:"المراقبة والبلاغات وضمان الإنتاج", m:"soporte@nahar.example"}
+ ],
+ despues:[
+  {t:"نردّ خلال أقل من ٤٨ ساعة عمل", d:"يردّ إنسان، لا إشعار آلي. وإن كانت حالتك خارج ما نعمله، قلنا لك ذلك في الرسالة نفسها ودللناك على غيرنا."},
+  {t:"نطلب منك ثلاثة أشياء", d:"آخر اثنتي عشرة فاتورة، والمنحنى الساعي للعدّاد، وصورة للسطح. وبها نستطيع تقديرًا أوليًا دون أن نطأ الموقع."},
+  {t:"زيارة فنية في صباح واحد", d:"نقيس السطح، ونتحقق من الهيكل، ونحدّد موقع اللوحة الرئيسية. بلا التزام وبلا مقابل، حتى لو لم تُكمل بعدها."},
+  {t:"دراسة وعرض محدَّد", d:"بعد أسبوع إلى أسبوعين. السعر والمهلة والإنتاج المضمون والجدول الزمني. ومن هناك تقرّر أنت، دون مكالمات متابعة."}
+ ],
+ svIncluye:"ما الذي يشمله", svNo:"ما لن نُفوتِره عليك منفصلًا", svEnt:"ما تستلمه عند الانتهاء",
+ caReto:"المشكلة", caSol:"ما فعلناه", caRes:"النتيجة", caAp:"ما أفادنا به",
+ svBloques:[
+  {n:"الدراسة والتصميم", f:"المرحلة ١",
+   p:["نبدأ من منحناك الساعي، لا من فاتورتك السنوية. والفرق أهم مما يبدو: فمحطتان بالاستهلاك الإجمالي نفسه قد تحتاجان قدرتين مختلفتين تمامًا بحسب ساعات الاستهلاك. فمن يعمل ليلًا ومن يعمل نهارًا يدفعان الشيء نفسه لشركة الكهرباء ويحتاجان منشأتين لا تتشابهان في شيء.",
+       "ومسح السطح نجريه في الموقع، لا من صور الأقمار. نقيس، ونتحقق من حال الصفائح أو الألواح المركّبة، ونحدّد المناور والشفّاطات، ونجري دراسة الظلال على العوائق الحقيقية. فمدخنة تُلقي ظلًّا على ثلاثة صفوف من الألواح في التاسعة صباحًا قد تكلّف أكثر من الألواح نفسها."],
+   meta:[{v:"١–٢ أسبوع",u:"المدة"},{v:"٠ يورو",u:"الكلفة"},{v:"١٥ دقيقة",u:"دقة المنحنى"},{v:"نعم",u:"بلا التزام"}],
+   inc:["قراءة المنحنى الساعي وتحليله بفترات ربع ساعة","مسح السطح والتحقق من حالته","دراسة ظلال على العوائق الحقيقية","حساب إنشائي أولي والتحقق من الحمل الزائد","تحديد القدرة بحسب المردود لا بحسب المساحة","توقّع الإنتاج شهرًا بشهر ومدة الاسترداد"],
+   noi:["لا نتقاضى ثمن الدراسة، ولو لم توقّع بعدها","لا نُسلّم ملفًّا عامًّا وُضع شعارك عليه"],
+   ent:["تقرير جدوى بالإنتاج المقدَّر شهرًا بشهر","توقّع التدفق النقدي على ٢٥ سنة","مخطط توزيع على السطح","عرض سعر محدَّد ومفصَّل بالبنود"]},
+  {n:"التنفيذ", f:"المرحلة ٢",
+   p:["أعمال تسليم مفتاح بفريقنا وبمهلة محددة في العقد، مع غرامة مكتوبة عن كل يوم تأخير. وتنسيق السلامة والصحة والمورد الوقائي وتنسيق الأنشطة مع شركتكم كلها مشمولة ولا تظهر إضافةً في النهاية.",
+       "نعمل في التوقفات المجدولة أو خارج المناوبة. واللحظة الوحيدة التي تتأثر فيها منشأتك هي فصل التيار للربط، وهو من ساعتين إلى أربع ويُتّفق عليه قبل شهر. وقد ركّبنا محطات بقدرة ٤٠٠ كيلوواط دون أن يخسر الإنتاج ساعة واحدة."],
+   meta:[{v:"٢–٦ أسابيع",u:"المدة"},{v:"٢–٤ ساعات",u:"فصل التيار للربط"},{v:"فريقنا",u:"فريق التركيب"},{v:"نعم",u:"غرامة التأخير"}],
+   inc:["الهياكل والألواح والعاكسات والحماية والتمديدات","التقنين وإنهاء المعاملات كاملةً أمام شركة التوزيع","مشروع مُصدَّق وإشراف على الأعمال","تنسيق السلامة والصحة والمورد الوقائي","تأمين مسؤولية مدنية بشهادة باسمك","التشغيل وتدريب فريق الصيانة لديك"],
+   noi:["لا نتقاضى ثمن إضافات لم تكن في المشروع","لا نُسنِد التركيب إلى مقاول من الباطن"],
+   ent:["شهادة التركيب والنشرة الكهربائية","أوراق التقنين والربط بالشبكة","دليل التشغيل والمخططات أحادية الخط كما نُفِّذت","وصول إلى منصة المراقبة"]},
+  {n:"التشغيل", f:"المرحلة ٣",
+   p:["المحطة بلا صيانة تفقد بين ٣٪ و٧٪ من إنتاجها سنويًا بسبب الأوساخ والأعطال الصغيرة التي لا تُرى من الأرض. والمشكلة ليست أنها تتوقف: بل أنها تتدهور ببطء ولا تنتبه أنت، لأن الرقم المطلق يرتفع في الصيف على أي حال.",
+       "ولهذا فالمراقبة لا تقارن بالشهر الماضي، بل بما ينبغي أن يُنتَج بإشعاع ذلك اليوم بعينه. فإن هبط دون عتبة، انطلق إنذار ورأيناه نحن قبلك. وإن لم تبلغ المحطة رغم ذلك الإنتاج المُلتزم به في العقد، عوّضنا الفارق."],
+   meta:[{v:"٤٨ ساعة",u:"الاستجابة للإنذار"},{v:"١–٢ سنويًا",u:"عمليات التنظيف"},{v:"سنويًا",u:"التصوير الحراري"},{v:"نعم",u:"ضمان الإنتاج"}],
+   inc:["مراقبة عن بُعد مع إنذار عند انخفاض الأداء","تنظيف مجدول بحسب الموسم والمحيط","تصوير حراري سنوي لكشف الخلايا الساخنة","فحص الوصلات وعزوم الربط","تقرير سنوي بالإنتاج مقابل المتوقَّع","ضمان إنتاج مع تعويض مالي"],
+   noi:["لا نُفوتِر التنقّل ضمن عقد الصيانة"],
+   ent:["تقرير سنوي بالإنتاج الفعلي مقابل المتوقَّع","تقرير تصوير حراري بالصور","سجل التدخلات والقطع المستبدلة"]}
+ ],
+
+ poNota:"بطاقات مشاريع بأرقام مُقرَّبة. ويمكن استبدالها بحالات حقيقية وصور من الموقع متى أذن العميل بنشرها.",
+ casos:[
+  {t:"مصنّع مكوّنات سيارات", s:"سرقسطة · سطح معدني · مناوبتان",
+   m:[{v:"٤٢٠",u:"كيلوواط ذروة مركَّبة"},{v:"٦٨٢",u:"ميغاواط ساعة سنويًا"},{v:"٥٨٬٠٠٠ يورو",u:"وفر سنوي"},{v:"٦٫٤",u:"سنوات الاسترداد"}],
+   reto:"استهلاك شديد الثبات على مناوبتين، من السادسة صباحًا إلى العاشرة مساءً، بفاتورة سنوية قدرها ١٫٤ غيغاواط ساعة. وكان السطح يتّسع لـ٧٨٠ كيلوواط، واقترح عرضان من الثلاثة التي لديهم ملأه بالكامل.",
+   sol:"أظهر المنحنى الساعي أنه فوق ٤٢٠ كيلوواط يبدأ أكثر من ٢٠٪ من إنتاج الصيف بالذهاب إلى الشبكة. فحُدِّدت القدرة عند ٨٠٪ من الحمل النهاري، مع ترك هامش في العاكس لمرحلة ثانية إن كهربوا أسطول الرافعات.",
+   res:"تغطية ٤١٪ من الاستهلاك الكلي و٦٣٪ من استهلاك ساعات النهار، بتصدير ٦٪ فقط. أما منشأة الـ٧٨٠ كيلوواط المعروضة فكانت ستنتج أكثر بـ٧١٪ لكنها كانت ستسدّد كلفتها بعد سنتين ونصف إضافيتين.",
+   ap:"القدرة التي تتّسع لها السطوح والقدرة التي يجدر تركيبها لا تكادان تتطابقان."},
+  {t:"مركز لوجستي بغرف تبريد", s:"بلنسية · سطح مستوٍ · عمل متواصل",
+   m:[{v:"٧٨٠",u:"كيلوواط ذروة مركَّبة"},{v:"١٢٦٦",u:"ميغاواط ساعة سنويًا"},{v:"١٢١٬٠٠٠ يورو",u:"وفر سنوي"},{v:"٥٫٦",u:"سنوات الاسترداد"}],
+   reto:"ذروة غرف التبريد عند الظهيرة تمامًا، حين يشتدّ الحرّ. وهو أفضل نمط يمكن أن ينسجم مع المنحنى الشمسي، ومع ذلك جاؤوا مقتنعين بأنهم يحتاجون بطاريات.",
+   sol:"استُبعدت البطاريات بعد التحقق من المنحنى الساعي أن ٩٤٪ من الإنتاج يُستهلك ذاتيًا دون تخزين. ووُجِّه ذلك المال إلى زيادة القدرة وإلى عقد صيانة شامل بتصوير حراري سنوي.",
+   res:"استهلاك ذاتي بنسبة ٩٤٪ دون بطارية واحدة. وتبلغ التغطية ٥٢٪ من الاستهلاك السنوي و٧١٪ في الصيف، وهو حين ترتفع فاتورة التبريد.",
+   ap:"قبل شراء البطاريات، انظر كم تُصدِّر فعلًا. والجواب غالبًا: لا شيء تقريبًا."},
+  {t:"مظلة لأسطول مركبات", s:"مدريد · موقف سيارات · استخدام إداري",
+   m:[{v:"١٩٠",u:"كيلوواط ذروة مركَّبة"},{v:"٣٠٨",u:"ميغاواط ساعة سنويًا"},{v:"٢٧٬٠٠٠ يورو",u:"وفر سنوي"},{v:"٧٫٩",u:"سنوات الاسترداد"}],
+   reto:"لم يكن ثمة سطح متاح: فالمبنى مستأجَر ولم يأذن مالكه بالمساس به. فبقي موقف الأسطول، بكلفة إضافية للهيكل ولحساب الرياح.",
+   sol:"مظلة بهيكل محسوب للرياح ولحمل نقاط الشحن المزمعة. وحُدِّدت القدرة مع احتساب الاستهلاك المستقبلي للأسطول الكهربائي الذي يدخل الخدمة على مراحل.",
+   res:"استرداد أطول مما هو على السطوح، قرابة ثماني سنوات، لكن بفائدتين لا تظهران في الحساب: ظلٌّ للأسطول، وبنية شحن جاهزة ومدفوعة.",
+   ap:"حين لا يوجد سطح مملوك، تكلّف المظلة أكثر لكل كيلوواط لكنها تحلّ مشكلتين معًا."}
+ ],
+
  nCurva:"المنحنى الساعي", nOfertas:"مقارنة العروض",
  tCurva:"المنحنى الساعي — نهار", tOfertas:"مقارنة العروض — نهار",
  cuH1:"الرسم الذي يحدّد حجم منشأتك.",
@@ -2788,9 +3019,52 @@ function pintarListas(){
   }).join("");
 
   var po = document.getElementById("poRej");
-  if (po) po.innerHTML = t.proyectos.map(function(p){
-    return '<div class="cel"><span class="n">'+esc(p.s)+'</span><h3>'+esc(p.t)+'</h3>'
-      + '<p>'+esc(p.p)+'</p><p style="color:var(--acento);margin-top:.8rem;font-size:.9rem">'+esc(p.r)+'</p></div>';
+  if (po) po.innerHTML = t.casos.map(function(c){
+    return '<article class="caso"><div class="caso-cab">'
+      + c.m.map(function(x){ return '<div><b>'+esc(x.v)+'</b><span>'+esc(x.u)+'</span></div>'; }).join("")
+      + '</div><div class="caso-cuerpo"><h3>'+esc(c.t)+'</h3>'
+      + '<p class="reto" style="font-family:var(--mono);font-size:.8rem;color:var(--tinta-3)">'+esc(c.s)+'</p>'
+      + '<p class="eti">'+esc(t.caReto)+'</p><p>'+esc(c.reto)+'</p>'
+      + '<p class="eti">'+esc(t.caSol)+'</p><p>'+esc(c.sol)+'</p>'
+      + '<p class="eti">'+esc(t.caRes)+'</p><p>'+esc(c.res)+'</p>'
+      + '<p class="eti">'+esc(t.caAp)+'</p>'
+      + '<p style="color:var(--acento);max-width:62ch">'+esc(c.ap)+'</p>'
+      + '</div></article>';
+  }).join("");
+
+  /* Servicios en profundidad: cabecera, cifras y las tres listas */
+  var sv = document.getElementById("svBloques");
+  if (sv) sv.innerHTML = t.svBloques.map(function(b){
+    return '<section class="serv-bloque"><div class="serv-cab">'
+      + '<div><p class="eti">'+esc(b.f)+'</p><h3>'+esc(b.n)+'</h3></div>'
+      + '<div>'+b.p.map(function(x){ return '<p style="margin-bottom:1rem">'+esc(x)+'</p>'; }).join("")+'</div>'
+      + '</div><div class="serv-meta">'
+      + b.meta.map(function(x){ return '<div><b>'+esc(x.v)+'</b><span>'+esc(x.u)+'</span></div>'; }).join("")
+      + '</div><div class="serv-cols"><div>'
+      + '<p class="eti">'+esc(t.svIncluye)+'</p><ul class="lista">'
+      + b.inc.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul>'
+      + '<p class="eti" style="margin-top:1.6rem">'+esc(t.svNo)+'</p><ul class="lista no">'
+      + b.noi.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul></div><div>'
+      + '<p class="eti">'+esc(t.svEnt)+'</p><ul class="lista">'
+      + b.ent.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("") + '</ul></div></div></section>';
+  }).join("");
+
+  /* Contacto: oficinas, personas y qué pasa después */
+  var of = document.getElementById("coOficinas");
+  if (of) of.innerHTML = t.oficinas.map(function(o){
+    return '<div class="ofi"><b>'+esc(o.n)+'</b><address>'+o.d+'</address>'
+      + '<a class="tel" href="tel:'+o.t.replace(/\s/g,"")+'" dir="ltr">'+esc(o.t)+'</a></div>';
+  }).join("");
+
+  var eq = document.getElementById("coEquipo");
+  if (eq) eq.innerHTML = t.equipoCont.map(function(e){
+    return '<div><div><b>'+esc(e.n)+'</b><span>'+esc(e.r)+'</span></div>'
+      + '<a href="mailto:'+e.m+'" dir="ltr">'+esc(e.m)+'</a></div>';
+  }).join("");
+
+  var dp = document.getElementById("coDespues");
+  if (dp) dp.innerHTML = t.despues.map(function(d){
+    return '<li><div><b>'+esc(d.t)+'</b><span>'+esc(d.d)+'</span></div></li>';
   }).join("");
 
   var ma = document.getElementById("maRej");
