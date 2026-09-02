@@ -358,6 +358,42 @@ html[dir="rtl"] .indice-pag{font-family:var(--cuerpo);font-size:.88rem;}
 .indice-pag a{color:var(--tinta-2);text-decoration:none;}
 .indice-pag a:hover{color:var(--acento);}
 
+
+/* ── Curva horaria: consumo contra producción ────────────────────── */
+.curva-mandos{display:grid;gap:1.2rem;margin-bottom:1.6rem;}
+@media(min-width:760px){.curva-mandos{grid-template-columns:1.3fr .8fr 1fr 1fr;align-items:end;}}
+.curva-res{display:grid;gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:1.6rem;}
+@media(min-width:640px){.curva-res{grid-template-columns:repeat(4,1fr);}}
+.curva-res div{background:var(--fondo);padding:1.2rem;}
+.curva-res b{display:block;font-family:var(--disp);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:500;line-height:1;}
+.curva-res span{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--tinta-3);display:block;margin-top:.5rem;}
+html[dir="rtl"] .curva-res span{letter-spacing:0;text-transform:none;font-size:.8rem;font-family:var(--cuerpo);}
+
+/* ── Comparador de ofertas ───────────────────────────────────────── */
+.of-rej{overflow-x:auto;}
+.of-tabla{width:100%;border-collapse:collapse;min-width:44rem;}
+.of-tabla th,.of-tabla td{padding:.7rem .7rem;border-bottom:1px solid var(--linea-2);text-align:start;vertical-align:middle;}
+.of-tabla thead th{border-bottom:1.5px solid var(--tinta);font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2);}
+html[dir="rtl"] .of-tabla thead th{letter-spacing:0;text-transform:none;font-size:.84rem;font-family:var(--cuerpo);}
+.of-tabla td:first-child,.of-tabla th:first-child{color:var(--tinta);font-size:.9rem;width:15rem;}
+.of-tabla input,.of-tabla select{border:1px solid var(--linea);padding:.45rem .55rem;font-size:.9rem;background:var(--sup);}
+.of-tabla input:focus,.of-tabla select:focus{border-color:var(--acento);}
+.of-tabla .gana{background:color-mix(in srgb,var(--s3) 14%,transparent);}
+.of-veredicto{display:grid;gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:1.6rem;}
+@media(min-width:640px){.of-veredicto{grid-template-columns:repeat(3,1fr);}}
+.of-v{background:var(--fondo);padding:1.4rem;}
+.of-v.mejor{background:color-mix(in srgb,var(--s3) 12%,transparent);}
+.of-v h4{font-family:var(--disp);font-size:1.15rem;margin:0 0 .4rem;}
+.of-v .lcoe{font-family:var(--disp);font-size:2rem;font-weight:500;line-height:1;}
+.of-v .u{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-3);display:block;margin-top:.4rem;}
+html[dir="rtl"] .of-v .u{letter-spacing:0;text-transform:none;font-size:.8rem;font-family:var(--cuerpo);}
+.of-v ul{list-style:none;margin:1rem 0 0;padding:0;font-size:.86rem;color:var(--tinta-2);}
+.of-v li{padding-block:.3rem;display:grid;grid-template-columns:1.1rem 1fr;gap:.5rem;}
+.of-v li i{font-style:normal;}
+.of-v li.si i{color:var(--s3);} .of-v li.no i{color:var(--s2);}
+
 /* ── Preguntas ───────────────────────────────────────────────────── */
 .faq{border-top:1px solid var(--linea);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
@@ -415,6 +451,8 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
       <a href="#/proyectos"     data-t="nProyectos">Proyectos</a>
       <a href="#/mantenimiento" data-t="nMantenimiento">Mantenimiento</a>
       <a href="#/simulador"     data-t="nSimulador">Simulador</a>
+      <a href="#/curva"         data-t="nCurva">Curva horaria</a>
+      <a href="#/ofertas"       data-t="nOfertas">Comparar ofertas</a>
       <a href="#/equipos"       data-t="nEquipos">Equipos</a>
       <a href="#/obra"          data-t="nObra">La obra</a>
       <a href="#/glosario"      data-t="nGlosario">Glosario</a>
@@ -852,6 +890,41 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <p class="metodo" data-t="ayNota">Información general con fines divulgativos, no asesoramiento fiscal. Las deducciones, los porcentajes y los plazos cambian por comunidad autónoma, por municipio y por año. Antes de contar con una ayuda concreta, confírmela con su asesor o con nosotros.</p>
   </div>
 </section>
+
+<section data-ruta="curva">
+  <div class="marco bloque">
+    <p class="eti" data-t="nCurva">Curva horaria</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:22ch" data-t="cuH1">La gráfica que decide el tamaño de su instalación.</h1>
+    <p class="entrada" data-t="cuEntrada">Su consumo hora a hora, y encima la producción solar de ese mismo día. Lo que se solapa es lo que de verdad ahorra. Lo que sobresale por arriba se vierte a la red a menos de la mitad de precio.</p>
+  </div>
+  <div class="marco">
+    <div class="curva-mandos">
+      <div><label for="cuSector" data-t="cuLSector">Perfil de consumo</label><select id="cuSector"></select></div>
+      <div><label for="cuMes" data-t="cuLMes">Mes</label><select id="cuMes"></select></div>
+      <div><label for="cuKwp" data-t="cuLKwp">Potencia instalada</label><input id="cuKwp" type="number" min="20" max="2000" step="10" value="300"></div>
+      <div><label for="cuCons" data-t="cuLCons">Consumo anual (kWh)</label><input id="cuCons" type="number" min="10000" max="5000000" step="10000" value="450000"></div>
+    </div>
+    <div class="leyenda" id="cuLeyenda"></div>
+    <div class="grafica"><svg id="cuGrafica" role="img" data-t-attr="aria-label:cuGrafAlt" aria-label="Consumo horario frente a producción solar"></svg></div>
+    <div class="curva-res" id="cuRes"></div>
+    <p class="hallazgo" id="cuHallazgo"></p>
+    <p class="metodo" data-t="cuNota">La producción por hora sale de la duración del día en cada mes para una latitud próxima a 40° N y de la producción mensual de referencia. El perfil de consumo es el típico del sector, normalizado: el suyo real sale de la curva horaria de su contador, y es justo lo que pedimos en la primera visita.</p>
+  </div>
+</section>
+
+<section data-ruta="ofertas">
+  <div class="marco bloque">
+    <p class="eti" data-t="nOfertas">Comparar ofertas</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:22ch" data-t="ofH1">Tiene tres presupuestos y no se parecen en nada.</h1>
+    <p class="entrada" data-t="ofEntrada">Meta aquí los números de cada uno. Le decimos cuál sale más barato por kWh producido a lo largo de la vida de la instalación, que es la única comparación que significa algo. Y sí, también puede meter el nuestro.</p>
+  </div>
+  <div class="marco">
+    <div class="of-rej"><table class="of-tabla" id="ofTabla"></table></div>
+    <div class="of-veredicto" id="ofVeredicto"></div>
+    <p class="hallazgo" id="ofHallazgo"></p>
+    <p class="metodo" data-t="ofNota">El coste por kWh se calcula repartiendo la inversión y el mantenimiento entre toda la energía que producirá la instalación en veinticinco años, con la degradación anual del panel descontada. No incluye el precio al que usted compra la electricidad: sirve para comparar ofertas entre sí, no para calcular el ahorro. Una oferta más barata sin garantía de producción no es más barata: es más incierta.</p>
+  </div>
+</section>
 </main>
 
 <footer class="n">
@@ -878,6 +951,33 @@ var T = {
 
 es:{
  _dir:"ltr", _lang:"es", _loc:"es-ES",
+ nCurva:"Curva horaria", nOfertas:"Comparar ofertas",
+ tCurva:"Curva horaria — NAHAR", tOfertas:"Comparar ofertas — NAHAR",
+ cuH1:"La gráfica que decide el tamaño de su instalación.",
+ cuEntrada:"Su consumo hora a hora, y encima la producción solar de ese mismo día. Lo que se solapa es lo que de verdad ahorra. Lo que sobresale por arriba se vierte a la red a menos de la mitad de precio.",
+ cuLSector:"Perfil de consumo", cuLMes:"Mes", cuLKwp:"Potencia instalada (kWp)", cuLCons:"Consumo anual (kWh)",
+ cuGrafAlt:"Consumo horario frente a producción solar a lo largo del día",
+ cuNota:"La producción por hora sale de la duración del día en cada mes para una latitud próxima a 40° N y de la producción mensual de referencia. El perfil de consumo es el típico del sector, normalizado: el suyo real sale de la curva horaria de su contador, y es justo lo que pedimos en la primera visita.",
+ cuLeyCons:"Su consumo", cuLeyProd:"Producción solar", cuLeyAuto:"Lo que se aprovecha",
+ cuResAuto:"Autoconsumo", cuResExc:"Se vierte a la red", cuResCob:"Cobertura del consumo", cuResHoras:"Horas con excedente",
+ cuHalBien:"Con <b>{k}</b> aprovecha el <b>{a} %</b> de lo que produce y cubre el {c} % de su consumo en este mes. Está bien dimensionado: casi nada se va a la red.",
+ cuHalMedio:"Con <b>{k}</b> se vierte el <b>{e} %</b> de la producción. Es asumible, pero si baja la potencia unos kWp gana rentabilidad sin perder apenas ahorro.",
+ cuHalMal:"Con <b>{k}</b> se está vertiendo el <b>{e} %</b> de lo que produce, y el excedente se paga a menos de la mitad. En este mes le sobra instalación: o baja potencia, o mueve consumo a las horas centrales.",
+ mesesLargos:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+ perfilesH:["Fabricación, dos turnos","Logística y frío","Alimentación","Automoción, jornada partida","Agroindustria y riego","Oficinas y retail"],
+
+ ofH1:"Tiene tres presupuestos y no se parecen en nada.",
+ ofEntrada:"Meta aquí los números de cada uno. Le decimos cuál sale más barato por kWh producido a lo largo de la vida de la instalación, que es la única comparación que significa algo. Y sí, también puede meter el nuestro.",
+ ofNota:"El coste por kWh se calcula repartiendo la inversión y el mantenimiento entre toda la energía que producirá la instalación en veinticinco años, con la degradación anual del panel descontada. No incluye el precio al que usted compra la electricidad: sirve para comparar ofertas entre sí, no para calcular el ahorro. Una oferta más barata sin garantía de producción no es más barata: es más incierta.",
+ ofFilas:["Potencia ofertada (kWp)","Precio total (€)","Garantía de producto (años)","Garantía de producción","Mantenimiento incluido (años)","Plazo de entrega (semanas)","Penalización por retraso"],
+ ofCols:["Concepto","Oferta A","Oferta B","Oferta C"],
+ ofSi:"Sí", ofNo:"No",
+ ofPrecioKwp:"Precio por kWp", ofLcoe:"Coste por kWh producido", ofProd25:"Producción a 25 años",
+ ofMejor:"La más barata por kWh", ofRiesgo:"Sin garantía de producción",
+ ofHal:"<b>{o}</b> sale a <b>{l} €/kWh</b>, un {d} % más barata que la peor de las tres. Pero mire la fila de la garantía de producción antes de decidir: es la única que le protege si la planta produce menos de lo prometido, y es justo la que casi nadie ofrece.",
+ ofHalIgual:"Rellene al menos dos ofertas con potencia y precio y las comparamos.",
+ ofAviso:"Ojo: la oferta más barata por kWh no incluye garantía de producción. Si produce un 10 % menos de lo previsto, ese ahorro desaparece y no hay a quién reclamar.",
+
  nAyudas:"Ayudas", tAyudas:"Ayudas y financiación — NAHAR",
  ayH1:"Lo que casi nadie le cuenta antes de firmar.",
  ayEntrada:"Entre deducciones, amortización acelerada y bonificaciones municipales, buena parte de la inversión vuelve. Pero hay que pedirlo bien y en orden, y hay plazos que no perdonan.",
@@ -1225,6 +1325,33 @@ es:{
 
 en:{
  _dir:"ltr", _lang:"en", _loc:"en-GB",
+ nCurva:"Hourly curve", nOfertas:"Compare quotes",
+ tCurva:"Hourly curve — NAHAR", tOfertas:"Compare quotes — NAHAR",
+ cuH1:"The chart that decides the size of your plant.",
+ cuEntrada:"Your consumption hour by hour, with the solar output of that same day on top. What overlaps is what actually saves money. What sticks out above is exported at less than half the price.",
+ cuLSector:"Consumption profile", cuLMes:"Month", cuLKwp:"Installed capacity (kWp)", cuLCons:"Annual consumption (kWh)",
+ cuGrafAlt:"Hourly consumption against solar output across the day",
+ cuNota:"Hourly output comes from the length of the day in each month at a latitude near 40° N and from the reference monthly yield. The consumption profile is the sector's typical one, normalised: your real one comes from your meter's hourly curve, and it is exactly what we ask for on the first visit.",
+ cuLeyCons:"Your consumption", cuLeyProd:"Solar output", cuLeyAuto:"What gets used",
+ cuResAuto:"Self-consumed", cuResExc:"Exported to grid", cuResCob:"Consumption covered", cuResHoras:"Hours with surplus",
+ cuHalBien:"At <b>{k}</b> you use <b>{a} %</b> of what you produce and cover {c} % of your consumption this month. It is well sized: almost nothing goes to the grid.",
+ cuHalMedio:"At <b>{k}</b>, <b>{e} %</b> of output is exported. That is acceptable, but dropping a few kWp would improve the return without losing much saving.",
+ cuHalMal:"At <b>{k}</b> you are exporting <b>{e} %</b> of what you produce, and surplus is paid at less than half. This month you have too much plant: either reduce capacity or move consumption into the middle hours.",
+ mesesLargos:["January","February","March","April","May","June","July","August","September","October","November","December"],
+ perfilesH:["Manufacturing, two shifts","Logistics and cold storage","Food and drink","Automotive, split shift","Agri-industry and irrigation","Offices and retail"],
+
+ ofH1:"You have three quotes and they look nothing alike.",
+ ofEntrada:"Put each one's numbers in here. We will tell you which comes out cheapest per kWh produced across the plant's life, which is the only comparison that means anything. And yes, you can put ours in too.",
+ ofNota:"The cost per kWh spreads the investment and the maintenance across all the energy the plant will produce in twenty-five years, with annual panel degradation discounted. It does not include the price you pay for electricity: it is for comparing quotes against each other, not for working out the saving. A cheaper quote without an output guarantee is not cheaper: it is less certain.",
+ ofFilas:["Capacity quoted (kWp)","Total price (€)","Product warranty (years)","Output guarantee","Maintenance included (years)","Delivery time (weeks)","Penalty for delay"],
+ ofCols:["Item","Quote A","Quote B","Quote C"],
+ ofSi:"Yes", ofNo:"No",
+ ofPrecioKwp:"Price per kWp", ofLcoe:"Cost per kWh produced", ofProd25:"Output over 25 years",
+ ofMejor:"Cheapest per kWh", ofRiesgo:"No output guarantee",
+ ofHal:"<b>{o}</b> comes out at <b>€{l}/kWh</b>, {d} % cheaper than the worst of the three. But look at the output guarantee row before deciding: it is the only thing protecting you if the plant produces less than promised, and it is precisely the one almost nobody offers.",
+ ofHalIgual:"Fill in at least two quotes with capacity and price and we will compare them.",
+ ofAviso:"Careful: the cheapest quote per kWh carries no output guarantee. If it produces 10 % below forecast, that saving disappears and there is nobody to claim from.",
+
  nAyudas:"Grants", tAyudas:"Grants and financing — NAHAR",
  ayH1:"What almost nobody tells you before you sign.",
  ayEntrada:"Between deductions, accelerated depreciation and municipal reliefs, a good part of the investment comes back. But it has to be claimed properly and in order, and some deadlines do not forgive.",
@@ -1572,6 +1699,33 @@ en:{
 
 ar:{
  _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ nCurva:"المنحنى الساعي", nOfertas:"مقارنة العروض",
+ tCurva:"المنحنى الساعي — نهار", tOfertas:"مقارنة العروض — نهار",
+ cuH1:"الرسم الذي يحدّد حجم منشأتك.",
+ cuEntrada:"استهلاكك ساعةً بساعة، وفوقه إنتاج الشمس في اليوم نفسه. فما يتداخل هو ما يوفّر فعلًا. وما يعلو فوقه يُصدَّر إلى الشبكة بأقل من نصف الثمن.",
+ cuLSector:"نمط الاستهلاك", cuLMes:"الشهر", cuLKwp:"القدرة المركَّبة (كيلوواط ذروة)", cuLCons:"الاستهلاك السنوي (كيلوواط ساعة)",
+ cuGrafAlt:"الاستهلاك الساعي مقابل الإنتاج الشمسي على مدار اليوم",
+ cuNota:"الإنتاج الساعي مستخرَج من طول النهار في كل شهر عند خط عرض قريب من ٤٠ درجة شمالًا ومن الإنتاج الشهري المرجعي. أما نمط الاستهلاك فهو النمط المعتاد للقطاع بعد التوحيد: ونمطك الحقيقي يخرج من المنحنى الساعي لعدّادك، وهو تحديدًا ما نطلبه في الزيارة الأولى.",
+ cuLeyCons:"استهلاكك", cuLeyProd:"الإنتاج الشمسي", cuLeyAuto:"ما يُستفاد منه",
+ cuResAuto:"الاستهلاك الذاتي", cuResExc:"يُصدَّر إلى الشبكة", cuResCob:"تغطية الاستهلاك", cuResHoras:"ساعات بها فائض",
+ cuHalBien:"بـ<b>{k}</b> تستفيد من <b>{a}٪</b> مما تنتجه وتغطّي {c}٪ من استهلاكك في هذا الشهر. القدرة محدَّدة جيدًا: ولا يكاد شيء يذهب إلى الشبكة.",
+ cuHalMedio:"بـ<b>{k}</b> يُصدَّر <b>{e}٪</b> من الإنتاج. وهذا مقبول، لكن خفض القدرة ببضعة كيلوواط يحسّن المردود دون خسارة تُذكر في الوفر.",
+ cuHalMal:"بـ<b>{k}</b> تُصدِّر <b>{e}٪</b> مما تنتجه، والفائض يُدفع بأقل من النصف. في هذا الشهر لديك منشأة زائدة: فإما أن تخفض القدرة، وإما أن تنقل استهلاكك إلى ساعات النهار الوسطى.",
+ mesesLargos:["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"],
+ perfilesH:["تصنيع، مناوبتان","لوجستيات وتبريد","أغذية ومشروبات","سيارات، دوام مقسوم","صناعات زراعية وري","مكاتب وتجزئة"],
+
+ ofH1:"لديك ثلاثة عروض ولا يشبه أحدها الآخر.",
+ ofEntrada:"أدخل هنا أرقام كل عرض. ونخبرك أيّها أرخص لكل كيلوواط ساعة يُنتَج على مدى عمر المنشأة، وهي المقارنة الوحيدة ذات المعنى. ونعم، يمكنك إدخال عرضنا أيضًا.",
+ ofNota:"تُحسب الكلفة لكل كيلوواط ساعة بتوزيع الاستثمار والصيانة على كل الطاقة التي ستنتجها المنشأة في خمس وعشرين سنة، مع خصم التدهور السنوي للّوح. ولا تشمل السعر الذي تشتري به الكهرباء: فهي لمقارنة العروض ببعضها، لا لحساب الوفر. والعرض الأرخص بلا ضمان إنتاج ليس أرخص: بل أقل يقينًا.",
+ ofFilas:["القدرة المعروضة (كيلوواط ذروة)","السعر الإجمالي (يورو)","ضمان المنتج (سنوات)","ضمان الإنتاج","الصيانة المشمولة (سنوات)","مهلة التسليم (أسابيع)","غرامة التأخير"],
+ ofCols:["البند","العرض أ","العرض ب","العرض ج"],
+ ofSi:"نعم", ofNo:"لا",
+ ofPrecioKwp:"السعر لكل كيلوواط ذروة", ofLcoe:"الكلفة لكل كيلوواط ساعة مُنتَج", ofProd25:"الإنتاج على ٢٥ سنة",
+ ofMejor:"الأرخص لكل كيلوواط ساعة", ofRiesgo:"بلا ضمان إنتاج",
+ ofHal:"<b>{o}</b> يخرج بـ<b>{l} يورو لكل كيلوواط ساعة</b>، أرخص بـ{d}٪ من أسوأ الثلاثة. لكن انظر إلى سطر ضمان الإنتاج قبل أن تقرّر: فهو وحده ما يحميك إن أنتجت المحطة أقل مما وُعد به، وهو تحديدًا ما لا يكاد أحد يقدّمه.",
+ ofHalIgual:"املأ عرضين على الأقل بالقدرة والسعر ونقارنهما لك.",
+ ofAviso:"انتبه: العرض الأرخص لكل كيلوواط ساعة لا يحمل ضمان إنتاج. فإن أنتج أقل بـ١٠٪ من المتوقَّع، تبخّر ذلك الوفر ولا جهة تطالبها.",
+
  nAyudas:"الدعم", tAyudas:"الدعم والتمويل — نهار",
  ayH1:"ما لا يكاد أحدٌ يخبرك به قبل التوقيع.",
  ayEntrada:"بين الحسومات الضريبية والإهلاك المعجَّل والإعفاءات البلدية، يعود جزء وافر من الاستثمار. لكن يجب طلبه على وجهه وبترتيبه، وثمة مواعيد لا تُغتفر.",
@@ -2206,18 +2360,230 @@ function pintarFicha(){
     + '<hr><p style="font-size:.78rem;color:var(--tinta-3)">'+esc(t.fiPie)+"</p>";
 }
 
-function pintarNuevas(){
-  pintarSimulador(); pintarEquipos(); pintarObra(); pintarGlosario(); pintarVisita();
+
+/* ── Curva horaria: consumo contra producción ────────────────────── */
+var cuSec = 0, cuMes = 5;
+
+function curvas(){
+  var kwp  = Math.max(1, +document.getElementById("cuKwp").value || 300);
+  var cons = Math.max(1000, +document.getElementById("cuCons").value || 450000);
+  var perfil = PERFIL_H[cuSec], suma = 0, i;
+  for (i = 0; i < 24; i++) suma += perfil[i];
+
+  /* El consumo diario se reparte entre las horas según el perfil. */
+  var diario = cons / 365, C = [];
+  for (i = 0; i < 24; i++) C.push(diario * perfil[i] / suma);
+
+  /* Producción: media onda de seno entre amanecer y ocaso, escalada para
+     que el total del día cuadre con la producción mensual de referencia. */
+  var luz = LUZ[cuMes], med = MEDIODIA[cuMes];
+  var sale = med - luz/2, pone = med + luz/2;
+  var diaProd = SUR[cuMes] * kwp / DIAS_MES[cuMes];
+  var bruto = [], tb = 0;
+  for (i = 0; i < 24; i++){
+    var h = i + 0.5;
+    var v = (h > sale && h < pone) ? Math.sin(Math.PI * (h - sale) / luz) : 0;
+    bruto.push(v); tb += v;
+  }
+  var P = bruto.map(function(v){ return tb ? v / tb * diaProd : 0; });
+
+  var auto = 0, exc = 0, horasExc = 0, totC = 0, totP = 0;
+  for (i = 0; i < 24; i++){
+    auto += Math.min(C[i], P[i]);
+    var e = Math.max(0, P[i] - C[i]);
+    exc += e; if (e > 0.01) horasExc++;
+    totC += C[i]; totP += P[i];
+  }
+  return {C:C, P:P, auto:auto, exc:exc, horasExc:horasExc, totC:totC, totP:totP, kwp:kwp};
 }
 
-var RUTAS = ["inicio","servicios","proceso","rendimiento","amortizacion","simulador",
+function pintarCurva(){
+  var svg = document.getElementById("cuGrafica");
+  if (!svg) return;
+  var t = T[idioma];
+
+  var sSec = document.getElementById("cuSector");
+  if (sSec.options.length !== t.perfilesH.length){
+    sSec.innerHTML = t.perfilesH.map(function(n,i){ return '<option value="'+i+'">'+esc(n)+'</option>'; }).join("");
+  } else {
+    for (var q = 0; q < t.perfilesH.length; q++) sSec.options[q].textContent = t.perfilesH[q];
+  }
+  sSec.value = cuSec;
+  var sMes = document.getElementById("cuMes");
+  sMes.innerHTML = t.mesesLargos.map(function(n,i){ return '<option value="'+i+'">'+esc(n)+'</option>'; }).join("");
+  sMes.value = cuMes;
+
+  document.getElementById("cuLeyenda").innerHTML =
+    '<span><i style="--c:var(--s1)"></i>'+esc(t.cuLeyCons)+'</span>'
+  + '<span><i style="--c:var(--s2)"></i>'+esc(t.cuLeyProd)+'</span>'
+  + '<span><i style="--c:var(--s3)"></i>'+esc(t.cuLeyAuto)+'</span>';
+
+  var d = curvas();
+  var W = 900, H = 340, ml = 52, mr = 16, mt = 18, mb = 38;
+  var iw = W-ml-mr, ih = H-mt-mb;
+  var max = Math.max.apply(null, d.C.concat(d.P)) * 1.15 || 1;
+  function X(h){ return ml + h/24*iw; }
+  function Y(v){ return mt + ih - v/max*ih; }
+
+  var g = "";
+  for (var k = 0; k <= 4; k++){
+    var v = max*k/4, y = Y(v);
+    g += '<line class="gr-guia" x1="'+ml+'" y1="'+y.toFixed(1)+'" x2="'+(W-mr)+'" y2="'+y.toFixed(1)+'"/>';
+    g += '<text class="gr-tex" x="'+(ml-8)+'" y="'+(y+3.5).toFixed(1)+'" text-anchor="end">'+num(Math.round(v))+'</text>';
+  }
+  g += '<line class="gr-eje" x1="'+ml+'" y1="'+(mt+ih)+'" x2="'+(W-mr)+'" y2="'+(mt+ih)+'"/>';
+
+  function area(vals, cerrar){
+    var p = "M"+X(0)+","+Y(0);
+    for (var i = 0; i < 24; i++){ p += " L"+X(i).toFixed(1)+","+Y(vals[i]).toFixed(1)+" L"+X(i+1).toFixed(1)+","+Y(vals[i]).toFixed(1); }
+    return p + " L"+X(24)+","+Y(0)+(cerrar?" Z":"");
+  }
+  /* Lo aprovechado es el mínimo de las dos curvas: se pinta debajo. */
+  var minimo = d.C.map(function(c,i){ return Math.min(c, d.P[i]); });
+  g += '<path d="'+area(d.C,true)+'" fill="var(--s1)" fill-opacity=".10"/>';
+  g += '<path d="'+area(minimo,true)+'" fill="var(--s3)" fill-opacity=".38"/>';
+  g += '<path d="'+area(d.C,false)+'" fill="none" stroke="var(--s1)" stroke-width="2"/>';
+  g += '<path d="'+area(d.P,false)+'" fill="none" stroke="var(--s2)" stroke-width="2.4"/>';
+  for (var x = 0; x <= 24; x += 3){
+    g += '<text class="gr-tex" x="'+X(x).toFixed(1)+'" y="'+(mt+ih+16)+'" text-anchor="middle">'+num(x)+"h</text>";
+  }
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  svg.innerHTML = g;
+
+  var pAuto = d.totP ? d.auto/d.totP*100 : 0;
+  var pExc  = 100 - pAuto;
+  var pCob  = d.totC ? d.auto/d.totC*100 : 0;
+  document.getElementById("cuRes").innerHTML =
+    [[num(Math.round(pAuto))+" %", t.cuResAuto],
+     [num(Math.round(pExc))+" %",  t.cuResExc],
+     [num(Math.round(pCob))+" %",  t.cuResCob],
+     [num(d.horasExc),             t.cuResHoras]]
+    .map(function(r){ return "<div><b>"+r[0]+"</b><span>"+esc(r[1])+"</span></div>"; }).join("");
+
+  var kTxt = num(d.kwp)+" kWp";
+  var msg = pExc < 12 ? t.cuHalBien.replace("{k}",kTxt).replace("{a}",num(Math.round(pAuto))).replace("{c}",num(Math.round(pCob)))
+          : pExc < 30 ? t.cuHalMedio.replace("{k}",kTxt).replace("{e}",num(Math.round(pExc)))
+          :             t.cuHalMal.replace("{k}",kTxt).replace("{e}",num(Math.round(pExc)));
+  document.getElementById("cuHallazgo").innerHTML = msg;
+}
+
+/* ── Comparador de ofertas ───────────────────────────────────────── */
+var ofDatos = [
+  {kwp:300, precio:255000, gp:12, gprod:true,  mant:5, plazo:14, pen:true},
+  {kwp:300, precio:219000, gp:10, gprod:false, mant:1, plazo:20, pen:false},
+  {kwp:340, precio:289000, gp:15, gprod:true,  mant:3, plazo:12, pen:true}
+];
+
+function prod25(kwp){
+  var s = 0;
+  for (var a = 0; a < ANIOS; a++) s += kwp * 1623 * Math.pow(1-DEGRAD, a);
+  return s;
+}
+function lcoe(o){
+  if (!(o.kwp > 0) || !(o.precio > 0)) return null;
+  var mantFuera = Math.max(0, ANIOS - o.mant) * o.kwp * OPEX_KWP;
+  return (o.precio + mantFuera) / prod25(o.kwp);
+}
+
+function pintarOfertas(){
+  var tab = document.getElementById("ofTabla");
+  if (!tab) return;
+  var t = T[idioma];
+  var campos = ["kwp","precio","gp","gprod","mant","plazo","pen"];
+
+  var filas = t.ofFilas.map(function(nom, fi){
+    var c = campos[fi];
+    var celdas = ofDatos.map(function(o, oi){
+      if (c === "gprod" || c === "pen"){
+        return '<td><select data-o="'+oi+'" data-c="'+c+'">'
+          + '<option value="1"'+(o[c]?" selected":"")+'>'+esc(t.ofSi)+'</option>'
+          + '<option value="0"'+(o[c]?"":" selected")+'>'+esc(t.ofNo)+'</option></select></td>';
+      }
+      return '<td><input type="number" min="0" step="'+(c==="precio"?"1000":"1")+'" value="'+o[c]+'" data-o="'+oi+'" data-c="'+c+'"></td>';
+    }).join("");
+    return "<tr><td>"+esc(nom)+"</td>"+celdas+"</tr>";
+  }).join("");
+
+  var l = ofDatos.map(lcoe);
+  var validos = l.filter(function(x){ return x !== null; });
+  var mejor = -1;
+  if (validos.length >= 2){
+    var min = Math.min.apply(null, validos);
+    mejor = l.indexOf(min);
+  }
+  var extra = "<tr>" + "<td>"+esc(t.ofPrecioKwp)+"</td>"
+    + ofDatos.map(function(o){ return "<td>"+(o.kwp>0?eur(o.precio/o.kwp):"—")+"</td>"; }).join("") + "</tr>"
+    + "<tr>" + "<td>"+esc(t.ofProd25)+"</td>"
+    + ofDatos.map(function(o){ return "<td>"+(o.kwp>0?num(Math.round(prod25(o.kwp)/1000))+" MWh":"—")+"</td>"; }).join("") + "</tr>"
+    + '<tr><td><b>'+esc(t.ofLcoe)+'</b></td>'
+    + l.map(function(x,i){ return '<td class="'+(i===mejor?"gana":"")+'"><b>'
+        + (x===null?"—":num(x,3)+" €")+"</b></td>"; }).join("") + "</tr>";
+
+  tab.innerHTML = "<thead><tr>" + t.ofCols.map(function(c){ return "<th>"+esc(c)+"</th>"; }).join("")
+    + "</tr></thead><tbody>" + filas + extra + "</tbody>";
+
+  tab.querySelectorAll("input,select").forEach(function(el){
+    el.addEventListener("input", function(){
+      var o = +this.dataset.o, c = this.dataset.c;
+      ofDatos[o][c] = (c === "gprod" || c === "pen") ? this.value === "1" : Math.max(0, +this.value || 0);
+      pintarOfertas();
+      var f = document.querySelector('[data-o="'+o+'"][data-c="'+c+'"]');
+      if (f && f.focus) f.focus();
+    });
+  });
+
+  document.getElementById("ofVeredicto").innerHTML = ofDatos.map(function(o,i){
+    var x = l[i];
+    return '<div class="of-v '+(i===mejor?"mejor":"")+'"><h4>'+esc(t.ofCols[i+1])+'</h4>'
+      + '<div class="lcoe">'+(x===null?"—":num(x,3)+" €")+'</div><span class="u">'+esc(t.ofLcoe)+'</span>'
+      + '<ul>'
+      + '<li class="'+(o.gprod?"si":"no")+'"><i>'+(o.gprod?"✓":"×")+'</i>'+esc(t.ofFilas[3])+'</li>'
+      + '<li class="'+(o.pen?"si":"no")+'"><i>'+(o.pen?"✓":"×")+'</i>'+esc(t.ofFilas[6])+'</li>'
+      + '<li class="'+(o.mant>=3?"si":"no")+'"><i>'+(o.mant>=3?"✓":"×")+'</i>'+esc(t.ofFilas[4])+': '+num(o.mant)+'</li>'
+      + '</ul></div>';
+  }).join("");
+
+  if (mejor < 0){
+    document.getElementById("ofHallazgo").innerHTML = esc(t.ofHalIgual);
+  } else {
+    var peor = Math.max.apply(null, validos);
+    var dif = Math.round((peor - l[mejor]) / peor * 100);
+    var msg = t.ofHal.replace("{o}", esc(t.ofCols[mejor+1]))
+      .replace("{l}", num(l[mejor],3)).replace("{d}", num(dif));
+    if (!ofDatos[mejor].gprod) msg += ' <b>' + esc(t.ofAviso) + '</b>';
+    document.getElementById("ofHallazgo").innerHTML = msg;
+  }
+}
+
+function pintarNuevas(){
+  pintarSimulador(); pintarEquipos(); pintarObra(); pintarGlosario(); pintarVisita();
+  pintarCurva(); pintarOfertas();
+}
+
+
+/* Perfil de consumo por sector: peso relativo de cada una de las 24 horas.
+   Se normaliza en el código, así que la escala de estos números da igual. */
+var PERFIL_H = [
+ [10,10,10,10,10,35,80,95,100,100,95,90,70,90,100,100,95,90,80,60,40,25,15,10],
+ [55,52,50,50,52,60,75,85,90,92,95,100,100,98,95,92,88,85,80,72,68,62,58,56],
+ [20,18,18,20,30,60,90,95,90,88,92,95,80,85,95,90,70,50,70,60,35,25,22,20],
+ [8,8,8,8,10,15,35,70,100,100,98,95,85,45,40,90,95,92,80,40,20,12,10,9],
+ [15,15,15,20,45,85,95,80,55,40,35,35,35,40,50,70,90,95,80,50,25,18,15,15],
+ [6,5,5,5,6,10,25,55,85,95,100,100,85,80,95,100,98,90,75,50,25,14,9,7]
+];
+/* Horas de luz y mediodía solar en hora local (con cambio de hora), a 40° N */
+var LUZ = [9.6,10.7,12.0,13.3,14.4,15.0,14.7,13.7,12.4,11.1,10.0,9.4];
+var MEDIODIA = [13.2,13.3,13.4,14.5,14.6,14.6,14.7,14.6,14.4,14.2,13.2,13.1];
+var DIAS_MES = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+var RUTAS = ["inicio","servicios","proceso","rendimiento","curva","amortizacion","simulador","ofertas",
              "equipos","obra","glosario","visita","ficha",
              "proyectos","mantenimiento","ayudas","nosotros","preguntas","contacto"];
 var TITULOS = {inicio:"tInicio",servicios:"tServicios",proceso:"tProceso",
   rendimiento:"tRendimiento",amortizacion:"tAmortizacion",proyectos:"tProyectos",
   mantenimiento:"tMantenimiento",nosotros:"tNosotros",preguntas:"tPreguntas",contacto:"tContacto",
   simulador:"tSimulador",equipos:"tEquipos",obra:"tObra",glosario:"tGlosario",
-  visita:"tVisita",ficha:"tFicha",ayudas:"tAyudas"};
+  visita:"tVisita",ficha:"tFicha",ayudas:"tAyudas",curva:"tCurva",ofertas:"tOfertas"};
 
 var idioma = "es", reOri = 0;
 
@@ -2547,6 +2913,14 @@ if (viR) viR.addEventListener("click", function(){
   try{ localStorage.removeItem("nahar_visita"); }catch(e){}
   pintarVisita();
 });
+["cuKwp","cuCons"].forEach(function(id){
+  var el = document.getElementById(id);
+  if (el) el.addEventListener("input", pintarCurva);
+});
+var cuS = document.getElementById("cuSector");
+if (cuS) cuS.addEventListener("change", function(){ cuSec = +this.value; pintarCurva(); });
+var cuM = document.getElementById("cuMes");
+if (cuM) cuM.addEventListener("change", function(){ cuMes = +this.value; pintarCurva(); });
 var fiI = document.getElementById("fiImprimir");
 if (fiI) fiI.addEventListener("click", function(){ window.print(); });
 

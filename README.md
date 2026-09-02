@@ -1,6 +1,6 @@
 # NAHAR — Autoconsumo solar industrial
 
-Sitio corporativo de **dieciséis páginas** en español, inglés y árabe con RTL real,
+Sitio corporativo de **diecinueve páginas** en español, inglés y árabe con RTL real,
 para una ingeniería de autoconsumo fotovoltaico industrial.
 
 **Ver online:** https://2troll.github.io/nahar-solar/
@@ -19,6 +19,8 @@ más texto:
 
 | Página | Formato | Qué hace |
 |---|---|---|
+| **Curva horaria** | Áreas superpuestas con solape calculado | Tu consumo hora a hora contra la producción solar: el área verde es lo que de verdad se aprovecha. La producción sale de la duración del día por mes a 40° N, no de un dibujo |
+| **Comparar ofertas** | Tabla editable con veredicto | Metes tres presupuestos y calcula el coste por kWh producido a 25 años con degradación. Avisa si la más barata no lleva garantía de producción |
 | **Simulador** | Formulario con panel de resultados en vivo | Dimensiona la instalación con los datos del visitante y explica **cuál de los dos techos manda**: la cubierta o el consumo |
 | **Equipos** | Tabla ordenable y filtrable | Se ordena pulsando cualquier columna, también con teclado; el filtro compara con el tipo de la primera fila, así que funciona en los tres idiomas |
 | **La obra** | Diagrama de Gantt | Tres tamaños de instalación reescalan las duraciones y desplazan las tareas conservando los solapes; la ruta crítica va marcada |
