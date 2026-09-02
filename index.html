@@ -99,6 +99,54 @@ html[dir="rtl"] .idi{font-size:.85rem;}
 .idi button:hover{color:var(--acento);}
 @media(max-width:980px){.barra{gap:.6rem 1rem}.idi{margin-inline-start:auto}nav.n{order:3;width:100%;margin-inline-start:0}}
 
+/* ── Barra de utilidades: en un sitio industrial el teléfono y las
+   descargas van arriba del todo, no escondidos en el pie. ────────── */
+.util{background:var(--tinta);color:var(--fondo);font-size:.74rem;}
+html[dir="rtl"] .util{font-size:.86rem;}
+.util-m{display:flex;align-items:center;gap:.4rem 1.4rem;flex-wrap:wrap;padding-block:.45rem;}
+.util a{color:color-mix(in srgb,var(--fondo) 78%,transparent);text-decoration:none;}
+.util a:hover{color:var(--fondo);}
+.util-i{color:color-mix(in srgb,var(--fondo) 55%,transparent);margin-inline-end:auto;}
+.util-tel{font-family:var(--mono);font-weight:500;}
+.util .idi{margin-inline-start:.6rem;}
+.util .idi button{color:color-mix(in srgb,var(--fondo) 60%,transparent);}
+.util .idi button[aria-pressed="true"]{color:var(--fondo);}
+.util .idi button:hover{color:var(--fondo);}
+@media(max-width:700px){.util-i{display:none}}
+
+.cab-cta{margin-inline-start:1.4rem;flex-shrink:0;}
+@media(max-width:980px){.cab-cta{margin-inline-start:auto;order:2}}
+
+/* ── Migas: dicen dónde está uno dentro de un sitio con mucho fondo ── */
+.miga{border-bottom:1px solid var(--linea);background:var(--fondo-2);}
+.miga[hidden]{display:none !important;}
+.miga ol{list-style:none;margin:0 auto;padding-block:.6rem;display:flex;flex-wrap:wrap;
+  gap:.4rem .5rem;width:var(--marco);font-family:var(--mono);font-size:.7rem;color:var(--tinta-3);}
+html[dir="rtl"] .miga ol{font-family:var(--cuerpo);font-size:.84rem;}
+.miga a{color:var(--tinta-3);text-decoration:none;}
+.miga a:hover{color:var(--acento);}
+.miga li+li::before{content:"/";margin-inline-end:.5rem;color:var(--linea);}
+html[dir="rtl"] .miga li+li::before{content:"\\";}
+
+/* ── Bandas alternas: separan bloques sin necesidad de más filetes ── */
+.banda{background:var(--fondo-2);}
+.banda-b{background:var(--sup);}
+
+/* ── Pie a cuatro columnas, agrupado por categoría ─────────────────── */
+.pie-rej{display:grid;gap:2.5rem;padding-block:clamp(2.5rem,5vw,4rem);}
+@media(min-width:820px){.pie-rej{grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;}}
+.pie-logo{font-family:var(--disp);font-weight:600;font-size:1.15rem;display:block;margin-bottom:.9rem;}
+.pie-marca p{font-size:.88rem;color:var(--tinta-2);max-width:38ch;}
+.pie-dir{font-size:.8rem !important;color:var(--tinta-3) !important;}
+.pie-t{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tinta-3);margin:0 0 .9rem;}
+html[dir="rtl"] .pie-t{letter-spacing:0;text-transform:none;font-size:.85rem;font-family:var(--cuerpo);}
+.pie-col nav{display:grid;gap:.55rem;}
+.pie-col a{color:var(--tinta-2);text-decoration:none;font-size:.88rem;}
+.pie-col a:hover{color:var(--acento);}
+.pie-fin{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;
+  padding-block:1.2rem;border-top:1px solid var(--linea);font-size:.76rem;color:var(--tinta-3);}
+
 /* ── Rejilla de documento técnico: raíl fijo + columna de contenido ──
    No es una web de folleto: se navega como una ficha de proyecto, con el
    índice del apartado siempre a la vista y las cifras vivas abajo. */
@@ -113,7 +161,7 @@ html[dir="rtl"] .idi{font-size:.85rem;}
   html[dir="rtl"] .rail{padding:2.6rem 0 2rem 1.8rem;}
   .doc-cuerpo{border-inline-start:1px solid var(--linea);}
   .doc-cuerpo .marco{width:auto;margin-inline:0;padding-inline:clamp(1.8rem,3vw,3.2rem);}
-  .doc .indice-pag{display:none;}
+  .doc .marco:has(> .indice-pag){display:none;}
 }
 .rail-t{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--tinta-3);margin:0 0 1rem;}
@@ -551,6 +599,20 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 </head>
 <body>
 
+<div class="util">
+  <div class="marco util-m">
+    <span class="util-i" data-t="utilAtencion">Atención técnica de lunes a viernes, 8:00–18:00 CET</span>
+    <a class="util-tel" href="tel:+34976000000" dir="ltr">+34 976 000 000</a>
+    <a href="#/recursos" data-ir="ap-ficha" data-t="utilDescargas">Descargas</a>
+    <a href="#/recursos" data-ir="ap-glosario" data-t="utilGlosario">Glosario</a>
+    <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+    </div>
+  </div>
+</div>
+
 <header class="n">
   <div class="marco barra">
     <a class="logo" href="#/inicio">
@@ -565,13 +627,11 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
       <a href="#/recursos"  data-t="nRecursos">Recursos</a>
       <a href="#/empresa"   data-t="nEmpresa">Empresa</a>
     </nav>
-    <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
-      <button type="button" data-lang="es" aria-pressed="true">ES</button>
-      <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
-    </div>
+    <a class="btn sol cab-cta" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
   </div>
 </header>
+
+<nav class="miga" id="miga" data-t-attr="aria-label:ariaMiga" aria-label="Ruta"></nav>
 
 <main>
 <div class="doc">
@@ -1112,15 +1172,19 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 </div>
 
 <footer class="n">
-  <div class="marco pie">
-    <span data-t="marca">NAHAR</span>
-    <nav>
-      <a href="#/servicios"   data-t="nServicios">Servicios</a>
-      <a href="#/numeros" data-ir="ap-rendimiento" data-t="nRendimiento">Rendimiento</a>
-      <a href="#/proyectos"   data-t="nProyectos">Proyectos</a>
-      <a href="#/empresa" data-ir="ap-contacto"    data-t="nContacto">Contacto</a>
-    </nav>
-    <span class="fin"><span data-t="pieAviso">Maqueta de demostración</span> · <span class="ltr">© 2026</span></span>
+  <div class="marco pie-rej">
+    <div class="pie-marca">
+      <span class="pie-logo" data-t="marca">NAHAR</span>
+      <p data-t="pieQue">Ingeniería e instalación de autoconsumo solar industrial. Estudio, obra y explotación con un solo interlocutor.</p>
+      <p class="pie-dir" data-t="pieDir">Polígono Industrial Las Salinas, nave 14 · 50016 Zaragoza</p>
+    </div>
+    <div class="pie-col"><p class="pie-t" data-t="nServicios">Servicios</p><nav id="pieServicios"></nav></div>
+    <div class="pie-col"><p class="pie-t" data-t="nNumeros">Los números</p><nav id="pieNumeros"></nav></div>
+    <div class="pie-col"><p class="pie-t" data-t="nRecursos">Recursos</p><nav id="pieRecursos"></nav></div>
+  </div>
+  <div class="marco pie-fin">
+    <span data-t="pieAviso">Maqueta de demostración</span>
+    <span class="ltr">© 2026 NAHAR</span>
   </div>
 </footer>
 
@@ -1134,7 +1198,10 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 var T = {
 
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", utilAtencion:"Atención técnica de lunes a viernes, 8:00–18:00 CET", utilDescargas:"Descargas", utilGlosario:"Glosario",
+ ariaMiga:"Ruta", pieQue:"Ingeniería e instalación de autoconsumo solar industrial. Estudio, obra y explotación con un solo interlocutor.",
+ pieDir:"Polígono Industrial Las Salinas, nave 14 · 50016 Zaragoza",
+
  noFichaEti:"Datos de la sociedad", noHitosEti:"Por dónde hemos pasado",
  noPagoEti:"Cómo se factura y cómo se cobra",
  noFicha:[
@@ -1639,7 +1706,10 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", utilAtencion:"Technical support Monday to Friday, 8:00–18:00 CET", utilDescargas:"Downloads", utilGlosario:"Glossary",
+ ariaMiga:"Breadcrumb", pieQue:"Engineering and installation of industrial solar self-consumption. Study, works and operation with a single point of contact.",
+ pieDir:"Polígono Industrial Las Salinas, unit 14 · 50016 Zaragoza",
+
  noFichaEti:"Company details", noHitosEti:"Where we have been",
  noPagoEti:"How invoicing and payment work",
  noFicha:[
@@ -2144,7 +2214,10 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", utilAtencion:"دعم فني من الاثنين إلى الجمعة، ٨:٠٠–١٨:٠٠ بتوقيت وسط أوروبا", utilDescargas:"التنزيلات", utilGlosario:"مسرد المصطلحات",
+ ariaMiga:"المسار", pieQue:"هندسة وتركيب الاستهلاك الذاتي الشمسي الصناعي. دراسة وتنفيذ وتشغيل بمحاور واحد.",
+ pieDir:"المنطقة الصناعية لاس ساليناس، وحدة ١٤ · ٥٠٠١٦ سرقسطة",
+
  noFichaEti:"بيانات الشركة", noHitosEti:"أين مررنا",
  noPagoEti:"كيف تجري الفوترة والتحصيل",
  noFicha:[
@@ -3549,7 +3622,7 @@ function aplicar(codigo){
   var ac = document.getElementById("acuse");
   if (ac){ ac.textContent = ""; ac.classList.remove("mal"); }
 
-  pintarRail(); pintarBarraBaja();
+  pintarRail(); pintarBarraBaja(); pintarMiga(); pintarPie();
   Object.keys(INDICE).forEach(function(r){
     var e = document.getElementById("ix-"+r); if (!e) return;
     e.innerHTML = INDICE[r].map(function(x){
@@ -3562,6 +3635,29 @@ function aplicar(codigo){
 
 /* El raíl sustituye al índice horizontal en pantallas anchas: en un sitio
    técnico interesa tener el sumario del apartado siempre delante. */
+/* Migas y columnas de pie: se generan del mismo índice que el raíl, así
+   que no hay tres listas que puedan desincronizarse. */
+function pintarMiga(){
+  var caja = document.getElementById("miga");
+  if (!caja) return;
+  var r = ruta(), t = T[idioma];
+  caja.hidden = r === "inicio";
+  if (caja.hidden) return;
+  caja.innerHTML = '<ol><li><a href="#/inicio">'+esc(t.nInicio)+'</a></li>'
+    + '<li>'+esc(t[TITULOS[r]].split("—")[0].trim())+'</li></ol>';
+}
+
+function pintarPie(){
+  var t = T[idioma];
+  [["pieServicios","servicios"],["pieNumeros","numeros"],["pieRecursos","recursos"]].forEach(function(par){
+    var e = document.getElementById(par[0]);
+    if (!e) return;
+    e.innerHTML = INDICE[par[1]].map(function(x){
+      return '<a href="#/'+par[1]+'" data-ir="'+x[0]+'">'+esc(t[x[1]])+'</a>';
+    }).join("");
+  });
+}
+
 function pintarRail(){
   var r = ruta(), t = T[idioma], caja = document.querySelector(".rail");
   if (!caja) return;
@@ -3605,6 +3701,13 @@ function pintarBarraBaja(){
 function enrutar(){
   var r = ruta(), s = document.querySelectorAll("[data-ruta]"), i;
   for (i = 0; i < s.length; i++) s[i].classList.toggle("on", s[i].getAttribute("data-ruta") === r);
+  /* Bandas alternas: dan ritmo a una página larga sin meter más filetes */
+  var visto = 0;
+  for (i = 0; i < s.length; i++){
+    var dentro = s[i].classList.contains("on");
+    s[i].classList.toggle("banda", dentro && visto % 2 === 1);
+    if (dentro) visto++;
+  }
   var en = document.querySelectorAll("nav.n a");
   for (i = 0; i < en.length; i++){
     if (en[i].getAttribute("href") === "#/"+r) en[i].setAttribute("aria-current","page");
@@ -3612,7 +3715,7 @@ function enrutar(){
   }
   document.title = T[idioma][TITULOS[r]] || T[idioma].tInicio;
   window.scrollTo(0,0);
-  pintarRail(); pintarBarraBaja();
+  pintarRail(); pintarBarraBaja(); pintarMiga();
 }
 
 var bs = document.querySelectorAll(".idi button");
