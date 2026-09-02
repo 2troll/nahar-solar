@@ -288,6 +288,76 @@ html[dir="rtl"] .hoja .sello{letter-spacing:0;text-transform:none;font-size:.86r
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#555;}
 }
 
+
+/* ── Bloques de densidad: lo que faltaba para que no parezca folleto ── */
+.dos-col{display:grid;gap:2.5rem;} @media(min-width:900px){.dos-col{grid-template-columns:1.25fr .75fr;gap:3.5rem;align-items:start;}}
+.dos-col.inv{grid-template-columns:.75fr 1.25fr;}
+.texto-largo p{max-width:none;}
+.texto-largo h3{font-size:1.35rem;margin:2rem 0 .7rem;}
+.texto-largo h3:first-child{margin-top:0;}
+.lateral{background:var(--fondo-2);border:1px solid var(--linea);padding:1.5rem;position:sticky;top:6rem;}
+.lateral h4{font-family:var(--disp);font-size:1.05rem;margin:0 0 .8rem;}
+.lateral dl{display:grid;gap:.5rem;margin:0;}
+.lateral dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-3);}
+html[dir="rtl"] .lateral dt{letter-spacing:0;text-transform:none;font-size:.82rem;font-family:var(--cuerpo);}
+.lateral dd{margin:0 0 .6rem;font-size:.94rem;}
+
+/* Testimonios */
+.testis{display:grid;gap:1.2rem;} @media(min-width:820px){.testis{grid-template-columns:repeat(3,1fr);}}
+.testi{border-top:2px solid var(--acento);padding-top:1.2rem;}
+.testi blockquote{margin:0 0 1rem;font-size:1rem;line-height:1.65;}
+.testi cite{font-style:normal;font-size:.85rem;color:var(--tinta-3);display:block;}
+.testi cite b{display:block;color:var(--tinta);font-weight:500;font-style:normal;}
+
+/* Marcas y sellos */
+.marcas{display:flex;flex-wrap:wrap;gap:.6rem;}
+.marcas span{border:1px solid var(--linea);padding:.6rem 1.1rem;font-family:var(--mono);
+  font-size:.78rem;letter-spacing:.06em;color:var(--tinta-2);}
+html[dir="rtl"] .marcas span{letter-spacing:0;font-size:.9rem;font-family:var(--cuerpo);}
+.sellos{display:grid;gap:1px;background:var(--linea);border:1px solid var(--linea);
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+.sello-c{background:var(--fondo);padding:1.3rem;}
+.sello-c b{display:block;font-size:.95rem;margin-bottom:.3rem;}
+.sello-c span{font-size:.85rem;color:var(--tinta-2);}
+
+/* Tabla ancha de sectores */
+.tabla-ancha{width:100%;border-collapse:collapse;font-size:.9rem;}
+.tabla-ancha th{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--tinta-2);text-align:start;padding:.7rem .6rem;border-bottom:1.5px solid var(--tinta);white-space:nowrap;}
+html[dir="rtl"] .tabla-ancha th{letter-spacing:0;text-transform:none;font-size:.84rem;font-family:var(--cuerpo);}
+.tabla-ancha td{padding:.7rem .6rem;border-bottom:1px solid var(--linea-2);color:var(--tinta-2);vertical-align:top;}
+.tabla-ancha td:first-child{color:var(--tinta);font-weight:500;}
+.tabla-ancha tr:hover td{background:var(--fondo-2);}
+
+/* Caso de éxito extendido */
+.caso{border:1px solid var(--linea);margin-bottom:1.5rem;}
+.caso-cab{display:grid;gap:0;background:var(--fondo-2);}
+@media(min-width:700px){.caso-cab{grid-template-columns:repeat(4,1fr);}}
+.caso-cab div{padding:1.1rem 1.2rem;border-inline-end:1px solid var(--linea);}
+.caso-cab div:last-child{border-inline-end:0;}
+.caso-cab b{display:block;font-family:var(--disp);font-size:1.5rem;font-weight:500;line-height:1;}
+.caso-cab span{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-3);display:block;margin-top:.45rem;}
+html[dir="rtl"] .caso-cab span{letter-spacing:0;text-transform:none;font-size:.8rem;font-family:var(--cuerpo);}
+.caso-cuerpo{padding:1.5rem;}
+.caso-cuerpo h3{font-size:1.3rem;margin-bottom:.6rem;}
+.caso-cuerpo .reto{color:var(--tinta-2);margin-bottom:1rem;}
+.caso-cuerpo .eti{margin-top:1.4rem;}
+
+/* Cinta de llamada a la acción, repetida a lo largo de la página */
+.cinta-cta{background:var(--tinta);color:var(--fondo);padding:2rem;display:grid;gap:1.2rem;align-items:center;}
+@media(min-width:760px){.cinta-cta{grid-template-columns:1fr auto;gap:2.5rem;}}
+.cinta-cta h3{font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--fondo);max-width:26ch;}
+.cinta-cta p{color:color-mix(in srgb,var(--fondo) 72%,transparent);margin:.5rem 0 0;font-size:.94rem;}
+.cinta-cta .btn{border-color:var(--fondo);color:var(--fondo);white-space:nowrap;}
+.cinta-cta .btn:hover{background:var(--fondo);color:var(--tinta);}
+
+/* Índice de la página, para páginas largas */
+.indice-pag{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;padding-block:1rem;border-block:1px solid var(--linea);
+  margin-bottom:2.5rem;font-family:var(--mono);font-size:.74rem;}
+html[dir="rtl"] .indice-pag{font-family:var(--cuerpo);font-size:.88rem;}
+.indice-pag a{color:var(--tinta-2);text-decoration:none;}
+.indice-pag a:hover{color:var(--acento);}
+
 /* ── Preguntas ───────────────────────────────────────────────────── */
 .faq{border-top:1px solid var(--linea);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
@@ -350,6 +420,7 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
       <a href="#/glosario"      data-t="nGlosario">Glosario</a>
       <a href="#/visita"        data-t="nVisita">Antes de la visita</a>
       <a href="#/ficha"         data-t="nFicha">Ficha</a>
+      <a href="#/ayudas"        data-t="nAyudas">Ayudas</a>
       <a href="#/nosotros"      data-t="nNosotros">Empresa</a>
       <a href="#/preguntas"     data-t="nPreguntas">Preguntas</a>
       <a href="#/contacto"      data-t="nContacto">Contacto</a>
@@ -389,6 +460,44 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
       <div class="cel dato"><div class="v" data-t="cf4v">0</div><div class="u" data-t="cf4u">Obra en horario de producción</div></div>
     </div>
     <p class="metodo" data-t="iCifrasNota">Valores de referencia para latitud próxima a 40° N con inclinación óptima. Su cubierta dará otra cosa: por eso hacemos un estudio antes de presupuestar.</p>
+  </div>
+
+
+  <div class="marco bloque raya">
+    <p class="eti" data-t="iSectoresEti">Para qué tipo de empresa</p>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.4rem);max-width:24ch;margin-bottom:1.6rem" data-t="iSectoresH">No todas las naves son iguales, y el dimensionado tampoco.</h2>
+    <div class="grafica"><table class="tabla-ancha" id="iSectores"></table></div>
+    <p class="metodo" data-t="iSectoresNota">Rangos habituales para instalaciones de entre 100 y 800 kWp. La modalidad recomendada depende sobre todo de cuánto del consumo cae en horas de sol.</p>
+  </div>
+
+  <div class="marco bloque">
+    <div class="cinta-cta">
+      <div>
+        <h3 data-t="ctaEstudioH">El estudio de viabilidad no se cobra.</h3>
+        <p data-t="ctaEstudioP">Con doce facturas y una foto de la cubierta le decimos en dos semanas si le sale a cuenta. Y si no sale, se lo decimos igual.</p>
+      </div>
+      <a class="btn" href="#/contacto" data-t="bEstudio">Pedir estudio</a>
+    </div>
+  </div>
+
+  <div class="marco bloque">
+    <p class="eti" data-t="iTestiEti">Lo que dicen los clientes</p>
+    <div class="testis" id="iTestis"></div>
+    <p class="metodo" data-t="iTestiNota">Testimonios de ejemplo.</p>
+  </div>
+
+  <div class="marco bloque raya">
+    <div class="dos-col">
+      <div>
+        <p class="eti" data-t="iSellosEti">Garantías y acreditaciones</p>
+        <div class="sellos" id="iSellos"></div>
+      </div>
+      <div>
+        <p class="eti" data-t="iMarcasEti">Con qué material trabajamos</p>
+        <div class="marcas" id="iMarcas"></div>
+        <p class="metodo" data-t="iMarcasNota">No somos distribuidor exclusivo de ninguna marca, y eso es deliberado: elegimos el material por el proyecto, no por el margen. Si le interesa saber por qué un fabricante y no otro, está en la página de equipos.</p>
+      </div>
+    </div>
   </div>
 
   <div class="marco bloque raya">
@@ -516,7 +625,7 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   <div class="marco">
     <img class="banda-foto" src="img/planta-aerea.jpg" width="1400" height="533"
          data-t-attr="alt:altProyectos" alt="Vista aérea de una planta fotovoltaica">
-    <div class="rej r3" id="poRej"></div>
+    <div id="poRej"></div>
     <p class="metodo" data-t="poNota">Fichas de ejemplo con cifras de proyecto redondeadas. Sustituibles por casos reales y fotografía de obra cuando el cliente autorice publicarlos.</p>
   </div>
 </section>
@@ -712,6 +821,37 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
+
+<section data-ruta="ayudas">
+  <div class="marco bloque">
+    <p class="eti" data-t="nAyudas">Ayudas y financiación</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="ayH1">Lo que casi nadie le cuenta antes de firmar.</h1>
+    <p class="entrada" data-t="ayEntrada">Entre deducciones, amortización acelerada y bonificaciones municipales, buena parte de la inversión vuelve. Pero hay que pedirlo bien y en orden, y hay plazos que no perdonan.</p>
+  </div>
+  <div class="marco">
+    <nav class="indice-pag" data-t-attr="aria-label:ayIndiceAria" aria-label="Secciones de la página">
+      <a href="#ay1" data-t="ayI1">Deducciones e impuestos</a>
+      <a href="#ay2" data-t="ayI2">Subvenciones</a>
+      <a href="#ay3" data-t="ayI3">Formas de pagarlo</a>
+      <a href="#ay4" data-t="ayI4">Errores que cuestan dinero</a>
+    </nav>
+    <div class="dos-col">
+      <div class="texto-largo" id="ayTexto"></div>
+      <aside class="lateral">
+        <h4 data-t="ayLatH">De un vistazo</h4>
+        <dl id="ayLat"></dl>
+      </aside>
+    </div>
+    <div class="cinta-cta" style="margin-top:2.5rem">
+      <div>
+        <h3 data-t="ayCtaH">Nosotros tramitamos, usted firma.</h3>
+        <p data-t="ayCtaP">La tramitación de ayudas y la legalización van incluidas en el proyecto. No es un extra que aparece en la factura final.</p>
+      </div>
+      <a class="btn" href="#/contacto" data-t="bEstudio">Pedir estudio</a>
+    </div>
+    <p class="metodo" data-t="ayNota">Información general con fines divulgativos, no asesoramiento fiscal. Las deducciones, los porcentajes y los plazos cambian por comunidad autónoma, por municipio y por año. Antes de contar con una ayuda concreta, confírmela con su asesor o con nosotros.</p>
+  </div>
+</section>
 </main>
 
 <footer class="n">
@@ -738,6 +878,76 @@ var T = {
 
 es:{
  _dir:"ltr", _lang:"es", _loc:"es-ES",
+ nAyudas:"Ayudas", tAyudas:"Ayudas y financiación — NAHAR",
+ ayH1:"Lo que casi nadie le cuenta antes de firmar.",
+ ayEntrada:"Entre deducciones, amortización acelerada y bonificaciones municipales, buena parte de la inversión vuelve. Pero hay que pedirlo bien y en orden, y hay plazos que no perdonan.",
+ ayIndiceAria:"Secciones de la página",
+ ayI1:"Deducciones e impuestos", ayI2:"Subvenciones", ayI3:"Formas de pagarlo", ayI4:"Errores que cuestan dinero",
+ ayLatH:"De un vistazo",
+ ayCtaH:"Nosotros tramitamos, usted firma.",
+ ayCtaP:"La tramitación de ayudas y la legalización van incluidas en el proyecto. No es un extra que aparece en la factura final.",
+ ayNota:"Información general con fines divulgativos, no asesoramiento fiscal. Las deducciones, los porcentajes y los plazos cambian por comunidad autónoma, por municipio y por año. Antes de contar con una ayuda concreta, confírmela con su asesor o con nosotros.",
+ ayLat:[
+  {t:"Coste de referencia", d:"600–900 €/kWp instalado, según tamaño y tipo de cubierta"},
+  {t:"Amortización habitual", d:"4–6 años en industria con consumo diurno alto"},
+  {t:"Vida útil", d:"Más de 25 años, con degradación del 0,5 % anual"},
+  {t:"IBI", d:"Bonificación municipal de hasta el 50 %, entre 3 y 5 años"},
+  {t:"ICIO", d:"Bonificación de hasta el 95 % en algunos municipios"},
+  {t:"Plazo crítico", d:"La obra no puede empezar antes de solicitar la subvención"}
+ ],
+ ayTexto:[
+  {id:"ay1", h:"Deducciones e impuestos: lo que se recupera sin pedir nada",
+   p:["Antes de mirar subvenciones conviene entender lo que ya está en la ley y no depende de que le concedan nada. Para una empresa, una instalación de autoconsumo es un activo, y como activo se amortiza. La normativa permite en muchos casos amortización acelerada o libertad de amortización, lo que significa que puede llevarse el gasto a resultados mucho antes de los años de vida real del activo. Eso no cambia lo que paga por la instalación, pero sí cuándo lo desgrava, y en una empresa con beneficio eso vale dinero.",
+      "El IVA de la instalación es deducible como cualquier otra inversión afecta a la actividad. Parece obvio y sin embargo es la primera confusión que nos encontramos: mucha gente compara el presupuesto con IVA de una instalación doméstica con el suyo sin IVA, y le salen las cuentas mal.",
+      "Después están los impuestos municipales, y aquí la diferencia entre ayuntamientos es enorme. La bonificación del IBI por instalar autoconsumo llega hasta el 50 % de la cuota durante tres a cinco años en muchos municipios, y la del ICIO —el impuesto sobre construcciones que se paga al pedir licencia de obra— puede llegar al 95 %. Ninguna de las dos se aplica sola: hay que solicitarlas, casi siempre en un plazo corto tras el final de obra, y con documentación concreta. Nosotros la preparamos, pero la solicitud la firma usted."]},
+  {id:"ay2", h:"Subvenciones: dinero a fondo perdido, con condiciones",
+   p:["Las líneas de ayuda al autoconsumo industrial se convocan por comunidad autónoma, con fondos que en los últimos años han venido en buena parte de los programas europeos de recuperación. Los porcentajes se mueven según el tamaño de la empresa: una pyme suele acceder a un porcentaje mayor que una gran empresa por la misma instalación, y en algunas convocatorias la diferencia es de veinte puntos.",
+      "Hay dos formatos que funcionan de manera muy distinta. En concurrencia no competitiva se concede por orden de entrada hasta agotar el presupuesto, y ahí lo que decide es llegar pronto con el expediente completo. En concurrencia competitiva se puntúa cada proyecto y se conceden los mejores, y ahí lo que decide es cómo esté redactada la memoria. Nosotros hemos redactado unas cuantas y sabemos qué puntúa.",
+      "La condición que más proyectos tumba es la misma siempre: no se puede haber empezado la obra antes de presentar la solicitud. Ni comprar el material, ni firmar el contrato de ejecución en algunas convocatorias. Si tiene prisa y firma antes, ha renunciado a la ayuda sin saberlo. Por eso lo primero que miramos al planificar no es cuándo puede empezar la obra, sino cuándo se abre la convocatoria."]},
+  {id:"ay3", h:"Formas de pagarlo cuando no quiere descapitalizarse",
+   p:["La compra directa es la más rentable a largo plazo y la que menos gusta a un director financiero, porque inmoviliza caja. Si la tesorería lo permite, es la opción con mejor retorno: no hay intereses ni margen de un tercero.",
+      "La financiación bancaria a siete o diez años es lo más habitual en industria. La cuota mensual suele quedar por debajo del ahorro en factura desde el primer mes, lo que significa que la instalación se paga sola sin tocar la caja. Es el argumento que más funciona en un comité: no es un gasto, es cambiar un pago fijo a la comercializadora por una cuota que se acaba.",
+      "El renting y los contratos de compra de energía —donde un tercero pone la instalación en su cubierta y usted le compra la energía a un precio cerrado— eliminan la inversión inicial por completo. A cambio, el ahorro es menor y se compromete la cubierta durante diez o quince años. Nosotros no vendemos este modelo, pero se lo explicamos sin adornos si es lo que le encaja: hay casos en los que es la única opción razonable."]},
+  {id:"ay4", h:"Cinco errores que hemos visto costar dinero de verdad",
+   p:["<b>Empezar la obra antes de solicitar la ayuda.</b> Es el error más caro y el más frecuente. Una firma con fecha anterior a la solicitud invalida el expediente entero, y no hay recurso que lo arregle.",
+      "<b>Dejar pasar el plazo del IBI.</b> La bonificación se pide tras el final de obra y en un plazo que suele ser de meses, no de años. Quien se olvida pierde entre tres y cinco anualidades.",
+      "<b>Sobredimensionar para aprovechar la subvención.</b> Si le subvencionan el 30 % de una instalación que vierte la mitad a la red, ha pagado el 70 % de unos módulos que producen a precio de excedente. La ayuda no convierte en rentable lo que no lo era.",
+      "<b>No separar las facturas.</b> Muchas convocatorias exigen facturas desglosadas por partidas. Una factura única de «instalación fotovoltaica llave en mano» puede bloquear la justificación durante meses.",
+      "<b>Firmar sin el cálculo estructural.</b> Si la cubierta no aguanta, el refuerzo aparece a mitad de obra y no estaba presupuestado. Es la partida imprevista que más veces hemos visto romper un presupuesto ajeno."]}
+ ],
+
+ iSectoresEti:"Para qué tipo de empresa",
+ iSectoresH:"No todas las naves son iguales, y el dimensionado tampoco.",
+ iSectoresNota:"Rangos habituales para instalaciones de entre 100 y 800 kWp. La modalidad recomendada depende sobre todo de cuánto del consumo cae en horas de sol.",
+ secCols:["Sector","Consumo en horas de sol","Cubierta útil habitual","Potencia típica","Cobertura estimada"],
+ sectores:[
+  {s:"Fabricación y metalurgia", c:"60–75 % en dos turnos", u:"3.000–8.000 m²", p:"250–800 kWp", o:"35–55 % del consumo"},
+  {s:"Logística y frío", c:"70–85 %, punta al mediodía", u:"5.000–15.000 m²", p:"400–1.200 kWp", o:"45–65 % del consumo"},
+  {s:"Alimentación y bebidas", c:"55–70 %, con picos de limpieza", u:"2.000–6.000 m²", p:"200–600 kWp", o:"30–50 % del consumo"},
+  {s:"Automoción y talleres", c:"80–90 %, jornada partida", u:"800–2.500 m²", p:"80–250 kWp", o:"45–60 % del consumo"},
+  {s:"Agroindustria y riego", c:"muy estacional", u:"suelo o balsa", p:"100–500 kWp", o:"50–80 % en campaña"},
+  {s:"Oficinas y retail", c:"85–95 %, de nueve a siete", u:"400–1.500 m²", p:"40–150 kWp", o:"25–40 % del consumo"}
+ ],
+ ctaEstudioH:"El estudio de viabilidad no se cobra.",
+ ctaEstudioP:"Con doce facturas y una foto de la cubierta le decimos en dos semanas si le sale a cuenta. Y si no sale, se lo decimos igual.",
+ iTestiEti:"Lo que dicen los clientes",
+ iTestiNota:"Testimonios de ejemplo, propios de una maqueta. En un sitio real irían aquí las reseñas verificables del cliente, con nombre, empresa y fecha.",
+ testis:[
+  {q:"Veníamos de una oferta de otra empresa que nos proponía llenar la cubierta entera. Aquí nos dijeron que con la mitad de potencia ganábamos casi lo mismo y amortizábamos dos años antes. Eso es lo que nos hizo firmar.", n:"Dirección financiera", c:"Fabricante de componentes · 420 kWp", f:"Ejemplo de maqueta"},
+  {q:"Lo que más miedo nos daba era parar la línea. Trabajaron tres sábados y en la parada de agosto, y no perdimos una hora de producción. El corte para la conexión fueron dos horas avisadas con un mes.", n:"Jefatura de planta", c:"Centro logístico · 780 kWp", f:"Ejemplo de maqueta"},
+  {q:"El primer verano la producción iba un 6 % por debajo de lo comprometido. Lo detectaron ellos antes que nosotros, vinieron con la cámara térmica y cambiaron dos módulos en garantía. No tuvimos que reclamar nada.", n:"Mantenimiento", c:"Industria alimentaria · 310 kWp", f:"Ejemplo de maqueta"}
+ ],
+ iSellosEti:"Garantías y acreditaciones",
+ sellos:[
+  {t:"Garantía de producción", d:"Si la planta no alcanza la producción comprometida en el contrato, compensamos la diferencia. No es una promesa comercial: va firmada."},
+  {t:"25 años de garantía de potencia", d:"Los módulos que montamos garantizan al menos el 85 % de su potencia inicial a los veinticinco años, según el fabricante."},
+  {t:"Seguro de responsabilidad civil", d:"Cobertura de la obra y de daños a la cubierta durante todo el montaje, con certificado a nombre del cliente."},
+  {t:"Coordinación de seguridad", d:"Plan de seguridad y salud, recurso preventivo en obra y coordinación de actividades empresariales con su empresa."}
+ ],
+ iMarcasEti:"Con qué material trabajamos",
+ marcas:["Jinko Solar","Trina Solar","Canadian Solar","Longi","Huawei","Fronius","SMA","Sungrow","K2 Systems","Schletter"],
+ iMarcasNota:"No somos distribuidor exclusivo de ninguna marca, y eso es deliberado: elegimos el material por el proyecto, no por el margen. Si le interesa saber por qué un fabricante y no otro, está en la página de equipos.",
+
  nSimulador:"Simulador", nEquipos:"Equipos", nObra:"La obra", nGlosario:"Glosario",
  nVisita:"Antes de la visita", nFicha:"Ficha",
  tSimulador:"Simulador — NAHAR", tEquipos:"Equipos — NAHAR", tObra:"La obra — NAHAR",
@@ -982,7 +1192,21 @@ es:{
   {q:"¿Y si la cubierta no aguanta el peso?", a:"El cálculo estructural forma parte del estudio. Si no aguanta, se refuerza o se descarta, pero se sabe antes de firmar, no durante la obra."},
   {q:"¿Qué pasa con lo que produzco y no consumo?", a:"Se vierte a la red y se compensa en factura, aunque a un precio bastante menor que el que usted paga. Por eso dimensionamos para consumir, no para verter."},
   {q:"¿Cuánto duran los paneles?", a:"La garantía de producto suele ser de doce a quince años y la de producción, veinticinco. A los veinticinco años un panel sigue funcionando, con alrededor del 85 % de su potencia inicial."},
-  {q:"¿Trabajan fuera de España?", a:"Sí, y atendemos en español, inglés y árabe. En el Golfo el cálculo cambia bastante: hay más radiación pero también más polvo, y la limpieza pasa a ser determinante."}
+  {q:"¿Trabajan fuera de España?", a:"Sí, y atendemos en español, inglés y árabe. En el Golfo el cálculo cambia bastante: hay más radiación pero también más polvo, y la limpieza pasa a ser determinante."},
+  {q:"¿Cuánto cuesta una instalación industrial?", a:"Entre 600 y 900 euros por kWp instalado, y la horquilla no es casual: depende del tipo de cubierta, de si hay que reforzar, de la distancia hasta el cuadro general y del tamaño. Una planta de 100 kWp sale más cara por kWp que una de 500. Cualquiera que le dé un precio por teléfono sin ver la cubierta se lo está inventando."},
+  {q:"¿Cuánto tiempo tarda desde que digo que sí?", a:"Entre tres y cuatro meses de media para una instalación de 100 a 500 kWp. El proyecto y el cálculo estructural son tres semanas, la tramitación de acceso a red entre cuatro y ocho, y el montaje entre dos y seis según tamaño. La tramitación va en paralelo, no en serie: por eso arranca el primer día."},
+  {q:"¿Y si mi empresa cierra en agosto?", a:"Mejor. Las paradas programadas son la ventana ideal para montar: se trabaja sin coordinación con producción y sin restricciones de horario. Si su parada es de tres semanas, buena parte de la obra cabe dentro."},
+  {q:"¿Puedo poner baterías?", a:"Puede, pero casi nunca sale a cuenta todavía en industria con consumo diurno. La batería tiene sentido cuando hay mucho excedente y consumo nocturno, o cuando la continuidad de suministro es crítica. En una nave que consume de ocho a seis, el dinero rinde más ampliando potencia que almacenando."},
+  {q:"¿Qué pasa si vendo la nave?", a:"La instalación es una mejora del inmueble y se transmite con él. En la práctica revaloriza la nave, porque el comprador hereda una factura eléctrica más baja y una instalación legalizada. Conviene incluir en la escritura la documentación de legalización y las garantías, que son transferibles."},
+  {q:"¿Necesito licencia de obra?", a:"En la mayoría de municipios sí, aunque cada vez más se tramita como declaración responsable, que es más rápido. Nosotros preparamos la documentación y el proyecto visado si hace falta. El ICIO, el impuesto que se paga con la licencia, suele tener bonificación por instalar renovables."},
+  {q:"¿Cómo sé que la planta produce lo que debe?", a:"Por la monitorización, que compara la producción real con la esperada para la radiación de ese día. Si baja de un umbral salta una alarma. Sin ese contraste, una planta puede estar produciendo un 15 % menos durante meses y usted verlo como «normal» porque la cifra absoluta sube en verano igual."},
+  {q:"¿El granizo o el viento son un problema?", a:"Los módulos se ensayan contra granizo de 25 mm a 80 km/h y las estructuras se calculan para la carga de viento de su zona según el código de edificación. El riesgo real no es el módulo: es que la estructura esté mal anclada o mal calculada. Por eso el cálculo estructural va firmado."},
+  {q:"¿Se puede ampliar después?", a:"Sí, y conviene preverlo desde el principio. Dejar el inversor con margen y el cableado dimensionado para una segunda fase cuesta poco en la primera obra y mucho si hay que rehacerlo. Si sabe que va a electrificar flota o meter maquinaria, dígalo en la primera visita."},
+  {q:"¿Qué mantenimiento necesita de verdad?", a:"Poco, pero no cero. Limpieza una o dos veces al año según el entorno —cerca de una cantera o de un campo de cultivo, más—, revisión de conexiones anual, y termografía para detectar células calientes. Sin eso, entre suciedad y microfallos se pierde del 3 al 7 % de producción al año."},
+  {q:"¿Qué pasa si la producción es menor de lo prometido?", a:"Se compensa. La garantía de producción va escrita en el contrato con una cifra concreta y un método de medición acordado. Si no se alcanza, pagamos la diferencia. Es la cláusula que más nos preguntan y la que menos se ofrece en el sector."},
+  {q:"¿Puedo ver la producción desde el móvil?", a:"Sí, con acceso a la plataforma de monitorización desde el primer día, y no como un extra. Puede ver producción instantánea, histórico, comparación con lo esperado y el reparto entre autoconsumo y excedente. Si su gestor energético usa otra plataforma, se puede integrar."},
+  {q:"¿Cuánta superficie necesito por kWp?", a:"Unos 6 m² por kWp con estructura coplanar, y entre 8 y 10 si va inclinada con separación entre filas para evitar sombras. Sobre esa superficie hay que descontar lucernarios, chimeneas, extractores y pasillos de mantenimiento: la cubierta útil suele ser el 60 o 70 % de la total."},
+  {q:"¿Y si mi cubierta es de fibrocemento?", a:"Se puede, pero cambia el proyecto. El fibrocemento con amianto no se perfora: se trabaja con estructura sin perforación o se plantea la sustitución de cubierta, que a veces sale a cuenta aprovechando la obra. Es de las primeras cosas que miramos en la visita, porque condiciona todo lo demás."}
  ],
 
  tContacto:"Contacto — NAHAR",
@@ -1001,6 +1225,76 @@ es:{
 
 en:{
  _dir:"ltr", _lang:"en", _loc:"en-GB",
+ nAyudas:"Grants", tAyudas:"Grants and financing — NAHAR",
+ ayH1:"What almost nobody tells you before you sign.",
+ ayEntrada:"Between deductions, accelerated depreciation and municipal reliefs, a good part of the investment comes back. But it has to be claimed properly and in order, and some deadlines do not forgive.",
+ ayIndiceAria:"Sections of this page",
+ ayI1:"Deductions and taxes", ayI2:"Grants", ayI3:"Ways to pay for it", ayI4:"Mistakes that cost money",
+ ayLatH:"At a glance",
+ ayCtaH:"We handle the paperwork, you sign.",
+ ayCtaP:"Grant applications and legalisation are included in the project. It is not an extra that turns up on the final invoice.",
+ ayNota:"General information for guidance, not tax advice. Deductions, percentages and deadlines change by region, by municipality and by year. Before counting on any particular grant, confirm it with your adviser or with us.",
+ ayLat:[
+  {t:"Reference cost", d:"€600–900 per kWp installed, by size and roof type"},
+  {t:"Usual payback", d:"4–6 years in industry with high daytime consumption"},
+  {t:"Service life", d:"Over 25 years, degrading 0.5 % a year"},
+  {t:"Property tax", d:"Municipal relief of up to 50 %, for 3 to 5 years"},
+  {t:"Works tax", d:"Relief of up to 95 % in some municipalities"},
+  {t:"Critical deadline", d:"Works cannot begin before the grant is applied for"}
+ ],
+ ayTexto:[
+  {id:"ay1", h:"Deductions and taxes: what comes back without asking anyone",
+   p:["Before looking at grants it is worth understanding what is already in the law and does not depend on being awarded anything. For a company, a self-consumption plant is an asset, and as an asset it depreciates. The rules allow accelerated or free depreciation in many cases, which means the cost can be taken to the profit and loss account far sooner than the asset's real life. That does not change what you pay for the installation, but it does change when you write it off, and in a profitable company that is worth money.",
+      "The VAT on the installation is deductible like any other investment used in the business. It sounds obvious and yet it is the first confusion we meet: many people compare a domestic quote including VAT with theirs excluding it, and the numbers come out wrong.",
+      "Then there are municipal taxes, and here the difference between town halls is enormous. Property tax relief for installing self-consumption reaches 50 % of the bill for three to five years in many municipalities, and relief on the construction tax paid when applying for the works licence can reach 95 %. Neither applies automatically: both must be claimed, almost always within a short window after completion and with specific paperwork. We prepare it, but you sign the application."]},
+  {id:"ay2", h:"Grants: money you do not pay back, with conditions",
+   p:["Grant schemes for industrial self-consumption are called by region, with funds that in recent years have come largely from the European recovery programmes. The percentages move with company size: a small or medium company usually accesses a higher percentage than a large one for the same installation, and in some calls the gap is twenty points.",
+      "Two formats work very differently. Non-competitive schemes award in order of entry until the budget runs out, and there what decides is arriving early with a complete file. Competitive schemes score each project and award the best ones, and there what decides is how the technical memorandum is written. We have written a good few and know what scores.",
+      "The condition that sinks most projects is always the same: the works must not have begun before the application is filed. Not buying the equipment either, nor signing the works contract under some calls. If you are in a hurry and sign early, you have given up the grant without knowing it. That is why the first thing we look at when planning is not when the works can start, but when the call opens."]},
+  {id:"ay3", h:"Ways to pay for it without tying up your cash",
+   p:["Outright purchase is the most profitable in the long run and the one a finance director likes least, because it immobilises cash. If the treasury allows it, it is the option with the best return: no interest and no third party's margin.",
+      "Bank financing over seven or ten years is the usual route in industry. The monthly instalment normally sits below the saving on the bill from the first month, which means the installation pays for itself without touching cash. It is the argument that works best in a board meeting: it is not a cost, it is swapping a fixed payment to the utility for an instalment that ends.",
+      "Leasing and power purchase agreements — where a third party puts the plant on your roof and you buy the energy at a fixed price — remove the upfront investment entirely. In exchange the saving is smaller and the roof is committed for ten or fifteen years. We do not sell that model, but we will explain it plainly if it is what fits you: there are cases where it is the only reasonable option."]},
+  {id:"ay4", h:"Five mistakes we have watched cost real money",
+   p:["<b>Starting the works before applying for the grant.</b> The most expensive mistake and the most common. A signature dated before the application invalidates the whole file, and no appeal fixes it.",
+      "<b>Letting the property tax deadline pass.</b> The relief is claimed after completion and within a window usually measured in months, not years. Whoever forgets loses three to five annual reliefs.",
+      "<b>Oversizing to make the most of the grant.</b> If 30 % is granted on an installation that exports half its output, you have paid 70 % of modules producing at export prices. A grant does not make profitable what was not.",
+      "<b>Not itemising the invoices.</b> Many calls require invoices broken down by line. A single invoice for a “turnkey photovoltaic installation” can block the justification for months.",
+      "<b>Signing without the structural calculation.</b> If the roof cannot take it, the reinforcement turns up mid-works and was not budgeted. It is the unforeseen item we have most often seen break somebody else's quote."]}
+ ],
+
+ iSectoresEti:"For which kind of business",
+ iSectoresH:"Not all industrial buildings are alike, and neither is the sizing.",
+ iSectoresNota:"Usual ranges for installations between 100 and 800 kWp. The recommended arrangement depends above all on how much of the consumption falls in daylight hours.",
+ secCols:["Sector","Consumption in daylight","Typical usable roof","Typical capacity","Estimated coverage"],
+ sectores:[
+  {s:"Manufacturing and metalwork", c:"60–75 % across two shifts", u:"3,000–8,000 m²", p:"250–800 kWp", o:"35–55 % of consumption"},
+  {s:"Logistics and cold storage", c:"70–85 %, peaking at midday", u:"5,000–15,000 m²", p:"400–1,200 kWp", o:"45–65 % of consumption"},
+  {s:"Food and drink", c:"55–70 %, with cleaning peaks", u:"2,000–6,000 m²", p:"200–600 kWp", o:"30–50 % of consumption"},
+  {s:"Automotive and workshops", c:"80–90 %, split shift", u:"800–2,500 m²", p:"80–250 kWp", o:"45–60 % of consumption"},
+  {s:"Agri-industry and irrigation", c:"highly seasonal", u:"ground or reservoir", p:"100–500 kWp", o:"50–80 % in season"},
+  {s:"Offices and retail", c:"85–95 %, nine to seven", u:"400–1,500 m²", p:"40–150 kWp", o:"25–40 % of consumption"}
+ ],
+ ctaEstudioH:"The feasibility study is free.",
+ ctaEstudioP:"With twelve bills and a photograph of the roof we will tell you within two weeks whether it pays. And if it does not, we will tell you that too.",
+ iTestiEti:"What clients say",
+ iTestiNota:"Example testimonials, as befits a mock-up. On a real site these would be the client's verifiable reviews, with name, company and date.",
+ testis:[
+  {q:"We came in with a quote from another company that wanted to fill the entire roof. Here they told us that half the capacity earned us almost the same and paid back two years sooner. That is what made us sign.", n:"Finance director", c:"Component manufacturer · 420 kWp", f:"Mock-up example"},
+  {q:"What worried us most was stopping the line. They worked three Saturdays and during the August shutdown, and we did not lose an hour of production. The outage for the connection was two hours, notified a month ahead.", n:"Plant manager", c:"Logistics centre · 780 kWp", f:"Mock-up example"},
+  {q:"That first summer output was running 6 % below what was committed. They spotted it before we did, came with the thermal camera and replaced two modules under warranty. We did not have to claim anything.", n:"Maintenance lead", c:"Food industry · 310 kWp", f:"Mock-up example"}
+ ],
+ iSellosEti:"Warranties and accreditations",
+ sellos:[
+  {t:"Output guarantee", d:"If the plant does not reach the output committed in the contract, we compensate the difference. It is not a sales promise: it is signed."},
+  {t:"25-year power warranty", d:"The modules we install are warranted at no less than 85 % of their initial output at twenty-five years, per the manufacturer."},
+  {t:"Public liability insurance", d:"Cover for the works and for damage to the roof throughout installation, with a certificate in the client's name."},
+  {t:"Safety coordination", d:"Health and safety plan, preventive resource on site and coordination of business activities with your company."}
+ ],
+ iMarcasEti:"The equipment we work with",
+ marcas:["Jinko Solar","Trina Solar","Canadian Solar","Longi","Huawei","Fronius","SMA","Sungrow","K2 Systems","Schletter"],
+ iMarcasNota:"We are not an exclusive distributor for any brand, and that is deliberate: we choose the equipment for the project, not for the margin. If you want to know why one manufacturer and not another, it is on the equipment page.",
+
  nSimulador:"Simulator", nEquipos:"Equipment", nObra:"The works", nGlosario:"Glossary",
  nVisita:"Before the visit", nFicha:"Summary sheet",
  tSimulador:"Simulator — NAHAR", tEquipos:"Equipment — NAHAR", tObra:"The works — NAHAR",
@@ -1245,7 +1539,21 @@ en:{
   {q:"What if the roof cannot take the weight?", a:"The structural calculation is part of the study. If it cannot, it is reinforced or ruled out — but that is known before signing, not during the works."},
   {q:"What happens to what I produce and do not use?", a:"It is exported to the grid and credited on the bill, though at a considerably lower price than you pay. That is why we size for consumption, not for export."},
   {q:"How long do the panels last?", a:"The product warranty is usually twelve to fifteen years and the output warranty twenty-five. At twenty-five years a panel still works, at around 85 % of its initial capacity."},
-  {q:"Do you work outside Spain?", a:"Yes, and we work in Spanish, English and Arabic. In the Gulf the calculation changes considerably: there is more irradiation but also more dust, and cleaning becomes decisive."}
+  {q:"Do you work outside Spain?", a:"Yes, and we work in Spanish, English and Arabic. In the Gulf the calculation changes considerably: there is more irradiation but also more dust, and cleaning becomes decisive."},
+  {q:"What does an industrial installation cost?", a:"Between €600 and €900 per kWp installed, and the range is not accidental: it depends on the roof type, on whether reinforcement is needed, on the distance to the main switchboard and on size. A 100 kWp plant costs more per kWp than a 500 kWp one. Anyone quoting a price over the phone without seeing the roof is making it up."},
+  {q:"How long does it take once I say yes?", a:"Three to four months on average for an installation of 100 to 500 kWp. Design and structural calculation take three weeks, the grid access application four to eight, and the installation two to six depending on size. The paperwork runs in parallel, not in series: that is why it starts on day one."},
+  {q:"What if my company shuts down in August?", a:"All the better. Planned shutdowns are the ideal window: work proceeds without coordinating with production and without time restrictions. If your shutdown is three weeks, a good part of the job fits inside it."},
+  {q:"Can I add batteries?", a:"You can, but in industry with daytime consumption it rarely pays yet. A battery makes sense when there is a lot of export and night-time consumption, or when continuity of supply is critical. In a building running from eight to six, money goes further adding capacity than storing."},
+  {q:"What happens if I sell the building?", a:"The plant is an improvement to the property and transfers with it. In practice it raises the value, because the buyer inherits a lower electricity bill and a legalised installation. It is worth including the legalisation paperwork and the warranties in the deed — they are transferable."},
+  {q:"Do I need a works licence?", a:"In most municipalities yes, though increasingly it is handled as a responsible declaration, which is faster. We prepare the documentation and the stamped design if required. The construction tax paid with the licence usually carries relief for installing renewables."},
+  {q:"How do I know the plant produces what it should?", a:"Through monitoring, which compares real output with what was expected for that day's irradiation. If it drops below a threshold an alarm fires. Without that comparison a plant can run 15 % low for months while you see it as normal, because the absolute figure still rises in summer."},
+  {q:"Are hail or wind a problem?", a:"Modules are tested against 25 mm hail at 80 km/h and structures are calculated for your area's wind load under the building code. The real risk is not the module: it is a structure badly anchored or badly calculated. That is why the structural calculation is signed."},
+  {q:"Can it be extended later?", a:"Yes, and it is worth planning for from the start. Leaving headroom in the inverter and sizing the cabling for a second phase costs little in the first job and a great deal if it has to be redone. If you know you will electrify a fleet or add machinery, say so at the first visit."},
+  {q:"What maintenance does it really need?", a:"Little, but not none. Cleaning once or twice a year depending on surroundings — near a quarry or arable land, more — an annual connection check, and thermography to find hot cells. Without that, dirt and small faults cost 3 to 7 % of output a year."},
+  {q:"What if output is lower than promised?", a:"It is compensated. The output guarantee is written into the contract with a specific figure and an agreed measurement method. If it is not reached, we pay the difference. It is the clause we are asked about most and the one least offered in the sector."},
+  {q:"Can I see the output from my phone?", a:"Yes, with access to the monitoring platform from day one, and not as an extra. You can see instantaneous output, history, comparison against expectation and the split between self-consumption and export. If your energy manager uses another platform, it can be integrated."},
+  {q:"How much area do I need per kWp?", a:"About 6 m² per kWp with coplanar mounting, and between 8 and 10 if tilted with row spacing to avoid shading. From that area you must deduct skylights, chimneys, extractors and maintenance walkways: usable roof is normally 60 to 70 % of the total."},
+  {q:"What if my roof is fibre cement?", a:"It can be done, but it changes the project. Fibre cement containing asbestos is not drilled: either a non-penetrating structure is used or roof replacement is considered, which sometimes pays off by combining the works. It is one of the first things we check on the visit, because it conditions everything else."}
  ],
 
  tContacto:"Contact — NAHAR",
@@ -1264,6 +1572,76 @@ en:{
 
 ar:{
  _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ nAyudas:"الدعم", tAyudas:"الدعم والتمويل — نهار",
+ ayH1:"ما لا يكاد أحدٌ يخبرك به قبل التوقيع.",
+ ayEntrada:"بين الحسومات الضريبية والإهلاك المعجَّل والإعفاءات البلدية، يعود جزء وافر من الاستثمار. لكن يجب طلبه على وجهه وبترتيبه، وثمة مواعيد لا تُغتفر.",
+ ayIndiceAria:"أقسام هذه الصفحة",
+ ayI1:"الحسومات والضرائب", ayI2:"المنح", ayI3:"طرق السداد", ayI4:"أخطاء تكلّف مالًا",
+ ayLatH:"في سطور",
+ ayCtaH:"نحن نتولّى المعاملات، وأنت توقّع.",
+ ayCtaP:"طلبات الدعم والتقنين مشمولة في المشروع. وليست إضافةً تظهر في الفاتورة الأخيرة.",
+ ayNota:"معلومات عامة للإرشاد، لا استشارة ضريبية. فالحسومات والنسب والمواعيد تتغيّر بحسب الإقليم والبلدية والسنة. وقبل التعويل على دعم بعينه، تأكّد منه مع مستشارك أو معنا.",
+ ayLat:[
+  {t:"الكلفة المرجعية", d:"٦٠٠–٩٠٠ يورو لكل كيلوواط ذروة، بحسب الحجم ونوع السطح"},
+  {t:"الاسترداد المعتاد", d:"٤–٦ سنوات في صناعة ذات استهلاك نهاري مرتفع"},
+  {t:"العمر التشغيلي", d:"أكثر من ٢٥ سنة، بتدهور ٠٫٥٪ سنويًا"},
+  {t:"الضريبة العقارية", d:"إعفاء بلدي حتى ٥٠٪، لمدة ٣ إلى ٥ سنوات"},
+  {t:"ضريبة الإنشاءات", d:"إعفاء حتى ٩٥٪ في بعض البلديات"},
+  {t:"الموعد الحاسم", d:"لا يجوز بدء الأعمال قبل تقديم طلب الدعم"}
+ ],
+ ayTexto:[
+  {id:"ay1", h:"الحسومات والضرائب: ما يعود دون أن تطلبه من أحد",
+   p:["قبل النظر في المنح يحسن فهم ما هو مقرَّر في القانون أصلًا ولا يتوقّف على أن يُمنح لك شيء. فمحطة الاستهلاك الذاتي بالنسبة إلى شركة أصلٌ، والأصل يُهلَك محاسبيًا. وتسمح القواعد في حالات كثيرة بالإهلاك المعجَّل أو الحرّ، أي أن الكلفة يمكن تحميلها على الأرباح والخسائر قبل عمر الأصل الفعلي بكثير. وهذا لا يغيّر ما تدفعه ثمنًا للمنشأة، لكنه يغيّر متى تحسمه، وفي شركة رابحة يساوي ذلك مالًا.",
+      "وضريبة القيمة المضافة على المنشأة قابلة للحسم كأي استثمار مستعمل في النشاط. يبدو ذلك بدهيًا ومع ذلك هو أول التباس نصادفه: كثيرون يقارنون عرضًا منزليًا شاملًا للضريبة بعرضهم غير الشامل لها، فتخرج الحسابات خاطئة.",
+      "ثم تأتي الضرائب البلدية، والفارق بين البلديات هنا هائل. فإعفاء الضريبة العقارية لتركيب الاستهلاك الذاتي يبلغ ٥٠٪ من القيمة لثلاث إلى خمس سنوات في بلديات كثيرة، وإعفاء ضريبة الإنشاءات التي تُدفع عند طلب رخصة البناء قد يبلغ ٩٥٪. ولا يُطبَّق أيٌّ منهما تلقائيًا: بل يجب طلبهما، وغالبًا في مهلة قصيرة بعد انتهاء الأعمال وبأوراق محددة. نحن نُعدّها، لكن الطلب توقّعه أنت."]},
+  {id:"ay2", h:"المنح: مال لا يُردّ، لكن بشروط",
+   p:["تُطرح برامج دعم الاستهلاك الذاتي الصناعي إقليمًا إقليمًا، بأموال جاءت في السنوات الأخيرة في معظمها من برامج التعافي الأوروبية. والنسب تتحرّك مع حجم الشركة: فالشركة الصغيرة أو المتوسطة تنال عادةً نسبةً أعلى من الكبيرة للمنشأة نفسها، وفي بعض الطروحات يبلغ الفارق عشرين نقطة.",
+      "وثمة صيغتان تعملان على نحوٍ مختلف تمامًا. ففي الصيغة غير التنافسية يُمنح بحسب ترتيب الوصول حتى نفاد الميزانية، وما يحسم هناك هو الوصول مبكرًا بملف مكتمل. أما في التنافسية فيُقيَّم كل مشروع بالنقاط ويُمنح الأفضل، وما يحسم هناك هو كيف كُتبت المذكرة الفنية. وقد كتبنا منها عددًا لا بأس به ونعرف ما الذي يُحرز النقاط.",
+      "والشرط الذي يُسقط أكثر المشاريع هو ذاته دائمًا: ألّا تكون الأعمال قد بدأت قبل تقديم الطلب. ولا شراء المعدّات، ولا توقيع عقد التنفيذ في بعض الطروحات. فإن كنت مستعجلًا ووقّعت مبكرًا، فقد تنازلت عن الدعم دون أن تدري. ولهذا فأول ما ننظر فيه عند التخطيط ليس متى يمكن أن تبدأ الأعمال، بل متى يُفتح باب الطلبات."]},
+  {id:"ay3", h:"طرق السداد حين لا تريد تجميد سيولتك",
+   p:["الشراء المباشر هو الأعلى مردودًا على المدى الطويل، وهو الأقل تفضيلًا لدى المدير المالي لأنه يجمّد السيولة. فإن سمحت الخزينة، فهو الخيار الأفضل عائدًا: بلا فوائد وبلا هامش لطرف ثالث.",
+      "والتمويل المصرفي على سبع أو عشر سنوات هو الأشيع في الصناعة. والقسط الشهري يقع عادةً دون الوفر في الفاتورة منذ الشهر الأول، أي أن المنشأة تسدّد كلفتها دون المساس بالسيولة. وهي الحجة الأنجع في مجلس الإدارة: ليست نفقة، بل استبدال دفعة ثابتة لشركة الكهرباء بقسط ينتهي.",
+      "أما الإيجار التمويلي وعقود شراء الطاقة — حيث يضع طرفٌ ثالث المنشأة على سطحك وتشتري منه الطاقة بسعر محدد — فتُلغي الاستثمار المبدئي بالكامل. وفي المقابل يقلّ الوفر ويُلتزم السطح لعشر أو خمس عشرة سنة. نحن لا نبيع هذا النموذج، لكننا نشرحه لك بلا تزويق إن كان هو ما يناسبك: فثمة حالات يكون فيها الخيار المعقول الوحيد."]},
+  {id:"ay4", h:"خمسة أخطاء رأيناها تكلّف مالًا حقيقيًا",
+   p:["<b>بدء الأعمال قبل طلب الدعم.</b> أغلى الأخطاء وأكثرها شيوعًا. فتوقيعٌ بتاريخ سابق للطلب يُبطل الملف كله، ولا تظلّم يُصلحه.",
+      "<b>تفويت موعد الضريبة العقارية.</b> يُطلب الإعفاء بعد انتهاء الأعمال وفي مهلة تُقاس عادةً بالأشهر لا بالسنوات. ومن ينسى يخسر ثلاث إلى خمس سنوات من الإعفاء.",
+      "<b>تضخيم القدرة لاستغلال المنحة.</b> فإن مُنحت ٣٠٪ على منشأة تصدّر نصف إنتاجها، فقد دفعت ٧٠٪ من ثمن ألواح تنتج بسعر الفائض. والمنحة لا تجعل مجديًا ما لم يكن كذلك.",
+      "<b>عدم تفصيل الفواتير.</b> تشترط طروحات كثيرة فواتير مفصَّلة بالبنود. وفاتورة واحدة باسم «منشأة كهروضوئية تسليم مفتاح» قد تعطّل التبرير شهورًا.",
+      "<b>التوقيع دون الحساب الإنشائي.</b> فإن كان السطح لا يحتمل، ظهرت التقوية في منتصف الأعمال ولم تكن مُدرَجة في الميزانية. وهو البند غير المتوقَّع الذي رأيناه أكثر من غيره يكسر ميزانية غيرنا."]}
+ ],
+
+ iSectoresEti:"لأي نوع من الشركات",
+ iSectoresH:"ليست كل المباني الصناعية سواء، ولا تحديد القدرة كذلك.",
+ iSectoresNota:"نطاقات معتادة لمنشآت بين ١٠٠ و٨٠٠ كيلوواط ذروة. والترتيب الموصى به يتوقّف قبل كل شيء على مقدار الاستهلاك الواقع في ساعات النهار.",
+ secCols:["القطاع","الاستهلاك في ساعات النهار","السطح الصالح المعتاد","القدرة المعتادة","التغطية المقدَّرة"],
+ sectores:[
+  {s:"التصنيع والمعادن", c:"٦٠–٧٥٪ على مناوبتين", u:"٣٠٠٠–٨٠٠٠ م²", p:"٢٥٠–٨٠٠ كيلوواط", o:"٣٥–٥٥٪ من الاستهلاك"},
+  {s:"اللوجستيات والتبريد", c:"٧٠–٨٥٪، بذروة عند الظهيرة", u:"٥٠٠٠–١٥٠٠٠ م²", p:"٤٠٠–١٢٠٠ كيلوواط", o:"٤٥–٦٥٪ من الاستهلاك"},
+  {s:"الأغذية والمشروبات", c:"٥٥–٧٠٪، بذُرى تنظيف", u:"٢٠٠٠–٦٠٠٠ م²", p:"٢٠٠–٦٠٠ كيلوواط", o:"٣٠–٥٠٪ من الاستهلاك"},
+  {s:"السيارات والورش", c:"٨٠–٩٠٪، بدوام مقسوم", u:"٨٠٠–٢٥٠٠ م²", p:"٨٠–٢٥٠ كيلوواط", o:"٤٥–٦٠٪ من الاستهلاك"},
+  {s:"الصناعات الزراعية والري", c:"موسمي جدًا", u:"على الأرض أو فوق حوض", p:"١٠٠–٥٠٠ كيلوواط", o:"٥٠–٨٠٪ في الموسم"},
+  {s:"المكاتب والتجزئة", c:"٨٥–٩٥٪، من التاسعة إلى السابعة", u:"٤٠٠–١٥٠٠ م²", p:"٤٠–١٥٠ كيلوواط", o:"٢٥–٤٠٪ من الاستهلاك"}
+ ],
+ ctaEstudioH:"دراسة الجدوى بلا مقابل.",
+ ctaEstudioP:"باثنتي عشرة فاتورة وصورة للسطح نخبرك خلال أسبوعين إن كان الأمر مجديًا. وإن لم يكن، أخبرناك بذلك أيضًا.",
+ iTestiEti:"ما يقوله العملاء",
+ iTestiNota:"شهادات نموذجية، كما يليق بنموذج عرض. وفي موقع حقيقي توضع هنا مراجعات العميل القابلة للتحقق، بالاسم والشركة والتاريخ.",
+ testis:[
+  {q:"جئنا ومعنا عرض من شركة أخرى تريد ملء السطح كله. وهنا قالوا لنا إن نصف القدرة يربحنا الشيء نفسه تقريبًا ويسدّد الكلفة قبل عامين. وهذا ما جعلنا نوقّع.", n:"الإدارة المالية", c:"مصنّع مكوّنات · ٤٢٠ كيلوواط ذروة", f:"مثال في النموذج"},
+  {q:"أكثر ما أقلقنا هو إيقاف الخط. عملوا ثلاثة أيام سبت وفي توقّف أغسطس، ولم نخسر ساعة إنتاج واحدة. أما فصل التيار للربط فكان ساعتين أُبلغنا بهما قبل شهر.", n:"إدارة المصنع", c:"مركز لوجستي · ٧٨٠ كيلوواط ذروة", f:"مثال في النموذج"},
+  {q:"في الصيف الأول كان الإنتاج أقل بـ٦٪ مما التُزم به. اكتشفوا ذلك قبلنا، وجاؤوا بالكاميرا الحرارية واستبدلوا لوحين ضمن الضمان. ولم نضطر إلى أي مطالبة.", n:"مسؤول الصيانة", c:"صناعة غذائية · ٣١٠ كيلوواط ذروة", f:"مثال في النموذج"}
+ ],
+ iSellosEti:"الضمانات والاعتمادات",
+ sellos:[
+  {t:"ضمان الإنتاج", d:"إن لم تبلغ المحطة الإنتاج المُلتزم به في العقد، عوّضنا الفارق. وليس وعدًا تجاريًا: بل مكتوبٌ وموقَّع."},
+  {t:"٢٥ سنة ضمان قدرة", d:"الألواح التي نركّبها مضمونة بما لا يقل عن ٨٥٪ من قدرتها الأصلية عند خمس وعشرين سنة، بحسب الصانع."},
+  {t:"تأمين مسؤولية مدنية", d:"تغطية للأعمال وللأضرار التي قد تلحق بالسطح طوال التركيب، بشهادة باسم العميل."},
+  {t:"تنسيق السلامة", d:"خطة سلامة وصحة، ومورد وقائي في الموقع، وتنسيق للأنشطة مع شركتكم."}
+ ],
+ iMarcasEti:"بأي معدّات نعمل",
+ marcas:["Jinko Solar","Trina Solar","Canadian Solar","Longi","Huawei","Fronius","SMA","Sungrow","K2 Systems","Schletter"],
+ iMarcasNota:"لسنا موزّعًا حصريًا لأي علامة، وهذا مقصود: نختار المعدّات بحسب المشروع لا بحسب هامش الربح. وإن أردت معرفة لماذا صانعٌ دون آخر، فذلك في صفحة المعدّات.",
+
  nSimulador:"المُحاكي", nEquipos:"المعدّات", nObra:"سير الأعمال", nGlosario:"مسرد المصطلحات",
  nVisita:"قبل الزيارة", nFicha:"البطاقة",
  tSimulador:"المُحاكي — نهار", tEquipos:"المعدّات — نهار", tObra:"سير الأعمال — نهار",
@@ -1508,7 +1886,21 @@ ar:{
   {q:"وماذا لو كان السطح لا يحتمل الوزن؟", a:"الحساب الإنشائي جزء من الدراسة. فإن لم يحتمل، جرى تقويته أو استُبعد — لكن ذلك يُعرف قبل التوقيع، لا أثناء الأعمال."},
   {q:"وما مصير ما أُنتجه ولا أستهلكه؟", a:"يُصدَّر إلى الشبكة ويُحتسب في الفاتورة، وإن بسعر أقل بكثير مما تدفعه أنت. ولهذا نحدّد القدرة للاستهلاك لا للتصدير."},
   {q:"كم تدوم الألواح؟", a:"ضمان المنتج عادةً من اثنتي عشرة إلى خمس عشرة سنة، وضمان الإنتاج خمس وعشرون. وبعد خمس وعشرين سنة يظلّ اللوح عاملًا، بنحو ٨٥٪ من قدرته الأصلية."},
-  {q:"هل تعملون خارج إسبانيا؟", a:"نعم، ونخدم بالإسبانية والإنجليزية والعربية. وفي الخليج يتغيّر الحساب كثيرًا: إشعاع أعلى، لكن غبار أكثر، ويصير التنظيف عاملًا حاسمًا."}
+  {q:"هل تعملون خارج إسبانيا؟", a:"نعم، ونخدم بالإسبانية والإنجليزية والعربية. وفي الخليج يتغيّر الحساب كثيرًا: إشعاع أعلى، لكن غبار أكثر، ويصير التنظيف عاملًا حاسمًا."},
+  {q:"كم تكلّف منشأة صناعية؟", a:"بين ٦٠٠ و٩٠٠ يورو لكل كيلوواط ذروة مركَّب، والنطاق ليس اعتباطيًا: يتوقّف على نوع السطح، وعلى الحاجة إلى تقوية، وعلى المسافة إلى اللوحة الرئيسية، وعلى الحجم. فمحطة ١٠٠ كيلوواط أغلى للكيلوواط من محطة ٥٠٠. ومن يعطيك سعرًا بالهاتف دون أن يرى السطح فهو يخترعه."},
+  {q:"كم يستغرق الأمر منذ أن أوافق؟", a:"ثلاثة إلى أربعة أشهر وسطيًا لمنشأة بين ١٠٠ و٥٠٠ كيلوواط ذروة. التصميم والحساب الإنشائي ثلاثة أسابيع، وطلب الربط بالشبكة أربعة إلى ثمانية، والتركيب اثنان إلى ستة بحسب الحجم. والمعاملات تمضي بالتوازي لا بالتتابع: ولهذا تبدأ في اليوم الأول."},
+  {q:"وماذا لو أغلقت شركتي في أغسطس؟", a:"فهذا أفضل. فالتوقفات المجدولة هي النافذة المثالية: يجري العمل دون تنسيق مع الإنتاج ودون قيود على الأوقات. وإن كان توقّفك ثلاثة أسابيع، فجزء وافر من الأعمال يتّسع فيها."},
+  {q:"هل أستطيع إضافة بطاريات؟", a:"تستطيع، لكنها نادرًا ما تُجدي بعد في صناعة ذات استهلاك نهاري. فالبطارية تصلح حين يكون التصدير كثيرًا والاستهلاك ليليًا، أو حين تكون استمرارية التغذية حرجة. وفي مبنى يعمل من الثامنة إلى السادسة، يثمر المال بزيادة القدرة أكثر مما يثمر بالتخزين."},
+  {q:"ماذا يحدث إن بعتُ المبنى؟", a:"المنشأة تحسينٌ للعقار وتنتقل معه. وهي عمليًا ترفع قيمته، لأن المشتري يرث فاتورة كهرباء أقل ومنشأة مقنَّنة. ويحسن تضمين أوراق التقنين والضمانات في العقد، فهي قابلة للنقل."},
+  {q:"هل أحتاج رخصة بناء؟", a:"في أغلب البلديات نعم، وإن كانت تُعالَج أكثر فأكثر بوصفها إقرارًا بالمسؤولية، وهو أسرع. ونحن نُعدّ الأوراق والمشروع المُصدَّق إن لزم. وضريبة الإنشاءات التي تُدفع مع الرخصة عليها إعفاء عادةً لتركيب الطاقات المتجددة."},
+  {q:"كيف أعرف أن المحطة تنتج ما ينبغي؟", a:"بالمراقبة، التي تقارن الإنتاج الفعلي بالمتوقَّع لإشعاع ذلك اليوم. فإن هبط دون عتبة، انطلق إنذار. وبدون تلك المقارنة قد تعمل المحطة بنقص ١٥٪ شهورًا وأنت تراه طبيعيًا، لأن الرقم المطلق يرتفع في الصيف على أي حال."},
+  {q:"هل البرَد أو الرياح مشكلة؟", a:"تُختبر الألواح ضد برَد بقطر ٢٥ مم بسرعة ٨٠ كم/س، وتُحسب الهياكل لحمل الرياح في منطقتك وفق كود البناء. والخطر الحقيقي ليس اللوح: بل هيكل سيّئ التثبيت أو سيّئ الحساب. ولهذا يكون الحساب الإنشائي موقَّعًا."},
+  {q:"هل يمكن التوسعة لاحقًا؟", a:"نعم، ويحسن التخطيط لها من البداية. فترك هامش في العاكس وتحديد مقطع التمديدات لمرحلة ثانية يكلّف قليلًا في الأعمال الأولى، ويكلّف كثيرًا إن لزم إعادته. وإن كنت تعلم أنك ستُكهرب أسطولًا أو تُدخل آلات، فقل ذلك في الزيارة الأولى."},
+  {q:"ما الصيانة التي تحتاجها فعلًا؟", a:"قليلة، لكنها ليست معدومة. تنظيف مرة أو مرتين سنويًا بحسب المحيط — قرب محجر أو أرض زراعية، أكثر — وفحص سنوي للوصلات، وتصوير حراري لكشف الخلايا الساخنة. وبدون ذلك تُفقد بين ٣ و٧٪ من الإنتاج سنويًا بين الأوساخ والأعطال الصغيرة."},
+  {q:"وماذا لو كان الإنتاج أقل مما وُعد به؟", a:"يُعوَّض. فضمان الإنتاج مكتوب في العقد برقم محدد وبطريقة قياس متّفق عليها. وإن لم يتحقق، دفعنا الفارق. وهو البند الأكثر سؤالًا عنه والأقل عرضًا في القطاع."},
+  {q:"هل أستطيع رؤية الإنتاج من هاتفي؟", a:"نعم، بوصول إلى منصة المراقبة من اليوم الأول، ولا يُحتسب إضافةً. ترى الإنتاج اللحظي والسجل والمقارنة بالمتوقَّع والتوزيع بين الاستهلاك الذاتي والفائض. وإن كان مدير الطاقة لديك يستعمل منصة أخرى، أمكن الربط."},
+  {q:"كم مساحة أحتاج لكل كيلوواط ذروة؟", a:"نحو ٦ أمتار مربعة لكل كيلوواط بالتركيب المستوي، وبين ٨ و١٠ إن كان مائلًا بمسافات بين الصفوف تفاديًا للظل. ومن تلك المساحة تُخصم المناور والمداخن والشفّاطات وممرات الصيانة: فالسطح الصالح عادةً ٦٠ إلى ٧٠٪ من الإجمالي."},
+  {q:"وإن كان سطحي من الأسمنت الليفي؟", a:"يمكن، لكنه يغيّر المشروع. فالأسمنت الليفي الحاوي على الأسبستوس لا يُثقَب: إما هيكل دون اختراق، أو طرح استبدال السطح، وهو أحيانًا مجدٍ باستغلال الأعمال. وهو من أول ما ننظر فيه في الزيارة، لأنه يحكم كل ما عداه."}
  ],
 
  tContacto:"تواصل — نهار",
@@ -1820,12 +2212,12 @@ function pintarNuevas(){
 
 var RUTAS = ["inicio","servicios","proceso","rendimiento","amortizacion","simulador",
              "equipos","obra","glosario","visita","ficha",
-             "proyectos","mantenimiento","nosotros","preguntas","contacto"];
+             "proyectos","mantenimiento","ayudas","nosotros","preguntas","contacto"];
 var TITULOS = {inicio:"tInicio",servicios:"tServicios",proceso:"tProceso",
   rendimiento:"tRendimiento",amortizacion:"tAmortizacion",proyectos:"tProyectos",
   mantenimiento:"tMantenimiento",nosotros:"tNosotros",preguntas:"tPreguntas",contacto:"tContacto",
   simulador:"tSimulador",equipos:"tEquipos",obra:"tObra",glosario:"tGlosario",
-  visita:"tVisita",ficha:"tFicha"};
+  visita:"tVisita",ficha:"tFicha",ayudas:"tAyudas"};
 
 var idioma = "es", reOri = 0;
 
@@ -2055,6 +2447,31 @@ function pintarListas(){
   if (nd) nd.innerHTML = t.datos.map(function(d){
     return '<div class="cel dato"><div class="v">'+esc(d.v)+'</div><div class="u">'+esc(d.u)+'</div></div>';
   }).join("");
+
+  var ayT = document.getElementById("ayTexto");
+  if (ayT) ayT.innerHTML = t.ayTexto.map(function(b){
+    return '<h3 id="'+b.id+'">'+esc(b.h)+'</h3>' + b.p.map(function(x){ return "<p>"+x+"</p>"; }).join(""); }).join("");
+  var ayL = document.getElementById("ayLat");
+  if (ayL) ayL.innerHTML = t.ayLat.map(function(x){
+    return "<div><dt>"+esc(x.t)+"</dt><dd>"+esc(x.d)+"</dd></div>"; }).join("");
+
+  var sec = document.getElementById("iSectores");
+  if (sec) sec.innerHTML = "<thead><tr>" + t.secCols.map(function(c){ return "<th>"+esc(c)+"</th>"; }).join("")
+    + "</tr></thead><tbody>" + t.sectores.map(function(x){
+        return "<tr><td>"+esc(x.s)+"</td><td>"+esc(x.c)+"</td><td>"+esc(x.u)+"</td><td>"+esc(x.p)+"</td><td>"+esc(x.o)+"</td></tr>";
+      }).join("") + "</tbody>";
+
+  var te = document.getElementById("iTestis");
+  if (te) te.innerHTML = t.testis.map(function(x){
+    return '<figure class="testi"><blockquote>&laquo;'+esc(x.q)+'&raquo;</blockquote>'
+      + '<cite><b>'+esc(x.n)+'</b>'+esc(x.c)+' &middot; '+esc(x.f)+'</cite></figure>'; }).join("");
+
+  var se = document.getElementById("iSellos");
+  if (se) se.innerHTML = t.sellos.map(function(x){
+    return '<div class="sello-c"><b>'+esc(x.t)+'</b><span>'+esc(x.d)+'</span></div>'; }).join("");
+
+  var ma = document.getElementById("iMarcas");
+  if (ma) ma.innerHTML = t.marcas.map(function(x){ return "<span>"+esc(x)+"</span>"; }).join("");
 
   var cr = document.getElementById("credLista");
   if (cr) cr.innerHTML = t.creditos.map(function(c){
