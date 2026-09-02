@@ -482,25 +482,12 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
       <span data-t="marca">NAHAR</span>
     </a>
     <nav class="n" data-t-attr="aria-label:ariaMenu" aria-label="Secciones">
-      <a href="#/inicio"        data-t="nInicio">Inicio</a>
-      <a href="#/servicios"     data-t="nServicios">Servicios</a>
-      <a href="#/proceso"       data-t="nProceso">Proceso</a>
-      <a href="#/rendimiento"   data-t="nRendimiento">Rendimiento</a>
-      <a href="#/amortizacion"  data-t="nAmortizacion">Amortización</a>
-      <a href="#/proyectos"     data-t="nProyectos">Proyectos</a>
-      <a href="#/mantenimiento" data-t="nMantenimiento">Mantenimiento</a>
-      <a href="#/simulador"     data-t="nSimulador">Simulador</a>
-      <a href="#/curva"         data-t="nCurva">Curva horaria</a>
-      <a href="#/ofertas"       data-t="nOfertas">Comparar ofertas</a>
-      <a href="#/equipos"       data-t="nEquipos">Equipos</a>
-      <a href="#/obra"          data-t="nObra">La obra</a>
-      <a href="#/glosario"      data-t="nGlosario">Glosario</a>
-      <a href="#/visita"        data-t="nVisita">Antes de la visita</a>
-      <a href="#/ficha"         data-t="nFicha">Ficha</a>
-      <a href="#/ayudas"        data-t="nAyudas">Ayudas</a>
-      <a href="#/nosotros"      data-t="nNosotros">Empresa</a>
-      <a href="#/preguntas"     data-t="nPreguntas">Preguntas</a>
-      <a href="#/contacto"      data-t="nContacto">Contacto</a>
+      <a href="#/inicio"    data-t="nInicio">Inicio</a>
+      <a href="#/servicios" data-t="nServicios">Servicios</a>
+      <a href="#/numeros"   data-t="nNumeros">Los números</a>
+      <a href="#/proyectos" data-t="nProyectos">Proyectos</a>
+      <a href="#/recursos"  data-t="nRecursos">Recursos</a>
+      <a href="#/empresa"   data-t="nEmpresa">Empresa</a>
     </nav>
     <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
@@ -512,16 +499,15 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 
 <main>
 
-<!-- INICIO -->
-<section data-ruta="inicio">
+<section data-ruta="inicio" id="ap-inicio">
   <div class="marco hero">
     <div>
       <p class="eti" data-t="iEti">Autoconsumo fotovoltaico industrial</p>
       <h1 data-t="iH1">La cubierta de su nave ya está pagada. Lo que produce, no.</h1>
       <p class="entrada" data-t="iEntrada">Ingeniería, obra y mantenimiento de plantas de autoconsumo para industria y logística. Estudiamos su curva de consumo real antes de proponer una sola placa.</p>
       <div class="acc">
-        <a class="btn sol" href="#/contacto" data-t="bEstudio">Pedir estudio</a>
-        <a class="btn" href="#/amortizacion" data-t="bCalcular">Calcular amortización</a>
+        <a class="btn sol" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
+        <a class="btn" href="#/numeros" data-ir="ap-amortizacion" data-t="bCalcular">Calcular amortización</a>
       </div>
     </div>
     <img class="foto" src="img/tecnico-cubierta.jpg" width="1400" height="788"
@@ -553,7 +539,7 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
         <h3 data-t="ctaEstudioH">El estudio de viabilidad no se cobra.</h3>
         <p data-t="ctaEstudioP">Con doce facturas y una foto de la cubierta le decimos en dos semanas si le sale a cuenta. Y si no sale, se lo decimos igual.</p>
       </div>
-      <a class="btn" href="#/contacto" data-t="bEstudio">Pedir estudio</a>
+      <a class="btn" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
     </div>
   </div>
 
@@ -588,13 +574,13 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
-<!-- SERVICIOS -->
-<section data-ruta="servicios">
+<section data-ruta="servicios" id="ap-servicios">
   <div class="marco bloque">
     <p class="eti" data-t="nServicios">Servicios</p>
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:18ch" data-t="svH1">Tres fases, un solo interlocutor.</h1>
     <p class="entrada" data-t="svEntrada">No subcontratamos la ingeniería ni la obra. Quien firma el estudio es quien responde de la producción cinco años después.</p>
   </div>
+  <div class="marco"><nav class="indice-pag" id="ix-servicios" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
   <div class="marco" id="svBloques"></div>
   <div class="marco bloque">
     <div class="cinta-cta">
@@ -602,16 +588,15 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
         <h3 data-t="ctaEstudioH">El estudio de viabilidad no se cobra.</h3>
         <p data-t="ctaEstudioP">Con doce facturas y una foto de la cubierta le decimos en dos semanas si le sale a cuenta.</p>
       </div>
-      <a class="btn" href="#/contacto" data-t="bEstudio">Pedir estudio</a>
+      <a class="btn" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
     </div>
   </div>
 </section>
 
-<!-- PROCESO -->
-<section data-ruta="proceso">
-  <div class="marco bloque">
+<section data-ruta="servicios" id="ap-proceso">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nProceso">Proceso</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="prH1">De la primera visita a la primera factura más baja.</h1>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="prH1">De la primera visita a la primera factura más baja.</h2>
     <p class="entrada" data-t="prEntrada">Seis pasos. Los tres primeros no le cuestan nada y puede pararlos en cualquier momento.</p>
   </div>
   <div class="marco">
@@ -622,11 +607,116 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
-<!-- RENDIMIENTO -->
-<section data-ruta="rendimiento">
+<section data-ruta="servicios" id="ap-obra">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nObra">La obra</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="obH1">Qué pasa cada semana, y qué depende de qué.</h2>
+    <p class="entrada" data-t="obEntrada">Las tareas marcadas están en la ruta crítica: si una se retrasa un día, la obra entera se retrasa un día. Las demás tienen holgura.</p>
+  </div>
+  <div class="marco">
+    <div class="mandos" id="obMandos" role="group" data-t-attr="aria-label:obAria" aria-label="Tamaño"></div>
+    <div class="leyenda" id="obLeyenda"></div>
+    <div class="grafica"><div id="obGantt" style="min-width:36rem;--col-g:clamp(7rem,16vw,13rem)"></div></div>
+    <p class="hallazgo" id="obHallazgo"></p>
+    <p class="metodo" data-t="obNota">Duraciones típicas, no un compromiso contractual. La tramitación con la distribuidora es la única tarea cuyo plazo no depende de nosotros, y por eso arranca la primera.</p>
+  </div>
   <div class="marco bloque">
+    <p class="eti" data-t="obRiesgosEti">Las tres cosas que retrasan una obra</p>
+    <div class="rej r3" id="obRiesgos"></div>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2rem,4vw,3rem)">
+    <p class="eti" data-t="obConvivEti">Cómo convive la obra con su producción</p>
+    <div id="obConviv" style="max-width:66ch;margin-top:1rem"></div>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <p class="eti" data-t="obQuienEti">Quién pisa su planta</p>
+    <div class="rej r4" id="obQuien"></div>
+  </div>
+</section>
+
+<section data-ruta="servicios" id="ap-equipos">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nEquipos">Equipos</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="eqH1">Lo que montamos, y por qué esto y no lo otro.</h2>
+    <p class="entrada" data-t="eqEntrada">Pulse una columna para ordenar. Es la misma tabla que usamos nosotros para decidir, sin la columna del margen.</p>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2rem,4vw,3rem)">
+    <div class="rej r3" id="eqCriterios"></div>
+  </div>
+  <div class="marco">
+    <div class="filtros" id="eqFiltros" role="group" data-t-attr="aria-label:eqAria" aria-label="Tipo de equipo"></div>
+    <div class="grafica"><table class="tabla-orden" id="eqTabla"></table></div>
+    <p class="metodo" data-t="eqNota">Precios orientativos por unidad y sin instalar, a fecha de la maqueta. La garantía de producto es la del fabricante; la de producción, la que cubre que el módulo siga dando un mínimo a los veinticinco años.</p>
+  </div>
+  <div class="marco bloque">
+    <p class="eti" data-t="eqLecturaEti">Cómo se lee esta tabla</p>
+    <div class="filas" id="eqLectura"></div>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <div class="cinta-cta">
+      <div>
+        <h3 data-t="ctaEquiposH">La marca la elige usted; nosotros decimos lo que sabemos de cada una.</h3>
+        <p data-t="ctaEquiposP">Si ya tiene una oferta encima de la mesa, díganos qué material lleva y le decimos qué mirar antes de firmar.</p>
+      </div>
+      <a class="btn" href="#/numeros" data-ir="ap-ofertas" data-t="bCompararOf">Comparar ofertas</a>
+    </div>
+  </div>
+</section>
+
+<section data-ruta="numeros" id="ap-simulador">
+  <div class="marco bloque">
+    <p class="eti" data-t="nSimulador">Simulador</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="siH1">Con sus números, no con los nuestros.</h1>
+    <p class="entrada" data-t="siEntrada">Cuatro datos que salen de su factura y de una foto de la cubierta. En diez segundos sabe si esto le interesa o no.</p>
+  </div>
+  <div class="marco"><nav class="indice-pag" id="ix-numeros" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
+  <div class="marco sim">
+    <div class="sim-campos">
+      <div><label for="siCons" data-t="siLCons">Consumo anual</label><input id="siCons" type="number" min="10000" max="5000000" step="10000" value="450000"></div>
+      <div><label for="siPrec" data-t="siLPrec">Precio que paga por kWh</label><input id="siPrec" type="number" min="0.05" max="0.40" step="0.01" value="0.13"></div>
+      <div><label for="siSup" data-t="siLSup">Superficie útil de cubierta</label><input id="siSup" type="number" min="100" max="40000" step="100" value="2500"></div>
+      <div><label for="siPerf" data-t="siLPerf">Cuándo consume</label>
+        <select id="siPerf"></select></div>
+      <p class="metodo" data-t="siNota">La superficie útil es la que queda libre de lucernarios, chimeneas y pasillos: suele ser el 60–70 % de la cubierta total. Se calcula con 6 m² por kWp instalado.</p>
+    </div>
+    <div class="sim-res">
+      <div class="sim-big" id="siKwp"></div>
+      <div class="medidor"><i id="siBarra"></i></div>
+      <p style="font-size:.85rem;color:var(--tinta-3);margin:.4rem 0 1.4rem" id="siCob"></p>
+      <div id="siLineas"></div>
+      <p class="hallazgo" id="siHallazgo" style="margin-top:1.4rem"></p>
+      <div class="acc" style="margin-top:1.4rem">
+        <a class="btn sol" href="#/recursos" data-ir="ap-ficha" data-t="siAFicha">Ver la ficha</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-ruta="numeros" id="ap-curva">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nCurva">Curva horaria</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:22ch" data-t="cuH1">La gráfica que decide el tamaño de su instalación.</h2>
+    <p class="entrada" data-t="cuEntrada">Su consumo hora a hora, y encima la producción solar de ese mismo día. Lo que se solapa es lo que de verdad ahorra. Lo que sobresale por arriba se vierte a la red a menos de la mitad de precio.</p>
+  </div>
+  <div class="marco">
+    <div class="curva-mandos">
+      <div><label for="cuSector" data-t="cuLSector">Perfil de consumo</label><select id="cuSector"></select></div>
+      <div><label for="cuMes" data-t="cuLMes">Mes</label><select id="cuMes"></select></div>
+      <div><label for="cuKwp" data-t="cuLKwp">Potencia instalada</label><input id="cuKwp" type="number" min="20" max="2000" step="10" value="300"></div>
+      <div><label for="cuCons" data-t="cuLCons">Consumo anual (kWh)</label><input id="cuCons" type="number" min="10000" max="5000000" step="10000" value="450000"></div>
+    </div>
+    <div class="leyenda" id="cuLeyenda"></div>
+    <div class="grafica"><svg id="cuGrafica" role="img" data-t-attr="aria-label:cuGrafAlt" aria-label="Consumo horario frente a producción solar"></svg></div>
+    <div class="curva-res" id="cuRes"></div>
+    <p class="hallazgo" id="cuHallazgo"></p>
+    <p class="metodo" data-t="cuNota">La producción por hora sale de la duración del día en cada mes para una latitud próxima a 40° N y de la producción mensual de referencia. El perfil de consumo es el típico del sector, normalizado: el suyo real sale de la curva horaria de su contador, y es justo lo que pedimos en la primera visita.</p>
+  </div>
+</section>
+
+<section data-ruta="numeros" id="ap-rendimiento">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nRendimiento">Rendimiento</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="reH1">La orientación decide más de lo que parece.</h1>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="reH1">La orientación decide más de lo que parece.</h2>
     <p class="entrada" data-t="reEntrada">Sur produce más al año. Este-oeste produce menos, pero reparte mejor a lo largo del día, y en una fábrica que consume de ocho a seis eso puede valer más.</p>
   </div>
   <div class="marco">
@@ -639,11 +729,10 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
-<!-- AMORTIZACIÓN -->
-<section data-ruta="amortizacion">
-  <div class="marco bloque">
+<section data-ruta="numeros" id="ap-amortizacion">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nAmortizacion">Amortización</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="amH1">Cuándo deja de ser un gasto y empieza a ser un ingreso.</h1>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="amH1">Cuándo deja de ser un gasto y empieza a ser un ingreso.</h2>
     <p class="entrada" data-t="amEntrada">Mueva la potencia instalada y verá cómo cambia el año en que la instalación se paga sola. Es una estimación, no una oferta.</p>
   </div>
   <div class="marco">
@@ -670,13 +759,27 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
-<!-- PROYECTOS -->
-<section data-ruta="proyectos">
+<section data-ruta="numeros" id="ap-ofertas">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nOfertas">Comparar ofertas</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:22ch" data-t="ofH1">Tiene tres presupuestos y no se parecen en nada.</h2>
+    <p class="entrada" data-t="ofEntrada">Meta aquí los números de cada uno. Le decimos cuál sale más barato por kWh producido a lo largo de la vida de la instalación, que es la única comparación que significa algo. Y sí, también puede meter el nuestro.</p>
+  </div>
+  <div class="marco">
+    <div class="of-rej"><table class="of-tabla" id="ofTabla"></table></div>
+    <div class="of-veredicto" id="ofVeredicto"></div>
+    <p class="hallazgo" id="ofHallazgo"></p>
+    <p class="metodo" data-t="ofNota">El coste por kWh se calcula repartiendo la inversión y el mantenimiento entre toda la energía que producirá la instalación en veinticinco años, con la degradación anual del panel descontada. No incluye el precio al que usted compra la electricidad: sirve para comparar ofertas entre sí, no para calcular el ahorro. Una oferta más barata sin garantía de producción no es más barata: es más incierta.</p>
+  </div>
+</section>
+
+<section data-ruta="proyectos" id="ap-proyectos">
   <div class="marco bloque">
     <p class="eti" data-t="nProyectos">Proyectos</p>
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="poH1">Tres tipos de cubierta, tres problemas distintos.</h1>
     <p class="entrada" data-t="poEntrada">Ejemplos representativos del tipo de encargo que hacemos. Los datos son de proyecto, no de cliente identificable.</p>
   </div>
+  <div class="marco"><nav class="indice-pag" id="ix-proyectos" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
   <div class="marco">
     <img class="banda-foto" src="img/planta-aerea.jpg" width="1400" height="533"
          data-t-attr="alt:altProyectos" alt="Vista aérea de una planta fotovoltaica">
@@ -685,11 +788,10 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
-<!-- MANTENIMIENTO -->
-<section data-ruta="mantenimiento">
-  <div class="marco bloque">
+<section data-ruta="proyectos" id="ap-mantenimiento">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nMantenimiento">Mantenimiento</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="maH1">Lo que se deja de ganar cuando nadie mira los datos.</h1>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="maH1">Lo que se deja de ganar cuando nadie mira los datos.</h2>
     <p class="entrada" data-t="maEntrada">Una planta parada un mes en verano se lleva por delante buena parte del beneficio del año. Y casi nunca se para del todo: se degrada sin que nadie lo note.</p>
   </div>
   <div class="marco">
@@ -704,13 +806,96 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
-<!-- EMPRESA -->
-<section data-ruta="nosotros">
+<section data-ruta="proyectos" id="ap-ayudas">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nAyudas">Ayudas y financiación</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="ayH1">Lo que casi nadie le cuenta antes de firmar.</h2>
+    <p class="entrada" data-t="ayEntrada">Entre deducciones, amortización acelerada y bonificaciones municipales, buena parte de la inversión vuelve. Pero hay que pedirlo bien y en orden, y hay plazos que no perdonan.</p>
+  </div>
+  <div class="marco">
+    <nav class="indice-pag" data-t-attr="aria-label:ayIndiceAria" aria-label="Secciones de la página">
+      <a href="#ay1" data-t="ayI1">Deducciones e impuestos</a>
+      <a href="#ay2" data-t="ayI2">Subvenciones</a>
+      <a href="#ay3" data-t="ayI3">Formas de pagarlo</a>
+      <a href="#ay4" data-t="ayI4">Errores que cuestan dinero</a>
+    </nav>
+    <div class="dos-col">
+      <div class="texto-largo" id="ayTexto"></div>
+      <aside class="lateral">
+        <h4 data-t="ayLatH">De un vistazo</h4>
+        <dl id="ayLat"></dl>
+      </aside>
+    </div>
+    <div class="cinta-cta" style="margin-top:2.5rem">
+      <div>
+        <h3 data-t="ayCtaH">Nosotros tramitamos, usted firma.</h3>
+        <p data-t="ayCtaP">La tramitación de ayudas y la legalización van incluidas en el proyecto. No es un extra que aparece en la factura final.</p>
+      </div>
+      <a class="btn" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
+    </div>
+    <p class="metodo" data-t="ayNota">Información general con fines divulgativos, no asesoramiento fiscal. Las deducciones, los porcentajes y los plazos cambian por comunidad autónoma, por municipio y por año. Antes de contar con una ayuda concreta, confírmela con su asesor o con nosotros.</p>
+  </div>
+</section>
+
+<section data-ruta="recursos" id="ap-visita">
+  <div class="marco bloque">
+    <p class="eti" data-t="nVisita">Antes de la visita</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="viH1">Ocho cosas y le ahorramos una semana.</h1>
+    <p class="entrada" data-t="viEntrada">Se marca lo que ya tenga; queda guardado en este navegador. No se envía a ningún sitio.</p>
+  </div>
+  <div class="marco"><nav class="indice-pag" id="ix-recursos" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
+  <div class="marco">
+    <div class="progreso"><span id="viCuenta"></span><span class="medidor"><i id="viBarra"></i></span></div>
+    <ul class="check" id="viLista"></ul>
+    <p class="hallazgo" id="viHallazgo"></p>
+    <div class="acc"><button class="btn" id="viReset" type="button" data-t="viLimpiar">Empezar de nuevo</button></div>
+  </div>
+</section>
+
+<section data-ruta="recursos" id="ap-glosario">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nGlosario">Glosario</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="glH1">Las palabras que le van a decir en las ofertas.</h2>
+    <p class="entrada" data-t="glEntrada">Escriba y va filtrando. Si alguien le vende algo que no sabe explicar con estas palabras, desconfíe.</p>
+  </div>
+  <div class="marco">
+    <div class="buscador"><input id="glBuscar" type="search" data-t-attr="placeholder:glPh,aria-label:glPh" placeholder="Buscar un término…"></div>
+    <dl class="glos" id="glLista"></dl>
+    <p class="vacio" id="glVacio" hidden data-t="glVacio">Ningún término coincide. Pruebe con otra palabra.</p>
+    <p class="metodo" id="glCuenta"></p>
+  </div>
+</section>
+
+<section data-ruta="recursos" id="ap-ficha">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti no-print" data-t="nFicha">Ficha</p>
+    <h1 class="no-print" style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="fiH1">Una hoja para llevar a la reunión.</h2>
+    <p class="entrada no-print" data-t="fiEntrada">Recoge lo que ha salido del simulador. Se imprime en un folio y cabe en un archivador.</p>
+    <div class="acc no-print">
+      <button class="btn sol" id="fiImprimir" type="button" data-t="fiImprimir">Imprimir</button>
+      <a class="btn" href="#/numeros" data-ir="ap-simulador" data-t="fiVolver">Cambiar los datos</a>
+    </div>
+  </div>
+  <div class="marco">
+    <div class="hoja" id="fiHoja"></div>
+  </div>
+</section>
+
+<section data-ruta="recursos" id="ap-preguntas">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nPreguntas">Preguntas</p>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="pgH1">Lo que nos preguntan antes de firmar.</h2>
+  </div>
+  <div class="marco" id="pgLista"></div>
+</section>
+
+<section data-ruta="empresa" id="ap-nosotros">
   <div class="marco bloque">
     <p class="eti" data-t="nNosotros">Empresa</p>
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="noH1">Ingenieros que además montan.</h1>
     <p class="entrada" data-t="noEntrada">Somos una empresa pequeña de ingeniería e instalación. No vendemos placas: vendemos que su factura baje y siga baja.</p>
   </div>
+  <div class="marco"><nav class="indice-pag" id="ix-empresa" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
   <div class="marco">
     <div class="rej r3" id="noValores"></div>
     <div style="margin-top:2rem" class="rej r4" id="noDatos"></div>
@@ -722,20 +907,10 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
-<!-- PREGUNTAS -->
-<section data-ruta="preguntas">
-  <div class="marco bloque">
-    <p class="eti" data-t="nPreguntas">Preguntas</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="pgH1">Lo que nos preguntan antes de firmar.</h1>
-  </div>
-  <div class="marco" id="pgLista"></div>
-</section>
-
-<!-- CONTACTO -->
-<section data-ruta="contacto">
-  <div class="marco bloque">
+<section data-ruta="empresa" id="ap-contacto">
+  <div class="marco bloque" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nContacto">Contacto</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:18ch" data-t="coH1">Mándenos una factura y le decimos si le sale a cuenta.</h1>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:18ch" data-t="coH1">Mándenos una factura y le decimos si le sale a cuenta.</h2>
     <p class="entrada" data-t="coEntrada">El primer estudio no se cobra. Si no sale rentable, se lo decimos y ahí acaba.</p>
   </div>
   <div class="marco cont-rej">
@@ -783,206 +958,42 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   </div>
 </section>
 
+<!-- INICIO -->
+
+<!-- SERVICIOS -->
+
+<!-- PROCESO -->
+
+<!-- RENDIMIENTO -->
+
+<!-- AMORTIZACIÓN -->
+
+<!-- PROYECTOS -->
+
+<!-- MANTENIMIENTO -->
+
+<!-- EMPRESA -->
+
+<!-- PREGUNTAS -->
+
+<!-- CONTACTO -->
+
 
 <!-- SIMULADOR -->
-<section data-ruta="simulador">
-  <div class="marco bloque">
-    <p class="eti" data-t="nSimulador">Simulador</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="siH1">Con sus números, no con los nuestros.</h1>
-    <p class="entrada" data-t="siEntrada">Cuatro datos que salen de su factura y de una foto de la cubierta. En diez segundos sabe si esto le interesa o no.</p>
-  </div>
-  <div class="marco sim">
-    <div class="sim-campos">
-      <div><label for="siCons" data-t="siLCons">Consumo anual</label><input id="siCons" type="number" min="10000" max="5000000" step="10000" value="450000"></div>
-      <div><label for="siPrec" data-t="siLPrec">Precio que paga por kWh</label><input id="siPrec" type="number" min="0.05" max="0.40" step="0.01" value="0.13"></div>
-      <div><label for="siSup" data-t="siLSup">Superficie útil de cubierta</label><input id="siSup" type="number" min="100" max="40000" step="100" value="2500"></div>
-      <div><label for="siPerf" data-t="siLPerf">Cuándo consume</label>
-        <select id="siPerf"></select></div>
-      <p class="metodo" data-t="siNota">La superficie útil es la que queda libre de lucernarios, chimeneas y pasillos: suele ser el 60–70 % de la cubierta total. Se calcula con 6 m² por kWp instalado.</p>
-    </div>
-    <div class="sim-res">
-      <div class="sim-big" id="siKwp"></div>
-      <div class="medidor"><i id="siBarra"></i></div>
-      <p style="font-size:.85rem;color:var(--tinta-3);margin:.4rem 0 1.4rem" id="siCob"></p>
-      <div id="siLineas"></div>
-      <p class="hallazgo" id="siHallazgo" style="margin-top:1.4rem"></p>
-      <div class="acc" style="margin-top:1.4rem">
-        <a class="btn sol" href="#/ficha" data-t="siAFicha">Ver la ficha</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- EQUIPOS -->
-<section data-ruta="equipos">
-  <div class="marco bloque">
-    <p class="eti" data-t="nEquipos">Equipos</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="eqH1">Lo que montamos, y por qué esto y no lo otro.</h1>
-    <p class="entrada" data-t="eqEntrada">Pulse una columna para ordenar. Es la misma tabla que usamos nosotros para decidir, sin la columna del margen.</p>
-  </div>
-  <div class="marco" style="padding-bottom:clamp(2rem,4vw,3rem)">
-    <div class="rej r3" id="eqCriterios"></div>
-  </div>
-  <div class="marco">
-    <div class="filtros" id="eqFiltros" role="group" data-t-attr="aria-label:eqAria" aria-label="Tipo de equipo"></div>
-    <div class="grafica"><table class="tabla-orden" id="eqTabla"></table></div>
-    <p class="metodo" data-t="eqNota">Precios orientativos por unidad y sin instalar, a fecha de la maqueta. La garantía de producto es la del fabricante; la de producción, la que cubre que el módulo siga dando un mínimo a los veinticinco años.</p>
-  </div>
-  <div class="marco bloque">
-    <p class="eti" data-t="eqLecturaEti">Cómo se lee esta tabla</p>
-    <div class="filas" id="eqLectura"></div>
-  </div>
-  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
-    <div class="cinta-cta">
-      <div>
-        <h3 data-t="ctaEquiposH">La marca la elige usted; nosotros decimos lo que sabemos de cada una.</h3>
-        <p data-t="ctaEquiposP">Si ya tiene una oferta encima de la mesa, díganos qué material lleva y le decimos qué mirar antes de firmar.</p>
-      </div>
-      <a class="btn" href="#/ofertas" data-t="bCompararOf">Comparar ofertas</a>
-    </div>
-  </div>
-</section>
 
 <!-- OBRA -->
-<section data-ruta="obra">
-  <div class="marco bloque">
-    <p class="eti" data-t="nObra">La obra</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="obH1">Qué pasa cada semana, y qué depende de qué.</h1>
-    <p class="entrada" data-t="obEntrada">Las tareas marcadas están en la ruta crítica: si una se retrasa un día, la obra entera se retrasa un día. Las demás tienen holgura.</p>
-  </div>
-  <div class="marco">
-    <div class="mandos" id="obMandos" role="group" data-t-attr="aria-label:obAria" aria-label="Tamaño"></div>
-    <div class="leyenda" id="obLeyenda"></div>
-    <div class="grafica"><div id="obGantt" style="min-width:36rem;--col-g:clamp(7rem,16vw,13rem)"></div></div>
-    <p class="hallazgo" id="obHallazgo"></p>
-    <p class="metodo" data-t="obNota">Duraciones típicas, no un compromiso contractual. La tramitación con la distribuidora es la única tarea cuyo plazo no depende de nosotros, y por eso arranca la primera.</p>
-  </div>
-  <div class="marco bloque">
-    <p class="eti" data-t="obRiesgosEti">Las tres cosas que retrasan una obra</p>
-    <div class="rej r3" id="obRiesgos"></div>
-  </div>
-  <div class="marco" style="padding-bottom:clamp(2rem,4vw,3rem)">
-    <p class="eti" data-t="obConvivEti">Cómo convive la obra con su producción</p>
-    <div id="obConviv" style="max-width:66ch;margin-top:1rem"></div>
-  </div>
-  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
-    <p class="eti" data-t="obQuienEti">Quién pisa su planta</p>
-    <div class="rej r4" id="obQuien"></div>
-  </div>
-</section>
 
 <!-- GLOSARIO -->
-<section data-ruta="glosario">
-  <div class="marco bloque">
-    <p class="eti" data-t="nGlosario">Glosario</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="glH1">Las palabras que le van a decir en las ofertas.</h1>
-    <p class="entrada" data-t="glEntrada">Escriba y va filtrando. Si alguien le vende algo que no sabe explicar con estas palabras, desconfíe.</p>
-  </div>
-  <div class="marco">
-    <div class="buscador"><input id="glBuscar" type="search" data-t-attr="placeholder:glPh,aria-label:glPh" placeholder="Buscar un término…"></div>
-    <dl class="glos" id="glLista"></dl>
-    <p class="vacio" id="glVacio" hidden data-t="glVacio">Ningún término coincide. Pruebe con otra palabra.</p>
-    <p class="metodo" id="glCuenta"></p>
-  </div>
-</section>
 
 <!-- VISITA -->
-<section data-ruta="visita">
-  <div class="marco bloque">
-    <p class="eti" data-t="nVisita">Antes de la visita</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="viH1">Ocho cosas y le ahorramos una semana.</h1>
-    <p class="entrada" data-t="viEntrada">Se marca lo que ya tenga; queda guardado en este navegador. No se envía a ningún sitio.</p>
-  </div>
-  <div class="marco">
-    <div class="progreso"><span id="viCuenta"></span><span class="medidor"><i id="viBarra"></i></span></div>
-    <ul class="check" id="viLista"></ul>
-    <p class="hallazgo" id="viHallazgo"></p>
-    <div class="acc"><button class="btn" id="viReset" type="button" data-t="viLimpiar">Empezar de nuevo</button></div>
-  </div>
-</section>
 
 <!-- FICHA -->
-<section data-ruta="ficha">
-  <div class="marco bloque">
-    <p class="eti no-print" data-t="nFicha">Ficha</p>
-    <h1 class="no-print" style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="fiH1">Una hoja para llevar a la reunión.</h1>
-    <p class="entrada no-print" data-t="fiEntrada">Recoge lo que ha salido del simulador. Se imprime en un folio y cabe en un archivador.</p>
-    <div class="acc no-print">
-      <button class="btn sol" id="fiImprimir" type="button" data-t="fiImprimir">Imprimir</button>
-      <a class="btn" href="#/simulador" data-t="fiVolver">Cambiar los datos</a>
-    </div>
-  </div>
-  <div class="marco">
-    <div class="hoja" id="fiHoja"></div>
-  </div>
-</section>
 
 
-<section data-ruta="ayudas">
-  <div class="marco bloque">
-    <p class="eti" data-t="nAyudas">Ayudas y financiación</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch" data-t="ayH1">Lo que casi nadie le cuenta antes de firmar.</h1>
-    <p class="entrada" data-t="ayEntrada">Entre deducciones, amortización acelerada y bonificaciones municipales, buena parte de la inversión vuelve. Pero hay que pedirlo bien y en orden, y hay plazos que no perdonan.</p>
-  </div>
-  <div class="marco">
-    <nav class="indice-pag" data-t-attr="aria-label:ayIndiceAria" aria-label="Secciones de la página">
-      <a href="#ay1" data-t="ayI1">Deducciones e impuestos</a>
-      <a href="#ay2" data-t="ayI2">Subvenciones</a>
-      <a href="#ay3" data-t="ayI3">Formas de pagarlo</a>
-      <a href="#ay4" data-t="ayI4">Errores que cuestan dinero</a>
-    </nav>
-    <div class="dos-col">
-      <div class="texto-largo" id="ayTexto"></div>
-      <aside class="lateral">
-        <h4 data-t="ayLatH">De un vistazo</h4>
-        <dl id="ayLat"></dl>
-      </aside>
-    </div>
-    <div class="cinta-cta" style="margin-top:2.5rem">
-      <div>
-        <h3 data-t="ayCtaH">Nosotros tramitamos, usted firma.</h3>
-        <p data-t="ayCtaP">La tramitación de ayudas y la legalización van incluidas en el proyecto. No es un extra que aparece en la factura final.</p>
-      </div>
-      <a class="btn" href="#/contacto" data-t="bEstudio">Pedir estudio</a>
-    </div>
-    <p class="metodo" data-t="ayNota">Información general con fines divulgativos, no asesoramiento fiscal. Las deducciones, los porcentajes y los plazos cambian por comunidad autónoma, por municipio y por año. Antes de contar con una ayuda concreta, confírmela con su asesor o con nosotros.</p>
-  </div>
-</section>
 
-<section data-ruta="curva">
-  <div class="marco bloque">
-    <p class="eti" data-t="nCurva">Curva horaria</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:22ch" data-t="cuH1">La gráfica que decide el tamaño de su instalación.</h1>
-    <p class="entrada" data-t="cuEntrada">Su consumo hora a hora, y encima la producción solar de ese mismo día. Lo que se solapa es lo que de verdad ahorra. Lo que sobresale por arriba se vierte a la red a menos de la mitad de precio.</p>
-  </div>
-  <div class="marco">
-    <div class="curva-mandos">
-      <div><label for="cuSector" data-t="cuLSector">Perfil de consumo</label><select id="cuSector"></select></div>
-      <div><label for="cuMes" data-t="cuLMes">Mes</label><select id="cuMes"></select></div>
-      <div><label for="cuKwp" data-t="cuLKwp">Potencia instalada</label><input id="cuKwp" type="number" min="20" max="2000" step="10" value="300"></div>
-      <div><label for="cuCons" data-t="cuLCons">Consumo anual (kWh)</label><input id="cuCons" type="number" min="10000" max="5000000" step="10000" value="450000"></div>
-    </div>
-    <div class="leyenda" id="cuLeyenda"></div>
-    <div class="grafica"><svg id="cuGrafica" role="img" data-t-attr="aria-label:cuGrafAlt" aria-label="Consumo horario frente a producción solar"></svg></div>
-    <div class="curva-res" id="cuRes"></div>
-    <p class="hallazgo" id="cuHallazgo"></p>
-    <p class="metodo" data-t="cuNota">La producción por hora sale de la duración del día en cada mes para una latitud próxima a 40° N y de la producción mensual de referencia. El perfil de consumo es el típico del sector, normalizado: el suyo real sale de la curva horaria de su contador, y es justo lo que pedimos en la primera visita.</p>
-  </div>
-</section>
 
-<section data-ruta="ofertas">
-  <div class="marco bloque">
-    <p class="eti" data-t="nOfertas">Comparar ofertas</p>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:22ch" data-t="ofH1">Tiene tres presupuestos y no se parecen en nada.</h1>
-    <p class="entrada" data-t="ofEntrada">Meta aquí los números de cada uno. Le decimos cuál sale más barato por kWh producido a lo largo de la vida de la instalación, que es la única comparación que significa algo. Y sí, también puede meter el nuestro.</p>
-  </div>
-  <div class="marco">
-    <div class="of-rej"><table class="of-tabla" id="ofTabla"></table></div>
-    <div class="of-veredicto" id="ofVeredicto"></div>
-    <p class="hallazgo" id="ofHallazgo"></p>
-    <p class="metodo" data-t="ofNota">El coste por kWh se calcula repartiendo la inversión y el mantenimiento entre toda la energía que producirá la instalación en veinticinco años, con la degradación anual del panel descontada. No incluye el precio al que usted compra la electricidad: sirve para comparar ofertas entre sí, no para calcular el ahorro. Una oferta más barata sin garantía de producción no es más barata: es más incierta.</p>
-  </div>
-</section>
 </main>
 
 <footer class="n">
@@ -990,9 +1001,9 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
     <span data-t="marca">NAHAR</span>
     <nav>
       <a href="#/servicios"   data-t="nServicios">Servicios</a>
-      <a href="#/rendimiento" data-t="nRendimiento">Rendimiento</a>
+      <a href="#/numeros" data-ir="ap-rendimiento" data-t="nRendimiento">Rendimiento</a>
       <a href="#/proyectos"   data-t="nProyectos">Proyectos</a>
-      <a href="#/contacto"    data-t="nContacto">Contacto</a>
+      <a href="#/empresa" data-ir="ap-contacto"    data-t="nContacto">Contacto</a>
     </nav>
     <span class="fin"><span data-t="pieAviso">Maqueta de demostración</span> · <span class="ltr">© 2026</span></span>
   </div>
@@ -1008,7 +1019,9 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 var T = {
 
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", nNumeros:"Los números", nRecursos:"Recursos", nEmpresa:"Empresa", ariaEnPagina:"En esta página",
+ tNumeros:"Los números — NAHAR", tRecursos:"Recursos — NAHAR", tEmpresa:"Empresa y contacto — NAHAR",
+
  coOficinasEti:"Dónde estamos", coEquipoEti:"Con quién habla directamente",
  coDespuesEti:"Qué pasa después de darle a enviar",
  coHorario:"Atendemos de lunes a viernes de 8:00 a 18:00 (CET). Fuera de ese horario puede escribir igualmente: los correos se leen a primera hora del día siguiente laborable. Para incidencias en plantas con contrato de mantenimiento hay un teléfono de guardia que se entrega con la puesta en marcha.",
@@ -1483,7 +1496,9 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", nNumeros:"The numbers", nRecursos:"Resources", nEmpresa:"Company", ariaEnPagina:"On this page",
+ tNumeros:"The numbers — NAHAR", tRecursos:"Resources — NAHAR", tEmpresa:"Company and contact — NAHAR",
+
  coOficinasEti:"Where we are", coEquipoEti:"Who you speak to directly",
  coDespuesEti:"What happens after you press send",
  coHorario:"We are open Monday to Friday, 8:00 to 18:00 CET. Outside those hours you can still write: emails are read first thing the next working day. For incidents at plants under a maintenance contract there is an on-call number, handed over at commissioning.",
@@ -1958,7 +1973,9 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", nNumeros:"الأرقام", nRecursos:"موارد", nEmpresa:"الشركة", ariaEnPagina:"في هذه الصفحة",
+ tNumeros:"الأرقام — نهار", tRecursos:"موارد — نهار", tEmpresa:"الشركة والتواصل — نهار",
+
  coOficinasEti:"أين نحن", coEquipoEti:"مع من تتحدث مباشرةً",
  coDespuesEti:"ماذا يحدث بعد أن تضغط إرسال",
  coHorario:"نعمل من الاثنين إلى الجمعة، من الثامنة إلى السادسة بتوقيت وسط أوروبا. وخارج هذه الأوقات يمكنك الكتابة أيضًا: تُقرأ الرسائل أول يوم العمل التالي. أما بلاغات المحطات المشمولة بعقد صيانة فلها رقم مناوبة يُسلَّم عند التشغيل.",
@@ -2937,14 +2954,18 @@ var LUZ = [9.6,10.7,12.0,13.3,14.4,15.0,14.7,13.7,12.4,11.1,10.0,9.4];
 var MEDIODIA = [13.2,13.3,13.4,14.5,14.6,14.6,14.7,14.6,14.4,14.2,13.2,13.1];
 var DIAS_MES = [31,28,31,30,31,30,31,31,30,31,30,31];
 
-var RUTAS = ["inicio","servicios","proceso","rendimiento","curva","amortizacion","simulador","ofertas",
-             "equipos","obra","glosario","visita","ficha",
-             "proyectos","mantenimiento","ayudas","nosotros","preguntas","contacto"];
-var TITULOS = {inicio:"tInicio",servicios:"tServicios",proceso:"tProceso",
-  rendimiento:"tRendimiento",amortizacion:"tAmortizacion",proyectos:"tProyectos",
-  mantenimiento:"tMantenimiento",nosotros:"tNosotros",preguntas:"tPreguntas",contacto:"tContacto",
-  simulador:"tSimulador",equipos:"tEquipos",obra:"tObra",glosario:"tGlosario",
-  visita:"tVisita",ficha:"tFicha",ayudas:"tAyudas",curva:"tCurva",ofertas:"tOfertas"};
+var INDICE = {
+  servicios:[["ap-servicios","nServicios"],["ap-proceso","nProceso"],["ap-obra","nObra"],["ap-equipos","nEquipos"]],
+  numeros:[["ap-simulador","nSimulador"],["ap-curva","nCurva"],["ap-rendimiento","nRendimiento"],
+           ["ap-amortizacion","nAmortizacion"],["ap-ofertas","nOfertas"]],
+  proyectos:[["ap-proyectos","nProyectos"],["ap-mantenimiento","nMantenimiento"],["ap-ayudas","nAyudas"]],
+  recursos:[["ap-visita","nVisita"],["ap-glosario","nGlosario"],["ap-ficha","nFicha"],["ap-preguntas","nPreguntas"]],
+  empresa:[["ap-nosotros","nNosotros"],["ap-contacto","nContacto"]]
+};
+
+var RUTAS = ["inicio","servicios","numeros","proyectos","recursos","empresa"];
+var TITULOS = {inicio:"tInicio",servicios:"tServicios",numeros:"tNumeros",
+  proyectos:"tProyectos",recursos:"tRecursos",empresa:"tEmpresa"};
 
 var idioma = "es", reOri = 0;
 
@@ -3313,6 +3334,12 @@ function aplicar(codigo){
   var ac = document.getElementById("acuse");
   if (ac){ ac.textContent = ""; ac.classList.remove("mal"); }
 
+  Object.keys(INDICE).forEach(function(r){
+    var e = document.getElementById("ix-"+r); if (!e) return;
+    e.innerHTML = INDICE[r].map(function(x){
+      return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(t[x[1]])+'</a>';
+    }).join("");
+  });
   pintarListas(); pintarRendimiento(); pintarAmortizacion(); lamina(); pintarNuevas();
   try{ localStorage.setItem("nahar_lang", codigo); }catch(e){}
 }
@@ -3331,6 +3358,20 @@ function enrutar(){
 
 var bs = document.querySelectorAll(".idi button");
 for (var z = 0; z < bs.length; z++) bs[z].addEventListener("click", function(){ aplicar(this.dataset.lang); });
+/* Los enlaces con data-ir cambian de página y además bajan a su apartado */
+document.addEventListener("click", function(ev){
+  var a = ev.target.closest && ev.target.closest("[data-ir]");
+  if (!a) return;
+  var destino = a.getAttribute("data-ir");
+  setTimeout(function(){
+    var el = document.getElementById(destino);
+    if (!el) return;
+    /* La cabecera es fija: hay que descontar su alto o tapa el título */
+    var cab = document.querySelector("header");
+    var alto = cab ? cab.getBoundingClientRect().height : 0;
+    window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - alto - 12);
+  }, 60);
+});
 window.addEventListener("hashchange", enrutar);
 document.getElementById("amKwp").addEventListener("input", pintarAmortizacion);
 document.getElementById("amAuto").addEventListener("input", pintarAmortizacion);
