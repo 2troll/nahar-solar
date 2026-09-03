@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NAHAR — Autoconsumo solar industrial</title>
 <meta name="description" content="Ingeniería e instalación de autoconsumo fotovoltaico para industria y logística. Estudio, obra y mantenimiento.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1113'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='%2359b6d6'/%3E%3Cg stroke='%2359b6d6' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M16 3v3.5M16 25.5V29M3 16h3.5M25.5 16H29M6.8 6.8l2.5 2.5M22.7 22.7l2.5 2.5M25.2 6.8l-2.5 2.5M9.3 22.7l-2.5 2.5'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1113'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='%2359b6d6'/%3E%3Cg stroke='%2359b6d6' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M16 3v3.5M16 25.5V29M3 16h3.5M25.5 16H29M6.8 6.8l2.5 2.5M22.7 22.7l2.5 2.5M25.2 6.8l-2.5 2.5M9.3 22.7l-2.5 2.5'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="theme-color" content="#eef0ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1113" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://2troll.github.io/nahar-solar/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NAHAR">
+<meta property="og:url" content="https://2troll.github.io/nahar-solar/">
+<meta property="og:title" id="ogT" content="">
+<meta property="og:description" id="ogD" content="">
+<meta property="og:locale" id="ogL" content="es_ES">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" id="twT" content="">
+<meta name="twitter:description" id="twD" content="">
+<script type="application/ld+json" id="datos"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;500;600&family=Chivo+Mono:wght@400;500&family=Cairo:wght@300;400;500;600;700&display=swap">
@@ -1332,7 +1347,8 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 var T = {
 
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", pieEmpresaEti:"La empresa",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", metaBase:"Ingeniería e instalación de autoconsumo fotovoltaico para industria y logística.",
+ pieEmpresaEti:"La empresa",
 
  nMapa:"Mapa del sitio", nEmpleo:"Empleo", tMapa:"Mapa del sitio — NAHAR",
  tEmpleo:"Empleo — NAHAR", tErr:"Página no encontrada — NAHAR",
@@ -1933,7 +1949,8 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", pieEmpresaEti:"The company",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", metaBase:"Engineering and installation of photovoltaic self-consumption for industry and logistics.",
+ pieEmpresaEti:"The company",
 
  nMapa:"Sitemap", nEmpleo:"Jobs", tMapa:"Sitemap — NAHAR",
  tEmpleo:"Jobs — NAHAR", tErr:"Page not found — NAHAR",
@@ -2534,7 +2551,8 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", pieEmpresaEti:"الشركة",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", metaBase:"هندسة وتركيب الاستهلاك الذاتي الكهروضوئي للصناعة واللوجستيات.",
+ pieEmpresaEti:"الشركة",
 
  nMapa:"خريطة الموقع", nEmpleo:"وظائف", tMapa:"خريطة الموقع — نهار",
  tEmpleo:"وظائف — نهار", tErr:"الصفحة غير موجودة — نهار",
@@ -4077,7 +4095,7 @@ function aplicar(codigo){
   if (ac){ ac.textContent = ""; ac.classList.remove("mal"); }
 
   INDICE.legal = t.legal.map(function(b,i){ return ["ap-le"+i, null, b.t]; });
-  pintarRail(); pintarBarraBaja(); pintarMiga(); pintarPie(); pintarCookies();
+  pintarRail(); pintarBarraBaja(); pintarMiga(); pintarPie(); pintarCookies(); pintarMeta();
   Object.keys(INDICE).forEach(function(r){
     var e = document.getElementById("ix-"+r); if (!e) return;
     e.innerHTML = INDICE[r].map(function(x){
@@ -4154,6 +4172,59 @@ function pintarPie(){
   }
 }
 
+function grafoDatos(){
+  var t = T[idioma];
+  return {
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":["Organization","LocalBusiness"], "@id":"https://2troll.github.io/nahar-solar/#org",
+       "name":"NAHAR Ingeniería Solar", "url":"https://2troll.github.io/nahar-solar/",
+       "description":t.pieQue, "email":"legal@nahar.example", "telephone":"+34976000000",
+       "foundingDate":"2016", "numberOfEmployees":{"@type":"QuantitativeValue","value":14},
+       "areaServed":"ES", "inLanguage":["es","en","ar"],
+       "disclaimer":"Maqueta de demostración: empresa ficticia.",
+       "address":{"@type":"PostalAddress","streetAddress":"Polígono Industrial Las Salinas, nave 14",
+         "postalCode":"50016","addressLocality":"Zaragoza","addressCountry":"ES"},
+       "openingHours":"Mo-Fr 08:00-18:00",
+       "hasOfferCatalog":{"@type":"OfferCatalog","name":t.nServicios,
+         "itemListElement":t.svBloques.map(function(b){
+           return {"@type":"Offer","itemOffered":{"@type":"Service","name":b.n,"description":b.p[0]}}; })}},
+      {"@type":"WebSite","@id":"https://2troll.github.io/nahar-solar/#web",
+       "url":"https://2troll.github.io/nahar-solar/","name":"NAHAR",
+       "inLanguage":t._lang,"publisher":{"@id":"https://2troll.github.io/nahar-solar/#org"}},
+      {"@type":"FAQPage","@id":"https://2troll.github.io/nahar-solar/#faq",
+       "mainEntity":t.preguntas.map(function(p){
+         return {"@type":"Question","name":p.q,
+                 "acceptedAnswer":{"@type":"Answer","text":p.a}}; })}
+    ]
+  };
+}
+
+
+/* ── Metadatos y datos estructurados ───────────────────────────────
+   La descripción de cada página sale de su propia entradilla, y el JSON-LD
+   de los mismos datos que pinta el sitio. Así no hay una copia paralela
+   que se quede vieja cuando se cambia un texto. */
+function textoEntrada(r){
+  var sec = document.querySelector('[data-ruta="'+r+'"] .entrada');
+  var t = sec ? sec.textContent.trim() : "";
+  return t.length > 155 ? t.slice(0, 152).replace(/\s+\S*$/, "") + "…" : t;
+}
+function pintarMeta(){
+  var t = T[idioma], r = ruta();
+  var titulo = t[TITULOS[r]] || t.tInicio;
+  var desc = textoEntrada(r) || t.metaBase;
+  function pon(id, v){ var e = document.getElementById(id); if (e) e.setAttribute("content", v); }
+  var md = document.querySelector('meta[name="description"]');
+  if (md) md.setAttribute("content", desc);
+  pon("ogT", titulo); pon("twT", titulo);
+  pon("ogD", desc);   pon("twD", desc);
+  pon("ogL", t._lang === "ar" ? "ar_AR" : t._lang === "en" ? "en_GB" : "es_ES");
+
+  var datos = document.getElementById("datos");
+  if (datos) datos.textContent = JSON.stringify(grafoDatos(), null, 0);
+}
+
 function pintarRail(){
   var r = ruta(), t = T[idioma], caja = document.querySelector(".rail");
   if (!caja) return;
@@ -4211,6 +4282,7 @@ function enrutar(){
   }
   document.title = T[idioma][TITULOS[r]] || T[idioma].tInicio;
   window.scrollTo(0,0);
+  pintarMeta();
   pintarRail(); pintarBarraBaja(); pintarMiga();
 }
 
