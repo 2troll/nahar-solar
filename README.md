@@ -1,18 +1,26 @@
 # NAHAR — Autoconsumo solar industrial
 
-Sitio corporativo de **diecinueve páginas** en español, inglés y árabe con RTL real,
+Sitio corporativo de **nueve páginas largas** en español, inglés y árabe con RTL real,
 para una ingeniería de autoconsumo fotovoltaico industrial.
 
 **Ver online:** https://2troll.github.io/nahar-solar/
 
-Un solo archivo HTML: sin compilar, sin dependencias, sin claves de API.
+Un solo archivo HTML: sin compilar, sin librerías de JavaScript y sin claves
+de API. La única petición a un tercero es la hoja de tipografías de Google.
 
-## Las dieciséis páginas
+## Las nueve páginas
 
-`Inicio` · `Servicios` · `Proceso` · `Rendimiento` · `Amortización` ·
-**`Simulador`** · **`Equipos`** · **`La obra`** · **`Glosario`** ·
-**`Antes de la visita`** · **`Ficha`** · `Proyectos` · `Mantenimiento` ·
-`Empresa` · `Preguntas` · `Contacto`
+`Inicio` · `Servicios` · `Números` · `Proyectos` · `Recursos` · `Empresa` · `Legal` · `Mapa del sitio` · `Empleo`
+
+Nueve rutas que agrupan **diecinueve apartados** de contenido, más el 404, el
+mapa del sitio, empleo y los textos legales. Cada página larga lleva su
+índice arriba y salta al apartado. Es deliberado: un menú de dieciséis
+entradas donde cada una lleva a cuatro párrafos se lee como una revista,
+no como una empresa.
+
+## Los diecinueve apartados
+
+`Inicio` · `Servicios` · `Proceso` · **`La obra`** · **`Equipos`** · **`Simulador`** · `Curva horaria` · `Rendimiento` · `Amortización` · `Comparar ofertas` · `Proyectos` · `Mantenimiento` · `Ayudas` · **`Antes de la visita`** · **`Glosario`** · **`Ficha`** · `Preguntas` · `Empresa` · `Contacto`
 
 Las seis en negrita son nuevas, y cada una trae un **formato distinto**, no
 más texto:
@@ -47,7 +55,7 @@ y las cifras del cálculo cuadran con las que anuncia la portada.
 
 ## Traducción
 
-- 139 claves × 3 idiomas, paridad exacta, 0 sin traducir.
+- 377 claves × 3 idiomas, paridad exacta, 0 sin traducir.
 - Las estructuras (pasos, proyectos, planes, preguntas) son arrays paralelos:
   6/6/6, 3/3/3, 6/6/6 en los tres idiomas.
 - Dígitos árabe-índicos pedidos explícitamente (`ar-u-nu-arab`): `ar` a secas
@@ -77,14 +85,15 @@ publica aunque sea legal.
 ## Comprobado
 
 ```
-217 claves × 3 idiomas       paridad ✔ · 0 sin traducir
-16 rutas × 3 idiomas         0 fugas de idioma
-16 enlaces del menú          los 16 navegan
-desborde horizontal          0 px en las 16 rutas
-3 orientaciones              12 / 12 / 24 barras
-calculadora                  6–7 años, coherente con el «5–8» de portada
-formulario en árabe          3 estados
-paleta de las gráficas       los 6 controles, en claro y en oscuro
+377 claves × 3 idiomas  paridad ✔ · 0 sin traducir
+9 rutas × 3 idiomas     0 fugas de idioma
+6 enlaces del menú      los 6 navegan
+desborde horizontal     0 px en las 9 rutas
+3 orientaciones         12 / 12 / 24 barras
+calculadora             6–7 años, coherente con el «5–8» de portada
+formulario en árabe     3 estados
+paleta de las gráficas  los 6 controles, en claro y en oscuro
+peso transferido        119 kB comprimido, el sitio entero
 ```
 
 ---
