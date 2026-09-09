@@ -3611,12 +3611,18 @@ function pintarOfertas(){
   var filas = t.ofFilas.map(function(nom, fi){
     var c = campos[fi];
     var celdas = ofDatos.map(function(o, oi){
+      /* Cada celda es un campo editable dentro de una tabla, y sin nombre
+         accesible un lector de pantalla sólo dice «edición, 300». El nombre se
+         compone de la fila y de la columna, que es justo lo que ve quien mira:
+         «Potencia instalada, Oferta B». Una etiqueta visible sería redundante
+         con las cabeceras, un aria-label no. */
+      var nombre = nom + ", " + (t.ofCols[oi + 1] || "");
       if (c === "gprod" || c === "pen"){
-        return '<td><select data-o="'+oi+'" data-c="'+c+'">'
+        return '<td><select data-o="'+oi+'" data-c="'+c+'" aria-label="'+esc(nombre)+'">'
           + '<option value="1"'+(o[c]?" selected":"")+'>'+esc(t.ofSi)+'</option>'
           + '<option value="0"'+(o[c]?"":" selected")+'>'+esc(t.ofNo)+'</option></select></td>';
       }
-      return '<td><input type="number" min="0" step="'+(c==="precio"?"1000":"1")+'" value="'+o[c]+'" data-o="'+oi+'" data-c="'+c+'"></td>';
+      return '<td><input type="number" min="0" step="'+(c==="precio"?"1000":"1")+'" value="'+o[c]+'" data-o="'+oi+'" data-c="'+c+'" aria-label="'+esc(nombre)+'"></td>';
     }).join("");
     return "<tr><td>"+esc(nom)+"</td>"+celdas+"</tr>";
   }).join("");
