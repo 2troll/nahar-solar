@@ -230,6 +230,11 @@ html[dir="rtl"] .pie-t{letter-spacing:0;text-transform:none;font-size:.85rem;fon
         max-height:calc(100vh - 3.6rem);overflow-y:auto;padding:2.6rem 1.8rem 2rem 0;}
   html[dir="rtl"] .rail{padding:2.6rem 0 2rem 1.8rem;}
   .doc-cuerpo{border-inline-start:1px solid var(--linea);}
+  /* Portada, empleo y 404 no tienen sumario. Al ocultar el raíl desaparecía su
+     item de la rejilla y el cuerpo caía en la columna estrecha: el titular de
+     portada se partía palabra por palabra a 1440 px. Sin raíl, una columna. */
+  .doc.sin-rail{grid-template-columns:minmax(0,1fr);}
+  .doc.sin-rail .doc-cuerpo{border-inline-start:0;}
   .doc-cuerpo .marco{width:auto;margin-inline:0;padding-inline:clamp(1.8rem,3vw,3.2rem);}
   .doc .marco:has(> .indice-pag){display:none;}
 }
@@ -4286,6 +4291,8 @@ function pintarRail(){
   if (!caja) return;
   var lista = INDICE[r];
   caja.hidden = !lista;
+  var rejilla = caja.parentElement;
+  if (rejilla) rejilla.classList.toggle("sin-rail", !lista);
   if (!lista) return;
   document.getElementById("railTitulo").textContent = t[TITULOS[r]].split("—")[0].trim();
   document.getElementById("rail").innerHTML = lista.map(function(x){
