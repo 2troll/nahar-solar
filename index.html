@@ -692,6 +692,49 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 .pie a{text-decoration:none;} .pie a:hover{color:var(--acento);}
 .pie .fin{margin-inline-start:auto;}
 .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block;}
+
+/* ══════════════════════════════════════════════════════════════════
+   TIRA DE DATOS
+   El ritmo de la página era el problema: todo bloques del mismo alto.
+   Aquí se rompe con una tira a sangre, y en el idioma que le toca a una
+   ingeniería: retícula a la vista, cifras tabulares grandes y unidades
+   en monoespaciada, como una hoja de características. Nada de tarjetas
+   redondeadas: esto se lee como una ficha técnica porque lo es.
+   ══════════════════════════════════════════════════════════════════ */
+.tira-datos{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  margin-block:2.2rem 1.4rem;
+  border-block:1px solid var(--linea);
+  background:var(--fondo-2);
+  /* a sangre: se sale del marco por los dos lados */
+  width:100vw;margin-inline-start:50%;transform:translateX(-50%);
+}
+html[dir="rtl"] .tira-datos{transform:translateX(50%);}
+.td-cel{padding:clamp(1.6rem,3vw,2.6rem) clamp(1rem,2vw,1.8rem);
+  border-inline-start:1px solid var(--linea);min-width:0;}
+.td-cel:first-child{border-inline-start:0;}
+.td-cel .v{
+  font-family:var(--disp);font-weight:500;
+  font-size:clamp(2.6rem,6vw,4.6rem);line-height:.94;letter-spacing:-.035em;
+  font-variant-numeric:tabular-nums;
+}
+html[dir="rtl"] .td-cel .v{letter-spacing:0;font-size:clamp(2.2rem,5vw,3.9rem);}
+.td-cel .u{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--tinta-3);margin-top:.9rem;line-height:1.5;max-width:22ch;
+}
+html[dir="rtl"] .td-cel .u{letter-spacing:0;text-transform:none;font-size:.82rem;
+  font-family:var(--cuerpo);}
+@media(max-width:900px){
+  .tira-datos{grid-template-columns:repeat(2,1fr);}
+  .td-cel:nth-child(3){border-inline-start:0;}
+  .td-cel:nth-child(-n+2){border-block-end:1px solid var(--linea);}
+}
+@media(max-width:520px){
+  .tira-datos{grid-template-columns:1fr;}
+  .td-cel{border-inline-start:0;border-block-end:1px solid var(--linea);}
+  .td-cel:last-child{border-block-end:0;}
+}
 </style>
 </head>
 <body>
@@ -765,11 +808,11 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
 
   <div class="marco bloque raya">
     <p class="eti" data-t="iCifrasEti">En cifras</p>
-    <div class="rej r4">
-      <div class="cel dato"><div class="v" data-t="cf1v">1.623</div><div class="u" data-t="cf1u">kWh por kWp y año, orientación sur</div></div>
-      <div class="cel dato"><div class="v" data-t="cf2v">6–8</div><div class="u" data-t="cf2u">Años de amortización habituales</div></div>
-      <div class="cel dato"><div class="v" data-t="cf3v">25</div><div class="u" data-t="cf3u">Años de garantía de producción del panel</div></div>
-      <div class="cel dato"><div class="v" data-t="cf4v">0</div><div class="u" data-t="cf4u">Obra en horario de producción</div></div>
+    <div class="tira-datos">
+      <div class="td-cel"><div class="v" data-t="cf1v">1.623</div><div class="u" data-t="cf1u">kWh por kWp y año, orientación sur</div></div>
+      <div class="td-cel"><div class="v" data-t="cf2v">6–8</div><div class="u" data-t="cf2u">Años de amortización habituales</div></div>
+      <div class="td-cel"><div class="v" data-t="cf3v">25</div><div class="u" data-t="cf3u">Años de garantía de producción del panel</div></div>
+      <div class="td-cel"><div class="v" data-t="cf4v">0</div><div class="u" data-t="cf4u">Obra en horario de producción</div></div>
     </div>
     <p class="metodo" data-t="iCifrasNota">Valores de referencia para latitud próxima a 40° N con inclinación óptima. Su cubierta dará otra cosa: por eso hacemos un estudio antes de presupuestar.</p>
   </div>
