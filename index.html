@@ -706,10 +706,11 @@ footer.n{border-top:1px solid var(--linea);padding-block:2rem 2.6rem;font-size:.
   margin-block:2.2rem 1.4rem;
   border-block:1px solid var(--linea);
   background:var(--fondo-2);
-  /* a sangre: se sale del marco por los dos lados */
-  width:100vw;margin-inline-start:50%;transform:translateX(-50%);
+  /* Antes sangraba a `100vw`. Con el raíl lateral el contenido ya no empieza
+     en el borde de la ventana, así que 100vw se salía exactamente la mitad del
+     raíl: 124 px a 1440. Ahora la tira llena su columna y nada más. */
+  width:100%;
 }
-html[dir="rtl"] .tira-datos{transform:translateX(50%);}
 .td-cel{padding:clamp(1.6rem,3vw,2.6rem) clamp(1rem,2vw,1.8rem);
   border-inline-start:1px solid var(--linea);min-width:0;}
 .td-cel:first-child{border-inline-start:0;}
@@ -735,50 +736,226 @@ html[dir="rtl"] .td-cel .u{letter-spacing:0;text-transform:none;font-size:.82rem
   .td-cel{border-inline-start:0;border-block-end:1px solid var(--linea);}
   .td-cel:last-child{border-block-end:0;}
 }
+/* ══ kit-tablero: principio ══ */
+/* ══════════════════════════════════════════════════════════════════
+   KIT TABLERO — armazón de aplicación, rejilla de doce y paneles
+   ------------------------------------------------------------------
+   Se copia entero dentro de la hoja de estilos del sitio, entre las dos
+   marcas `kit-tablero`. No trae colores propios: usa las variables que
+   ya define cada sitio, con alternativa por si alguna falta.
+
+     --fondo   fondo de la página        --texto    texto principal
+     --fondo-2 fondo de panel            --texto-2  texto secundario
+     --sup     superficie elevada        --texto-3  texto tenue
+     --linea   línea de separación       --acento   color de marca
+     --hondo / --hondo-texto / --hondo-linea   franja oscura
+
+   Todo el reflejo en árabe sale de propiedades lógicas. Las excepciones
+   van marcadas una a una.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Puente de variables ───────────────────────────────────────────
+   El kit no impone paleta: toma la del sitio, sea cual sea el nombre que
+   use, y sólo pone un último recurso para que nada quede sin color. */
+:root{
+  --kit-fondo:var(--fondo,#eef0ef);
+  --kit-panel:var(--fondo-2,#e4e8e7);
+  --kit-linea:var(--linea,rgba(20,24,27,.14));
+  --kit-texto:var(--texto,var(--tinta,#14181b));
+  --kit-texto-2:var(--texto-2,var(--tinta-2,#525a5e));
+  --kit-texto-3:var(--texto-3,var(--tinta-3,#858c8f));
+  --kit-acento:var(--acento,#0f5f7a);
+  --kit-hondo:var(--hondo,#101619);
+  --kit-hondo-texto:var(--hondo-texto,#e7ecec);
+  --kit-hondo-linea:var(--hondo-linea,rgba(231,236,236,.18));
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   ARMAZÓN DE APLICACIÓN
+   El menú deja de ser una fila de once enlaces apretados y pasa a un
+   raíl lateral fijo, agrupado por bloques. El contenido va AL LADO, no
+   debajo, y en rejilla de doce columnas: los paneles ocupan distinto
+   ancho y se ponen unos junto a otros. Todo en propiedades lógicas, así
+   que en árabe el raíl se va solo a la derecha.
+   ══════════════════════════════════════════════════════════════════ */
+/* Colocación EXPLÍCITA. Confiar en el orden de los hijos no funciona: el
+   velo y el botón salen del flujo y «main» acababa en una columna de ancho
+   cero, con la página entera invisible. Cada pieza dice dónde va. */
+body{display:grid;grid-template-columns:15.5rem minmax(0,1fr);
+  grid-template-rows:1fr auto;min-height:100vh;}
+.app-lateral{grid-column:1;grid-row:1 / -1;}
+.app-panel{grid-column:2;grid-row:1;}
+body > footer{grid-column:2;grid-row:2;}
+
+.app-lateral{
+  position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;
+  width:15.5rem;padding:1.6rem 1.2rem 1.4rem;
+  background:var(--kit-panel);border-inline-end:1px solid var(--kit-linea);
+  display:flex;flex-direction:column;gap:.2rem;z-index:60;
+}
+.app-lateral .marca{display:block;margin-bottom:1.4rem;font-size:1.15rem;}
+.app-eti{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--kit-texto-3);margin:1.3rem 0 .45rem;}
+html[dir="rtl"] .app-eti{letter-spacing:0;text-transform:none;font-size:.78rem;}
+.app-nav{display:flex;flex-direction:column;gap:.1rem;}
+.app-nav a{display:block;padding:.42rem .6rem;text-align:start;margin:0;border-radius:4px;font-size:.87rem;
+  color:var(--kit-texto-2);text-decoration:none;border:0;
+  border-inline-start:2px solid transparent;}
+.app-nav a:hover{background:var(--kit-fondo);color:var(--kit-texto);}
+.app-nav a[aria-current="page"]{background:var(--kit-fondo);color:var(--kit-texto);
+  border-inline-start-color:var(--kit-acento);font-weight:500;}
+.app-lateral .idiomas{margin-top:auto;padding-top:1.4rem;display:flex;gap:.2rem;}
+
+.app-panel{min-width:0;}
+.app-abrir{display:none;position:fixed;top:.8rem;inset-inline-start:.8rem;z-index:80;
+  background:var(--kit-panel);color:var(--kit-texto);border:1px solid var(--kit-linea);
+  border-radius:5px;padding:.5rem .6rem;cursor:pointer;}
+.app-velo{display:none;}
+
+@media(max-width:900px){
+  body{grid-template-columns:minmax(0,1fr);}
+  .app-abrir{display:block;}
+  .app-lateral{position:fixed;inset-block:0;inset-inline-start:0;
+    width:min(80vw,15.5rem);transform:translateX(-100%);transition:transform .22s ease;}
+  .app-panel,body > footer{grid-column:1;}
+  html[dir="rtl"] .app-lateral{transform:translateX(100%);}
+  .app-lateral.abierto{transform:none;}
+  .app-velo{display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);
+    opacity:0;pointer-events:none;transition:opacity .22s;z-index:55;}
+  .app-velo.abierto{opacity:1;pointer-events:auto;}
+  main.app-panel{padding-top:3.4rem;}
+}
+
+/* Rejilla de doce columnas: es lo que rompe la columna única. */
+.rej12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:clamp(.9rem,1.6vw,1.4rem);}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}
+.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}
+.c9{grid-column:span 9}.c12{grid-column:span 12}
+@media(max-width:1100px){.c3,.c4,.c5{grid-column:span 6}.c7,.c8,.c9{grid-column:span 12}}
+@media(max-width:640px){.rej12 > *{grid-column:span 12 !important}}
+
+/* Panel: la unidad de la interfaz. Caja de información, no adorno. */
+.panel{background:var(--kit-panel);border:1px solid var(--kit-linea);border-radius:6px;
+  overflow:hidden;display:flex;flex-direction:column;min-width:0;}
+.panel-cab{display:flex;align-items:center;gap:.6rem;justify-content:space-between;
+  padding:.7rem .9rem;border-block-end:1px solid var(--kit-linea);
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--kit-texto-3);}
+html[dir="rtl"] .panel-cab{letter-spacing:0;text-transform:none;font-size:.84rem;}
+.panel-cuerpo{padding:.9rem;flex:1;min-width:0;}
+/* La proporción va en la imagen y no en el marco: si la proporción se pone en
+   el marco, Chrome deja de estirarlo dentro de la fila de la rejilla y la
+   fotografía queda flotando arriba con un hueco gris debajo. */
+/* La proporción se fija con un relleno porcentual y no con `aspect-ratio`.
+   Motivo medido, no de estilo: en una celda de rejilla estirada la altura pasa
+   a ser definida, y entonces `aspect-ratio` calcula el ANCHO a partir de ella
+   y la fotografía se sale de su columna — 362 px en la portada a 1440. El
+   relleno porcentual siempre deriva del ancho, nunca al revés. */
+.panel-foto{padding:0;position:relative;overflow:hidden;}
+.panel-foto::before{content:"";display:block;padding-block-start:75%;}
+.panel-foto.alta::before{padding-block-start:133.33%;}
+.panel-foto.ancha::before{padding-block-start:56.25%;}
+.panel-foto img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;}
+.panel-foto figcaption{position:absolute;inset-inline:0;bottom:0;padding:.7rem .9rem;
+  background:linear-gradient(to top,rgba(6,12,16,.9),rgba(6,12,16,.55) 60%,transparent);
+  color:#f2efe9;font-size:.8rem;line-height:1.4;}
+.etq{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.15rem .45rem;border-radius:3px;background:var(--kit-acento);
+  color:var(--kit-fondo);white-space:nowrap;}
+html[dir="rtl"] .etq{letter-spacing:0;text-transform:none;font-size:.76rem;}
+.panel .dato-g{font-family:var(--display,var(--disp,inherit));font-size:clamp(1.8rem,3.4vw,2.6rem);
+  line-height:1;font-variant-numeric:tabular-nums;}
+.panel .dato-p{font-size:.82rem;color:var(--kit-texto-2);margin-top:.4rem;line-height:1.45;}
+.panel-cuerpo h3{font-size:1.1rem;margin:0 0 .5rem;line-height:1.2;}
+.panel-cuerpo h3 + p{color:var(--kit-texto-2);font-size:.9rem;margin:0;}
+
+/* Panel de portada: el titular manda, pero sigue siendo un panel del tablero
+   y no una franja aparte a todo lo ancho. */
+.panel.horizonte{padding-block:0;}
+.panel-portada{background:var(--kit-hondo);color:var(--kit-hondo-texto);
+  border-color:var(--kit-hondo-linea);justify-content:center;}
+.panel-portada .rot{color:var(--kit-acento);}
+.panel-portada .entrada{color:var(--kit-hondo-texto);opacity:.85;}
+.panel-portada .panel-cuerpo{padding:clamp(1.2rem,2.6vw,2.2rem);}
+.panel-portada h1{font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.12;margin:.5rem 0 .8rem;}
+.panel-portada .entrada{color:var(--kit-texto-2);max-width:46ch;}
+.panel-portada .acciones{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem;}
+/* Los botones dentro del panel oscuro. No se puede dar por buena la clase de
+   ningún sitio —uno los llama `.solido` y otro `.sol`—, así que el kit los
+   repinta por su cuenta: sobre la franja oscura, cualquier botón se ve. */
+.panel-portada .btn,.panel-portada .acc a{
+  background:transparent;color:var(--kit-hondo-texto);
+  border:1px solid var(--kit-hondo-texto);}
+.panel-portada .btn.sol,.panel-portada .btn.solido,.panel-portada .acc a.sol{
+  background:var(--kit-hondo-texto);color:var(--kit-hondo);}
+.panel-portada .btn:hover,.panel-portada .acc a:hover{
+  background:var(--kit-hondo-texto);color:var(--kit-hondo);}
+.panel-portada .btn.sol:hover,.panel-portada .btn.solido:hover,.panel-portada .acc a.sol:hover{
+  background:transparent;color:var(--kit-hondo-texto);}
+/* Y el texto suelto: párrafos, listas y rótulos secundarios. */
+.panel-portada p,.panel-portada li,.panel-portada dd{color:var(--kit-hondo-texto);}
+.panel-portada .metodo,.panel-portada .dato-p{
+  color:color-mix(in srgb,var(--kit-hondo-texto) 66%,transparent);}
+/* Rótulo suelto entre bloques del tablero: sin caja, sólo el letrero. */
+.panel.sin-fondo{background:none;border:0;border-radius:0;}
+.panel.sin-fondo .rot{margin:.6rem 0 0;}
+.tablero{padding-block:clamp(1.2rem,2.4vw,2rem);}
+.tablero .cifras-fuente{font-size:.74rem;color:var(--kit-texto-3);line-height:1.5;margin:0;}
+/* Una tabla ancha no debe empujar la página: se desliza dentro de su panel. */
+.desliza{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.desliza table{min-width:34rem;}
+/* Formulario a dos columnas dentro de su panel: los campos cortos comparten
+   fila y sólo las fechas y el mensaje ocupan el ancho entero. */
+.rej-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1rem;}
+.rej-form .ancho2{grid-column:1 / -1;}
+@media(max-width:640px){.rej-form{grid-template-columns:1fr}}
+/* ══ kit-tablero: final ══ */
 </style>
 </head>
 <body>
 
-<div class="util">
-  <div class="marco util-m">
-    <span class="util-i" data-t="utilAtencion">Atención técnica de lunes a viernes, 8:00–18:00 CET</span>
+<!-- ══ kit-tablero: armazón ══ -->
+<button class="app-abrir" id="appAbrir" aria-expanded="false" aria-controls="appLateral" data-t-attr="aria-label:menuAria" aria-label="Menú"><span></span><span></span><span></span></button>
+<aside class="app-lateral" id="appLateral">
+  <a class="marca" href="#/inicio" data-t="marca">NAHAR</a>
+  <p class="app-eti" data-t="nlSitio">El sitio</p>
+  <nav class="app-nav">
+    <a href="#/inicio"    data-t="nInicio">Inicio</a>
+    <a href="#/servicios" data-t="nServicios">Servicios</a>
+    <a href="#/numeros"   data-t="nNumeros">Los números</a>
+    <a href="#/proyectos" data-t="nProyectos">Proyectos</a>
+  </nav>
+  <p class="app-eti" data-t="nlHerramientas">Herramientas</p>
+  <nav class="app-nav">
+    <a href="#/recursos"  data-t="nRecursos">Recursos</a>
+    <a href="#/empresa"   data-t="nEmpresa">Empresa</a>
+  </nav>
+  <p class="app-eti" data-t="nlContacto">Más</p>
+  <nav class="app-nav">
+    <a href="#/legal" data-t="nLegal"></a>
+    <a href="#/mapa" data-t="nMapa"></a>
+    <a href="#/empleo" data-t="nEmpleo"></a>
+  </nav>
+  <div class="app-aparatos">
+    <a class="btn sol cab-cta" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
     <a class="util-tel" href="tel:+34976000000" dir="ltr">+34 976 000 000</a>
-    <a href="#/recursos" data-ir="ap-ficha" data-t="utilDescargas">Descargas</a>
-    <a href="#/recursos" data-ir="ap-glosario" data-t="utilGlosario">Glosario</a>
-    <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
+  </div>
+  <div class="idi idiomas" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
       <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
     </div>
-  </div>
+</aside>
+<div class="app-velo" id="appVelo"></div>
+<!-- ══ kit-tablero: fin del armazón ══ -->
 </div>
-
-<header class="n">
-  <div class="marco barra">
-    <a class="logo" href="#/inicio">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6" fill="currentColor"/><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 1.6v3M12 19.4v3M1.6 12h3M19.4 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M19.4 4.6l-2.1 2.1M6.7 17.3l-2.1 2.1"/></g></svg>
-      <span data-t="marca">NAHAR</span>
-    </a>
-    <button type="button" class="menu-b" id="menuB" aria-expanded="false" aria-controls="menuP"
-            data-t-attr="aria-label:menuAria">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="n" data-t-attr="aria-label:ariaMenu" aria-label="Secciones">
-      <a href="#/inicio"    data-t="nInicio">Inicio</a>
-      <a href="#/servicios" data-t="nServicios">Servicios</a>
-      <a href="#/numeros"   data-t="nNumeros">Los números</a>
-      <a href="#/proyectos" data-t="nProyectos">Proyectos</a>
-      <a href="#/recursos"  data-t="nRecursos">Recursos</a>
-      <a href="#/empresa"   data-t="nEmpresa">Empresa</a>
-    </nav>
-    <a class="btn sol cab-cta" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
-  </div>
-</header>
+</div>
 
 <nav class="miga" id="miga" data-t-attr="aria-label:ariaMiga" aria-label="Ruta"></nav>
 
-<main>
+<main class="app-panel">
 <div class="doc">
   <aside class="rail" hidden>
     <p class="rail-t" id="railTitulo"></p>
@@ -792,77 +969,94 @@ html[dir="rtl"] .td-cel .u{letter-spacing:0;text-transform:none;font-size:.82rem
   <div class="doc-cuerpo">
 
 <section data-ruta="inicio" id="ap-inicio">
-  <div class="marco hero">
-    <div>
-      <p class="eti" data-t="iEti">Autoconsumo fotovoltaico industrial</p>
-      <h1 data-t="iH1">La cubierta de su nave ya está pagada. Lo que produce, no.</h1>
-      <p class="entrada" data-t="iEntrada">Ingeniería, obra y mantenimiento de plantas de autoconsumo para industria y logística. Estudiamos su curva de consumo real antes de proponer una sola placa.</p>
-      <div class="acc">
-        <a class="btn sol" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
-        <a class="btn" href="#/numeros" data-ir="ap-amortizacion" data-t="bCalcular">Calcular amortización</a>
+  <div class="marco tablero">
+    <div class="rej12">
+      <div class="panel c7 panel-portada horizonte">
+        <div class="panel-cuerpo">
+          <p class="eti" data-t="iEti">Autoconsumo fotovoltaico industrial</p>
+          <h1 data-t="iH1">La cubierta de su nave ya está pagada. Lo que produce, no.</h1>
+          <p class="entrada" data-t="iEntrada"></p>
+          <div class="acc acciones">
+            <a class="btn sol" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
+            <a class="btn" href="#/numeros" data-ir="ap-amortizacion" data-t="bCalcular">Calcular amortización</a>
+          </div>
+        </div>
       </div>
-    </div>
-    <img class="foto" src="img/tecnico-cubierta.jpg" width="1400" height="788"
-         data-t-attr="alt:altPortada" alt="Técnico instalando módulos fotovoltaicos en una cubierta">
-  </div>
+      <figure class="panel c5 panel-foto ancha">
+        <img src="img/tecnico-cubierta.jpg" loading="eager" decoding="async"
+             data-t-attr="alt:altPortada" alt="Técnico instalando módulos fotovoltaicos en una cubierta">
+        <figcaption data-t="fpTecnico"></figcaption>
+      </figure>
 
-  <div class="marco bloque raya">
-    <p class="eti" data-t="iCifrasEti">En cifras</p>
-    <div class="tira-datos">
-      <div class="td-cel"><div class="v" data-t="cf1v">1.623</div><div class="u" data-t="cf1u">kWh por kWp y año, orientación sur</div></div>
-      <div class="td-cel"><div class="v" data-t="cf2v">6–8</div><div class="u" data-t="cf2u">Años de amortización habituales</div></div>
-      <div class="td-cel"><div class="v" data-t="cf3v">25</div><div class="u" data-t="cf3u">Años de garantía de producción del panel</div></div>
-      <div class="td-cel"><div class="v" data-t="cf4v">0</div><div class="u" data-t="cf4u">Obra en horario de producción</div></div>
-    </div>
-    <p class="metodo" data-t="iCifrasNota">Valores de referencia para latitud próxima a 40° N con inclinación óptima. Su cubierta dará otra cosa: por eso hacemos un estudio antes de presupuestar.</p>
-  </div>
+      <div class="panel c3"><div class="panel-cab"><span data-t="pnProduccion">Producción</span></div>
+        <div class="panel-cuerpo"><div class="v dato-g" data-t="cf1v">1.623</div><p class="dato-p" data-t="cf1u"></p></div></div>
+      <div class="panel c3"><div class="panel-cab"><span data-t="pnAmortiza">Amortización</span></div>
+        <div class="panel-cuerpo"><div class="v dato-g" data-t="cf2v">6–8</div><p class="dato-p" data-t="cf2u"></p></div></div>
+      <div class="panel c3"><div class="panel-cab"><span data-t="pnGarantia">Garantía</span></div>
+        <div class="panel-cuerpo"><div class="v dato-g" data-t="cf3v">25</div><p class="dato-p" data-t="cf3u"></p></div></div>
+      <div class="panel c3"><div class="panel-cab"><span data-t="pnParadas">Paradas</span></div>
+        <div class="panel-cuerpo"><div class="v dato-g" data-t="cf4v">0</div><p class="dato-p" data-t="cf4u"></p></div></div>
+      <p class="metodo c12" data-t="iCifrasNota"></p>
 
-
-  <div class="marco bloque raya">
-    <p class="eti" data-t="iSectoresEti">Para qué tipo de empresa</p>
-    <h2 style="font-size:clamp(1.6rem,3.4vw,2.4rem);max-width:24ch;margin-bottom:1.6rem" data-t="iSectoresH">No todas las naves son iguales, y el dimensionado tampoco.</h2>
-    <div class="grafica"><table class="tabla-ancha" id="iSectores"></table></div>
-    <p class="metodo" data-t="iSectoresNota">Rangos habituales para instalaciones de entre 100 y 800 kWp. La modalidad recomendada depende sobre todo de cuánto del consumo cae en horas de sol.</p>
-  </div>
-
-  <div class="marco bloque">
-    <div class="cinta-cta">
-      <div>
-        <h3 data-t="ctaEstudioH">El estudio de viabilidad no se cobra.</h3>
-        <p data-t="ctaEstudioP">Con doce facturas y una foto de la cubierta le decimos en dos semanas si le sale a cuenta. Y si no sale, se lo decimos igual.</p>
+      <div class="panel c12">
+        <div class="panel-cab"><span data-t="iSectoresEti">Para qué tipo de empresa</span></div>
+        <div class="panel-cuerpo">
+          <h2 data-t="iSectoresH">No todas las naves son iguales, y el dimensionado tampoco.</h2>
+          <div class="desliza"><table class="tabla-ancha" id="iSectores"></table></div>
+          <p class="metodo" data-t="iSectoresNota"></p>
+        </div>
       </div>
-      <a class="btn" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a>
-    </div>
-  </div>
+      <figure class="panel c5 panel-foto ancha">
+        <img src="img/cubierta-array.jpg" loading="lazy" decoding="async"
+             data-t-attr="alt:altCubierta" alt="Estructura lastrada montada sobre una cubierta plana industrial">
+        <figcaption data-t="fpCubierta"></figcaption>
+      </figure>
 
-  <div class="marco bloque">
-    <p class="eti" data-t="iTestiEti">Lo que dicen los clientes</p>
-    <div class="testis" id="iTestis"></div>
-    <p class="metodo" data-t="iTestiNota">Testimonios de ejemplo.</p>
-  </div>
-
-  <div class="marco bloque raya">
-    <div class="dos-col">
-      <div>
-        <p class="eti" data-t="iSellosEti">Garantías y acreditaciones</p>
-        <div class="sellos" id="iSellos"></div>
+      <div class="panel c7 panel-portada horizonte">
+        <div class="panel-cuerpo">
+          <h3 data-t="ctaEstudioH">El estudio de viabilidad no se cobra.</h3>
+          <p data-t="ctaEstudioP"></p>
+          <div class="acciones"><a class="btn" href="#/empresa" data-ir="ap-contacto" data-t="bEstudio">Pedir estudio</a></div>
+        </div>
       </div>
-      <div>
-        <p class="eti" data-t="iMarcasEti">Con qué material trabajamos</p>
-        <div class="marcas" id="iMarcas"></div>
-        <p class="metodo" data-t="iMarcasNota">No somos distribuidor exclusivo de ninguna marca, y eso es deliberado: elegimos el material por el proyecto, no por el margen. Si le interesa saber por qué un fabricante y no otro, está en la página de equipos.</p>
+      <div class="panel c8">
+        <div class="panel-cab"><span data-t="iTestiEti">Lo que dicen los clientes</span><span class="etq" data-t="etqEjemplo">Ejemplo</span></div>
+        <div class="panel-cuerpo">
+          <div class="testis" id="iTestis"></div>
+          <p class="metodo" data-t="iTestiNota"></p>
+        </div>
       </div>
-    </div>
-  </div>
+      <figure class="panel c4 panel-foto">
+        <img src="img/planta-aerea.jpg" loading="lazy" decoding="async"
+             data-t-attr="alt:altPlanta" alt="Vista aérea de una planta fotovoltaica">
+        <figcaption data-t="fpPlanta"></figcaption>
+      </figure>
 
-  <div class="marco bloque raya">
-    <p class="eti" data-t="nServicios">Servicios</p>
-    <div class="rej r3">
-      <div class="cel"><span class="n">01</span><h3 data-t="s1t">Estudio y diseño</h3><p data-t="s1p">Analizamos su curva horaria real de consumo, medimos la cubierta y calculamos qué potencia le conviene. Ni una placa de más.</p></div>
-      <div class="cel"><span class="n">02</span><h3 data-t="s2t">Ejecución</h3><p data-t="s2p">Obra llave en mano con nuestro propio equipo. Trabajamos en parada programada o fuera de turno: la planta no se detiene.</p></div>
-      <div class="cel"><span class="n">03</span><h3 data-t="s3t">Explotación</h3><p data-t="s3p">Monitorización remota, limpieza programada y garantía de rendimiento con penalización si no se cumple.</p></div>
+      <div class="panel c4">
+        <div class="panel-cab"><span data-t="iSellosEti">Garantías y acreditaciones</span></div>
+        <div class="panel-cuerpo"><div class="sellos" id="iSellos"></div></div>
+      </div>
+      <div class="panel c4">
+        <div class="panel-cab"><span data-t="iMarcasEti">Con qué material trabajamos</span></div>
+        <div class="panel-cuerpo">
+          <div class="marcas" id="iMarcas"></div>
+          <p class="metodo" data-t="iMarcasNota"></p>
+        </div>
+      </div>
+      <figure class="panel c4 panel-foto">
+        <img src="img/inversor.jpg" loading="lazy" decoding="async"
+             data-t-attr="alt:altInversor" alt="Inversor y protecciones de una instalación fotovoltaica">
+        <figcaption data-t="fpInversor"></figcaption>
+      </figure>
+
+      <div class="panel c4"><div class="panel-cab"><span data-t="s1t">Estudio y diseño</span><span class="etq">01</span></div>
+        <div class="panel-cuerpo"><p data-t="s1p"></p></div></div>
+      <div class="panel c4"><div class="panel-cab"><span data-t="s2t">Ejecución</span><span class="etq">02</span></div>
+        <div class="panel-cuerpo"><p data-t="s2p"></p></div></div>
+      <div class="panel c4"><div class="panel-cab"><span data-t="s3t">Explotación</span><span class="etq">03</span></div>
+        <div class="panel-cuerpo"><p data-t="s3p"></p>
+          <div class="acciones"><a class="btn" href="#/servicios" data-t="bVerDetalle">Ver en detalle</a></div></div></div>
     </div>
-    <div class="acc"><a class="btn" href="#/servicios" data-t="bVerDetalle">Ver en detalle</a></div>
   </div>
 </section>
 
@@ -1420,6 +1614,25 @@ html[dir="rtl"] .td-cel .u{letter-spacing:0;text-transform:none;font-size:.82rem
    aplicar() traduce el documento entero de una pasada, rutas ocultas
    incluidas, y vuelve a pintar las gráficas en el idioma nuevo.
    ══════════════════════════════════════════════════════════════════ */
+/* Fabricantes con los que se trabaja. Nombres propios: no se traducen ni se
+   transliteran, y en árabe se marcan `ltr` para que no se den la vuelta. */
+var MARCAS = ["Jinko Solar","Trina Solar","Canadian Solar","Longi","Huawei",
+              "Fronius","SMA","Sungrow","K2 Systems","Schletter"];
+
+/* Fotografías del sitio, con su crédito. Título, autor y licencia NO se
+   traducen: traducir una atribución la invalida. Por eso viven aquí y no en
+   el diccionario de idiomas. */
+var FOTOS = [
+  {t:"Solar installation technician on rooftop", a:"CoCreatr",
+   l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"},
+  {t:"Tonto Apache Tribe Hotel Solar Project, Arizona (27490270506)", a:"ENERGY.GOV",
+   l:"Dominio público", u:"https://commons.wikimedia.org/wiki/File:Tonto_Apache_Tribe_Hotel_Solar_Project,_Arizona_(27490270506).jpg"},
+  {t:"Mead, Nebraska solar farm aerial", a:"AllTheUsernamesAreInUse",
+   l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
+  {t:"Installation of solar PV panels — inverter", a:"David Hawgood",
+   l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"}
+];
+
 var T = {
 
 es:{
@@ -1428,6 +1641,15 @@ es:{
  pieEmpresaEti:"La empresa",
 
  nMapa:"Mapa del sitio", nEmpleo:"Empleo", tMapa:"Mapa del sitio — NAHAR",
+ nlSitio:"El sitio", nlHerramientas:"Herramientas", nlContacto:"Más",
+  pnAmortiza:"Amortización", pnGarantia:"Garantía", pnParadas:"Paradas",
+  pnProduccion:"Producción",
+ etqEjemplo:"Ejemplo",
+ altCubierta:"Estructura lastrada montada sobre la cubierta plana de una nave, con los módulos aún por colocar",
+ fpTecnico:"Montaje sobre cubierta. La obra se hace en parada programada o fuera de turno.",
+ fpCubierta:"Estructura lastrada: no se perfora la impermeabilización de la cubierta.",
+ fpPlanta:"Planta sobre suelo. La misma ingeniería, otra escala.",
+ fpInversor:"Inversores y protecciones. Es la parte que se avería, y la que se vigila en remoto.",
  tEmpleo:"Empleo — NAHAR", tErr:"Página no encontrada — NAHAR",
  errEti:"Error 404", errH1:"Esa página no existe.",
  errEntrada:"O la dirección está mal escrita, o la teníamos y la hemos movido. Las dos son culpa nuestra si el enlace venía de aquí.",
@@ -1630,8 +1852,6 @@ es:{
    noi:["No facturamos desplazamiento dentro del contrato de mantenimiento"],
    ent:["Informe anual con producción real frente a esperada","Informe de termografía con imágenes","Registro de intervenciones y piezas sustituidas"]}
  ],
-
- poNota:"Fichas de proyecto con cifras redondeadas. Sustituibles por casos reales con fotografía de obra cuando el cliente autorice publicarlos.",
  casos:[
   {t:"Fabricante de componentes de automoción", s:"Zaragoza · cubierta de chapa · dos turnos",
    m:[{v:"420",u:"kWp instalados"},{v:"682",u:"MWh al año"},{v:"58.000 €",u:"Ahorro anual"},{v:"6,4",u:"Años de amortización"}],
@@ -1747,7 +1967,6 @@ es:{
   {t:"Coordinación de seguridad", d:"Plan de seguridad y salud, recurso preventivo en obra y coordinación de actividades empresariales con su empresa."}
  ],
  iMarcasEti:"Con qué material trabajamos",
- marcas:["Jinko Solar","Trina Solar","Canadian Solar","Longi","Huawei","Fronius","SMA","Sungrow","K2 Systems","Schletter"],
  iMarcasNota:"No somos distribuidor exclusivo de ninguna marca, y eso es deliberado: elegimos el material por el proyecto, no por el margen. Si le interesa saber por qué un fabricante y no otro, está en la página de equipos.",
 
  nSimulador:"Simulador", nEquipos:"Equipos", nObra:"La obra", nGlosario:"Glosario",
@@ -1856,15 +2075,12 @@ es:{
  fiFecha:"Fecha",
 
  altPortada:"Técnico instalando módulos fotovoltaicos en una cubierta industrial",
+ altPlanta:"Vista aérea de una planta fotovoltaica sobre suelo",
+ altInversor:"Inversores y cuadro de protecciones de una instalación fotovoltaica",
  altProyectos:"Vista aérea de una planta fotovoltaica entre campos de cultivo",
  altMantenimiento:"Inversor y cuadro de protecciones de una instalación fotovoltaica",
  credEti:"Créditos de las imágenes",
  credNota:"Fotografías de Wikimedia Commons con licencia libre, atribuidas a su autor. Se sustituirían por fotografía propia de obra en un encargo real.",
- creditos:[
-  {t:"Solar installation technician on rooftop", a:"CoCreatr", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"},
-  {t:"Mead, Nebraska solar farm aerial", a:"AllTheUsernamesAreInUse", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
-  {t:"Installation of solar PV panels — inverter", a:"David Hawgood", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"}
- ],
  marca:"NAHAR", ariaMenu:"Secciones", ariaIdioma:"Idioma",
  nInicio:"Inicio", nServicios:"Servicios", nProceso:"Proceso", nRendimiento:"Rendimiento",
  nAmortizacion:"Amortización", nProyectos:"Proyectos", nMantenimiento:"Mantenimiento",
@@ -2031,6 +2247,15 @@ en:{
  pieEmpresaEti:"The company",
 
  nMapa:"Sitemap", nEmpleo:"Jobs", tMapa:"Sitemap — NAHAR",
+ nlSitio:"The site", nlHerramientas:"Tools", nlContacto:"More",
+  pnAmortiza:"Payback", pnGarantia:"Warranty", pnParadas:"Downtime",
+  pnProduccion:"Yield",
+ etqEjemplo:"Example",
+ altCubierta:"Ballasted mounting structure on the flat roof of an industrial building, modules not yet fitted",
+ fpTecnico:"Rooftop assembly. Work is done during planned shutdowns or outside shift hours.",
+ fpCubierta:"Ballasted structure: the roof waterproofing is never drilled.",
+ fpPlanta:"Ground-mounted plant. Same engineering, different scale.",
+ fpInversor:"Inverters and protection gear. This is the part that fails, and the part monitored remotely.",
  tEmpleo:"Jobs — NAHAR", tErr:"Page not found — NAHAR",
  errEti:"Error 404", errH1:"That page does not exist.",
  errEntrada:"Either the address is mistyped, or we had it and moved it. Both are our fault if the link came from here.",
@@ -2233,8 +2458,6 @@ en:{
    noi:["We do not invoice travel within the maintenance contract"],
    ent:["Annual report of real against expected output","Thermography report with images","Log of interventions and parts replaced"]}
  ],
-
- poNota:"Project sheets with rounded figures. Replaceable with real cases and site photography once a client authorises publication.",
  casos:[
   {t:"Automotive component manufacturer", s:"Zaragoza · metal deck roof · two shifts",
    m:[{v:"420",u:"kWp installed"},{v:"682",u:"MWh a year"},{v:"€58,000",u:"Annual saving"},{v:"6.4",u:"Years to payback"}],
@@ -2350,7 +2573,6 @@ en:{
   {t:"Safety coordination", d:"Health and safety plan, preventive resource on site and coordination of business activities with your company."}
  ],
  iMarcasEti:"The equipment we work with",
- marcas:["Jinko Solar","Trina Solar","Canadian Solar","Longi","Huawei","Fronius","SMA","Sungrow","K2 Systems","Schletter"],
  iMarcasNota:"We are not an exclusive distributor for any brand, and that is deliberate: we choose the equipment for the project, not for the margin. If you want to know why one manufacturer and not another, it is on the equipment page.",
 
  nSimulador:"Simulator", nEquipos:"Equipment", nObra:"The works", nGlosario:"Glossary",
@@ -2459,15 +2681,12 @@ en:{
  fiFecha:"Date",
 
  altPortada:"Technician installing photovoltaic modules on an industrial roof",
+ altPlanta:"Aerial view of a ground-mounted photovoltaic plant",
+ altInversor:"Inverters and protection board of a photovoltaic installation",
  altProyectos:"Aerial view of a photovoltaic plant among farmland",
  altMantenimiento:"Inverter and protection board of a photovoltaic installation",
  credEti:"Image credits",
  credNota:"Photographs from Wikimedia Commons under free licences, credited to their authors. In a real commission these would be replaced with our own site photography.",
- creditos:[
-  {t:"Solar installation technician on rooftop", a:"CoCreatr", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"},
-  {t:"Mead, Nebraska solar farm aerial", a:"AllTheUsernamesAreInUse", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
-  {t:"Installation of solar PV panels — inverter", a:"David Hawgood", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"}
- ],
  marca:"NAHAR", ariaMenu:"Sections", ariaIdioma:"Language",
  nInicio:"Home", nServicios:"Services", nProceso:"Process", nRendimiento:"Output",
  nAmortizacion:"Payback", nProyectos:"Projects", nMantenimiento:"Maintenance",
@@ -2634,6 +2853,15 @@ ar:{
  pieEmpresaEti:"الشركة",
 
  nMapa:"خريطة الموقع", nEmpleo:"وظائف", tMapa:"خريطة الموقع — نهار",
+ nlSitio:"الموقع", nlHerramientas:"الأدوات", nlContacto:"المزيد",
+  pnAmortiza:"الاسترداد", pnGarantia:"الضمان", pnParadas:"التوقّف",
+  pnProduccion:"الإنتاج",
+ etqEjemplo:"مثال",
+ altCubierta:"هيكل مثبّت بالأثقال على سطح مستوٍ لمبنى صناعي، والألواح لم تُركَّب بعد",
+ fpTecnico:"التركيب على السطح. يُنفَّذ العمل في توقّف مبرمج أو خارج أوقات المناوبة.",
+ fpCubierta:"هيكل بالأثقال: لا يُثقَب العزل المائي للسطح إطلاقًا.",
+ fpPlanta:"محطة أرضية. الهندسة نفسها بمقياس آخر.",
+ fpInversor:"العواكس ومعدّات الحماية. هذا هو الجزء الذي يتعطّل، والذي يُراقَب عن بُعد.",
  tEmpleo:"وظائف — نهار", tErr:"الصفحة غير موجودة — نهار",
  errEti:"خطأ ٤٠٤", errH1:"هذه الصفحة غير موجودة.",
  errEntrada:"إما أن العنوان مكتوب خطأً، وإما أنها كانت لدينا فنقلناها. وكلاهما ذنبنا إن كان الرابط من هنا.",
@@ -2836,8 +3064,6 @@ ar:{
    noi:["لا نُفوتِر التنقّل ضمن عقد الصيانة"],
    ent:["تقرير سنوي بالإنتاج الفعلي مقابل المتوقَّع","تقرير تصوير حراري بالصور","سجل التدخلات والقطع المستبدلة"]}
  ],
-
- poNota:"بطاقات مشاريع بأرقام مُقرَّبة. ويمكن استبدالها بحالات حقيقية وصور من الموقع متى أذن العميل بنشرها.",
  casos:[
   {t:"مصنّع مكوّنات سيارات", s:"سرقسطة · سطح معدني · مناوبتان",
    m:[{v:"٤٢٠",u:"كيلوواط ذروة مركَّبة"},{v:"٦٨٢",u:"ميغاواط ساعة سنويًا"},{v:"٥٨٬٠٠٠ يورو",u:"وفر سنوي"},{v:"٦٫٤",u:"سنوات الاسترداد"}],
@@ -2953,7 +3179,6 @@ ar:{
   {t:"تنسيق السلامة", d:"خطة سلامة وصحة، ومورد وقائي في الموقع، وتنسيق للأنشطة مع شركتكم."}
  ],
  iMarcasEti:"بأي معدّات نعمل",
- marcas:["Jinko Solar","Trina Solar","Canadian Solar","Longi","Huawei","Fronius","SMA","Sungrow","K2 Systems","Schletter"],
  iMarcasNota:"لسنا موزّعًا حصريًا لأي علامة، وهذا مقصود: نختار المعدّات بحسب المشروع لا بحسب هامش الربح. وإن أردت معرفة لماذا صانعٌ دون آخر، فذلك في صفحة المعدّات.",
 
  nSimulador:"المُحاكي", nEquipos:"المعدّات", nObra:"سير الأعمال", nGlosario:"مسرد المصطلحات",
@@ -3062,15 +3287,12 @@ ar:{
  fiFecha:"التاريخ",
 
  altPortada:"فنّي يركّب وحدات كهروضوئية على سطح صناعي",
+ altPlanta:"منظر جوي لمحطة كهروضوئية أرضية",
+ altInversor:"عواكس ولوحة حماية لمنشأة كهروضوئية",
  altProyectos:"منظر جوي لمحطة كهروضوئية بين الحقول الزراعية",
  altMantenimiento:"عاكس ولوحة حماية في منشأة كهروضوئية",
  credEti:"حقوق الصور",
  credNota:"صور من ويكيميديا كومنز برخص حرة، منسوبة إلى أصحابها. وفي مشروع حقيقي تُستبدل بتصوير خاص من موقع العمل.",
- creditos:[
-  {t:"Solar installation technician on rooftop", a:"CoCreatr", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"},
-  {t:"Mead, Nebraska solar farm aerial", a:"AllTheUsernamesAreInUse", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
-  {t:"Installation of solar PV panels — inverter", a:"David Hawgood", l:"CC BY-SA 2.0", u:"https://creativecommons.org/licenses/by-sa/2.0/"}
- ],
  marca:"نهار", ariaMenu:"الأقسام", ariaIdioma:"اللغة",
  nInicio:"الرئيسية", nServicios:"خدماتنا", nProceso:"سير العمل", nRendimiento:"الإنتاج",
  nAmortizacion:"استرداد الكلفة", nProyectos:"مشاريع", nMantenimiento:"الصيانة",
@@ -4130,10 +4352,11 @@ function pintarListas(){
     return '<div class="sello-c"><b>'+esc(x.t)+'</b><span>'+esc(x.d)+'</span></div>'; }).join("");
 
   var ma = document.getElementById("iMarcas");
-  if (ma) ma.innerHTML = t.marcas.map(function(x){ return "<span>"+esc(x)+"</span>"; }).join("");
+  if (ma) ma.innerHTML = MARCAS.map(function(x){
+    return '<span class="ltr" dir="ltr">' + esc(x) + "</span>"; }).join("");
 
   var cr = document.getElementById("credLista");
-  if (cr) cr.innerHTML = t.creditos.map(function(c){
+  if (cr) cr.innerHTML = FOTOS.map(function(c){
     return '<li>' + esc(c.t) + ' — ' + esc(c.a) + ', <a href="' + c.u
       + '" target="_blank" rel="noopener">' + esc(c.l) + '</a></li>'; }).join("");
 
@@ -4427,12 +4650,6 @@ document.getElementById("ckGuardar").addEventListener("click", function(){
   });
   ckGuarda(marcadas);
 });
-document.getElementById("menuB").addEventListener("click", function(){
-  menuAbrir(this.getAttribute("aria-expanded") !== "true");
-});
-document.querySelector("nav.n").addEventListener("click", function(e){
-  if (e.target.tagName === "A") menuAbrir(false);
-});
 document.addEventListener("keydown", function(e){ if (e.key === "Escape") menuAbrir(false); });
 CORTE_MENU.addEventListener("change", menuAjustar);
 menuAjustar();
@@ -4482,6 +4699,31 @@ document.getElementById("f").addEventListener("submit", function(e){
   try{ g = localStorage.getItem("nahar_lang"); }catch(e){}
   if (!g || !T[g]){ var l = (navigator.language||"es").slice(0,2).toLowerCase(); g = T[l] ? l : "es"; }
   aplicar(g); enrutar();
+})();
+
+/* ══ kit-tablero: el raíl en pantallas estrechas ══ */
+(function(){
+  var bot = document.getElementById("appAbrir"),
+      lat = document.getElementById("appLateral"),
+      velo = document.getElementById("appVelo");
+  if (!bot || !lat || !velo) return;
+  function poner(si){
+    lat.classList.toggle("abierto", si);
+    velo.classList.toggle("abierto", si);
+    bot.setAttribute("aria-expanded", si ? "true" : "false");
+  }
+  bot.addEventListener("click", function(){
+    poner(bot.getAttribute("aria-expanded") !== "true");
+  });
+  velo.addEventListener("click", function(){ poner(false); });
+  /* Al navegar se cierra solo: si no, en el móvil el raíl tapa lo que
+     acabas de pedir. */
+  lat.addEventListener("click", function(e){
+    if (e.target.closest("a[href^='#']")) poner(false);
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") poner(false);
+  });
 })();
 </script>
 </body>
