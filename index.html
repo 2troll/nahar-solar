@@ -758,13 +758,19 @@ html[dir="rtl"] .td-cel .u{letter-spacing:0;text-transform:none;font-size:.82rem
    El kit no impone paleta: toma la del sitio, sea cual sea el nombre que
    use, y sólo pone un último recurso para que nada quede sin color. */
 :root{
-  --kit-fondo:var(--fondo,#eef0ef);
-  --kit-panel:var(--fondo-2,#e4e8e7);
-  --kit-linea:var(--linea,rgba(20,24,27,.14));
-  --kit-texto:var(--texto,var(--tinta,#14181b));
-  --kit-texto-2:var(--texto-2,var(--tinta-2,#525a5e));
-  --kit-texto-3:var(--texto-3,var(--tinta-3,#858c8f));
-  --kit-acento:var(--acento,#0f5f7a);
+  /* Tres vocabularios conviven en la carpeta: `--fondo/--texto` (MARSA),
+     `--fondo/--tinta` (NAHAR) y `--f/--t` (BUNN, ATLAS). Se prueban en ese
+     orden y sólo al final entra un color fijo, para que ningún sitio herede
+     una paleta que no es la suya. Si un sitio quiere mandar, redefine
+     cualquiera de estas variables después del kit. */
+  --kit-fondo:var(--fondo,var(--f,#eef0ef));
+  --kit-panel:var(--fondo-2,var(--f2,#e4e8e7));
+  --kit-sup:var(--sup,var(--kit-panel));
+  --kit-linea:var(--linea,var(--l,rgba(20,24,27,.14)));
+  --kit-texto:var(--texto,var(--tinta,var(--t,#14181b)));
+  --kit-texto-2:var(--texto-2,var(--tinta-2,var(--t2,#525a5e)));
+  --kit-texto-3:var(--texto-3,var(--tinta-3,var(--t3,#858c8f)));
+  --kit-acento:var(--acento,var(--ocre,var(--verde,#0f5f7a)));
   --kit-hondo:var(--hondo,#101619);
   --kit-hondo-texto:var(--hondo-texto,#e7ecec);
   --kit-hondo-linea:var(--hondo-linea,rgba(231,236,236,.18));
@@ -912,6 +918,10 @@ html[dir="rtl"] .etq{letter-spacing:0;text-transform:none;font-size:.76rem;}
 .rej-form .ancho2{grid-column:1 / -1;}
 @media(max-width:640px){.rej-form{grid-template-columns:1fr}}
 /* ══ kit-tablero: final ══ */
+/* NAHAR: gris de ingeniería, con el azul de marca sólo en los rótulos. */
+:root{--kit-hondo:#12171a;--kit-hondo-texto:#e6eaea;
+      --kit-hondo-linea:rgba(230,234,234,.16);}
+
 </style>
 </head>
 <body>
